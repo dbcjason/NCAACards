@@ -1373,8 +1373,8 @@ def build_bt_percentile_html(
                 continue
             value, pct = bt_metric_percentile(target_row, cohort, key)
             if label == "BLK%":
-                # User-requested display transform: shift decimal two places left and trim trailing precision.
-                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, scale=0.01, truncate=True)
+                # Display as x.x with trimmed precision.
+                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, truncate=True)
             else:
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=digits)
         return rows_html
@@ -1417,6 +1417,9 @@ def build_self_creation_html(
 
     pbp_poss_map = build_pbp_off_possessions_map(pbp_rows)
     target_poss = pbp_poss_map.get((norm_player_name(target.player), norm_team(target.team), norm_season(target.season)))
+    if target_poss is None and target_bt:
+        # Fallback when pbp metrics are unavailable in the runtime environment.
+        target_poss = bt_metric_value(target_bt, "possessions")
     target_metrics = bt_playerstat_metrics_from_row(target_ps, target_poss)
     if not target_metrics:
         return '<div class="panel shot-panel" style="margin-top:14px;"><h3>Self Creation</h3><div class="shot-meta">Missing possessions for self-creation rate normalization.</div></div>'
@@ -1434,6 +1437,8 @@ def build_self_creation_html(
                 norm_season(bt_get(r, ["year"])),
             )
         )
+        if poss is None:
+            poss = bt_metric_value(r, "possessions")
         m = bt_playerstat_metrics_from_row(ps, poss)
         if not m:
             continue

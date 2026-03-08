@@ -59,6 +59,12 @@ jobs:
           def resolve_from_repo(value: str) -> str:
               p = (root / 'player_cards_pipeline' / value).resolve()
               return str(p)
+          
+          def resolve_path(value: str) -> str:
+              p = Path(value)
+              if p.is_absolute():
+                  return str(p)
+              return resolve_from_repo(value)
 
           plays_map = cfg.get('plays_csv_by_year', {})
           adv_map = cfg.get('advgames_csv_by_year', {})
@@ -74,7 +80,7 @@ jobs:
 
           bio = cfg.get('bio_csv', '').strip()
           if bio:
-              env_lines.append(f"BIO_CSV={bio}")
+              env_lines.append(f"BIO_CSV={resolve_path(bio)}")
 
           bt = cfg.get('bt_advstats_csv', '').strip()
           if bt:
