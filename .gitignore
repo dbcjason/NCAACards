@@ -10,6 +10,4 @@ __pycache__/
 player_cards_pipeline/output/*.html
 
 # Large manual/raw datasets (keep local but don't push by default)
-player_cards_pipeline/data/manual/plays_by_year/*/plays_*.csv
-player_cards_pipeline/data/manual/plays_by_year/*/plays_*.csv.gz
 cbbd_seasons/
