@@ -1,0 +1,16 @@
+{
+  "bt_advstats_csv": "data/bt/bt_advstats_2010_2025.csv",
+  "pbp_metrics_csv_by_year": {
+    "2025": "data/manual/pbp_metrics/2025/pbp_player_metrics_2025.csv",
+    "2026": "data/manual/pbp_metrics/2026/pbp_player_metrics_2026.csv"
+  },
+  "plays_csv_by_year": {
+    "2025": "../cbbd_seasons/2024-2025/tables/plays_regular.csv",
+    "2026": "../cbbd_seasons/2025-2026/tables/plays_regular.csv"
+  },
+  "bio_csv": "/Users/henryhalverson/Downloads/trank_data (5).csv",
+  "advgames_csv_by_year": {
+    "2025": "../2025_all_advgames_labeled.csv"
+  },
+  "bt_playerstat_url_template": "https://barttorvik.com/{year}_pbp_playerstat_array.json"
+}

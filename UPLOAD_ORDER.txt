@@ -1,0 +1,12 @@
+Manual upload package contents (minimum required):
+
+1) .github/workflows/cbbd_2026_plays_every_other_day.yml
+2) player_cards_pipeline/ (all files in this folder)
+3) cbb_player_cards_v1/build_player_card.py
+
+After upload in GitHub UI:
+- Add repo secret: CBBD_API_KEY
+- (Optional but recommended) upload PBP metrics files to:
+  player_cards_pipeline/data/manual/pbp_metrics/<YEAR>/pbp_player_metrics_<YEAR>.csv
+
+If your repo already has an older copy of any file, choose "replace".
