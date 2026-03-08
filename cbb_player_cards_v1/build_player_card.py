@@ -1286,7 +1286,8 @@ def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         ("Impact", ["bpm", "obpm", "dbpm", "net_rating"]),
         ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
         ("Playmaking", ["ast_per", "to_per", "ast_tov"]),
-        ("Defense/Rebounding", ["stl_per", "blk_per", "orb_per", "drb_per"]),
+        ("Defense", ["stl_per", "blk_per", "dbpm"]),
+        ("Rebounding", ["orb_per", "drb_per"]),
     ]
     if not bt_rows:
         return "".join(
@@ -1355,9 +1356,12 @@ def build_bt_percentile_html(
             ("A/TO", "ast_tov", False, 2),
             ("Rim Ast/100", "pbp_rim_assists_100", False, 2),
         ],
-        "Defense/Rebounding": [
+        "Defense": [
             ("STL%", "stl_per", True, 1),
             ("BLK%", "blk_per", True, 1),
+            ("DBPM", "dbpm", False, 1),
+        ],
+        "Rebounding": [
             ("OREB%", "orb_per", True, 1),
             ("DREB%", "drb_per", True, 1),
         ],
@@ -1382,7 +1386,8 @@ def build_bt_percentile_html(
     impact_html = section_rows(sections["Impact"])
     scoring_html = section_rows(sections["Scoring"])
     playmaking_html = section_rows(sections["Playmaking"])
-    defense_html = section_rows(sections["Defense/Rebounding"])
+    defense_html = section_rows(sections["Defense"])
+    rebounding_html = section_rows(sections["Rebounding"])
 
     return f"""
       <div class="panel" style="margin-top:14px;">
@@ -1391,12 +1396,9 @@ def build_bt_percentile_html(
         <div class="section-grid">
           <div class="section-card"><h4>Impact</h4>{impact_html}{build_bpm_trend_svg(target, adv_rows)}</div>
           <div class="section-card"><h4>Scoring</h4>{scoring_html}</div>
-          <div class="section-card">
-            <h4>Playmaking</h4>
-            {playmaking_html}
-            <h4 style="margin-top:4px;">Defense/Rebounding</h4>
-            {defense_html}
-          </div>
+          <div class="section-card"><h4>Playmaking</h4>{playmaking_html}</div>
+          <div class="section-card"><h4>Defense</h4>{defense_html}</div>
+          <div class="section-card"><h4>Rebounding</h4>{rebounding_html}</div>
         </div>
       </div>
 """
@@ -1580,9 +1582,9 @@ body {{
 }}
 .grade-strip {{
   display: grid;
-  grid-template-columns: repeat(4, minmax(112px, 1fr));
+  grid-template-columns: repeat(5, minmax(96px, 1fr));
   gap: 8px;
-  min-width: 470px;
+  min-width: 560px;
 }}
 .grade-chip {{
   border: 1px solid var(--line);
