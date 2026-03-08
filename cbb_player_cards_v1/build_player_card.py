@@ -248,23 +248,132 @@ def key_player_team_season(player: str, team: str, season: str) -> tuple[str, st
     return norm_player_name(player), norm_text(team), norm_season(season)
 
 
-def build_player_stats(plays_rows: list[dict[str, str]]) -> tuple[dict[tuple[str, str, str], PlayerGameStats], dict[tuple[str, str, str], set[str]]]:
+def _season_from_row(row: dict[str, str], season_hint: str = "") -> str:
+    s = str(row.get("season", "")).strip()
+    if s:
+        return norm_season(s)
+    if season_hint:
+        return norm_season(season_hint)
+    d = str(row.get("date", "")).strip()
+    m = re.match(r"^\s*(\d{4})-(\d{2})-\d{2}\s*$", d)
+    if m:
+        y = int(m.group(1))
+        mo = int(m.group(2))
+        # NCAA season year label: Jan-Jun -> same year, Jul-Dec -> next year.
+        return str(y if mo <= 6 else y + 1)
+    return ""
+
+
+def _resolve_side_team(row: dict[str, str], side_key: str) -> str:
+    side = norm_text(row.get(side_key, ""))
+    if side == "home":
+        return str(row.get("home", "")).strip()
+    if side == "away":
+        return str(row.get("away", "")).strip()
+    return ""
+
+
+def _team_from_row(row: dict[str, str]) -> str:
+    team = str(row.get("team", "")).strip()
+    if team:
+        return team
+    t = _resolve_side_team(row, "shot_team")
+    if t:
+        return t
+    t = _resolve_side_team(row, "action_team")
+    if t:
+        return t
+    return ""
+
+
+def _shot_made_from_row(row: dict[str, str]) -> bool:
+    made = row.get("shotInfo.made")
+    if made is not None and str(made).strip() != "":
+        return to_bool(made)
+    return norm_text(row.get("shot_outcome", "")) == "made"
+
+
+def _shot_range_from_row(row: dict[str, str]) -> str:
+    rng = norm_text(row.get("shotInfo.range", ""))
+    if rng in {"rim", "jumper", "three_pointer"}:
+        return rng
+
+    if to_bool(row.get("three_pt", "")):
+        return "three_pointer"
+
+    sx = to_float(row.get("shot_x"))
+    sy = to_float(row.get("shot_y"))
+    if sx is not None and sy is not None:
+        # ncaahoopR shot coords are in feet; hoops near x=+/-41.75, y=0.
+        d1 = math.hypot(sx - 41.75, sy)
+        d2 = math.hypot(sx + 41.75, sy)
+        if min(d1, d2) <= 4.5:
+            return "rim"
+    return "jumper"
+
+
+def _shot_loc_from_row(row: dict[str, str]) -> tuple[float | None, float | None]:
+    x = to_float(row.get("shotInfo.location.x"))
+    y = to_float(row.get("shotInfo.location.y"))
+    if x is not None and y is not None:
+        return x, y
+
+    sx = to_float(row.get("shot_x"))
+    sy = to_float(row.get("shot_y"))
+    if sx is None or sy is None:
+        return None, None
+
+    # Convert roughly from feet coords (-47..47, -25..25) to CBBD 0..940 / 0..500 scale.
+    full_x = (sx + 47.0) * 10.0
+    full_y = (sy + 25.0) * 10.0
+    return full_x, full_y
+
+
+def _desc_rebound_player(desc: str) -> str:
+    m = re.match(r"^(.*?) (Offensive|Defensive) Rebound\.", desc.strip())
+    return m.group(1).strip() if m else ""
+
+
+def _desc_steal_player(desc: str) -> str:
+    m = re.match(r"^(.*?) Steal\.", desc.strip())
+    return m.group(1).strip() if m else ""
+
+
+def _desc_block_player(desc: str) -> str:
+    s = desc.strip()
+    m = re.match(r"^(.*?) Block\.", s)
+    if m:
+        return m.group(1).strip()
+    m = re.search(r"Block by (.*?)\.", s)
+    return m.group(1).strip() if m else ""
+
+
+def build_player_stats(
+    plays_rows: list[dict[str, str]],
+    season_hint: str = "",
+) -> tuple[dict[tuple[str, str, str], PlayerGameStats], dict[tuple[str, str, str], set[str]]]:
     stats: dict[tuple[str, str, str], dict[str, Any]] = {}
     games_by_player: dict[tuple[str, str, str], set[str]] = {}
 
     for row in plays_rows:
-        season = str(row.get("season", "")).strip()
-        team = row.get("team", "").strip()
-        shooter = row.get("shotInfo.shooter.name", "").strip()
+        season = _season_from_row(row, season_hint)
+        team = _team_from_row(row)
+        shooter = (row.get("shotInfo.shooter.name", "") or row.get("shooter", "")).strip()
         participant_0 = row.get("participants[0].name", "").strip()
         if not team:
             continue
 
-        game_id = str(row.get("gameId", "")).strip() or str(row.get("gameSourceId", "")).strip() or str(row.get("id", "")).strip()
+        game_id = (
+            str(row.get("gameId", "")).strip()
+            or str(row.get("gameSourceId", "")).strip()
+            or str(row.get("id", "")).strip()
+            or str(row.get("game_id", "")).strip()
+        )
         play_type = (row.get("playType", "") or "").strip()
-        shot_range = norm_text(row.get("shotInfo.range", ""))
+        shot_range = _shot_range_from_row(row)
         shot_is_tracked_attempt = shot_range in {"rim", "jumper", "three_pointer"}
-        made = to_bool(row.get("shotInfo.made"))
+        made = _shot_made_from_row(row)
+        description = str(row.get("description", "") or "")
 
         def get_bucket(player_name: str) -> dict[str, Any]:
             player_key = key_player_team_season(player_name, team, season)
@@ -290,7 +399,7 @@ def build_player_stats(plays_rows: list[dict[str, str]]) -> tuple[dict[tuple[str
                 },
             )
 
-        # Rebounds are credited to participant[0] on rebound events.
+        # Rebounds/steals/blocks from CBBD event types or ncaahoopR descriptions.
         if play_type in PLAY_TYPES_REBOUND and participant_0:
             bucket = get_bucket(participant_0)
             bucket["rebounds"] += 1
@@ -300,9 +409,22 @@ def build_player_stats(plays_rows: list[dict[str, str]]) -> tuple[dict[tuple[str
         if play_type == "Block Shot" and participant_0:
             bucket = get_bucket(participant_0)
             bucket["blocks"] += 1
+        if not play_type:
+            rb = _desc_rebound_player(description)
+            if rb:
+                bucket = get_bucket(rb)
+                bucket["rebounds"] += 1
+            st = _desc_steal_player(description)
+            if st:
+                bucket = get_bucket(st)
+                bucket["steals"] += 1
+            blk = _desc_block_player(description)
+            if blk:
+                bucket = get_bucket(blk)
+                bucket["blocks"] += 1
 
         # Field-goal attempts/makes and points should be credited to shooter only.
-        if shooter and shot_is_tracked_attempt:
+        if shooter and shot_is_tracked_attempt and (_shot_loc_from_row(row)[0] is not None or row.get("shot_outcome") is not None):
             bucket = get_bucket(shooter)
             bucket["fga"] += 1
             if made:
@@ -314,16 +436,22 @@ def build_player_stats(plays_rows: list[dict[str, str]]) -> tuple[dict[tuple[str
                     bucket["tpm"] += 1
 
             score_value = to_float(row.get("scoreValue"))
-            if to_bool(row.get("scoringPlay")) and score_value is not None and math.isfinite(score_value):
+            if score_value is None:
+                score_value = to_float(row.get("score_value"))
+            scoring_play = to_bool(row.get("scoringPlay")) or to_bool(row.get("scoring_play")) or made
+            if scoring_play and score_value is not None and math.isfinite(score_value):
                 bucket["points"] += int(round(score_value))
+            elif made:
+                bucket["points"] += 3 if shot_range == "three_pointer" else 2
 
-            assister = row.get("shotInfo.assistedBy.name", "").strip()
+            assister = (row.get("shotInfo.assistedBy.name", "") or row.get("assist", "")).strip()
             if made and assister:
                 assist_bucket = get_bucket(assister)
                 assist_bucket["assists"] += 1
 
         # Free-throw attempts/makes and points should also be shooter-only.
-        if shooter and play_type in PLAY_TYPES_FT:
+        is_ft_event = (play_type in PLAY_TYPES_FT) or to_bool(row.get("free_throw"))
+        if shooter and is_ft_event:
             bucket = get_bucket(shooter)
             bucket["fta"] += 1
             if made:
@@ -372,26 +500,32 @@ def percentile_safe(value: float | None, cohort: list[float]) -> float | None:
     return percentile(value, vals)
 
 
-def collect_shots(plays_rows: list[dict[str, str]], player: str, team: str, season: str) -> list[dict[str, Any]]:
+def collect_shots(
+    plays_rows: list[dict[str, str]],
+    player: str,
+    team: str,
+    season: str,
+    season_hint: str = "",
+) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     np, nt, ns = norm_text(player), norm_text(team), norm_text(season)
     for row in plays_rows:
-        rp = norm_text(row.get("shotInfo.shooter.name", "") or row.get("participants[0].name", ""))
-        rt = norm_text(row.get("team", ""))
-        rs = norm_text(row.get("season", ""))
+        rp = norm_text(row.get("shotInfo.shooter.name", "") or row.get("shooter", "") or row.get("participants[0].name", ""))
+        rt = norm_text(_team_from_row(row))
+        rs = norm_text(_season_from_row(row, season_hint))
         if (rp, rt, rs) != (np, nt, ns):
             continue
-        x = to_float(row.get("shotInfo.location.x"))
-        y = to_float(row.get("shotInfo.location.y"))
+        x, y = _shot_loc_from_row(row)
         if x is None or y is None:
             continue
-        made = to_bool(row.get("shotInfo.made"))
+        made = _shot_made_from_row(row)
+        shot_range = _shot_range_from_row(row)
         out.append(
             {
                 "x": x,
                 "y": y,
                 "made": made,
-                "range": norm_text(row.get("shotInfo.range", "")),
+                "range": shot_range,
             }
         )
     return out
@@ -1612,7 +1746,11 @@ def choose_player(
 
     candidates = [p for p in players if norm_text(p.player) == np]
     if nt:
-        candidates = [p for p in candidates if norm_text(p.team) == nt]
+        candidates = [
+            p
+            for p in candidates
+            if nt in norm_text(p.team) or norm_text(p.team) in nt
+        ]
     if ns:
         candidates = [p for p in candidates if norm_text(p.season) == ns]
     if not candidates:
@@ -1679,7 +1817,7 @@ def main() -> None:
     if not plays_rows:
         raise RuntimeError("Plays CSV had no rows.")
 
-    stats_map, _ = build_player_stats(plays_rows)
+    stats_map, _ = build_player_stats(plays_rows, season_hint=args.season or "")
     players = list(stats_map.values())
     if not players:
         raise RuntimeError("Could not build player stats from plays data.")
@@ -1730,22 +1868,23 @@ def main() -> None:
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
 
-    shots = collect_shots(plays_rows, target.player, target.team, target.season)
-    season_shots = [
-        s for row in plays_rows
-        if norm_text(row.get("season", "")) == norm_text(target.season)
-        for s in (
-            [
-                {
-                    "x": to_float(row.get("shotInfo.location.x")),
-                    "y": to_float(row.get("shotInfo.location.y")),
-                    "made": to_bool(row.get("shotInfo.made")),
-                    "range": norm_text(row.get("shotInfo.range", "")),
-                }
-            ]
+    shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
+    season_shots: list[dict[str, Any]] = []
+    for row in plays_rows:
+        if norm_text(_season_from_row(row, args.season or "")) != norm_text(target.season):
+            continue
+        x, y = _shot_loc_from_row(row)
+        rng = _shot_range_from_row(row)
+        if x is None or y is None or rng not in {"rim", "jumper", "three_pointer"}:
+            continue
+        season_shots.append(
+            {
+                "x": x,
+                "y": y,
+                "made": _shot_made_from_row(row),
+                "range": rng,
+            }
         )
-        if s["x"] is not None and s["y"] is not None and s["range"] in {"rim", "jumper", "three_pointer"}
-    ]
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games)
     render_card(
         target,
