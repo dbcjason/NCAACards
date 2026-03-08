@@ -12,5 +12,4 @@ player_cards_pipeline/output/*.html
 # Large manual/raw datasets (keep local but don't push by default)
 player_cards_pipeline/data/manual/plays_by_year/*/plays_*.csv
 player_cards_pipeline/data/manual/plays_by_year/*/plays_*.csv.gz
-player_cards_pipeline/data/manual/pbp_metrics/*/pbp_player_metrics_*.csv
 cbbd_seasons/
