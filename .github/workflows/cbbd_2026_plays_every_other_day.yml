@@ -1,4 +1,4 @@
-name: Pull 2026 CBBD Plays (Every Other Day 4AM ET)
+name: Pull 2026 CBBD Plays + Bart (Every Other Day 4AM ET)
 
 on:
   workflow_dispatch:
@@ -52,15 +52,22 @@ jobs:
             --max-requests 3000 \
             --sleep-sec 0.15
 
+      - name: Refresh Bart 2026 datasets
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
+            --project-root "."
+
       - name: Commit and push updates
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cbbd_seasons/2025-2026/ || true
+          git add player_cards_pipeline/data/bt/ || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Update 2026 CBBD plays (regular+postseason)"
+          git commit -m "Update 2026 CBBD plays + Bart datasets"
           git push
