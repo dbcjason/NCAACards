@@ -18,6 +18,16 @@ ADVGAMES_HEADERS = [
     'loc', 'tt', 'pp', 'inches', 'cls', 'pid', 'year'
 ]
 
+BT_ADV_HEADERS = [
+    "player_name", "team", "conf", "GP", "Min_per", "ORtg", "usg", "eFG", "TS_per", "ORB_per", "DRB_per",
+    "AST_per", "TO_per", "FTM", "FTA", "FT_per", "twoPM", "twoPA", "twoP_per", "TPM", "TPA", "TP_per",
+    "blk_per", "stl_per", "ftr", "yr", "ht", "num", "porpag", "adjoe", "pfr", "year", "pid", "type",
+    "Rec Rank", "ast/tov", "rimmade", "rimmade+rimmiss", "midmade", "midmade+midmiss",
+    "rimmade/(rimmade+rimmiss)", "midmade/(midmade+midmiss)", "dunksmade", "dunksmiss+dunksmade",
+    "dunksmade/(dunksmade+dunksmiss)", "pick", "drtg", "adrtg", "dporpag", "stops", "bpm", "obpm", "dbpm",
+    "gbpm", "mp", "ogbpm", "dgbpm", "oreb", "dreb", "treb", "ast", "stl", "blk", "pts", "role", "3p/100?",
+]
+
 
 def fetch_bytes(url: str) -> bytes:
     req = Request(url, headers={"User-Agent": "Mozilla/5.0", "Accept": "*/*"})
@@ -54,26 +64,40 @@ def write_csv(path: Path, header: list[str], rows: list[dict[str, str]]) -> None
 def refresh_advstats_2026(bt_dir: Path) -> None:
     url = "https://barttorvik.com/getadvstats.php?year=2026&csv=1"
     txt = fetch_text(url)
-    parsed = list(csv.reader(txt.splitlines()))
+    parsed = [r for r in csv.reader(txt.splitlines()) if r]
     if not parsed:
         raise RuntimeError("Empty advstats response for 2026")
 
-    h26 = parsed[0]
-    rows26 = parsed[1:]
+    # getadvstats.php returns data rows only (no header row).
+    h26 = list(BT_ADV_HEADERS)
+    rows26 = parsed
     h26_out = h26 + (["bt_fetch_year"] if "bt_fetch_year" not in h26 else [])
 
     out_2026 = bt_dir / "bt_advstats_2026.csv"
     out_2010_2026 = bt_dir / "bt_advstats_2010_2026.csv"
     base_2010_2025 = bt_dir / "bt_advstats_2010_2025.csv"
+    trank_dir = bt_dir / "trank_by_year"
+    ensure_dir(trank_dir)
+    trank_2026 = trank_dir / "trank_2026.csv"
+    trank_2010_2026 = bt_dir / "trank_2010_2026.csv"
+    trank_2010_2025 = bt_dir / "trank_2010_2025.csv"
 
     rows26_dict: list[dict[str, str]] = []
+    rows26_trank: list[dict[str, str]] = []
     for r in rows26:
         rr = r + [""] * max(0, len(h26) - len(r))
         d = {h26[i]: rr[i] for i in range(len(h26))}
         d["bt_fetch_year"] = "2026"
         rows26_dict.append(d)
+        td = dict(d)
+        td["trank_year"] = "2026"
+        rows26_trank.append(td)
 
     write_csv(out_2026, h26_out, rows26_dict)
+    trank_header = list(h26)
+    if "trank_year" not in trank_header:
+        trank_header.append("trank_year")
+    write_csv(trank_2026, trank_header, rows26_trank)
 
     base_h, base_rows = read_csv(base_2010_2025)
     if not base_h:
@@ -94,6 +118,34 @@ def refresh_advstats_2026(bt_dir: Path) -> None:
     merged.extend(rows26_dict)
 
     write_csv(out_2010_2026, header, merged)
+
+    # Maintain a trank combined file with explicit source year.
+    th, tr = read_csv(trank_2010_2025)
+    if not th:
+        # Backfill from bt_advstats_2010_2025.csv if needed.
+        bh, br = read_csv(base_2010_2025)
+        if bh:
+            th = list(bh)
+            if "trank_year" not in th:
+                th.append("trank_year")
+            tr = []
+            for row in br:
+                d = dict(row)
+                d["trank_year"] = row.get("year", "") or row.get("bt_fetch_year", "")
+                tr.append(d)
+
+    if not th:
+        write_csv(trank_2010_2026, trank_header, rows26_trank)
+        return
+
+    merged_trank_header = list(th)
+    for c in trank_header:
+        if c not in merged_trank_header:
+            merged_trank_header.append(c)
+
+    tr_no_2026 = [r for r in tr if (r.get("trank_year", "") or r.get("year", "")) != "2026"]
+    tr_no_2026.extend(rows26_trank)
+    write_csv(trank_2010_2026, merged_trank_header, tr_no_2026)
 
 
 def refresh_playerstat_2026(bt_dir: Path) -> None:

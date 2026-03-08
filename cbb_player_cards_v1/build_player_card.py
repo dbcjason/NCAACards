@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import csv
 import difflib
+import gzip
 import html
 import json
 import math
@@ -152,7 +153,11 @@ def to_float(v: Any) -> float | None:
 
 
 def read_csv_rows(path: Path) -> tuple[list[str], list[dict[str, str]]]:
-    with path.open("r", newline="", encoding="utf-8-sig") as f:
+    if path.suffix.lower() == ".gz":
+        fobj = gzip.open(path, "rt", newline="", encoding="utf-8-sig")
+    else:
+        fobj = path.open("r", newline="", encoding="utf-8-sig")
+    with fobj as f:
         rows = list(csv.reader(f))
     if not rows:
         return [], []
@@ -245,7 +250,31 @@ def load_bio_lookup(path: Path) -> dict[tuple[str, str, str], dict[str, str]]:
 
 
 def key_player_team_season(player: str, team: str, season: str) -> tuple[str, str, str]:
-    return norm_player_name(player), norm_text(team), norm_season(season)
+    return norm_player_name(player), norm_team(team), norm_season(season)
+
+
+def lookup_bio_fallback(
+    bio_lookup: dict[tuple[str, str, str], dict[str, str]],
+    player: str,
+    team: str,
+    season: str,
+) -> dict[str, str]:
+    exact = bio_lookup.get(key_player_team_season(player, team, season))
+    if exact:
+        return exact
+    np = norm_player_name(player)
+    ns = norm_season(season)
+    nt = norm_team(team)
+    candidates: list[tuple[float, dict[str, str]]] = []
+    for (bp, bt, by), bio in bio_lookup.items():
+        if bp != np or by != ns:
+            continue
+        score = difflib.SequenceMatcher(None, nt, bt).ratio()
+        candidates.append((score, bio))
+    if not candidates:
+        return {"class": "", "height": "", "age": "", "position": "", "conference": "", "dob": ""}
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return candidates[0][1]
 
 
 def _season_from_row(row: dict[str, str], season_hint: str = "") -> str:
@@ -330,9 +359,24 @@ def _shot_loc_from_row(row: dict[str, str]) -> tuple[float | None, float | None]
     if sx is None or sy is None:
         return None, None
 
-    # Convert roughly from feet coords (-47..47, -25..25) to CBBD 0..940 / 0..500 scale.
-    full_x = (sx + 47.0) * 10.0
-    full_y = (sy + 25.0) * 10.0
+    # ncaahoopR logs appear in three coordinate conventions:
+    # 1) Centered feet: x in [-47, 47], y in [-25, 25]
+    # 2) Positive feet: x in [0, 94], y in [0, 50]
+    # 3) Full-scale: x in [0, 940], y in [0, 500]
+    # Convert both to CBBD 0..940 / 0..500 scale.
+    if -60.0 <= sx <= 60.0 and -35.0 <= sy <= 35.0:
+        full_x = (sx + 47.0) * 10.0
+        full_y = (sy + 25.0) * 10.0
+    elif 0.0 <= sx <= 940.0 and 0.0 <= sy <= 500.0:
+        full_x = sx
+        full_y = sy
+    elif 0.0 <= sx <= 100.0 and 0.0 <= sy <= 60.0:
+        full_x = sx * 10.0
+        full_y = sy * 10.0
+    else:
+        # Fallback to centered transform for unknown legacy ranges.
+        full_x = (sx + 47.0) * 10.0
+        full_y = (sy + 25.0) * 10.0
     return full_x, full_y
 
 
@@ -397,14 +441,21 @@ def build_player_stats(
             shooter = desc_shooter
         if not participant_0:
             participant_0 = _desc_rebound_player(description) or _desc_steal_player(description) or _desc_block_player(description)
-        if (not team) and team_hint_by_player_season and season:
-            # Legacy logs often omit explicit team on rebound/steal/block rows.
-            for actor in [shooter, participant_0, _desc_assister(description)]:
-                if not actor:
-                    continue
-                team = team_hint_by_player_season.get((norm_player_name(actor), norm_season(season)), "")
-                if team:
-                    break
+        if team_hint_by_player_season and season:
+            explicit_team = any(
+                str(row.get(k, "")).strip() and norm_text(row.get(k, "")) not in {"na", "none", "nan"}
+                for k in ("team", "shot_team", "action_team")
+            )
+            # Legacy logs often only provide possession_before/after and can misattribute
+            # defensive events (e.g., steals/blocks). Prefer BT team hints in that case.
+            if (not explicit_team) or (not team):
+                for actor in [shooter, participant_0, _desc_assister(description)]:
+                    if not actor:
+                        continue
+                    hinted = team_hint_by_player_season.get((norm_player_name(actor), norm_season(season)), "")
+                    if hinted:
+                        team = hinted
+                        break
         if not team:
             continue
 
@@ -1426,8 +1477,8 @@ def build_bt_percentile_html(
                 continue
             value, pct = bt_metric_percentile(target_row, cohort, key)
             if label == "BLK%":
-                # Shift BLK% display two decimals left.
-                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, scale=0.01, truncate=True)
+                # Render directly from BT value so non-zero block rates display correctly.
+                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, truncate=True)
             else:
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=digits)
         return rows_html
@@ -1778,6 +1829,25 @@ def build_player_comparisons_html(
 """
 
 
+def bt_fg_totals_for_target(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> tuple[int | None, int | None]:
+    if not bt_rows:
+        return None, None
+    row = bt_find_target_row(bt_rows, target)
+    if not row:
+        return None, None
+    twom = bt_num(row, ["twoPM", " twoPM"])
+    twoa = bt_num(row, ["twoPA", " twoPA"])
+    threem = bt_num(row, ["TPM", " TPM", "tpm", " tpm"])
+    threea = bt_num(row, ["TPA", " TPA", "tpa", " tpa"])
+    if twom is None or twoa is None or threem is None or threea is None:
+        return None, None
+    fgm = int(round(twom + threem))
+    fga = int(round(twoa + threea))
+    if fga <= 0:
+        return None, None
+    return fgm, fga
+
+
 def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
@@ -1790,6 +1860,8 @@ def render_card(
     shot_diet_html: str,
     player_comparisons_html: str,
     advanced_html: str,
+    shot_header_makes: int | None,
+    shot_header_attempts: int | None,
     out_path: Path,
 ) -> None:
     name = stats.player
@@ -1804,8 +1876,8 @@ def render_card(
     subtitle = f"{team} | {season} | Position: {position} | Age: {age} | Height: {height}"
 
     # Use full event-derived FG totals for header stats, not only plotted (x/y) shots.
-    shot_makes = stats.fgm
-    shot_att = stats.fga
+    shot_makes = shot_header_makes if shot_header_makes is not None else stats.fgm
+    shot_att = shot_header_attempts if shot_header_attempts is not None else stats.fga
     shot_pct = (100.0 * shot_makes / shot_att) if shot_att else 0.0
 
     html_doc = f"""<!doctype html>
@@ -2289,10 +2361,12 @@ def main() -> None:
     bio_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
     if args.bio_csv:
         bio_lookup = load_bio_lookup(Path(args.bio_csv))
-    bio = bio_lookup.get(
-        key_player_team_season(target.player, target.team, target.season),
-        {"class": "", "height": "", "age": "", "position": "", "conference": "", "dob": ""},
-    )
+    bio = dict(lookup_bio_fallback(bio_lookup, target.player, target.team, target.season))
+    target_bt_row = bt_find_target_row(bt_rows, target) if bt_rows else None
+    if not (bio.get("height", "") or "").strip() and target_bt_row:
+        inches = bt_num(target_bt_row, ["inches", " inches"])
+        if inches is not None and math.isfinite(inches):
+            bio["height"] = str(int(round(inches)))
 
     if args.bt_playerstat_json:
         bt_playerstat_rows = load_bt_playerstat_rows_from_source(args.bt_playerstat_json)
@@ -2309,6 +2383,7 @@ def main() -> None:
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
+    bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
 
     shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
     season_shots: list[dict[str, Any]] = []
@@ -2340,6 +2415,8 @@ def main() -> None:
         shot_diet_html,
         player_comparisons_html,
         advanced_html,
+        bt_fgm,
+        bt_fga,
         Path(args.out_html),
     )
 
