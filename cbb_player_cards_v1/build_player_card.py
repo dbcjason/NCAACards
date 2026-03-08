@@ -1515,7 +1515,7 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
         <div class="shotdiet-legend">
           <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-rim"></span> Rim ({rim_pct:.1f}%)</div>
           <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-mid"></span> Non-Rim 2 ({mid_pct:.1f}%)</div>
-          <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-three"></span> 3 ({three_pct:.1f}%)</div>
+          <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-three"></span> 3PA ({three_pct:.1f}%)</div>
         </div>
       </div>
 """
@@ -1722,7 +1722,6 @@ def build_player_comparisons_html(
     return f"""
       <div class="panel">
         <h3>Player Comparisons</h3>
-        <div class="shot-meta">Top {top_n} percentile-based comps</div>
         <div class="comp-table">
           {rows_html}
         </div>
@@ -2009,6 +2008,10 @@ body {{
   gap: 12px;
   align-items: start;
 }}
+.right-bottom {{
+  width: calc(50% - 6px);
+  margin-top: auto;
+}}
 .comp-table {{
   display: grid;
   gap: 6px;
@@ -2047,6 +2050,7 @@ body {{
   .shot-chart-col {{ flex: 1 1 auto; min-width: 0; }}
   .right-wrap {{ width: 100%; margin-top: 14px; }}
   .right-top {{ grid-template-columns: 1fr; }}
+  .right-bottom {{ width: 100%; }}
 }}
 </style>
 </head>
@@ -2086,7 +2090,7 @@ body {{
             {self_creation_html}
             {player_comparisons_html}
           </div>
-          <div style="margin-top:auto;">
+          <div class="right-bottom">
             {shot_diet_html}
           </div>
         </div>
