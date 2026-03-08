@@ -397,8 +397,14 @@ def build_player_stats(
             shooter = desc_shooter
         if not participant_0:
             participant_0 = _desc_rebound_player(description) or _desc_steal_player(description) or _desc_block_player(description)
-        if (not team) and team_hint_by_player_season and shooter and season:
-            team = team_hint_by_player_season.get((norm_player_name(shooter), norm_season(season)), "")
+        if (not team) and team_hint_by_player_season and season:
+            # Legacy logs often omit explicit team on rebound/steal/block rows.
+            for actor in [shooter, participant_0, _desc_assister(description)]:
+                if not actor:
+                    continue
+                team = team_hint_by_player_season.get((norm_player_name(actor), norm_season(season)), "")
+                if team:
+                    break
         if not team:
             continue
 
