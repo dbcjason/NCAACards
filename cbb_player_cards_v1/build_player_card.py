@@ -355,9 +355,33 @@ def _desc_block_player(desc: str) -> str:
     return m.group(1).strip() if m else ""
 
 
+def _desc_assister(desc: str) -> str:
+    m = re.search(r"Assisted by (.*?)\.", desc)
+    return m.group(1).strip() if m else ""
+
+
+def _desc_shot_info(desc: str) -> tuple[str, bool, str, bool]:
+    s = (desc or "").strip()
+    m = re.match(r"^(.*?) (made|missed) (.*)$", s)
+    if not m:
+        return "", False, "", False
+    player = m.group(1).strip()
+    made = m.group(2) == "made"
+    tail = m.group(3).lower()
+    is_ft = "free throw" in tail
+    if is_ft:
+        return player, made, "", True
+    if "three point" in tail or "3-point" in tail:
+        return player, made, "three_pointer", False
+    if any(k in tail for k in ["layup", "dunk", "tip in", "tip shot", "alley oop"]):
+        return player, made, "rim", False
+    return player, made, "jumper", False
+
+
 def build_player_stats(
     plays_rows: list[dict[str, str]],
     season_hint: str = "",
+    team_hint_by_player_season: dict[tuple[str, str], str] | None = None,
 ) -> tuple[dict[tuple[str, str, str], PlayerGameStats], dict[tuple[str, str, str], set[str]]]:
     stats: dict[tuple[str, str, str], dict[str, Any]] = {}
     games_by_player: dict[tuple[str, str, str], set[str]] = {}
@@ -367,6 +391,14 @@ def build_player_stats(
         team = _team_from_row(row)
         shooter = (row.get("shotInfo.shooter.name", "") or row.get("shooter", "")).strip()
         participant_0 = row.get("participants[0].name", "").strip()
+        description = str(row.get("description", "") or "")
+        desc_shooter, desc_made, desc_range, desc_is_ft = _desc_shot_info(description)
+        if not shooter and desc_shooter:
+            shooter = desc_shooter
+        if not participant_0:
+            participant_0 = _desc_rebound_player(description) or _desc_steal_player(description) or _desc_block_player(description)
+        if (not team) and team_hint_by_player_season and shooter and season:
+            team = team_hint_by_player_season.get((norm_player_name(shooter), norm_season(season)), "")
         if not team:
             continue
 
@@ -378,9 +410,12 @@ def build_player_stats(
         )
         play_type = (row.get("playType", "") or "").strip()
         shot_range = _shot_range_from_row(row)
+        if not shot_range and desc_range:
+            shot_range = desc_range
         shot_is_tracked_attempt = shot_range in {"rim", "jumper", "three_pointer"}
         made = _shot_made_from_row(row)
-        description = str(row.get("description", "") or "")
+        if (row.get("shotInfo.made") in (None, "")) and (row.get("shot_outcome") in (None, "", "NA")) and desc_shooter:
+            made = desc_made
 
         def get_bucket(player_name: str) -> dict[str, Any]:
             player_key = key_player_team_season(player_name, team, season)
@@ -431,7 +466,8 @@ def build_player_stats(
                 bucket["blocks"] += 1
 
         # Field-goal attempts/makes and points should be credited to shooter only.
-        if shooter and shot_is_tracked_attempt and (_shot_loc_from_row(row)[0] is not None or row.get("shot_outcome") is not None):
+        has_shot_signal = (_shot_loc_from_row(row)[0] is not None) or (row.get("shot_outcome") not in (None, "", "NA")) or bool(desc_shooter and not desc_is_ft)
+        if shooter and shot_is_tracked_attempt and has_shot_signal:
             bucket = get_bucket(shooter)
             bucket["fga"] += 1
             if made:
@@ -451,13 +487,13 @@ def build_player_stats(
             elif made:
                 bucket["points"] += 3 if shot_range == "three_pointer" else 2
 
-            assister = (row.get("shotInfo.assistedBy.name", "") or row.get("assist", "")).strip()
+            assister = (row.get("shotInfo.assistedBy.name", "") or row.get("assist", "")).strip() or _desc_assister(description)
             if made and assister:
                 assist_bucket = get_bucket(assister)
                 assist_bucket["assists"] += 1
 
         # Free-throw attempts/makes and points should also be shooter-only.
-        is_ft_event = (play_type in PLAY_TYPES_FT) or to_bool(row.get("free_throw"))
+        is_ft_event = (play_type in PLAY_TYPES_FT) or to_bool(row.get("free_throw")) or desc_is_ft
         if shooter and is_ft_event:
             bucket = get_bucket(shooter)
             bucket["fta"] += 1
@@ -2168,6 +2204,21 @@ def build_per_game_percentiles(
     }
 
 
+def build_player_team_hint_map(bt_rows: list[dict[str, str]]) -> dict[tuple[str, str], str]:
+    choices: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for r in bt_rows:
+        p = norm_player_name(bt_get(r, ["player_name"]))
+        y = norm_season(bt_get(r, ["year"]))
+        t = bt_get(r, ["team"]).strip()
+        if p and y and t:
+            choices[(p, y)].add(t)
+    out: dict[tuple[str, str], str] = {}
+    for k, ts in choices.items():
+        if len(ts) == 1:
+            out[k] = next(iter(ts))
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build a college basketball player card HTML.")
     ap.add_argument("--plays-csv", required=True, help="Path to CBBD plays CSV (regular/fullseason).")
@@ -2195,21 +2246,6 @@ def main() -> None:
     if not plays_rows:
         raise RuntimeError("Plays CSV had no rows.")
 
-    stats_map, _ = build_player_stats(plays_rows, season_hint=args.season or "")
-    players = list(stats_map.values())
-    if not players:
-        raise RuntimeError("Could not build player stats from plays data.")
-
-    target = choose_player(players, args.player, args.team or None, args.season or None)
-
-    bio_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
-    if args.bio_csv:
-        bio_lookup = load_bio_lookup(Path(args.bio_csv))
-    bio = bio_lookup.get(
-        key_player_team_season(target.player, target.team, target.season),
-        {"class": "", "height": "", "age": "", "position": "", "conference": "", "dob": ""},
-    )
-
     # Optional advanced sources.
     bt_rows: list[dict[str, str]] = []
     lebron_rows: list[dict[str, str]] = []
@@ -2231,6 +2267,26 @@ def main() -> None:
         _, adv_rows = read_csv_rows(Path(args.advgames_csv))
     if args.pbp_metrics_csv:
         _, pbp_rows = read_csv_rows(Path(args.pbp_metrics_csv))
+
+    team_hint_map = build_player_team_hint_map(bt_rows) if bt_rows else {}
+    stats_map, _ = build_player_stats(
+        plays_rows,
+        season_hint=args.season or "",
+        team_hint_by_player_season=team_hint_map,
+    )
+    players = list(stats_map.values())
+    if not players:
+        raise RuntimeError("Could not build player stats from plays data.")
+
+    target = choose_player(players, args.player, args.team or None, args.season or None)
+
+    bio_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
+    if args.bio_csv:
+        bio_lookup = load_bio_lookup(Path(args.bio_csv))
+    bio = bio_lookup.get(
+        key_player_team_season(target.player, target.team, target.season),
+        {"class": "", "height": "", "age": "", "position": "", "conference": "", "dob": ""},
+    )
 
     if args.bt_playerstat_json:
         bt_playerstat_rows = load_bt_playerstat_rows_from_source(args.bt_playerstat_json)
