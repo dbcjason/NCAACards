@@ -1377,8 +1377,8 @@ def build_bt_percentile_html(
                 continue
             value, pct = bt_metric_percentile(target_row, cohort, key)
             if label == "BLK%":
-                # Display as x.x with trimmed precision.
-                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, truncate=True)
+                # Shift BLK% display two decimals left.
+                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=2, scale=0.01, truncate=False)
             else:
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=digits)
         return rows_html
@@ -1396,9 +1396,14 @@ def build_bt_percentile_html(
         <div class="section-grid">
           <div class="section-card"><h4>Impact</h4>{impact_html}{build_bpm_trend_svg(target, adv_rows)}</div>
           <div class="section-card"><h4>Scoring</h4>{scoring_html}</div>
-          <div class="section-card"><h4>Playmaking</h4>{playmaking_html}</div>
-          <div class="section-card"><h4>Defense</h4>{defense_html}</div>
-          <div class="section-card"><h4>Rebounding</h4>{rebounding_html}</div>
+          <div class="section-card">
+            <h4>Playmaking</h4>
+            {playmaking_html}
+            <h4 style="margin-top:4px;">Defense</h4>
+            {defense_html}
+            <h4 style="margin-top:4px;">Rebounding</h4>
+            {rebounding_html}
+          </div>
         </div>
       </div>
 """
@@ -1472,25 +1477,35 @@ def build_self_creation_html(
 
 def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     if not bt_rows:
-        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
 
     row = bt_find_target_row(bt_rows, target)
     if not row:
-        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
+        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
 
-    rim_att = bt_num(row, ["rimatt", " rimatt"]) or 0.0
-    mid_att = bt_num(row, ["midatt", " midatt"]) or 0.0
+    rim_att = bt_num(row, ["rimatt", " rimatt", "rimmade+rimmiss", " rimmade+rimmiss"])
+    if rim_att is None:
+        rm = bt_num(row, ["rimmade", " rimmade"]) or 0.0
+        rmiss = bt_num(row, ["rimmiss", " rimmiss"]) or 0.0
+        rim_att = rm + rmiss
+
+    mid_att = bt_num(row, ["midatt", " midatt", "midmade+midmiss", " midmade+midmiss"])
+    if mid_att is None:
+        mm = bt_num(row, ["midmade", " midmade"]) or 0.0
+        mmiss = bt_num(row, ["midmiss", " midmiss"]) or 0.0
+        mid_att = mm + mmiss
+
     three_att = bt_num(row, ["TPA", " TPA", "tpa", " tpa"]) or 0.0
     total = rim_att + mid_att + three_att
     if total <= 0:
-        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No attempt data available.</div></div>'
+        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No attempt data available.</div></div>'
 
     rim_pct = 100.0 * rim_att / total
     mid_pct = 100.0 * mid_att / total
     three_pct = 100.0 * three_att / total
 
     return f"""
-      <div class="panel shot-panel" style="margin-top:10px;">
+      <div class="panel shot-panel" style="margin-top:auto;">
         <h3>Shot Diet</h3>
         <div class="shotdiet-bar">
           <div class="shotdiet-seg shotdiet-rim" style="width:{rim_pct:.2f}%"></div>
@@ -1657,7 +1672,7 @@ body {{
   display: flex;
   justify-content: flex-start;
   gap: 12px;
-  align-items: flex-start;
+  align-items: stretch;
 }}
 .shot-panel {{
   width: 33%;
@@ -1750,9 +1765,10 @@ body {{
 }}
 .shotdiet-legend {{
   margin-top: 8px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   font-size: 12px;
   color: var(--muted);
 }}
@@ -1760,6 +1776,7 @@ body {{
   display: flex;
   align-items: center;
   gap: 7px;
+  white-space: nowrap;
 }}
 .shotdiet-dot {{
   width: 9px;
@@ -1808,7 +1825,7 @@ body {{
           <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
           {shot_svg(shots, season_shots, width=355, height=250)}
         </div>
-        <div class="shot-panel">
+        <div class="shot-panel" style="display:flex; flex-direction:column; margin-top:14px;">
           {self_creation_html}
           {shot_diet_html}
         </div>
