@@ -1754,8 +1754,9 @@ def render_card(
     position = bio.get("position", "") or "N/A"
     subtitle = f"{team} | {season} | Position: {position} | Age: {age} | Height: {height}"
 
-    shot_makes = sum(1 for s in shots if s.get("made"))
-    shot_att = len(shots)
+    # Use full event-derived FG totals for header stats, not only plotted (x/y) shots.
+    shot_makes = stats.fgm
+    shot_att = stats.fga
     shot_pct = (100.0 * shot_makes / shot_att) if shot_att else 0.0
 
     html_doc = f"""<!doctype html>
