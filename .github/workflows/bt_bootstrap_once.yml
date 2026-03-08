@@ -1,0 +1,38 @@
+name: BT Bootstrap 2010-2025 (One Time)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run one-time BT history fetch
+        run: |
+          python3 player_cards_pipeline/scripts/fetch_bt_history_2010_2025.py \
+            --year-start 2010 \
+            --year-end 2025 \
+            --out-dir player_cards_pipeline
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add player_cards_pipeline/data/bt/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Bootstrap BT history 2010-2025"
+          git push
