@@ -1,0 +1,73 @@
+name: Pull 2026 CBBD Plays + Bart (Every Other Day 4AM ET)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Two UTC windows so we hit 4AM ET in both EST and EDT.
+    - cron: '5 8 * * *'
+    - cron: '5 9 * * *'
+
+jobs:
+  pull-plays:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Gate by 4AM ET every other day
+        id: gate
+        run: |
+          python3 player_cards_pipeline/scripts/is_4am_et_every_other_day.py > gate.txt
+          echo "should_run=$(cat gate.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if outside run window
+        if: steps.gate.outputs.should_run != 'true'
+        run: echo "Skipping: not 4AM ET every-other-day window"
+
+      - name: Install deps
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Pull chunked 2026 plays (regular+postseason)
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python3 player_cards_pipeline/scripts/pull_2026_plays_every_other_day.py \
+            --project-root "." \
+            --teams-csv "2025_team_results (1).csv" \
+            --team-col "team" \
+            --chunk-size 30 \
+            --max-csv-mb 95 \
+            --max-requests 3000 \
+            --sleep-sec 0.15
+
+      - name: Refresh Bart 2026 datasets
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
+            --project-root "."
+
+      - name: Commit and push updates
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cbbd_seasons/2025-2026/ || true
+          git add player_cards_pipeline/data/bt/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Update 2026 CBBD plays + Bart datasets"
+          git push
