@@ -80,6 +80,7 @@ def main() -> None:
             '--pbp-root', str(pbp_dir),
             '--out-csv', str(metrics_out),
             '--season-year', year,
+            '--bt-csv', str(root / 'player_cards_pipeline' / 'data' / 'bt' / 'bt_advstats_2010_2026.csv'),
         ]
         run(cmd, check=True)
 

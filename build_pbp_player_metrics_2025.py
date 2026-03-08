@@ -115,6 +115,29 @@ def parse_off_foul_drawn_player(desc: str) -> str | None:
     return None
 
 
+def parse_assist_player(desc: str) -> str | None:
+    m = re.search(r"Assisted by (.*?)\\.", desc or "")
+    return norm_name(m.group(1)) if m else None
+
+
+def parse_shot_desc(desc: str) -> tuple[str, bool, str, bool] | None:
+    d = (desc or "").strip()
+    m = re.match(r"^(.*?) (made|missed) (.*)$", d)
+    if not m:
+        return None
+    player = norm_name(m.group(1))
+    made = m.group(2) == "made"
+    tail = m.group(3).lower()
+    is_ft = "free throw" in tail
+    if is_ft:
+        return player, made, "", True
+    if "three point" in tail or "3-point" in tail:
+        return player, made, "three", False
+    if any(k in tail for k in ["dunk", "layup", "tip in", "tip shot", "alley oop"]):
+        return player, made, "rim", False
+    return player, made, "mid", False
+
+
 def ensure_on_court(
     on_court: Dict[str, set[str]],
     team: str,
@@ -134,11 +157,29 @@ def iter_files(root: Path) -> Iterable[Path]:
         yield Path(p)
 
 
+def load_player_team_hints(bt_csv: Path, season_year: int) -> Dict[str, str]:
+    out: Dict[str, set[str]] = defaultdict(set)
+    if not bt_csv.exists():
+        return {}
+    with bt_csv.open(newline="", encoding="utf-8-sig") as f:
+        r = csv.DictReader(f)
+        for row in r:
+            y = str(row.get("year") or "").strip()
+            if y != str(season_year):
+                continue
+            p = norm_name(row.get("player_name") or "")
+            t = norm_name(row.get("team") or "")
+            if p and t:
+                out[p].add(t)
+    return {k: next(iter(v)) for k, v in out.items() if len(v) == 1}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build player possessions + self-creation metrics from ncaahoopR pbp logs.")
     ap.add_argument("--pbp-root", required=True)
     ap.add_argument("--out-csv", required=True)
     ap.add_argument("--season-year", required=True, type=int, help="Season label year (e.g., 2025 for 2024-25).")
+    ap.add_argument("--bt-csv", default="", help="Optional BT CSV for player->team hints in legacy logs.")
     args = ap.parse_args()
 
     pbp_root = Path(args.pbp_root)
@@ -150,6 +191,7 @@ def main() -> None:
 
     files = list(iter_files(pbp_root))
     total = len(files)
+    team_hints = load_player_team_hints(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
 
     for i, fp in enumerate(files, start=1):
         with fp.open(newline="", encoding="utf-8") as f:
@@ -173,6 +215,18 @@ def main() -> None:
             desc = row.get("description") or ""
             action_side = (row.get("action_team") or "").strip().lower()
             action_team = home if action_side == "home" else away if action_side == "away" else ""
+            shot_team_raw = (row.get("shot_team") or "").strip()
+            if not action_team:
+                st = shot_team_raw.lower()
+                if st == "home":
+                    action_team = home
+                elif st == "away":
+                    action_team = away
+                elif st not in {"", "na", "none", "nan"}:
+                    action_team = norm_name(shot_team_raw)
+            poss_before_raw = norm_name(row.get("possession_before") or "")
+            if not action_team and poss_before_raw:
+                action_team = poss_before_raw
 
             # Substitutions
             s_out = parse_sub_out(desc)
@@ -193,6 +247,13 @@ def main() -> None:
             # Heuristic lineup enrichment from active participants.
             shooter = norm_name(row.get("shooter") or "")
             assist = norm_name(row.get("assist") or "") if not is_na(row.get("assist") or "") else ""
+            shot_desc = parse_shot_desc(desc)
+            if not shooter and shot_desc:
+                shooter = shot_desc[0]
+            if not assist:
+                assist = parse_assist_player(desc) or ""
+            if not action_team and shooter:
+                action_team = team_hints.get(shooter, "")
             foul_on = parse_foul_on(desc)
             tov_p = parse_turnover_player(desc)
             reb_p = parse_rebound_player(desc)
@@ -219,13 +280,20 @@ def main() -> None:
             shot_outcome = (row.get("shot_outcome") or "").strip().lower()
             zone = classify_shot_zone(row, desc)
             is_made = shot_outcome == "made"
+            is_ft_from_desc = False
+            if not shot_outcome and shot_desc:
+                is_made = shot_desc[1]
+                if shot_desc[3]:
+                    is_ft_from_desc = True
+                if not zone and shot_desc[2]:
+                    zone = shot_desc[2]
             is_three = parse_bool(row.get("three_pt") or "") or zone == "three"
 
             if shooter:
                 k = (season, key_team, shooter)
                 if zone == "rim":
                     C[k]["rim_att"] += 1
-                if parse_bool(row.get("free_throw") or ""):
+                if parse_bool(row.get("free_throw") or "") or is_ft_from_desc:
                     C[k]["fta"] += 1
                 if is_made and zone == "rim" and not assist:
                     C[k]["unassisted_rim_makes"] += 1
