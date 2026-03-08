@@ -1378,7 +1378,7 @@ def build_bt_percentile_html(
             value, pct = bt_metric_percentile(target_row, cohort, key)
             if label == "BLK%":
                 # Shift BLK% display two decimals left.
-                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=2, scale=0.01, truncate=False)
+                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, scale=0.01, truncate=True)
             else:
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=digits)
         return rows_html
@@ -1416,11 +1416,11 @@ def build_self_creation_html(
     pbp_rows: list[dict[str, str]],
 ) -> str:
     if not bt_playerstat_rows:
-        return '<div class="panel shot-panel" style="margin-top:14px;"><h3>Self Creation</h3><div class="shot-meta">No Bart playerstat JSON loaded.</div></div>'
+        return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">No Bart playerstat JSON loaded.</div></div>'
     target_bt = bt_find_target_row(bt_rows, target) if bt_rows else None
     target_ps = find_bt_playerstat_row(bt_playerstat_rows, target.player, target.team)
     if not target_bt or not target_ps:
-        return '<div class="panel shot-panel" style="margin-top:14px;"><h3>Self Creation</h3><div class="shot-meta">No matching player/team/season in Bart playerstat JSON.</div></div>'
+        return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">No matching player/team/season in Bart playerstat JSON.</div></div>'
 
     pbp_poss_map = build_pbp_off_possessions_map(pbp_rows)
     target_poss = pbp_poss_map.get((norm_player_name(target.player), norm_team(target.team), norm_season(target.season)))
@@ -1429,7 +1429,7 @@ def build_self_creation_html(
         target_poss = bt_metric_value(target_bt, "possessions")
     target_metrics = bt_playerstat_metrics_from_row(target_ps, target_poss)
     if not target_metrics:
-        return '<div class="panel shot-panel" style="margin-top:14px;"><h3>Self Creation</h3><div class="shot-meta">Missing possessions for self-creation rate normalization.</div></div>'
+        return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">Missing possessions for self-creation rate normalization.</div></div>'
 
     cohort_bt = bt_cohort_for_year(bt_rows, target.season)
     metric_vals: dict[str, list[float]] = defaultdict(list)
@@ -1468,7 +1468,7 @@ def build_self_creation_html(
         rows_html += bt_row_html(label, value, pct, is_percent=False, digits=2)
 
     return f"""
-      <div class="panel shot-panel" style="margin-top:14px;">
+      <div class="panel">
         <h3>Self Creation</h3>
         {rows_html}
       </div>
@@ -1477,11 +1477,11 @@ def build_self_creation_html(
 
 def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     if not bt_rows:
-        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+        return '<div class="panel"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
 
     row = bt_find_target_row(bt_rows, target)
     if not row:
-        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
+        return '<div class="panel"><h3>Shot Diet</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
 
     rim_att = bt_num(row, ["rimatt", " rimatt", "rimmade+rimmiss", " rimmade+rimmiss"])
     if rim_att is None:
@@ -1498,14 +1498,14 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
     three_att = bt_num(row, ["TPA", " TPA", "tpa", " tpa"]) or 0.0
     total = rim_att + mid_att + three_att
     if total <= 0:
-        return '<div class="panel shot-panel" style="margin-top:auto;"><h3>Shot Diet</h3><div class="shot-meta">No attempt data available.</div></div>'
+        return '<div class="panel"><h3>Shot Diet</h3><div class="shot-meta">No attempt data available.</div></div>'
 
     rim_pct = 100.0 * rim_att / total
     mid_pct = 100.0 * mid_att / total
     three_pct = 100.0 * three_att / total
 
     return f"""
-      <div class="panel shot-panel" style="margin-top:auto;">
+      <div class="panel">
         <h3>Shot Diet</h3>
         <div class="shotdiet-bar">
           <div class="shotdiet-seg shotdiet-rim" style="width:{rim_pct:.2f}%"></div>
@@ -1521,6 +1521,215 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
 """
 
 
+def _height_to_inches(raw: str) -> float | None:
+    s = (raw or "").strip()
+    if not s:
+        return None
+    m = re.match(r"^\s*(\d+)\s*'\s*(\d+)\s*\"?\s*$", s)
+    if m:
+        return float(int(m.group(1)) * 12 + int(m.group(2)))
+    m = re.match(r"^\s*(\d+)\s*-\s*(\d+)\s*$", s)
+    if m:
+        return float(int(m.group(1)) * 12 + int(m.group(2)))
+    v = to_float(s)
+    if v is None:
+        return None
+    if 48 <= v <= 96:
+        return float(v)
+    return None
+
+
+def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str, str], dict[str, str]]) -> tuple[float | None, float | None]:
+    player = bt_get(row, ["player_name"])
+    team = bt_get(row, ["team"])
+    season = bt_get(row, ["year"])
+    bk = key_player_team_season(player, team, season)
+    bio = bio_lookup.get(bk, {})
+
+    age_val: float | None = None
+    if bio:
+        age_s = age_on_june25_for_season(bio.get("dob", ""), season)
+        if age_s != "N/A":
+            age_val = to_float(age_s)
+        if age_val is None:
+            age_val = to_float(bio.get("age", ""))
+
+    height_val: float | None = None
+    if bio:
+        height_val = _height_to_inches(bio.get("height", ""))
+    if height_val is None:
+        height_val = bt_num(row, ["inches", " inches"])
+
+    return age_val, height_val
+
+
+def build_player_comparisons_html(
+    target: PlayerGameStats,
+    bt_rows: list[dict[str, str]],
+    bio_lookup: dict[tuple[str, str, str], dict[str, str]],
+    top_n: int = 5,
+) -> str:
+    if not bt_rows:
+        return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+    target_row = bt_find_target_row(bt_rows, target)
+    if not target_row:
+        return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">No matching Bart row for comparisons.</div></div>'
+
+    metric_keys = [
+        "bpm", "obpm", "dbpm", "net_rating",
+        "usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr",
+        "ast_per", "to_per", "ast_tov",
+        "stl_per", "blk_per", "orb_per", "drb_per",
+    ]
+
+    # Build per-season cohorts once.
+    by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for r in bt_rows:
+        by_year[norm_season(bt_get(r, ["year"]))].append(r)
+
+    def build_pct_lookup(items: list[tuple[int, float]]) -> dict[int, float]:
+        # Percentile with midrank tie handling in O(n log n).
+        if not items:
+            return {}
+        n = len(items)
+        s = sorted(items, key=lambda x: x[1])
+        out: dict[int, float] = {}
+        i = 0
+        while i < n:
+            j = i + 1
+            while j < n and s[j][1] == s[i][1]:
+                j += 1
+            p = 100.0 * (i + 0.5 * (j - i)) / n
+            for k in range(i, j):
+                out[s[k][0]] = p
+            i = j
+        return out
+
+    # Precompute metric percentile lookup maps by year/key.
+    metric_pct_map: dict[tuple[str, str], dict[int, float]] = {}
+    for year, rows in by_year.items():
+        for key in metric_keys:
+            vals: list[tuple[int, float]] = []
+            for r in rows:
+                v = bt_metric_value(r, key)
+                if v is None or not math.isfinite(v):
+                    continue
+                vals.append((id(r), float(v)))
+            mp = build_pct_lookup(vals)
+            if key == "to_per":
+                mp = {rk: 100.0 - pv for rk, pv in mp.items()}
+            metric_pct_map[(year, key)] = mp
+
+    def metric_pct_for_row(r: dict[str, str], key: str) -> float | None:
+        year = norm_season(bt_get(r, ["year"]))
+        return metric_pct_map.get((year, key), {}).get(id(r))
+
+    age_by_row: dict[int, float] = {}
+    hgt_by_row: dict[int, float] = {}
+    for r in bt_rows:
+        age_v, h_v = _bio_age_height_for_row(r, bio_lookup)
+        if age_v is not None and math.isfinite(age_v):
+            age_by_row[id(r)] = age_v
+        if h_v is not None and math.isfinite(h_v):
+            hgt_by_row[id(r)] = h_v
+
+    age_pct_map: dict[str, dict[int, float]] = {}
+    hgt_pct_map: dict[str, dict[int, float]] = {}
+    for year, rows in by_year.items():
+        age_items = [(id(r), age_by_row[id(r)]) for r in rows if id(r) in age_by_row]
+        hgt_items = [(id(r), hgt_by_row[id(r)]) for r in rows if id(r) in hgt_by_row]
+        age_pct_map[year] = build_pct_lookup(age_items)
+        hgt_pct_map[year] = build_pct_lookup(hgt_items)
+
+    def age_pct_for_row(r: dict[str, str]) -> float | None:
+        year = norm_season(bt_get(r, ["year"]))
+        return age_pct_map.get(year, {}).get(id(r))
+
+    def hgt_pct_for_row(r: dict[str, str]) -> float | None:
+        year = norm_season(bt_get(r, ["year"]))
+        return hgt_pct_map.get(year, {}).get(id(r))
+
+    target_vec: dict[str, float] = {}
+    for k in metric_keys:
+        p = metric_pct_for_row(target_row, k)
+        if p is not None:
+            target_vec[k] = p
+    tp_age = age_pct_for_row(target_row)
+    tp_hgt = hgt_pct_for_row(target_row)
+    if tp_age is not None:
+        target_vec["age_pct"] = tp_age
+    if tp_hgt is not None:
+        target_vec["height_pct"] = tp_hgt
+
+    if len(target_vec) < 8:
+        return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">Not enough data to compute comparisons.</div></div>'
+
+    def similarity(other: dict[str, str]) -> float | None:
+        # Exclude exact same player-season.
+        if (
+            norm_player_name(bt_get(other, ["player_name"])) == norm_player_name(target.player)
+            and norm_team(bt_get(other, ["team"])) == norm_team(target.team)
+            and norm_season(bt_get(other, ["year"])) == norm_season(target.season)
+        ):
+            return None
+
+        keys = list(metric_keys)
+        ov: dict[str, float] = {}
+        for k in keys:
+            tv = target_vec.get(k)
+            if tv is None:
+                continue
+            pv = metric_pct_for_row(other, k)
+            if pv is None:
+                continue
+            ov[k] = pv
+
+        if "age_pct" in target_vec:
+            pv = age_pct_for_row(other)
+            if pv is not None:
+                ov["age_pct"] = pv
+        if "height_pct" in target_vec:
+            pv = hgt_pct_for_row(other)
+            if pv is not None:
+                ov["height_pct"] = pv
+
+        shared = [k for k in ov if k in target_vec]
+        if len(shared) < 8:
+            return None
+
+        # Percentile-space similarity: 100 - average absolute percentile gap.
+        diffs = [abs(float(target_vec[k]) - float(ov[k])) for k in shared]
+        score = 100.0 - (sum(diffs) / len(diffs))
+        return max(0.0, min(100.0, score))
+
+    ranked: list[tuple[float, dict[str, str]]] = []
+    for r in bt_rows:
+        s = similarity(r)
+        if s is None:
+            continue
+        ranked.append((s, r))
+    ranked.sort(key=lambda x: x[0], reverse=True)
+    top = ranked[:top_n]
+    if not top:
+        return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">No comparable players found.</div></div>'
+
+    rows_html = ""
+    for score, r in top:
+        pname = bt_get(r, ["player_name"]) or "Unknown"
+        pyear = bt_get(r, ["year"]) or "?"
+        rows_html += f'<div class="comp-row"><span class="comp-name">{html.escape(pname)}</span><span class="comp-year">{html.escape(str(pyear))}</span><span class="comp-score">{score:.1f}</span></div>'
+
+    return f"""
+      <div class="panel">
+        <h3>Player Comparisons</h3>
+        <div class="shot-meta">Top {top_n} percentile-based comps</div>
+        <div class="comp-table">
+          {rows_html}
+        </div>
+      </div>
+"""
+
+
 def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
@@ -1531,6 +1740,7 @@ def render_card(
     bt_percentiles_html: str,
     self_creation_html: str,
     shot_diet_html: str,
+    player_comparisons_html: str,
     advanced_html: str,
     out_path: Path,
 ) -> None:
@@ -1675,12 +1885,15 @@ body {{
   align-items: stretch;
 }}
 .shot-panel {{
-  width: 33%;
-  min-width: 320px;
+  min-width: 0;
 }}
 .shot-panel svg {{
   display: block;
   margin: 0 auto;
+}}
+.shot-chart-col {{
+  flex: 0 0 33%;
+  min-width: 320px;
 }}
 .chip {{
   border: 1px solid var(--line);
@@ -1784,6 +1997,46 @@ body {{
   border-radius: 999px;
   display: inline-block;
 }}
+.right-wrap {{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}}
+.right-top {{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}}
+.comp-table {{
+  display: grid;
+  gap: 6px;
+}}
+.comp-row {{
+  display: grid;
+  grid-template-columns: 1fr 42px 42px;
+  gap: 8px;
+  font-size: 12px;
+  align-items: center;
+  border: 1px solid #233552;
+  border-radius: 7px;
+  padding: 6px 8px;
+  background: #0e1729;
+}}
+.comp-name {{
+  font-weight: 600;
+  color: var(--text);
+}}
+.comp-year {{
+  color: var(--muted);
+  text-align: right;
+}}
+.comp-score {{
+  color: var(--accent);
+  text-align: right;
+  font-weight: 700;
+}}
 @media (max-width: 920px) {{
   .title-row {{ flex-direction: column; }}
   .grade-strip {{ min-width: 0; width: 100%; grid-template-columns: repeat(2, minmax(130px, 1fr)); }}
@@ -1791,6 +2044,9 @@ body {{
   .stat-strip {{ grid-template-columns: repeat(3, 1fr); }}
   .section-grid {{ grid-template-columns: 1fr; }}
   .shot-panel {{ width: 100%; min-width: 0; }}
+  .shot-chart-col {{ flex: 1 1 auto; min-width: 0; }}
+  .right-wrap {{ width: 100%; margin-top: 14px; }}
+  .right-top {{ grid-template-columns: 1fr; }}
 }}
 </style>
 </head>
@@ -1820,14 +2076,19 @@ body {{
       {bt_percentiles_html}
 
       <div class="shot-wrap">
-        <div class="panel shot-panel" style="margin-top:14px;">
+        <div class="panel shot-panel shot-chart-col" style="margin-top:14px;">
           <h3>Shot Chart</h3>
           <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
           {shot_svg(shots, season_shots, width=355, height=250)}
         </div>
-        <div class="shot-panel" style="display:flex; flex-direction:column; margin-top:14px;">
-          {self_creation_html}
-          {shot_diet_html}
+        <div class="right-wrap">
+          <div class="right-top">
+            {self_creation_html}
+            {player_comparisons_html}
+          </div>
+          <div style="margin-top:auto;">
+            {shot_diet_html}
+          </div>
         </div>
       </div>
       {advanced_html}
@@ -1972,6 +2233,7 @@ def main() -> None:
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
+    player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
 
     shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
@@ -2002,6 +2264,7 @@ def main() -> None:
         bt_percentiles_html,
         self_creation_html,
         shot_diet_html,
+        player_comparisons_html,
         advanced_html,
         Path(args.out_html),
     )
