@@ -265,23 +265,30 @@ def _season_from_row(row: dict[str, str], season_hint: str = "") -> str:
 
 
 def _resolve_side_team(row: dict[str, str], side_key: str) -> str:
-    side = norm_text(row.get(side_key, ""))
+    raw = str(row.get(side_key, "")).strip()
+    side = norm_text(raw)
     if side == "home":
         return str(row.get("home", "")).strip()
     if side == "away":
         return str(row.get("away", "")).strip()
+    # Older feeds provide actual team names in shot_team/action_team.
+    if raw and side not in {"na", "none", "nan"}:
+        return raw
     return ""
 
 
 def _team_from_row(row: dict[str, str]) -> str:
     team = str(row.get("team", "")).strip()
-    if team:
+    if team and norm_text(team) not in {"na", "none", "nan"}:
         return team
     t = _resolve_side_team(row, "shot_team")
     if t:
         return t
     t = _resolve_side_team(row, "action_team")
     if t:
+        return t
+    t = str(row.get("possession_before", "")).strip()
+    if t and norm_text(t) not in {"na", "none", "nan"}:
         return t
     return ""
 
