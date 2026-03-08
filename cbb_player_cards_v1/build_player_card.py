@@ -1468,6 +1468,42 @@ def build_self_creation_html(
 """
 
 
+def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
+    if not bt_rows:
+        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+
+    row = bt_find_target_row(bt_rows, target)
+    if not row:
+        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
+
+    rim_att = bt_num(row, ["rimatt", " rimatt"]) or 0.0
+    mid_att = bt_num(row, ["midatt", " midatt"]) or 0.0
+    three_att = bt_num(row, ["TPA", " TPA", "tpa", " tpa"]) or 0.0
+    total = rim_att + mid_att + three_att
+    if total <= 0:
+        return '<div class="panel shot-panel" style="margin-top:10px;"><h3>Shot Diet</h3><div class="shot-meta">No attempt data available.</div></div>'
+
+    rim_pct = 100.0 * rim_att / total
+    mid_pct = 100.0 * mid_att / total
+    three_pct = 100.0 * three_att / total
+
+    return f"""
+      <div class="panel shot-panel" style="margin-top:10px;">
+        <h3>Shot Diet</h3>
+        <div class="shotdiet-bar">
+          <div class="shotdiet-seg shotdiet-rim" style="width:{rim_pct:.2f}%"></div>
+          <div class="shotdiet-seg shotdiet-mid" style="width:{mid_pct:.2f}%"></div>
+          <div class="shotdiet-seg shotdiet-three" style="width:{three_pct:.2f}%"></div>
+        </div>
+        <div class="shotdiet-legend">
+          <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-rim"></span> Rim ({rim_pct:.1f}%)</div>
+          <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-mid"></span> Non-Rim 2 ({mid_pct:.1f}%)</div>
+          <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-three"></span> 3 ({three_pct:.1f}%)</div>
+        </div>
+      </div>
+"""
+
+
 def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
@@ -1477,6 +1513,7 @@ def render_card(
     grade_boxes_html: str,
     bt_percentiles_html: str,
     self_creation_html: str,
+    shot_diet_html: str,
     advanced_html: str,
     out_path: Path,
 ) -> None:
@@ -1687,6 +1724,47 @@ body {{
 .trend-wrap {{
   margin-top: 8px;
 }}
+.shotdiet-bar {{
+  width: 100%;
+  height: 16px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #1e2e4d;
+  border: 1px solid #2a385f;
+}}
+.shotdiet-seg {{
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+}}
+.shotdiet-rim {{
+  background: #2dd4bf;
+}}
+.shotdiet-mid {{
+  background: #f97316;
+}}
+.shotdiet-three {{
+  background: #60a5fa;
+}}
+.shotdiet-legend {{
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}}
+.shotdiet-key {{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}}
+.shotdiet-dot {{
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  display: inline-block;
+}}
 @media (max-width: 920px) {{
   .title-row {{ flex-direction: column; }}
   .grade-strip {{ min-width: 0; width: 100%; grid-template-columns: repeat(2, minmax(130px, 1fr)); }}
@@ -1728,7 +1806,10 @@ body {{
           <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
           {shot_svg(shots, season_shots, width=355, height=250)}
         </div>
-        {self_creation_html}
+        <div class="shot-panel">
+          {self_creation_html}
+          {shot_diet_html}
+        </div>
       </div>
       {advanced_html}
     </div>
@@ -1871,6 +1952,7 @@ def main() -> None:
     bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows)
+    shot_diet_html = build_shot_diet_html(target, bt_rows)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
 
     shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
@@ -1900,6 +1982,7 @@ def main() -> None:
         grade_boxes_html,
         bt_percentiles_html,
         self_creation_html,
+        shot_diet_html,
         advanced_html,
         Path(args.out_html),
     )
