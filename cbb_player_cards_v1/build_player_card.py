@@ -1197,6 +1197,13 @@ def bt_metric_percentile(
     return val, p
 
 
+def bt_display_stl_pct(value: float | None) -> float | None:
+    if value is None:
+        return None
+    # Some exports carry STL% as basis-points-like values.
+    return (value * 0.01) if abs(value) >= 10.0 else value
+
+
 def bt_row_html(
     label: str,
     value: float | None,
@@ -1476,7 +1483,10 @@ def build_bt_percentile_html(
                 rows_html += bt_row_html(label, value, pct, is_percent=False, digits=digits)
                 continue
             value, pct = bt_metric_percentile(target_row, cohort, key)
-            if label == "BLK%":
+            if label == "STL%":
+                stl_val = bt_display_stl_pct(value)
+                rows_html += bt_row_html(label, stl_val, pct, is_percent=is_pct, digits=1, truncate=True)
+            elif label == "BLK%":
                 # Render directly from BT value so non-zero block rates display correctly.
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, truncate=True)
             else:
@@ -1848,6 +1858,46 @@ def bt_fg_totals_for_target(target: PlayerGameStats, bt_rows: list[dict[str, str
     return fgm, fga
 
 
+def bt_per_game_overrides(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> dict[str, float]:
+    row = bt_find_target_row(bt_rows, target) if bt_rows else None
+    if not row:
+        return {}
+    gp = bt_num(row, ["GP"])
+    if gp is None or gp <= 0:
+        gp = 0.0
+
+    two_pm = bt_num(row, ["twoPM", " twoPM"])
+    two_pa = bt_num(row, ["twoPA", " twoPA"])
+    tp_m = bt_num(row, ["TPM", " TPM"])
+    tp_a = bt_num(row, ["TPA", " TPA"])
+    ft_m = bt_num(row, ["FTM"])
+    ft_a = bt_num(row, ["FTA"])
+
+    out: dict[str, float] = {}
+    for k, aliases in [
+        ("ppg", ["pts"]),
+        ("rpg", ["treb"]),
+        ("apg", ["ast"]),
+        ("spg", ["stl"]),
+        ("bpg", ["blk"]),
+    ]:
+        # Bart's box columns are already per-game for these fields.
+        pg = bt_num(row, aliases)
+        if pg is not None:
+            out[k] = float(pg)
+
+    if two_pm is not None and two_pa is not None and tp_m is not None and tp_a is not None:
+        fgm = two_pm + tp_m
+        fga = two_pa + tp_a
+        if fga > 0:
+            out["fg_pct"] = 100.0 * fgm / fga
+        if tp_a > 0:
+            out["tp_pct"] = 100.0 * tp_m / tp_a
+    if ft_m is not None and ft_a is not None and ft_a > 0:
+        out["ft_pct"] = 100.0 * ft_m / ft_a
+    return out
+
+
 def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
@@ -1862,6 +1912,7 @@ def render_card(
     advanced_html: str,
     shot_header_makes: int | None,
     shot_header_attempts: int | None,
+    per_game_overrides: dict[str, float] | None,
     out_path: Path,
 ) -> None:
     name = stats.player
@@ -1879,6 +1930,19 @@ def render_card(
     shot_makes = shot_header_makes if shot_header_makes is not None else stats.fgm
     shot_att = shot_header_attempts if shot_header_attempts is not None else stats.fga
     shot_pct = (100.0 * shot_makes / shot_att) if shot_att else 0.0
+
+    pg = {
+        "ppg": stats.ppg,
+        "rpg": stats.rpg,
+        "apg": stats.apg,
+        "spg": stats.spg,
+        "bpg": stats.bpg,
+        "fg_pct": stats.fg_pct,
+        "tp_pct": stats.tp_pct,
+        "ft_pct": stats.ft_pct,
+    }
+    if per_game_overrides:
+        pg.update({k: v for k, v in per_game_overrides.items() if v is not None and math.isfinite(v)})
 
     html_doc = f"""<!doctype html>
 <html lang="en">
@@ -2188,14 +2252,14 @@ body {{
       <div class="panel">
         <h3>Per Game</h3>
         <div class="stat-strip">
-          <div class="chip"><div class="k">PPG</div><div class="v">{fmt(stats.ppg)}</div><div class="p">{(f"{per_game_pcts['ppg']:.0f}%" if per_game_pcts.get('ppg') is not None else "")}</div></div>
-          <div class="chip"><div class="k">RPG</div><div class="v">{fmt(stats.rpg)}</div><div class="p">{(f"{per_game_pcts['rpg']:.0f}%" if per_game_pcts.get('rpg') is not None else "")}</div></div>
-          <div class="chip"><div class="k">APG</div><div class="v">{fmt(stats.apg)}</div><div class="p">{(f"{per_game_pcts['apg']:.0f}%" if per_game_pcts.get('apg') is not None else "")}</div></div>
-          <div class="chip"><div class="k">SPG</div><div class="v">{fmt(stats.spg)}</div><div class="p">{(f"{per_game_pcts['spg']:.0f}%" if per_game_pcts.get('spg') is not None else "")}</div></div>
-          <div class="chip"><div class="k">BPG</div><div class="v">{fmt(stats.bpg)}</div><div class="p">{(f"{per_game_pcts['bpg']:.0f}%" if per_game_pcts.get('bpg') is not None else "")}</div></div>
-          <div class="chip"><div class="k">FG%</div><div class="v">{fmt(stats.fg_pct)}</div><div class="p">{(f"{per_game_pcts['fg_pct']:.0f}%" if per_game_pcts.get('fg_pct') is not None else "")}</div></div>
-          <div class="chip"><div class="k">3P%</div><div class="v">{fmt(stats.tp_pct)}</div><div class="p">{(f"{per_game_pcts['tp_pct']:.0f}%" if per_game_pcts.get('tp_pct') is not None else "")}</div></div>
-          <div class="chip"><div class="k">FT%</div><div class="v">{fmt(stats.ft_pct)}</div><div class="p">{(f"{per_game_pcts['ft_pct']:.0f}%" if per_game_pcts.get('ft_pct') is not None else "")}</div></div>
+          <div class="chip"><div class="k">PPG</div><div class="v">{fmt(pg['ppg'])}</div><div class="p">{(f"{per_game_pcts['ppg']:.0f}%" if per_game_pcts.get('ppg') is not None else "")}</div></div>
+          <div class="chip"><div class="k">RPG</div><div class="v">{fmt(pg['rpg'])}</div><div class="p">{(f"{per_game_pcts['rpg']:.0f}%" if per_game_pcts.get('rpg') is not None else "")}</div></div>
+          <div class="chip"><div class="k">APG</div><div class="v">{fmt(pg['apg'])}</div><div class="p">{(f"{per_game_pcts['apg']:.0f}%" if per_game_pcts.get('apg') is not None else "")}</div></div>
+          <div class="chip"><div class="k">SPG</div><div class="v">{fmt(pg['spg'])}</div><div class="p">{(f"{per_game_pcts['spg']:.0f}%" if per_game_pcts.get('spg') is not None else "")}</div></div>
+          <div class="chip"><div class="k">BPG</div><div class="v">{fmt(pg['bpg'])}</div><div class="p">{(f"{per_game_pcts['bpg']:.0f}%" if per_game_pcts.get('bpg') is not None else "")}</div></div>
+          <div class="chip"><div class="k">FG%</div><div class="v">{fmt(pg['fg_pct'])}</div><div class="p">{(f"{per_game_pcts['fg_pct']:.0f}%" if per_game_pcts.get('fg_pct') is not None else "")}</div></div>
+          <div class="chip"><div class="k">3P%</div><div class="v">{fmt(pg['tp_pct'])}</div><div class="p">{(f"{per_game_pcts['tp_pct']:.0f}%" if per_game_pcts.get('tp_pct') is not None else "")}</div></div>
+          <div class="chip"><div class="k">FT%</div><div class="v">{fmt(pg['ft_pct'])}</div><div class="p">{(f"{per_game_pcts['ft_pct']:.0f}%" if per_game_pcts.get('ft_pct') is not None else "")}</div></div>
         </div>
       </div>
 
@@ -2363,6 +2427,13 @@ def main() -> None:
         bio_lookup = load_bio_lookup(Path(args.bio_csv))
     bio = dict(lookup_bio_fallback(bio_lookup, target.player, target.team, target.season))
     target_bt_row = bt_find_target_row(bt_rows, target) if bt_rows else None
+    if target_bt_row:
+        if not (bio.get("position", "") or "").strip():
+            bio["position"] = bt_get(target_bt_row, ["role"])
+        if not (bio.get("height", "") or "").strip():
+            bio["height"] = bt_get(target_bt_row, ["ht"])
+        if not (bio.get("dob", "") or "").strip():
+            bio["dob"] = bt_get(target_bt_row, ["dob"])
     if not (bio.get("height", "") or "").strip() and target_bt_row:
         inches = bt_num(target_bt_row, ["inches", " inches"])
         if inches is not None and math.isfinite(inches):
@@ -2384,6 +2455,7 @@ def main() -> None:
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
+    per_game_override = bt_per_game_overrides(target, bt_rows)
 
     shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
     season_shots: list[dict[str, Any]] = []
@@ -2417,6 +2489,7 @@ def main() -> None:
         advanced_html,
         bt_fgm,
         bt_fga,
+        per_game_override,
         Path(args.out_html),
     )
 
