@@ -716,7 +716,7 @@ def shot_svg(
         x = float(s["x"])
         y = float(s["y"])
         made = bool(s.get("made"))
-        fill = "#2dd4bf" if made else "#f97316"
+        fill = "var(--accent)" if made else "var(--bar)"
         points.append(
             f'<circle cx="{map_x(y):.1f}" cy="{map_y(x):.1f}" r="4.2" fill="{fill}" fill-opacity="0.8" />'
         )
@@ -763,16 +763,16 @@ def shot_svg(
     ft_ry = ft_r * px_per_unit_x
 
     court = f"""
-<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="#0b1020" stroke="#2a385f" stroke-width="2"/>
-<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="#35507f" stroke-width="2"/>
-<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="#35507f" stroke-width="2"/>
-<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="#35507f" stroke-width="2"/>
-<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="#35507f" stroke-width="2"/>
-<polyline points="{three_arc_polyline}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="#35507f" stroke-width="2"/>
+<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="var(--panel-alt)" stroke="var(--line)" stroke-width="2"/>
+<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
+<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="var(--line)" stroke-width="2"/>
+<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="var(--line)" stroke-width="2"/>
+<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
+<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
+<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="var(--line)" stroke-width="2"/>
+<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="var(--line)" stroke-width="2"/>
+<polyline points="{three_arc_polyline}" fill="none" stroke="var(--line)" stroke-width="2"/>
+<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="var(--line)" stroke-width="2"/>
 """
     return f"""
 <svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
@@ -1143,6 +1143,18 @@ def build_pbp_off_possessions_map(pbp_rows: list[dict[str, str]]) -> dict[tuple[
 
 
 def bt_metric_value(row: dict[str, str], key: str) -> float | None:
+    def bt_possessions_estimate(r: dict[str, str]) -> float | None:
+        poss = bt_num(r, ["possessions", " possessions"])
+        if poss is not None and poss > 0:
+            return float(poss)
+        # Backfill for years where getadvstats possessions is blank:
+        # 3PA/100 = (TPA / possessions) * 100  => possessions = (TPA * 100) / (3PA/100)
+        tpa = bt_num(r, ["TPA", " TPA", "tpa", " tpa"])
+        tpa100 = bt_num(r, ["3p/100?", " 3p/100?"])
+        if tpa is not None and tpa100 is not None and tpa100 > 0:
+            return (float(tpa) * 100.0) / float(tpa100)
+        return None
+
     if key == "net_rating":
         ortg = bt_num(row, ["ORtg"])
         drtg = bt_num(row, ["drtg", "DRtg", " drtg"])
@@ -1153,6 +1165,24 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         return bt_num(row, ["rimmade/(rimmade+rimmiss)", " rimmade/(rimmade+rimmiss)"])
     if key == "mid_pct":
         return bt_num(row, ["midmade/(midmade+midmiss)", " midmade/(midmade+midmiss)"])
+    if key == "fta100_bt":
+        fta = bt_num(row, ["FTA"])
+        poss = bt_possessions_estimate(row)
+        if fta is None or poss is None or poss <= 0:
+            return None
+        return 100.0 * float(fta) / float(poss)
+    if key == "rim_att_100_bt":
+        rim_att = bt_num(row, ["rimmade+rimmiss", " rimmade+rimmiss", "rimatt", " rimatt"])
+        poss = bt_possessions_estimate(row)
+        if rim_att is None or poss is None or poss <= 0:
+            return None
+        return 100.0 * float(rim_att) / float(poss)
+    if key == "dunks_100_bt":
+        dunks_att = bt_num(row, ["dunksmiss+dunksmade", " dunksmiss+dunksmade", "dunksatt", " dunksatt"])
+        poss = bt_possessions_estimate(row)
+        if dunks_att is None or poss is None or poss <= 0:
+            return None
+        return 100.0 * float(dunks_att) / float(poss)
     key_aliases = {
         "bpm": ["bpm", " bpm"],
         "obpm": ["obpm", " obpm"],
@@ -1282,34 +1312,34 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
     tick_target = 7
     tick_idx = sorted({int(round(i * (n - 1) / (tick_target - 1))) for i in range(tick_target)})
     x_ticks = "".join(
-        f'<text x="{xpx(i):.1f}" y="{h-8}" text-anchor="middle" font-size="9" fill="#9db2d6">{html.escape(points_raw[i][1] or str(points_raw[i][0]))}</text>'
+        f'<text x="{xpx(i):.1f}" y="{h-8}" text-anchor="middle" font-size="9" fill="var(--muted)">{html.escape(points_raw[i][1] or str(points_raw[i][0]))}</text>'
         for i in tick_idx
     )
     y_vals = [ymin + k * (ymax - ymin) / 4.0 for k in range(5)]
     y_ticks = "".join(
-        f'<text x="12" y="{ypx(v)+3:.1f}" text-anchor="start" font-size="9" fill="#9db2d6">{v:.1f}</text>'
+        f'<text x="12" y="{ypx(v)+3:.1f}" text-anchor="start" font-size="9" fill="var(--muted)">{v:.1f}</text>'
         for v in y_vals
     )
     y_grid = "".join(
-        f'<line x1="{ml}" y1="{ypx(v):.1f}" x2="{w-mr}" y2="{ypx(v):.1f}" stroke="#223453" stroke-width="0.8" stroke-dasharray="2 2"/>'
+        f'<line x1="{ml}" y1="{ypx(v):.1f}" x2="{w-mr}" y2="{ypx(v):.1f}" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="2 2"/>'
         for v in y_vals
     )
     dots = "".join(
-        f'<circle cx="{xpx(i):.1f}" cy="{ypx(v):.1f}" r="2.4" fill="#40c7ff" />'
+        f'<circle cx="{xpx(i):.1f}" cy="{ypx(v):.1f}" r="2.4" fill="var(--accent)" />'
         for i, (_, _, v) in enumerate(points_raw)
     )
     return f"""
 <div class="trend-wrap">
 <svg viewBox="0 0 {w} {h}" width="{w}" height="{h}" xmlns="http://www.w3.org/2000/svg">
-  <rect x="{ml}" y="{mt}" width="{w-ml-mr}" height="{h-mt-mb}" fill="#0b1020" stroke="#2a385f" stroke-width="1"/>
+  <rect x="{ml}" y="{mt}" width="{w-ml-mr}" height="{h-mt-mb}" fill="var(--panel-alt)" stroke="var(--line)" stroke-width="1"/>
   {y_grid}
-  <line x1="{ml}" y1="{ypx(0):.1f}" x2="{w-mr}" y2="{ypx(0):.1f}" stroke="#35507f" stroke-width="1" stroke-dasharray="3 3"/>
-  <path d="{path}" fill="none" stroke="#40c7ff" stroke-width="2"/>
+  <line x1="{ml}" y1="{ypx(0):.1f}" x2="{w-mr}" y2="{ypx(0):.1f}" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"/>
+  <path d="{path}" fill="none" stroke="var(--accent)" stroke-width="2"/>
   {dots}
   {x_ticks}
   {y_ticks}
-  <text x="{w/2:.1f}" y="{h-1}" text-anchor="middle" font-size="9" fill="#9db2d6">Date</text>
-  <text x="6" y="{h/2:.1f}" text-anchor="start" font-size="9" fill="#9db2d6" transform="rotate(-90 6 {h/2:.1f})">BPM</text>
+  <text x="{w/2:.1f}" y="{h-1}" text-anchor="middle" font-size="9" fill="var(--muted)">Date</text>
+  <text x="6" y="{h/2:.1f}" text-anchor="start" font-size="9" fill="var(--muted)" transform="rotate(-90 6 {h/2:.1f})">BPM</text>
 </svg>
 </div>
 """
@@ -1435,6 +1465,11 @@ def build_bt_percentile_html(
     cohort = bt_cohort_for_year(bt_rows, target.season)
     pbp_target = pbp_find_target_row(pbp_rows, target) if pbp_rows else None
     pbp_cohort = pbp_cohort_for_year(pbp_rows, target.season) if pbp_rows else []
+    pbp_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
+    for r in pbp_rows:
+        k = (norm_player_name(r.get("player", "")), norm_team(r.get("team", "")), norm_season(r.get("season", "")))
+        if k[0] and k[1] and k[2]:
+            pbp_lookup[k] = r
 
     sections = {
         "Impact": [
@@ -1447,13 +1482,13 @@ def build_bt_percentile_html(
             ("Usage", "usg", False, 1),
             ("TS%", "ts_per", True, 1),
             ("2P%", "twop_per", True, 1),
-            ("Dunks/100", "pbp_dunks_100", False, 2),
-            ("Rim Att/100", "pbp_rim_att_100", False, 2),
+            ("Dunks/100", "dunks_100_bt", False, 2),
+            ("Rim Att/100", "rim_att_100_bt", False, 2),
             ("Rim%", "rim_pct", True, 1),
             ("Mid%", "mid_pct", True, 1),
             ("3P%", "tp_per", True, 1),
             ("3PA/100", "threepa100", False, 2),
-            ("FTA/100", "pbp_fta_100", False, 2),
+            ("FTA/100", "fta100_bt", False, 2),
             ("FT%", "ft_per", True, 1),
             ("FTr", "ftr", False, 1),
         ],
@@ -1461,7 +1496,7 @@ def build_bt_percentile_html(
             ("AST%", "ast_per", True, 1),
             ("TO%", "to_per", True, 1),
             ("A/TO", "ast_tov", False, 2),
-            ("Rim Ast/100", "pbp_rim_assists_100", False, 2),
+            ("Rim Ast/100", "rim_assists_100_btposs", False, 2),
         ],
         "Defense": [
             ("STL%", "stl_per", True, 1),
@@ -1480,6 +1515,34 @@ def build_bt_percentile_html(
             if key.startswith("pbp_"):
                 pbp_key = key.replace("pbp_", "")
                 value, pct = pbp_metric_percentile(pbp_target, pbp_cohort, pbp_key)
+                rows_html += bt_row_html(label, value, pct, is_percent=False, digits=digits)
+                continue
+            if key == "rim_assists_100_btposs":
+                def rate_for_bt_row(br: dict[str, str]) -> float | None:
+                    poss = bt_metric_value(br, "possessions")
+                    if poss is None or poss <= 0:
+                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
+                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
+                        if tpa is not None and tpa100 is not None and tpa100 > 0:
+                            poss = (float(tpa) * 100.0) / float(tpa100)
+                    if poss is None or poss <= 0:
+                        return None
+                    rk = (
+                        norm_player_name(bt_get(br, ["player_name"])),
+                        norm_team(bt_get(br, ["team"])),
+                        norm_season(bt_get(br, ["year"])),
+                    )
+                    pr = pbp_lookup.get(rk)
+                    if not pr:
+                        return None
+                    rim_ast = to_float(pr.get("rim_assists", ""))
+                    if rim_ast is None:
+                        return None
+                    return 100.0 * float(rim_ast) / float(poss)
+
+                value = rate_for_bt_row(target_row)
+                cohort_vals = [v for v in (rate_for_bt_row(r) for r in cohort) if v is not None and math.isfinite(v)]
+                pct = percentile(value, cohort_vals) if value is not None and cohort_vals else None
                 rows_html += bt_row_html(label, value, pct, is_percent=False, digits=digits)
                 continue
             value, pct = bt_metric_percentile(target_row, cohort, key)
@@ -1959,10 +2022,13 @@ def render_card(
   --muted: #9db2d6;
   --accent: #40c7ff;
   --bar: #2dd4bf;
+  --panel-alt: #0e1729;
+  --bar-track: #1e2e4d;
+  --shot-mid: #f97316;
 }}
 body {{
   margin: 0;
-  background: radial-gradient(circle at 20% 0%, #1b2d51 0%, var(--bg) 45%);
+  background: radial-gradient(circle at 20% 0%, var(--line) 0%, var(--bg) 45%);
   color: var(--text);
   font-family: "Segoe UI", Arial, sans-serif;
 }}
@@ -2001,7 +2067,7 @@ body {{
   border-radius: 8px;
   padding: 6px 8px;
   text-align: center;
-  background: #0e1729;
+  background: var(--panel-alt);
 }}
 .grade-k {{
   color: var(--muted);
@@ -2043,12 +2109,12 @@ body {{
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px;
-  background: #0e1729;
+  background: var(--panel-alt);
 }}
 .section-card h4 {{
   margin: 0 0 4px 0;
   font-size: 12px;
-  color: #bcd1f5;
+  color: var(--text);
   letter-spacing: 0.1px;
 }}
 .kv {{
@@ -2085,7 +2151,7 @@ body {{
   border-radius: 8px;
   padding: 8px;
   text-align: center;
-  background: #0e1729;
+  background: var(--panel-alt);
 }}
 .chip .k {{
   color: var(--muted);
@@ -2119,12 +2185,12 @@ body {{
 .bar-wrap {{
   height: 12px;
   border-radius: 999px;
-  background: #1e2e4d;
+  background: var(--bar-track);
   overflow: hidden;
 }}
 .bar-fill {{
   height: 12px;
-  background: linear-gradient(90deg, #60a5fa, var(--bar));
+  background: linear-gradient(90deg, var(--accent), var(--bar));
 }}
 .metric-pct {{
   text-align: right;
@@ -2144,8 +2210,8 @@ body {{
   height: 16px;
   border-radius: 999px;
   overflow: hidden;
-  background: #1e2e4d;
-  border: 1px solid #2a385f;
+  background: var(--bar-track);
+  border: 1px solid var(--line);
 }}
 .shotdiet-seg {{
   height: 100%;
@@ -2153,13 +2219,13 @@ body {{
   vertical-align: top;
 }}
 .shotdiet-rim {{
-  background: #2dd4bf;
+  background: var(--bar);
 }}
 .shotdiet-mid {{
-  background: #f97316;
+  background: var(--shot-mid);
 }}
 .shotdiet-three {{
-  background: #60a5fa;
+  background: var(--accent);
 }}
 .shotdiet-legend {{
   margin-top: 8px;
@@ -2208,10 +2274,10 @@ body {{
   gap: 8px;
   font-size: 12px;
   align-items: center;
-  border: 1px solid #233552;
+  border: 1px solid var(--line);
   border-radius: 7px;
   padding: 6px 8px;
-  background: #0e1729;
+  background: var(--panel-alt);
 }}
 .comp-name {{
   font-weight: 600;
