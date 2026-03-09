@@ -8,12 +8,22 @@ on:
         required: false
         default: true
         type: boolean
+      run_mode:
+        description: "full = chunks+merge+bart, merge_only = merge staged chunks+bart, chunks_only = pull chunks only"
+        required: false
+        default: full
+        type: choice
+        options:
+          - full
+          - merge_only
+          - chunks_only
   schedule:
     - cron: '5 8 * * *'
     - cron: '5 9 * * *'
 
 jobs:
   chunked-plays:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_mode != 'merge_only' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -125,6 +135,7 @@ jobs:
           retention-days: 2
 
   merge-and-bart:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_mode != 'chunks_only' }}
     runs-on: ubuntu-latest
     needs: chunked-plays
     permissions:
@@ -173,6 +184,14 @@ jobs:
             git push -u origin "${STAGING_BRANCH}"
           fi
 
+      - name: Download cached chunk artifacts (backup/recovery)
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cbbd-2026-chunk*
+          path: cbbd_seasons/2025-2026/_artifact_cache
+          merge-multiple: true
+
       - name: Merge chunk CSVs
         if: steps.gate.outputs.should_run == 'true'
         env:
@@ -187,14 +206,6 @@ jobs:
             --merge-only \
             --merge-chunks \
             --max-csv-mb 95
-
-      - name: Download cached chunk artifacts (backup/recovery)
-        if: steps.gate.outputs.should_run == 'true'
-        uses: actions/download-artifact@v4
-        with:
-          pattern: cbbd-2026-chunk*
-          path: cbbd_seasons/2025-2026/_artifact_cache
-          merge-multiple: true
 
       - name: Refresh Bart 2026 datasets
         if: steps.gate.outputs.should_run == 'true'
