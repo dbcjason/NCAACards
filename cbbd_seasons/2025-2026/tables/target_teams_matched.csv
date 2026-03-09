@@ -1,0 +1,366 @@
+conference,team_id,team_name
+MAAC,264,Siena
+SEC,87,Florida
+Big Ten,124,Iowa
+Sun Belt,148,Louisiana
+Big Ten,236,Purdue
+MVC,29,Bradley
+Big 12,125,Iowa State
+Mountain West,189,Nevada
+Big West,308,UC Irvine
+Big West,311,UC Santa Barbara
+Mountain West,57,Colorado State
+Big Ten,313,UCLA
+WCC,253,Saint Mary's
+ACC,40,California
+WCC,258,San Diego
+WCC,224,Oregon State
+Horizon,105,Green Bay
+Big West,145,Long Beach State
+Big West,108,Hawai'i
+WCC,225,Pacific
+SEC,136,LSU
+Big West,38,Cal State Northridge
+Horizon,237,Purdue Fort Wayne
+Big Ten,343,Washington
+WCC,259,San Francisco
+Big West,35,Cal Poly
+ACC,281,Stanford
+Big 12,10,Arizona State
+Summit,68,Denver
+Big Ten,355,Wisconsin
+Mountain West,92,Fresno State
+ACC,185,NC State
+WCC,228,Pepperdine
+Big 12,11,Arizona
+CAA,205,Northeastern
+American,163,Memphis
+Big East,97,Georgetown
+Big East,263,Seton Hall
+MVC,315,UIC
+Southland,139,Lamar
+CUSA,171,Middle Tennessee
+Ivy,227,Pennsylvania
+Ivy,234,Princeton
+Big South,239,Radford
+American,241,Rice
+CAA,71,Drexel
+CAA,41,Campbell
+MAAC,238,Quinnipiac
+ASUN,43,Central Arkansas
+Patriot,8,American University
+ACC,52,Clemson
+Ivy,60,Cornell
+ACC,72,Duke
+ASUN,78,Eastern Kentucky
+MAAC,250,Sacred Heart
+OVC,272,Southeast Missouri State
+Big Ten,323,USC
+OVC,247,SIU Edwardsville
+Horizon,210,Northern Kentucky
+Big South,354,Winthrop
+Ivy,360,Yale
+Am. East,24,Binghamton
+SEC,5,Alabama
+Southland,193,New Orleans
+ACC,339,Virginia
+SWAC,103,Grambling
+Big Sky,116,Idaho State
+MVC,119,Illinois State
+A-10,151,Loyola Chicago
+MAAC,156,Marist
+Sun Belt,158,Marshall
+Am. East,190,New Hampshire
+CUSA,192,New Mexico State
+American,204,North Texas
+Southland,211,Northwestern State
+Sun Belt,219,Old Dominion
+Big Ten,226,Penn State
+MAAC,243,Rider
+SWAC,126,Jackson State
+A-10,252,Saint Louis
+MVC,209,Northern Iowa
+Summit,201,North Dakota
+NEC,50,Chicago State
+ACC,90,Florida State
+SEC,16,Auburn
+CAA,46,Charleston
+Big East,314,UConn
+MEAC,67,Delaware State
+A-10,73,Duquesne
+Big Sky,80,Eastern Washington
+WAC,276,Southern Utah
+ACC,248,SMU
+SEC,266,South Carolina
+MAAC,254,Saint Peter's
+ACC,286,Syracuse
+WCC,262,Seattle U
+CUSA,176,Missouri State
+Big East,338,Villanova
+SoCon,334,VMI
+CUSA,350,Western Kentucky
+MAC,351,Western Michigan
+Big East,359,Xavier
+SoCon,164,Mercer
+Am. East,306,UAlbany
+Big Ten,223,Oregon
+MEAC,114,Howard
+WCC,102,Gonzaga
+CUSA,149,Louisiana Tech
+Horizon,172,Milwaukee
+MAC,161,Massachusetts
+ACC,168,Miami
+Big Ten,170,Michigan
+Big Ten,169,Michigan State
+SWAC,175,Mississippi Valley State
+MEAC,196,Norfolk State
+Big Ten,212,Northwestern
+SEC,217,Oklahoma
+Big 12,218,Oklahoma State
+Summit,222,Oral Roberts
+ASUN,127,Jacksonville
+Big Sky,179,Montana
+Patriot,27,Boston University
+MAAC,123,Iona
+Ivy,58,Columbia
+Big West,37,Cal State Fullerton
+Ivy,62,Dartmouth
+Horizon,69,Detroit Mercy
+A-10,91,Fordham
+Big Ten,245,Rutgers
+Sun Belt,275,Southern Miss
+Sun Belt,297,Texas State
+Patriot,111,Holy Cross
+Big Ten,216,Ohio State
+WCC,261,Santa Clara
+American,289,Temple
+Southland,112,Houston Christian
+Mountain West,2,Air Force
+CUSA,133,Kennesaw State
+Big South,94,Gardner-Webb
+CAA,106,Hampton
+Big East,279,St. John's
+MAC,134,Kent State
+MEAC,182,Morgan State
+MVC,184,Murray State
+Big Sky,206,Northern Arizona
+Mountain West,191,New Mexico
+ACC,229,Pittsburgh
+SWAC,232,Prairie View A&M
+Mountain West,25,Boise State
+ACC,150,Louisville
+Big East,34,Butler
+Sun Belt,13,Arkansas State
+Ivy,30,Brown
+MAAC,42,Canisius
+ASUN,143,Lipscomb
+A-10,64,Dayton
+Southland,246,SE Louisiana
+American,271,South Florida
+A-10,277,St. Bonaventure
+SEC,292,Tennessee
+Big South,233,Presbyterian
+Big 12,298,Texas Tech
+American,303,Tulane
+American,304,Tulsa
+A-10,333,VCU
+WCC,344,Washington State
+Mountain West,358,Wyoming
+Horizon,361,Youngstown State
+CAA,110,Hofstra
+Sun Belt,316,UL Monroe
+MAAC,155,Manhattan
+MEAC,159,Maryland Eastern Shore
+Big Sky,180,Montana State
+CAA,198,North Carolina A&T
+Southland,195,Nicholls
+Big South,268,South Carolina Upstate
+SEC,177,Missouri
+SWAC,7,Alcorn State
+SWAC,23,Bethune-Cookman
+MVC,70,Drake
+NEC,84,Fairleigh Dickinson
+MEAC,267,South Carolina State
+Big Sky,249,Sacramento State
+Southland,282,Stephen F. Austin
+ASUN,283,Stetson
+MEAC,199,North Carolina Central
+Big West,309,UC Riverside
+Mountain West,322,UNLV
+SEC,336,Vanderbilt
+NEC,341,Wagner
+American,352,Wichita State
+MAC,45,Central Michigan
+SEC,98,Georgia
+Sun Belt,99,Georgia Southern
+MAC,208,Northern Illinois
+WAC,332,Utah Valley
+Big Ten,121,Indiana
+Patriot,152,Loyola Maryland
+Big Ten,173,Minnesota
+SEC,174,Mississippi State
+MVC,22,Belmont
+ASUN,88,Florida Gulf Coast
+SWAC,14,Arkansas-Pine Bluff
+MAC,33,Buffalo
+Big 12,18,BYU
+MAC,79,Eastern Michigan
+American,86,Florida Atlantic
+Mountain West,257,San Diego State
+Big West,36,Cal State Bakersfield
+OVC,290,Tennessee State
+SEC,293,Texas A&M
+American,328,UTSA
+MAC,300,Toledo
+CUSA,327,UTEP
+Am. East,337,Vermont
+ACC,340,Virginia Tech
+ACC,342,Wake Forest
+ASUN,203,North Florida
+A-10,96,George Washington
+Big 12,113,Houston
+Big Ten,118,Illinois
+Mountain West,329,Utah State
+CUSA,128,Jacksonville State
+Big 12,132,Kansas State
+Patriot,138,Lafayette
+Big Ten,160,Maryland
+MAC,167,Miami (OH)
+MAC,215,Ohio
+WCC,230,Portland
+Sun Belt,9,App State
+OVC,77,Eastern Illinois
+NEC,146,Long Island University
+Patriot,141,Lehigh
+SEC,12,Arkansas
+Horizon,53,Cleveland State
+NEC,44,Central Connecticut
+SoCon,49,Chattanooga
+NEC,278,St. Francis (PA)
+A-10,251,Saint Joseph's
+OVC,291,Tennessee Tech
+Southland,326,UT Rio Grande Valley
+SoCon,299,The Citadel
+American,305,UAB
+CAA,321,UNC Wilmington
+MVC,335,Valparaiso
+CAA,178,Monmouth
+MEAC,59,Coppin State
+SWAC,296,Texas Southern
+SoCon,93,Furman
+A-10,95,George Mason
+Big Sky,207,Northern Colorado
+MVC,122,Indiana State
+Big 12,131,Kansas
+WCC,153,Loyola Marymount
+OVC,181,Morehead State
+MAAC,183,Mount St. Mary's
+Patriot,187,Navy
+MAAC,194,Niagara
+Horizon,214,Oakland
+A-10,240,Rhode Island
+OVC,144,Little Rock
+Am. East,31,Bryant
+Patriot,15,Army
+Big South,47,Charleston Southern
+Patriot,55,Colgate
+Sun Belt,265,South Alabama
+Big 12,287,TCU
+Big 12,331,Utah
+Big Sky,345,Weber State
+Big 12,347,West Virginia
+CAA,353,William & Mary
+American,74,East Carolina
+MAC,3,Akron
+SWAC,6,Alabama State
+SWAC,85,Florida A&M
+ACC,101,Georgia Tech
+Big 12,56,Colorado
+Patriot,32,Bucknell
+Ivy,107,Harvard
+SWAC,274,Southern
+Southland,294,Texas A&M-Corpus Christi
+Big West,307,UC Davis
+CUSA,89,Florida International
+MAC,28,Bowling Green
+CAA,285,Stony Brook
+MVC,82,Evansville
+Big South,319,UNC Asheville
+WAC,324,UT Arlington
+ACC,26,Boston College
+Big East,235,Providence
+Horizon,357,Wright State
+A-10,63,Davidson
+Big 12,51,Cincinnati
+ACC,200,North Carolina
+American,48,Charlotte
+SoCon,348,Western Carolina
+SEC,135,Kentucky
+ACC,213,Notre Dame
+MAC,19,Ball State
+SoCon,320,UNC Greensboro
+Summit,130,Kansas City
+Southland,120,Incarnate Word
+Mountain West,104,Grand Canyon
+Big East,61,Creighton
+CUSA,66,Delaware
+MVC,273,Southern Illinois
+SoCon,256,Samford
+Mountain West,260,San José State
+OVC,349,Western Illinois
+Sun Belt,54,Coastal Carolina
+Big 12,312,UCF
+Am. East,318,UMass Lowell
+A-10,242,Richmond
+Sun Belt,302,Troy
+WAC,1,Abilene Christian
+WAC,39,California Baptist
+Big Ten,188,Nebraska
+CUSA,255,Sam Houston
+CAA,301,Towson
+Am. East,154,Maine
+SoCon,75,East Tennessee State
+Horizon,115,IU Indianapolis
+Summit,221,Omaha
+SEC,220,Ole Miss
+Am. East,186,NJIT
+SoCon,356,Wofford
+Big East,65,DePaul
+Summit,269,South Dakota
+Summit,202,North Dakota State
+Horizon,244,Robert Morris
+CAA,81,Elon
+Big East,157,Marquette
+ASUN,197,North Alabama
+Southland,162,McNeese
+Am. East,317,UMBC
+Big Sky,231,Portland State
+MAAC,166,Merrimack
+OVC,366,Lindenwood
+Big West,310,UC San Diego
+ASUN,21,Bellarmine
+WAC,288,Tarleton State
+WAC,330,Utah Tech
+Sun Belt,129,James Madison
+Big South,109,High Point
+CUSA,142,Liberty
+OVC,325,UT Martin
+Summit,280,St. Thomas-Minnesota
+Big Sky,117,Idaho
+SEC,295,Texas
+Southland,76,East Texas A&M
+OVC,365,Southern Indiana
+NEC,284,Stonehill
+ASUN,362,Queens University
+Sun Belt,100,Georgia State
+MAAC,83,Fairfield
+SWAC,4,Alabama A&M
+ASUN,17,Austin Peay
+Big 12,20,Baylor
+NEC,140,Le Moyne
+Big South,147,Longwood
+ASUN,346,West Georgia
+NEC,165,Mercyhurst
+Summit,270,South Dakota State
+A-10,137,La Salle
+NEC,1507,New Haven
