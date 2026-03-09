@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      STAGING_BRANCH: data-staging-2026
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -39,6 +41,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -64,6 +68,17 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pandas
+
+      - name: Switch to staging branch
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git fetch origin --prune
+          if git ls-remote --exit-code --heads origin "${STAGING_BRANCH}" >/dev/null 2>&1; then
+            git checkout -B "${STAGING_BRANCH}" "origin/${STAGING_BRANCH}"
+          else
+            git checkout -B "${STAGING_BRANCH}" "origin/main"
+            git push -u origin "${STAGING_BRANCH}"
+          fi
 
       - name: Pull one chunk (regular+postseason)
         if: steps.gate.outputs.should_run == 'true'
@@ -83,28 +98,32 @@ jobs:
             --max-requests 3000 \
             --sleep-sec 0.15
 
-      - name: Commit and push chunk progress
+      - name: Commit and push chunk progress to staging
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
+          git pull --rebase origin "${STAGING_BRANCH}" || true
           git add cbbd_seasons/2025-2026/ || true
           if git diff --cached --quiet; then
             echo "No chunk changes to commit"
             exit 0
           fi
-          git commit -m "Update 2026 plays ${{ matrix.chunk.tag }}"
-          git push
+          git commit -m "Stage 2026 plays ${{ matrix.chunk.tag }}"
+          git push origin "${STAGING_BRANCH}"
 
   merge-and-bart:
     runs-on: ubuntu-latest
     needs: chunked-plays
     permissions:
       contents: write
+    env:
+      STAGING_BRANCH: data-staging-2026
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -130,6 +149,17 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pandas
+
+      - name: Switch to staging branch
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git fetch origin --prune
+          if git ls-remote --exit-code --heads origin "${STAGING_BRANCH}" >/dev/null 2>&1; then
+            git checkout -B "${STAGING_BRANCH}" "origin/${STAGING_BRANCH}"
+          else
+            git checkout -B "${STAGING_BRANCH}" "origin/main"
+            git push -u origin "${STAGING_BRANCH}"
+          fi
 
       - name: Merge chunk CSVs
         if: steps.gate.outputs.should_run == 'true'
@@ -152,17 +182,31 @@ jobs:
           python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
             --project-root "."
 
-      - name: Commit and push merged outputs
+      - name: Commit and push merged outputs to staging
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
+          git pull --rebase origin "${STAGING_BRANCH}" || true
           git add cbbd_seasons/2025-2026/ || true
           git add player_cards_pipeline/data/bt/ || true
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No staging changes to commit"
+          else
+            git commit -m "Merge 2026 plays chunks + refresh Bart datasets"
+            git push origin "${STAGING_BRANCH}"
+          fi
+
+      - name: Promote staging to main
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin --prune
+          git checkout -B main origin/main
+          git merge --no-ff "origin/${STAGING_BRANCH}" -m "Promote 2026 staged pulls to main"
+          if git diff --quiet origin/main..HEAD; then
+            echo "No promotion changes to push"
             exit 0
           fi
-          git commit -m "Merge 2026 plays chunks + refresh Bart datasets"
-          git push
+          git push origin main
