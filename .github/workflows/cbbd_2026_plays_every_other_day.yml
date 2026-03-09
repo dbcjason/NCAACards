@@ -17,6 +17,11 @@ on:
           - full
           - merge_only
           - chunks_only
+      artifact_run_id:
+        description: "Optional: run ID to download cached chunk artifacts from (for recovery)"
+        required: false
+        default: ""
+        type: string
   schedule:
     - cron: '5 8 * * *'
     - cron: '5 9 * * *'
@@ -184,10 +189,19 @@ jobs:
             git push -u origin "${STAGING_BRANCH}"
           fi
 
-      - name: Download cached chunk artifacts (backup/recovery)
-        if: steps.gate.outputs.should_run == 'true'
+      - name: Download cached chunk artifacts from current run
+        if: steps.gate.outputs.should_run == 'true' && (inputs.artifact_run_id == '' || inputs.artifact_run_id == null)
         uses: actions/download-artifact@v4
         with:
+          pattern: cbbd-2026-chunk*
+          path: cbbd_seasons/2025-2026/_artifact_cache
+          merge-multiple: true
+
+      - name: Download cached chunk artifacts from specified run
+        if: steps.gate.outputs.should_run == 'true' && inputs.artifact_run_id != '' && inputs.artifact_run_id != null
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.artifact_run_id }}
           pattern: cbbd-2026-chunk*
           path: cbbd_seasons/2025-2026/_artifact_cache
           merge-multiple: true
