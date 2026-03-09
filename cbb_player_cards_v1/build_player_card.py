@@ -349,35 +349,65 @@ def _shot_range_from_row(row: dict[str, str]) -> str:
 
 
 def _shot_loc_from_row(row: dict[str, str]) -> tuple[float | None, float | None]:
-    x = to_float(row.get("shotInfo.location.x"))
-    y = to_float(row.get("shotInfo.location.y"))
+    def candidate_transforms(sx: float | None, sy: float | None) -> list[tuple[float, float]]:
+        if sx is None or sy is None:
+            return []
+        cands: list[tuple[float, float]] = []
+        # 1) Centered feet.
+        if -60.0 <= sx <= 60.0 and -35.0 <= sy <= 35.0:
+            cands.append(((sx + 47.0) * 10.0, (sy + 25.0) * 10.0))
+        # 2) Positive feet (length, width).
+        if 0.0 <= sx <= 100.0 and 0.0 <= sy <= 60.0:
+            cands.append((sx * 10.0, sy * 10.0))
+        # 3) Positive feet swapped (width, length).
+        if 0.0 <= sx <= 60.0 and 0.0 <= sy <= 100.0:
+            cands.append((sy * 10.0, sx * 10.0))
+        # 4) Full-scale.
+        if 0.0 <= sx <= 940.0 and 0.0 <= sy <= 650.0:
+            cands.append((sx, max(0.0, min(500.0, sy))))
+        if not cands:
+            cands.append(((sx + 47.0) * 10.0, (sy + 25.0) * 10.0))
+        return cands
+
+    def pick_best(cands: list[tuple[float, float]]) -> tuple[float | None, float | None]:
+        if not cands:
+            return None, None
+        three = to_bool(row.get("three_pt", ""))
+        desc = (row.get("description", "") or "").lower()
+        wants_rim = any(k in desc for k in ["dunk", "layup", "tip in", "tip shot", "alley oop"])
+        best = None
+        best_score = float("inf")
+        for fx, fy in cands:
+            score = 0.0
+            if fx < 0 or fx > 940:
+                score += 100.0 + abs(min(0.0, fx)) + abs(max(0.0, fx - 940.0))
+            if fy < 0 or fy > 500:
+                score += 100.0 + abs(min(0.0, fy)) + abs(max(0.0, fy - 500.0))
+            xft, yft = fx / 10.0, fy / 10.0
+            d1 = math.hypot(xft - 4.0, yft - 25.0)
+            d2 = math.hypot(xft - 90.0, yft - 25.0)
+            d = min(d1, d2)
+            if three and d < 19.0:
+                score += (19.0 - d) * 3.0
+            if wants_rim and d > 10.0:
+                score += (d - 10.0) * 1.5
+            if ("jumper" in desc or "jump shot" in desc) and (not three) and d < 5.0:
+                score += (5.0 - d) * 2.0
+            if score < best_score:
+                best_score = score
+                best = (fx, fy)
+        return best if best is not None else (None, None)
+
+    # Prefer shotInfo location when present, but normalize it as well.
+    sx = to_float(row.get("shotInfo.location.x"))
+    sy = to_float(row.get("shotInfo.location.y"))
+    x, y = pick_best(candidate_transforms(sx, sy))
     if x is not None and y is not None:
         return x, y
 
     sx = to_float(row.get("shot_x"))
     sy = to_float(row.get("shot_y"))
-    if sx is None or sy is None:
-        return None, None
-
-    # ncaahoopR logs appear in three coordinate conventions:
-    # 1) Centered feet: x in [-47, 47], y in [-25, 25]
-    # 2) Positive feet: x in [0, 94], y in [0, 50]
-    # 3) Full-scale: x in [0, 940], y in [0, 500]
-    # Convert both to CBBD 0..940 / 0..500 scale.
-    if -60.0 <= sx <= 60.0 and -35.0 <= sy <= 35.0:
-        full_x = (sx + 47.0) * 10.0
-        full_y = (sy + 25.0) * 10.0
-    elif 0.0 <= sx <= 940.0 and 0.0 <= sy <= 500.0:
-        full_x = sx
-        full_y = sy
-    elif 0.0 <= sx <= 100.0 and 0.0 <= sy <= 60.0:
-        full_x = sx * 10.0
-        full_y = sy * 10.0
-    else:
-        # Fallback to centered transform for unknown legacy ranges.
-        full_x = (sx + 47.0) * 10.0
-        full_y = (sy + 25.0) * 10.0
-    return full_x, full_y
+    return pick_best(candidate_transforms(sx, sy))
 
 
 def _desc_rebound_player(desc: str) -> str:
@@ -1142,6 +1172,18 @@ def build_pbp_off_possessions_map(pbp_rows: list[dict[str, str]]) -> dict[tuple[
     return dict(out)
 
 
+def adjust_possessions_to_bart_games(
+    pbp_off_possessions: float | None,
+    pbp_games: float | None,
+    bart_games: float | None,
+) -> float | None:
+    if pbp_off_possessions is None or not math.isfinite(pbp_off_possessions) or pbp_off_possessions <= 0:
+        return None
+    if pbp_games is None or bart_games is None or pbp_games <= 0 or bart_games <= 0:
+        return pbp_off_possessions
+    return (float(pbp_off_possessions) / float(pbp_games)) * float(bart_games)
+
+
 def bt_metric_value(row: dict[str, str], key: str) -> float | None:
     def bt_possessions_estimate(r: dict[str, str]) -> float | None:
         poss = bt_num(r, ["possessions", " possessions"])
@@ -1587,6 +1629,7 @@ def build_self_creation_html(
     bt_rows: list[dict[str, str]],
     bt_playerstat_rows: list[dict[str, Any]],
     pbp_rows: list[dict[str, str]],
+    pbp_games_map: dict[tuple[str, str, str], float] | None = None,
 ) -> str:
     if not bt_playerstat_rows:
         return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">No Bart playerstat JSON loaded.</div></div>'
@@ -1596,7 +1639,11 @@ def build_self_creation_html(
         return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">No matching player/team/season in Bart playerstat JSON.</div></div>'
 
     pbp_poss_map = build_pbp_off_possessions_map(pbp_rows)
-    target_poss = pbp_poss_map.get((norm_player_name(target.player), norm_team(target.team), norm_season(target.season)))
+    target_key = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
+    target_poss = pbp_poss_map.get(target_key)
+    target_bt_gp = bt_num(target_bt, ["GP"]) if target_bt else None
+    target_pbp_games = (pbp_games_map or {}).get(target_key) if pbp_games_map else None
+    target_poss = adjust_possessions_to_bart_games(target_poss, target_pbp_games, target_bt_gp)
     if target_poss is None and target_bt:
         # Fallback when pbp metrics are unavailable in the runtime environment.
         target_poss = bt_metric_value(target_bt, "possessions")
@@ -1617,6 +1664,15 @@ def build_self_creation_html(
                 norm_season(bt_get(r, ["year"])),
             )
         )
+        if poss is not None:
+            rk = (
+                norm_player_name(bt_get(r, ["player_name"])),
+                norm_team(bt_get(r, ["team"])),
+                norm_season(bt_get(r, ["year"])),
+            )
+            pbp_gp = (pbp_games_map or {}).get(rk) if pbp_games_map else None
+            bt_gp = bt_num(r, ["GP"])
+            poss = adjust_possessions_to_bart_games(poss, pbp_gp, bt_gp)
         if poss is None:
             poss = bt_metric_value(r, "possessions")
         m = bt_playerstat_metrics_from_row(ps, poss)
@@ -2477,7 +2533,7 @@ def main() -> None:
         _, pbp_rows = read_csv_rows(Path(args.pbp_metrics_csv))
 
     team_hint_map = build_player_team_hint_map(bt_rows) if bt_rows else {}
-    stats_map, _ = build_player_stats(
+    stats_map, games_by_player = build_player_stats(
         plays_rows,
         season_hint=args.season or "",
         team_hint_by_player_season=team_hint_map,
@@ -2516,7 +2572,8 @@ def main() -> None:
 
     bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
-    self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows)
+    pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
+    self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)

@@ -174,6 +174,38 @@ def load_player_team_hints(bt_csv: Path, season_year: int) -> Dict[str, str]:
     return {k: next(iter(v)) for k, v in out.items() if len(v) == 1}
 
 
+def load_bt_games_map(bt_csv: Path, season_year: int) -> Dict[tuple[str, str, str], float]:
+    out: Dict[tuple[str, str, str], float] = {}
+    if not bt_csv.exists():
+        return out
+    season = str(season_year)
+    with bt_csv.open(newline="", encoding="utf-8-sig") as f:
+        r = csv.DictReader(f)
+        for row in r:
+            y = str(row.get("year") or "").strip()
+            if y != season:
+                continue
+            p = norm_name(row.get("player_name") or "")
+            t = norm_name(row.get("team") or "")
+            gp = parse_float(row.get("GP") or "")
+            if not p or not t or gp is None or gp <= 0:
+                continue
+            out[(season, t, p)] = float(gp)
+    return out
+
+
+def adjust_possessions_to_bart_games(
+    pbp_possessions: float,
+    pbp_games: float | None,
+    bart_games: float | None,
+) -> float:
+    if pbp_possessions <= 0:
+        return 0.0
+    if pbp_games is None or bart_games is None or pbp_games <= 0 or bart_games <= 0:
+        return float(pbp_possessions)
+    return (float(pbp_possessions) / float(pbp_games)) * float(bart_games)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build player possessions + self-creation metrics from ncaahoopR pbp logs.")
     ap.add_argument("--pbp-root", required=True)
@@ -192,6 +224,7 @@ def main() -> None:
     files = list(iter_files(pbp_root))
     total = len(files)
     team_hints = load_player_team_hints(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
+    bt_games_map = load_bt_games_map(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
 
     for i, fp in enumerate(files, start=1):
         with fp.open(newline="", encoding="utf-8") as f:
@@ -209,6 +242,7 @@ def main() -> None:
             continue
 
         on_court: Dict[str, set[str]] = {home: set(), away: set()}
+        game_poss_players: set[tuple[str, str]] = set()
         prev_poss_team = ""
 
         for row in rows:
@@ -268,8 +302,10 @@ def main() -> None:
                 deff = away if off == home else home
                 for p in on_court.get(off, set()):
                     C[(season, off, p)]["off_possessions"] += 1
+                    game_poss_players.add((off, p))
                 for p in on_court.get(deff, set()):
                     C[(season, deff, p)]["def_possessions"] += 1
+                    game_poss_players.add((deff, p))
                 prev_poss_team = poss_before
 
             # Player event counters (offensive/team-of-action context)
@@ -315,6 +351,10 @@ def main() -> None:
                 k = (season, draw_team, drawn)
                 C[k]["off_fouls_drawn"] += 1
 
+        # Count one game for players who were on-court for at least one tracked possession.
+        for team_name, player_name in game_poss_players:
+            C[(season, team_name, player_name)]["pbp_games"] += 1
+
         if i == 1 or i % 500 == 0 or i == total:
             print(f"[{i}/{total}] files processed", flush=True)
 
@@ -324,6 +364,8 @@ def main() -> None:
         "player",
         "off_possessions",
         "def_possessions",
+        "pbp_games",
+        "bart_games",
         "unassisted_rim_makes",
         "unassisted_mid_makes",
         "unassisted_3pm",
@@ -346,8 +388,12 @@ def main() -> None:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         for (season, team, player), m in sorted(C.items(), key=lambda x: (x[0][0], x[0][1], x[0][2])):
-            off_pos = float(m.get("off_possessions", 0.0))
-            def_pos = float(m.get("def_possessions", 0.0))
+            off_pos_raw = float(m.get("off_possessions", 0.0))
+            def_pos_raw = float(m.get("def_possessions", 0.0))
+            pbp_games = float(m.get("pbp_games", 0.0))
+            bart_games = bt_games_map.get((season, team, player))
+            off_pos = adjust_possessions_to_bart_games(off_pos_raw, pbp_games, bart_games)
+            def_pos = adjust_possessions_to_bart_games(def_pos_raw, pbp_games, bart_games)
             def per100(v: float) -> float:
                 return (100.0 * v / off_pos) if off_pos > 0 else 0.0
 
@@ -357,6 +403,8 @@ def main() -> None:
                 "player": player,
                 "off_possessions": round(off_pos, 1),
                 "def_possessions": round(def_pos, 1),
+                "pbp_games": round(pbp_games, 1),
+                "bart_games": round(bart_games, 1) if bart_games is not None else "",
                 "unassisted_rim_makes": round(m.get("unassisted_rim_makes", 0.0), 1),
                 "unassisted_mid_makes": round(m.get("unassisted_mid_makes", 0.0), 1),
                 "unassisted_3pm": round(m.get("unassisted_3pm", 0.0), 1),
