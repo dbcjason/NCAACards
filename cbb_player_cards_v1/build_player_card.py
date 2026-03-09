@@ -746,7 +746,7 @@ def shot_svg(
         x = float(s["x"])
         y = float(s["y"])
         made = bool(s.get("made"))
-        fill = "#2dd4bf" if made else "#f97316"
+        fill = "#22c55e" if made else "#ef4444"
         points.append(
             f'<circle cx="{map_x(y):.1f}" cy="{map_y(x):.1f}" r="4.2" fill="{fill}" fill-opacity="0.8" />'
         )
@@ -793,16 +793,16 @@ def shot_svg(
     ft_ry = ft_r * px_per_unit_x
 
     court = f"""
-<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="#0b1020" stroke="#2a385f" stroke-width="2"/>
-<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="#35507f" stroke-width="2"/>
-<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="#35507f" stroke-width="2"/>
-<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="#35507f" stroke-width="2"/>
-<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="#35507f" stroke-width="2"/>
-<polyline points="{three_arc_polyline}" fill="none" stroke="#35507f" stroke-width="2"/>
-<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="#35507f" stroke-width="2"/>
+<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="#000000" stroke="#ffffff" stroke-width="2"/>
+<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="#ffffff" stroke-width="2"/>
+<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="#ffffff" stroke-width="2"/>
+<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="#ffffff" stroke-width="2"/>
+<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="#ffffff" stroke-width="2"/>
+<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="#ffffff" stroke-width="2"/>
+<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="#ffffff" stroke-width="2"/>
+<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="#ffffff" stroke-width="2"/>
+<polyline points="{three_arc_polyline}" fill="none" stroke="#ffffff" stroke-width="2"/>
+<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="#ffffff" stroke-width="2"/>
 """
     return f"""
 <svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
@@ -853,11 +853,32 @@ def adv_bar(metric: str, value: float | None, pct: float | None, digits: int = 2
         return ""
     pct_num = 0.0 if pct is None else pct
     pct_lbl = "-" if pct is None else f"{pct:.0f}"
+
+    def _lerp(a: float, b: float, t: float) -> int:
+        return int(round(a + (b - a) * t))
+
+    def _pct_color(p: float | None) -> str:
+        if p is None:
+            return "#6b7280"
+        x = max(0.0, min(100.0, float(p)))
+        if x <= 50.0:
+            t = x / 50.0
+            r = _lerp(239, 255, t)
+            g = _lerp(68, 255, t)
+            b = _lerp(68, 255, t)
+        else:
+            t = (x - 50.0) / 50.0
+            r = _lerp(255, 34, t)
+            g = _lerp(255, 197, t)
+            b = _lerp(255, 94, t)
+        return f"rgb({r}, {g}, {b})"
+
+    fill_color = _pct_color(pct)
     return f"""
 <div class="metric-row">
   <div class="metric-label">{html.escape(metric)}</div>
   <div class="metric-val">{value:.{digits}f}</div>
-  <div class="bar-wrap"><div class="bar-fill" style="width:{pct_num:.1f}%"></div></div>
+  <div class="bar-wrap"><div class="bar-fill" style="width:{pct_num:.1f}%;background:{fill_color};"></div></div>
   <div class="metric-pct">{pct_lbl}</div>
 </div>
 """
@@ -1359,6 +1380,9 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
     xs = [i for i in range(len(points_raw))]
     ys_v = [p[2] for p in points_raw]
     ymin, ymax = min(ys_v), max(ys_v)
+    # Keep zero in frame so color/sign context is absolute, not only relative to this player's range.
+    ymin = min(ymin, 0.0)
+    ymax = max(ymax, 0.0)
     if abs(ymax - ymin) < 1e-9:
         ymax = ymin + 1.0
     pad = 0.08 * (ymax - ymin)
@@ -1372,10 +1396,16 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
     def ypx(v: float) -> float:
         return mt + (ymax - v) * (h - mt - mb) / (ymax - ymin)
 
-    path = " ".join(
-        ("M" if i == 0 else "L") + f" {xpx(i):.1f} {ypx(v):.1f}"
-        for i, (_, _, v) in enumerate(points_raw)
-    )
+    # Segment colors by absolute sign relative to 0 BPM.
+    segs: list[str] = []
+    for i in range(1, len(points_raw)):
+        v0 = points_raw[i - 1][2]
+        v1 = points_raw[i][2]
+        c = "#22c55e" if ((v0 + v1) / 2.0) >= 0 else "#ef4444"
+        segs.append(
+            f'<line x1="{xpx(i-1):.1f}" y1="{ypx(v0):.1f}" x2="{xpx(i):.1f}" y2="{ypx(v1):.1f}" '
+            f'stroke="{c}" stroke-width="2" />'
+        )
 
     # Show more small date labels across the axis.
     n = len(points_raw)
@@ -1395,7 +1425,7 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
         for v in y_vals
     )
     dots = "".join(
-        f'<circle cx="{xpx(i):.1f}" cy="{ypx(v):.1f}" r="2.4" fill="var(--accent)" />'
+        f'<circle cx="{xpx(i):.1f}" cy="{ypx(v):.1f}" r="2.4" fill="{"#22c55e" if v >= 0 else "#ef4444"}" />'
         for i, (_, _, v) in enumerate(points_raw)
     )
     return f"""
@@ -1404,7 +1434,7 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
   <rect x="{ml}" y="{mt}" width="{w-ml-mr}" height="{h-mt-mb}" fill="var(--panel-alt)" stroke="var(--line)" stroke-width="1"/>
   {y_grid}
   <line x1="{ml}" y1="{ypx(0):.1f}" x2="{w-mr}" y2="{ypx(0):.1f}" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"/>
-  <path d="{path}" fill="none" stroke="var(--accent)" stroke-width="2"/>
+  {''.join(segs)}
   {dots}
   {x_ticks}
   {y_ticks}
@@ -1767,7 +1797,7 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
         <div class="shotdiet-bar">
           <div class="shotdiet-seg shotdiet-rim" style="width:{rim_pct:.2f}%"></div>
           <div class="shotdiet-seg shotdiet-mid" style="width:{mid_pct:.2f}%"></div>
-          <div class="shotdiet-seg shotdiet-three" style="width:{three_pct:.2f}%"></div>
+          <div class="shotdiet-seg shotdiet-three" style="width:{three_pct:.2f}%;background:#60a5fa !important;"></div>
         </div>
         <div class="shotdiet-legend">
           <div class="shotdiet-key"><span class="shotdiet-dot shotdiet-rim"></span> Rim ({rim_pct:.1f}%)</div>
@@ -2099,20 +2129,20 @@ def render_card(
 <title>{html.escape(name)} - Player Card</title>
 <style>
 :root {{
-  --bg: #0b1220;
-  --panel: #111a2e;
-  --line: #22406c;
-  --text: #dbe7ff;
-  --muted: #9db2d6;
-  --accent: #40c7ff;
-  --bar: #2dd4bf;
-  --panel-alt: #0e1729;
-  --bar-track: #1e2e4d;
-  --shot-mid: #f97316;
+  --bg: #0a0a0a;
+  --panel: #141414;
+  --line: #3b3b3b;
+  --text: #f5f5f5;
+  --muted: #d4d4d4;
+  --accent: #ffffff;
+  --bar: #22c55e;
+  --panel-alt: #1f1f1f;
+  --bar-track: #2a2a2a;
+  --shot-mid: #ef4444;
 }}
 body {{
   margin: 0;
-  background: radial-gradient(circle at 20% 0%, var(--line) 0%, var(--bg) 45%);
+  background: var(--bg);
   color: var(--text);
   font-family: "Segoe UI", Arial, sans-serif;
 }}
@@ -2124,7 +2154,7 @@ body {{
 .card {{
   border: 2px solid var(--line);
   border-radius: 12px;
-  background: rgba(13, 22, 38, 0.95);
+  background: #000000;
   padding: 16px;
 }}
 .title {{
@@ -2166,7 +2196,7 @@ body {{
 }}
 .sub {{
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 0;
   font-size: 15px;
 }}
 .row {{
@@ -2179,6 +2209,9 @@ body {{
   border-radius: 10px;
   padding: 12px;
   background: var(--panel);
+}}
+.per-game-panel {{
+  margin-top: 10px;
 }}
 .panel h3 {{
   margin: 0 0 4px 0;
@@ -2274,7 +2307,7 @@ body {{
 }}
 .bar-fill {{
   height: 12px;
-  background: linear-gradient(90deg, var(--accent), var(--bar));
+  background: var(--bar);
 }}
 .metric-pct {{
   text-align: right;
@@ -2296,11 +2329,12 @@ body {{
   overflow: hidden;
   background: var(--bar-track);
   border: 1px solid var(--line);
+  display: flex;
 }}
 .shotdiet-seg {{
   height: 100%;
-  display: inline-block;
-  vertical-align: top;
+  display: block;
+  flex: 0 0 auto;
 }}
 .shotdiet-rim {{
   background: var(--bar);
@@ -2309,7 +2343,8 @@ body {{
   background: var(--shot-mid);
 }}
 .shotdiet-three {{
-  background: var(--accent);
+  background: #60a5fa !important;
+  box-shadow: none;
 }}
 .shotdiet-legend {{
   margin-top: 8px;
@@ -2399,7 +2434,7 @@ body {{
       </div>
       <div class="sub">{html.escape(subtitle)}</div>
 
-      <div class="panel">
+      <div class="panel per-game-panel">
         <h3>Per Game</h3>
         <div class="stat-strip">
           <div class="chip"><div class="k">PPG</div><div class="v">{fmt(pg['ppg'])}</div><div class="p">{(f"{per_game_pcts['ppg']:.0f}%" if per_game_pcts.get('ppg') is not None else "")}</div></div>

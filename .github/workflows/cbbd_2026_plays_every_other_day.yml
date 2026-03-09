@@ -7,10 +7,28 @@ on:
     - cron: '5 9 * * *'
 
 jobs:
-  pull-plays:
+  chunked-plays:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        chunk:
+          - { start: 1, end: 30, tag: "chunk001_030" }
+          - { start: 31, end: 60, tag: "chunk031_060" }
+          - { start: 61, end: 90, tag: "chunk061_090" }
+          - { start: 91, end: 120, tag: "chunk091_120" }
+          - { start: 121, end: 150, tag: "chunk121_150" }
+          - { start: 151, end: 180, tag: "chunk151_180" }
+          - { start: 181, end: 210, tag: "chunk181_210" }
+          - { start: 211, end: 240, tag: "chunk211_240" }
+          - { start: 241, end: 270, tag: "chunk241_270" }
+          - { start: 271, end: 300, tag: "chunk271_300" }
+          - { start: 301, end: 330, tag: "chunk301_330" }
+          - { start: 331, end: 360, tag: "chunk331_360" }
+          - { start: 361, end: 365, tag: "chunk361_365" }
 
     steps:
       - name: Checkout
@@ -41,19 +59,86 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install pandas
 
-      - name: Pull chunked 2026 plays (regular+postseason)
+      - name: Pull one chunk (regular+postseason)
         if: steps.gate.outputs.should_run == 'true'
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
         run: |
-          python3 player_cards_pipeline/scripts/pull_2026_plays_every_other_day.py \
-            --project-root "." \
+          python3 pull_cbbd_lineups_plays_only_chunked_tmp.py \
+            --year 2026 \
             --teams-csv "2025_team_results (1).csv" \
             --team-col "team" \
-            --chunk-size 30 \
+            --season-type both \
+            --datasets plays \
+            --team-start "${{ matrix.chunk.start }}" \
+            --team-end "${{ matrix.chunk.end }}" \
+            --chunk-tag "${{ matrix.chunk.tag }}" \
             --max-csv-mb 95 \
             --max-requests 3000 \
             --sleep-sec 0.15
+
+      - name: Commit and push chunk progress
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add cbbd_seasons/2025-2026/ || true
+          if git diff --cached --quiet; then
+            echo "No chunk changes to commit"
+            exit 0
+          fi
+          git commit -m "Update 2026 plays ${{ matrix.chunk.tag }}"
+          git push
+
+  merge-and-bart:
+    runs-on: ubuntu-latest
+    needs: chunked-plays
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Gate by 4AM ET every other day (manual always runs)
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            python3 player_cards_pipeline/scripts/is_4am_et_every_other_day.py > gate.txt
+            echo "should_run=$(cat gate.txt)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip if outside scheduled window
+        if: steps.gate.outputs.should_run != 'true'
+        run: echo "Skipping scheduled run outside window"
+
+      - name: Install deps
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Merge chunk CSVs
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python3 pull_cbbd_lineups_plays_only_chunked_tmp.py \
+            --year 2026 \
+            --teams-csv "2025_team_results (1).csv" \
+            --team-col "team" \
+            --season-type both \
+            --datasets plays \
+            --merge-only \
+            --merge-chunks \
+            --max-csv-mb 95
 
       - name: Refresh Bart 2026 datasets
         if: steps.gate.outputs.should_run == 'true'
@@ -61,16 +146,17 @@ jobs:
           python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
             --project-root "."
 
-      - name: Commit and push updates
+      - name: Commit and push merged outputs
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
           git add cbbd_seasons/2025-2026/ || true
           git add player_cards_pipeline/data/bt/ || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Update 2026 CBBD plays + Bart datasets"
+          git commit -m "Merge 2026 plays chunks + refresh Bart datasets"
           git push
