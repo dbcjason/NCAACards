@@ -1,0 +1,37 @@
+{
+  "year": 2026,
+  "season_label": "2025-2026",
+  "requested_teams": 0,
+  "matched_teams": 30,
+  "unmatched_teams": 0,
+  "matched_teams_total": 365,
+  "team_start": 241,
+  "team_end": 270,
+  "chunk_tag": "chunk241_270",
+  "season_types": [
+    "regular",
+    "postseason"
+  ],
+  "datasets": "plays",
+  "include_player_shooting": false,
+  "cache_mode": "readwrite",
+  "cache_dir": "cbbd_seasons/2025-2026/.http_cache",
+  "started_utc": "2026-03-09T19:45:45.779539+00:00",
+  "dataset_rows": {
+    "plays_regular": {
+      "rows": 432694
+    },
+    "plays_regular_unknown_game_map": {
+      "rows": 0
+    },
+    "plays_postseason": {
+      "rows": 0
+    },
+    "plays_postseason_unknown_game_map": {
+      "rows": 432694
+    }
+  },
+  "request_count": 91,
+  "cache_hits": 30,
+  "finished_utc": "2026-03-09T19:51:38.602124+00:00"
+}
