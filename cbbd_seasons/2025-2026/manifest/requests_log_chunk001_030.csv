@@ -1,122 +1,122 @@
 duration_sec,error,from_cache,params,path,status,ts_utc
-0.233,,False,"{""season"": 2026}",/teams,200,2026-03-09T18:36:40.869196+00:00
-0.574,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Siena""}",/games,200,2026-03-09T18:36:41.598334+00:00
-6.858,,False,"{""season"": 2026, ""team"": ""Siena""}",/plays/team,200,2026-03-09T18:36:48.609007+00:00
-0.576,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Florida""}",/games,200,2026-03-09T18:36:50.395128+00:00
-8.518,,False,"{""season"": 2026, ""team"": ""Florida""}",/plays/team,200,2026-03-09T18:36:59.065526+00:00
-0.845,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iowa""}",/games,200,2026-03-09T18:37:01.405847+00:00
-7.703,,False,"{""season"": 2026, ""team"": ""Iowa""}",/plays/team,200,2026-03-09T18:37:09.261198+00:00
-0.587,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Louisiana""}",/games,200,2026-03-09T18:37:11.041977+00:00
-6.893,,False,"{""season"": 2026, ""team"": ""Louisiana""}",/plays/team,200,2026-03-09T18:37:18.087631+00:00
-4.366,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Purdue""}",/games,200,2026-03-09T18:37:23.834060+00:00
-7.256,,False,"{""season"": 2026, ""team"": ""Purdue""}",/plays/team,200,2026-03-09T18:37:31.241929+00:00
-0.355,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Bradley""}",/games,200,2026-03-09T18:37:32.866707+00:00
-7.679,,False,"{""season"": 2026, ""team"": ""Bradley""}",/plays/team,200,2026-03-09T18:37:40.698104+00:00
-0.571,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iowa State""}",/games,200,2026-03-09T18:37:42.845822+00:00
-8.184,,False,"{""season"": 2026, ""team"": ""Iowa State""}",/plays/team,200,2026-03-09T18:37:51.182392+00:00
-0.398,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Nevada""}",/games,200,2026-03-09T18:37:52.938282+00:00
-9.518,,False,"{""season"": 2026, ""team"": ""Nevada""}",/plays/team,200,2026-03-09T18:38:02.609165+00:00
-0.887,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UC Irvine""}",/games,200,2026-03-09T18:38:04.849206+00:00
-8.069,,False,"{""season"": 2026, ""team"": ""UC Irvine""}",/plays/team,200,2026-03-09T18:38:13.070089+00:00
-0.332,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UC Santa Barbara""}",/games,200,2026-03-09T18:38:14.862616+00:00
-8.978,,False,"{""season"": 2026, ""team"": ""UC Santa Barbara""}",/plays/team,200,2026-03-09T18:38:23.992718+00:00
-0.284,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Colorado State""}",/games,200,2026-03-09T18:38:25.727931+00:00
-6.772,,False,"{""season"": 2026, ""team"": ""Colorado State""}",/plays/team,200,2026-03-09T18:38:32.652451+00:00
-0.594,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UCLA""}",/games,200,2026-03-09T18:38:34.529854+00:00
-7.922,,False,"{""season"": 2026, ""team"": ""UCLA""}",/plays/team,200,2026-03-09T18:38:42.603737+00:00
-0.289,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Saint Mary's""}",/games,200,2026-03-09T18:38:44.166442+00:00
-5.862,,False,"{""season"": 2026, ""team"": ""Saint Mary's""}",/plays/team,200,2026-03-09T18:38:50.180352+00:00
-0.286,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""California""}",/games,200,2026-03-09T18:38:51.650592+00:00
-7.266,,False,"{""season"": 2026, ""team"": ""California""}",/plays/team,200,2026-03-09T18:38:59.068735+00:00
-0.407,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""San Diego""}",/games,200,2026-03-09T18:39:00.821490+00:00
-9.592,,False,"{""season"": 2026, ""team"": ""San Diego""}",/plays/team,200,2026-03-09T18:39:10.565676+00:00
-0.517,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Oregon State""}",/games,200,2026-03-09T18:39:12.434724+00:00
-6.758,,False,"{""season"": 2026, ""team"": ""Oregon State""}",/plays/team,200,2026-03-09T18:39:19.344489+00:00
-0.397,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Green Bay""}",/games,200,2026-03-09T18:39:21.099756+00:00
-7.542,,False,"{""season"": 2026, ""team"": ""Green Bay""}",/plays/team,200,2026-03-09T18:39:28.793487+00:00
-0.36,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Long Beach State""}",/games,200,2026-03-09T18:39:30.488833+00:00
-8.118,,False,"{""season"": 2026, ""team"": ""Long Beach State""}",/plays/team,200,2026-03-09T18:39:38.758648+00:00
-0.532,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Hawai'i""}",/games,200,2026-03-09T18:39:40.730007+00:00
-7.157,,False,"{""season"": 2026, ""team"": ""Hawai'i""}",/plays/team,200,2026-03-09T18:39:48.039012+00:00
-0.459,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Pacific""}",/games,200,2026-03-09T18:39:49.874611+00:00
-6.626,,False,"{""season"": 2026, ""team"": ""Pacific""}",/plays/team,200,2026-03-09T18:39:56.653421+00:00
-0.516,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""LSU""}",/games,200,2026-03-09T18:39:58.517238+00:00
-10.324,,False,"{""season"": 2026, ""team"": ""LSU""}",/plays/team,200,2026-03-09T18:40:08.992978+00:00
-0.432,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal State Northridge""}",/games,200,2026-03-09T18:40:10.762395+00:00
-7.671,,False,"{""season"": 2026, ""team"": ""Cal State Northridge""}",/plays/team,200,2026-03-09T18:40:18.585654+00:00
-0.319,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Purdue Fort Wayne""}",/games,200,2026-03-09T18:40:20.420621+00:00
-7.6,,False,"{""season"": 2026, ""team"": ""Purdue Fort Wayne""}",/plays/team,200,2026-03-09T18:40:28.172727+00:00
-0.365,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Washington""}",/games,200,2026-03-09T18:40:29.961671+00:00
-6.643,,False,"{""season"": 2026, ""team"": ""Washington""}",/plays/team,200,2026-03-09T18:40:36.756761+00:00
-0.416,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""San Francisco""}",/games,200,2026-03-09T18:40:38.458648+00:00
-8.24,,False,"{""season"": 2026, ""team"": ""San Francisco""}",/plays/team,200,2026-03-09T18:40:46.851455+00:00
-0.303,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal Poly""}",/games,200,2026-03-09T18:40:48.562959+00:00
-7.786,,False,"{""season"": 2026, ""team"": ""Cal Poly""}",/plays/team,200,2026-03-09T18:40:56.501530+00:00
-0.329,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Stanford""}",/games,200,2026-03-09T18:40:58.418992+00:00
-7.881,,False,"{""season"": 2026, ""team"": ""Stanford""}",/plays/team,200,2026-03-09T18:41:06.452648+00:00
-0.302,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Arizona State""}",/games,200,2026-03-09T18:41:08.106238+00:00
-7.48,,False,"{""season"": 2026, ""team"": ""Arizona State""}",/plays/team,200,2026-03-09T18:41:15.738332+00:00
-0.303,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Denver""}",/games,200,2026-03-09T18:41:17.439088+00:00
-6.89,,False,"{""season"": 2026, ""team"": ""Denver""}",/plays/team,200,2026-03-09T18:41:24.481264+00:00
-0.469,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Wisconsin""}",/games,200,2026-03-09T18:41:26.323751+00:00
-8.262,,False,"{""season"": 2026, ""team"": ""Wisconsin""}",/plays/team,200,2026-03-09T18:41:34.737740+00:00
-0.266,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Siena""}",/games,200,2026-03-09T18:42:07.078122+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Siena""}",/plays/team,200,2026-03-09T18:42:07.355206+00:00
-0.173,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Florida""}",/games,200,2026-03-09T18:42:08.397876+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Florida""}",/plays/team,200,2026-03-09T18:42:08.706460+00:00
-0.194,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iowa""}",/games,200,2026-03-09T18:42:09.931845+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Iowa""}",/plays/team,200,2026-03-09T18:42:10.222352+00:00
-0.147,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Louisiana""}",/games,200,2026-03-09T18:42:11.188047+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Louisiana""}",/plays/team,200,2026-03-09T18:42:11.527865+00:00
-0.126,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Purdue""}",/games,200,2026-03-09T18:42:12.649708+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Purdue""}",/plays/team,200,2026-03-09T18:42:12.965304+00:00
-0.123,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Bradley""}",/games,200,2026-03-09T18:42:13.964618+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Bradley""}",/plays/team,200,2026-03-09T18:42:14.706216+00:00
-0.127,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iowa State""}",/games,200,2026-03-09T18:42:15.951619+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Iowa State""}",/plays/team,200,2026-03-09T18:42:16.285339+00:00
-0.122,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Nevada""}",/games,200,2026-03-09T18:42:17.379347+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Nevada""}",/plays/team,200,2026-03-09T18:42:18.121662+00:00
-0.128,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UC Irvine""}",/games,200,2026-03-09T18:42:19.197758+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""UC Irvine""}",/plays/team,200,2026-03-09T18:42:19.551669+00:00
-0.123,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UC Santa Barbara""}",/games,200,2026-03-09T18:42:20.728193+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""UC Santa Barbara""}",/plays/team,200,2026-03-09T18:42:21.583261+00:00
-0.172,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Colorado State""}",/games,200,2026-03-09T18:42:22.772721+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Colorado State""}",/plays/team,200,2026-03-09T18:42:23.095804+00:00
-0.241,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UCLA""}",/games,200,2026-03-09T18:42:24.238029+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""UCLA""}",/plays/team,200,2026-03-09T18:42:25.159549+00:00
-0.355,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Saint Mary's""}",/games,200,2026-03-09T18:42:26.428139+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Saint Mary's""}",/plays/team,200,2026-03-09T18:42:26.739484+00:00
-0.303,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""California""}",/games,200,2026-03-09T18:42:27.870678+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""California""}",/plays/team,200,2026-03-09T18:42:28.207182+00:00
-0.154,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""San Diego""}",/games,200,2026-03-09T18:42:29.315032+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""San Diego""}",/plays/team,200,2026-03-09T18:42:30.383589+00:00
-0.229,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Oregon State""}",/games,200,2026-03-09T18:42:31.605917+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Oregon State""}",/plays/team,200,2026-03-09T18:42:31.937273+00:00
-0.218,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Green Bay""}",/games,200,2026-03-09T18:42:33.109382+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Green Bay""}",/plays/team,200,2026-03-09T18:42:33.439457+00:00
-0.254,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Long Beach State""}",/games,200,2026-03-09T18:42:34.653221+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Long Beach State""}",/plays/team,200,2026-03-09T18:42:35.868223+00:00
-0.114,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Hawai'i""}",/games,200,2026-03-09T18:42:37.002243+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Hawai'i""}",/plays/team,200,2026-03-09T18:42:37.338987+00:00
-0.251,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Pacific""}",/games,200,2026-03-09T18:42:38.558068+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Pacific""}",/plays/team,200,2026-03-09T18:42:38.887251+00:00
-0.115,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""LSU""}",/games,200,2026-03-09T18:42:39.948892+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""LSU""}",/plays/team,200,2026-03-09T18:42:40.275366+00:00
-0.324,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal State Northridge""}",/games,200,2026-03-09T18:42:42.611743+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Cal State Northridge""}",/plays/team,200,2026-03-09T18:42:42.969405+00:00
-0.111,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Purdue Fort Wayne""}",/games,200,2026-03-09T18:42:44.164665+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Purdue Fort Wayne""}",/plays/team,200,2026-03-09T18:42:44.515339+00:00
-0.121,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Washington""}",/games,200,2026-03-09T18:42:45.675568+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Washington""}",/plays/team,200,2026-03-09T18:42:45.999770+00:00
-0.168,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""San Francisco""}",/games,200,2026-03-09T18:42:47.090819+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""San Francisco""}",/plays/team,200,2026-03-09T18:42:47.439311+00:00
-0.23,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal Poly""}",/games,200,2026-03-09T18:42:48.653453+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Cal Poly""}",/plays/team,200,2026-03-09T18:42:50.265281+00:00
-0.309,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Stanford""}",/games,200,2026-03-09T18:42:51.712472+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Stanford""}",/plays/team,200,2026-03-09T18:42:52.051876+00:00
-0.348,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Arizona State""}",/games,200,2026-03-09T18:42:53.369695+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Arizona State""}",/plays/team,200,2026-03-09T18:42:53.709673+00:00
-0.123,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Denver""}",/games,200,2026-03-09T18:42:54.834958+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Denver""}",/plays/team,200,2026-03-09T18:42:55.167785+00:00
-0.151,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Wisconsin""}",/games,200,2026-03-09T18:42:56.280477+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Wisconsin""}",/plays/team,200,2026-03-09T18:42:56.607710+00:00
+0.175,,False,"{""season"": 2026}",/teams,200,2026-03-09T22:02:37.576073+00:00
+0.273,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Siena""}",/games,200,2026-03-09T22:02:38.003696+00:00
+6.482,,False,"{""season"": 2026, ""team"": ""Siena""}",/plays/team,200,2026-03-09T22:02:44.638026+00:00
+0.539,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Florida""}",/games,200,2026-03-09T22:02:46.390094+00:00
+7.7,,False,"{""season"": 2026, ""team"": ""Florida""}",/plays/team,200,2026-03-09T22:02:54.241897+00:00
+0.338,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iowa""}",/games,200,2026-03-09T22:02:56.046926+00:00
+7.35,,False,"{""season"": 2026, ""team"": ""Iowa""}",/plays/team,200,2026-03-09T22:03:03.549497+00:00
+0.305,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Louisiana""}",/games,200,2026-03-09T22:03:05.039088+00:00
+8.135,,False,"{""season"": 2026, ""team"": ""Louisiana""}",/plays/team,200,2026-03-09T22:03:13.326873+00:00
+0.356,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Purdue""}",/games,200,2026-03-09T22:03:15.084211+00:00
+6.607,,False,"{""season"": 2026, ""team"": ""Purdue""}",/plays/team,200,2026-03-09T22:03:21.842933+00:00
+0.27,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Bradley""}",/games,200,2026-03-09T22:03:23.374765+00:00
+8.291,,False,"{""season"": 2026, ""team"": ""Bradley""}",/plays/team,200,2026-03-09T22:03:31.817664+00:00
+0.262,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iowa State""}",/games,200,2026-03-09T22:03:33.629314+00:00
+6.962,,False,"{""season"": 2026, ""team"": ""Iowa State""}",/plays/team,200,2026-03-09T22:03:40.743358+00:00
+0.276,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Nevada""}",/games,200,2026-03-09T22:03:42.397004+00:00
+7.024,,False,"{""season"": 2026, ""team"": ""Nevada""}",/plays/team,200,2026-03-09T22:03:49.573554+00:00
+0.337,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UC Irvine""}",/games,200,2026-03-09T22:03:51.267871+00:00
+8.261,,False,"{""season"": 2026, ""team"": ""UC Irvine""}",/plays/team,200,2026-03-09T22:03:59.681139+00:00
+0.432,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UC Santa Barbara""}",/games,200,2026-03-09T22:04:01.612248+00:00
+8.624,,False,"{""season"": 2026, ""team"": ""UC Santa Barbara""}",/plays/team,200,2026-03-09T22:04:10.388979+00:00
+0.28,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Colorado State""}",/games,200,2026-03-09T22:04:12.107839+00:00
+6.974,,False,"{""season"": 2026, ""team"": ""Colorado State""}",/plays/team,200,2026-03-09T22:04:19.234355+00:00
+0.276,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""UCLA""}",/games,200,2026-03-09T22:04:20.772039+00:00
+7.769,,False,"{""season"": 2026, ""team"": ""UCLA""}",/plays/team,200,2026-03-09T22:04:28.693061+00:00
+0.478,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Saint Mary's""}",/games,200,2026-03-09T22:04:30.489914+00:00
+6.181,,False,"{""season"": 2026, ""team"": ""Saint Mary's""}",/plays/team,200,2026-03-09T22:04:36.823019+00:00
+0.272,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""California""}",/games,200,2026-03-09T22:04:38.305859+00:00
+6.595,,False,"{""season"": 2026, ""team"": ""California""}",/plays/team,200,2026-03-09T22:04:45.052931+00:00
+0.319,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""San Diego""}",/games,200,2026-03-09T22:04:46.738010+00:00
+6.944,,False,"{""season"": 2026, ""team"": ""San Diego""}",/plays/team,200,2026-03-09T22:04:53.834718+00:00
+0.307,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Oregon State""}",/games,200,2026-03-09T22:04:55.549674+00:00
+7.278,,False,"{""season"": 2026, ""team"": ""Oregon State""}",/plays/team,200,2026-03-09T22:05:02.979950+00:00
+0.402,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Green Bay""}",/games,200,2026-03-09T22:05:04.736632+00:00
+6.962,,False,"{""season"": 2026, ""team"": ""Green Bay""}",/plays/team,200,2026-03-09T22:05:11.850546+00:00
+0.281,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Long Beach State""}",/games,200,2026-03-09T22:05:13.496891+00:00
+8.001,,False,"{""season"": 2026, ""team"": ""Long Beach State""}",/plays/team,200,2026-03-09T22:05:21.650359+00:00
+0.304,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Hawai'i""}",/games,200,2026-03-09T22:05:23.414399+00:00
+6.682,,False,"{""season"": 2026, ""team"": ""Hawai'i""}",/plays/team,200,2026-03-09T22:05:30.248660+00:00
+0.282,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Pacific""}",/games,200,2026-03-09T22:05:31.879359+00:00
+6.467,,False,"{""season"": 2026, ""team"": ""Pacific""}",/plays/team,200,2026-03-09T22:05:38.498427+00:00
+0.25,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""LSU""}",/games,200,2026-03-09T22:05:40.080811+00:00
+7.152,,False,"{""season"": 2026, ""team"": ""LSU""}",/plays/team,200,2026-03-09T22:05:47.384675+00:00
+0.295,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal State Northridge""}",/games,200,2026-03-09T22:05:49.013038+00:00
+6.975,,False,"{""season"": 2026, ""team"": ""Cal State Northridge""}",/plays/team,200,2026-03-09T22:05:56.140399+00:00
+0.251,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Purdue Fort Wayne""}",/games,200,2026-03-09T22:05:57.904228+00:00
+7.89,,False,"{""season"": 2026, ""team"": ""Purdue Fort Wayne""}",/plays/team,200,2026-03-09T22:06:05.945712+00:00
+0.28,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Washington""}",/games,200,2026-03-09T22:06:07.690392+00:00
+6.155,,False,"{""season"": 2026, ""team"": ""Washington""}",/plays/team,200,2026-03-09T22:06:13.997273+00:00
+0.285,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""San Francisco""}",/games,200,2026-03-09T22:06:15.595045+00:00
+7.366,,False,"{""season"": 2026, ""team"": ""San Francisco""}",/plays/team,200,2026-03-09T22:06:23.113758+00:00
+0.282,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal Poly""}",/games,200,2026-03-09T22:06:24.779755+00:00
+7.228,,False,"{""season"": 2026, ""team"": ""Cal Poly""}",/plays/team,200,2026-03-09T22:06:32.160073+00:00
+0.274,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Stanford""}",/games,200,2026-03-09T22:06:34.040894+00:00
+6.344,,False,"{""season"": 2026, ""team"": ""Stanford""}",/plays/team,200,2026-03-09T22:06:40.537046+00:00
+0.268,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Arizona State""}",/games,200,2026-03-09T22:06:42.148875+00:00
+6.466,,False,"{""season"": 2026, ""team"": ""Arizona State""}",/plays/team,200,2026-03-09T22:06:48.767599+00:00
+0.594,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Denver""}",/games,200,2026-03-09T22:06:50.741218+00:00
+6.177,,False,"{""season"": 2026, ""team"": ""Denver""}",/plays/team,200,2026-03-09T22:06:57.070488+00:00
+0.286,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Wisconsin""}",/games,200,2026-03-09T22:06:58.737005+00:00
+7.977,,False,"{""season"": 2026, ""team"": ""Wisconsin""}",/plays/team,200,2026-03-09T22:07:06.865777+00:00
+0.213,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Siena""}",/games,200,2026-03-09T22:07:38.652264+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Siena""}",/plays/team,200,2026-03-09T22:07:38.924929+00:00
+0.111,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Florida""}",/games,200,2026-03-09T22:07:39.916758+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Florida""}",/plays/team,200,2026-03-09T22:07:40.220639+00:00
+0.118,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iowa""}",/games,200,2026-03-09T22:07:41.400838+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Iowa""}",/plays/team,200,2026-03-09T22:07:41.688989+00:00
+0.12,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Louisiana""}",/games,200,2026-03-09T22:07:42.641637+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Louisiana""}",/plays/team,200,2026-03-09T22:07:42.979981+00:00
+0.125,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Purdue""}",/games,200,2026-03-09T22:07:44.096750+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Purdue""}",/plays/team,200,2026-03-09T22:07:44.408865+00:00
+0.123,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Bradley""}",/games,200,2026-03-09T22:07:45.410945+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Bradley""}",/plays/team,200,2026-03-09T22:07:46.125753+00:00
+0.116,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iowa State""}",/games,200,2026-03-09T22:07:47.367272+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Iowa State""}",/plays/team,200,2026-03-09T22:07:47.697026+00:00
+0.116,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Nevada""}",/games,200,2026-03-09T22:07:48.787625+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Nevada""}",/plays/team,200,2026-03-09T22:07:49.508839+00:00
+0.112,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UC Irvine""}",/games,200,2026-03-09T22:07:50.567810+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""UC Irvine""}",/plays/team,200,2026-03-09T22:07:50.919666+00:00
+0.118,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UC Santa Barbara""}",/games,200,2026-03-09T22:07:52.104282+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""UC Santa Barbara""}",/plays/team,200,2026-03-09T22:07:52.931778+00:00
+0.108,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Colorado State""}",/games,200,2026-03-09T22:07:54.073876+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Colorado State""}",/plays/team,200,2026-03-09T22:07:54.391467+00:00
+0.142,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""UCLA""}",/games,200,2026-03-09T22:07:55.441291+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""UCLA""}",/plays/team,200,2026-03-09T22:07:56.334676+00:00
+0.128,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Saint Mary's""}",/games,200,2026-03-09T22:07:57.386532+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Saint Mary's""}",/plays/team,200,2026-03-09T22:07:57.695278+00:00
+0.111,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""California""}",/games,200,2026-03-09T22:07:58.631363+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""California""}",/plays/team,200,2026-03-09T22:07:58.964044+00:00
+0.15,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""San Diego""}",/games,200,2026-03-09T22:08:00.084392+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""San Diego""}",/plays/team,200,2026-03-09T22:08:01.113473+00:00
+0.122,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Oregon State""}",/games,200,2026-03-09T22:08:02.233061+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Oregon State""}",/plays/team,200,2026-03-09T22:08:02.561993+00:00
+0.115,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Green Bay""}",/games,200,2026-03-09T22:08:03.625534+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Green Bay""}",/plays/team,200,2026-03-09T22:08:03.952894+00:00
+0.107,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Long Beach State""}",/games,200,2026-03-09T22:08:05.019174+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Long Beach State""}",/plays/team,200,2026-03-09T22:08:06.209216+00:00
+0.139,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Hawai'i""}",/games,200,2026-03-09T22:08:07.383811+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Hawai'i""}",/plays/team,200,2026-03-09T22:08:07.715527+00:00
+0.128,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Pacific""}",/games,200,2026-03-09T22:08:08.822167+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Pacific""}",/plays/team,200,2026-03-09T22:08:09.149744+00:00
+0.135,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""LSU""}",/games,200,2026-03-09T22:08:10.247482+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""LSU""}",/plays/team,200,2026-03-09T22:08:10.570727+00:00
+0.11,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal State Northridge""}",/games,200,2026-03-09T22:08:12.636968+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Cal State Northridge""}",/plays/team,200,2026-03-09T22:08:12.990756+00:00
+0.109,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Purdue Fort Wayne""}",/games,200,2026-03-09T22:08:14.194717+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Purdue Fort Wayne""}",/plays/team,200,2026-03-09T22:08:14.538536+00:00
+0.122,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Washington""}",/games,200,2026-03-09T22:08:15.691710+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Washington""}",/plays/team,200,2026-03-09T22:08:16.011931+00:00
+0.128,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""San Francisco""}",/games,200,2026-03-09T22:08:17.068501+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""San Francisco""}",/plays/team,200,2026-03-09T22:08:17.408682+00:00
+0.106,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal Poly""}",/games,200,2026-03-09T22:08:18.523671+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Cal Poly""}",/plays/team,200,2026-03-09T22:08:20.092541+00:00
+0.124,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Stanford""}",/games,200,2026-03-09T22:08:21.357891+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Stanford""}",/plays/team,200,2026-03-09T22:08:21.685461+00:00
+0.117,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Arizona State""}",/games,200,2026-03-09T22:08:22.763432+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Arizona State""}",/plays/team,200,2026-03-09T22:08:23.098405+00:00
+0.118,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Denver""}",/games,200,2026-03-09T22:08:24.214619+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Denver""}",/plays/team,200,2026-03-09T22:08:24.544957+00:00
+0.118,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Wisconsin""}",/games,200,2026-03-09T22:08:25.630966+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Wisconsin""}",/plays/team,200,2026-03-09T22:08:25.953517+00:00
