@@ -713,13 +713,6 @@ def main() -> None:
     def manifest_path(stem: str, ext: str = "csv") -> Path:
         return out / "manifest" / f"{stem}{chunk_suffix}.{ext}"
 
-    teams_csv_path = Path(args.teams_csv)
-    if not teams_csv_path.exists():
-        raise RuntimeError(
-            f"teams CSV not found: {teams_csv_path}. "
-            "Use --teams-csv with a repository-relative path."
-        )
-
     client = Client(
         api_key=api_key,
         sleep_sec=args.sleep_sec,
@@ -727,12 +720,21 @@ def main() -> None:
         cache_dir=cache_dir if args.cache_mode != "none" else None,
         cache_mode=args.cache_mode,
     )
-    requested = read_requested_teams(teams_csv_path, args.team_col)
-    log(f"[teams] requested={len(requested)}")
+    teams_csv_path = Path(args.teams_csv)
+    requested: list[str] = []
+    if teams_csv_path.exists():
+        requested = read_requested_teams(teams_csv_path, args.team_col)
+        log(f"[teams] requested={len(requested)} from {teams_csv_path}")
+    else:
+        log(f"[teams] WARNING: teams CSV not found at {teams_csv_path}; falling back to all discovered teams.")
 
     discovered = discover_teams(client, args.year)
     log(f"[teams] discovered={len(discovered)}")
-    matched, unmatched = map_teams(requested, discovered)
+    if requested:
+        matched, unmatched = map_teams(requested, discovered)
+    else:
+        matched = discovered
+        unmatched = []
     log(f"[teams] matched={len(matched)} unmatched={len(unmatched)}")
 
     write_csv([flatten_obj(x) for x in matched], out / "tables" / "target_teams_matched.csv", max_bytes=max_csv_bytes)
