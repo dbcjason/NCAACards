@@ -104,14 +104,25 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin "${STAGING_BRANCH}" || true
-          git add cbbd_seasons/2025-2026/tables/ || true
-          git add cbbd_seasons/2025-2026/manifest/ || true
+          git add -f cbbd_seasons/2025-2026/tables/ || true
+          git add -f cbbd_seasons/2025-2026/manifest/ || true
           if git diff --cached --quiet; then
             echo "No chunk changes to commit"
             exit 0
           fi
           git commit -m "Stage 2026 plays ${{ matrix.chunk.tag }}"
           git push origin "${STAGING_BRANCH}"
+
+      - name: Upload chunk cache artifact
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbbd-2026-${{ matrix.chunk.tag }}
+          path: |
+            cbbd_seasons/2025-2026/tables/*${{ matrix.chunk.tag }}*.csv
+            cbbd_seasons/2025-2026/manifest/*${{ matrix.chunk.tag }}*
+          if-no-files-found: warn
+          retention-days: 2
 
   merge-and-bart:
     runs-on: ubuntu-latest
@@ -177,6 +188,14 @@ jobs:
             --merge-chunks \
             --max-csv-mb 95
 
+      - name: Download cached chunk artifacts (backup/recovery)
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cbbd-2026-chunk*
+          path: cbbd_seasons/2025-2026/_artifact_cache
+          merge-multiple: true
+
       - name: Refresh Bart 2026 datasets
         if: steps.gate.outputs.should_run == 'true'
         run: |
@@ -189,8 +208,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin "${STAGING_BRANCH}" || true
-          git add cbbd_seasons/2025-2026/tables/ || true
-          git add cbbd_seasons/2025-2026/manifest/ || true
+          git add -f cbbd_seasons/2025-2026/tables/ || true
+          git add -f cbbd_seasons/2025-2026/manifest/ || true
           git add player_cards_pipeline/data/bt/ || true
           if git diff --cached --quiet; then
             echo "No staging changes to commit"
