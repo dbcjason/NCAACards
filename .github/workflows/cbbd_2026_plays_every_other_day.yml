@@ -25,12 +25,18 @@ jobs:
       - name: Gate by 4AM ET every other day
         id: gate
         run: |
-          python3 player_cards_pipeline/scripts/is_4am_et_every_other_day.py > gate.txt
-          echo "should_run=$(cat gate.txt)" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "reason=manual_run" >> "$GITHUB_OUTPUT"
+          else
+            python3 player_cards_pipeline/scripts/is_4am_et_every_other_day.py > gate.txt
+            echo "should_run=$(cat gate.txt)" >> "$GITHUB_OUTPUT"
+            echo "reason=scheduled_gate" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Skip if outside run window
         if: steps.gate.outputs.should_run != 'true'
-        run: echo "Skipping: not 4AM ET every-other-day window"
+        run: echo "Skipping: not 4AM ET every-other-day window (scheduled run)."
 
       - name: Install deps
         if: steps.gate.outputs.should_run == 'true'
