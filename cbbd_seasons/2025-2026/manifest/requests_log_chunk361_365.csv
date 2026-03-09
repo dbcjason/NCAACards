@@ -1,0 +1,22 @@
+duration_sec,error,from_cache,params,path,status,ts_utc
+0.268,,False,"{""season"": 2026}",/teams,200,2026-03-09T20:19:14.406095+00:00
+0.311,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""West Georgia""}",/games,200,2026-03-09T20:19:14.872528+00:00
+6.917,,False,"{""season"": 2026, ""team"": ""West Georgia""}",/plays/team,200,2026-03-09T20:19:21.941626+00:00
+0.321,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Mercyhurst""}",/games,200,2026-03-09T20:19:23.641474+00:00
+6.979,,False,"{""season"": 2026, ""team"": ""Mercyhurst""}",/plays/team,200,2026-03-09T20:19:30.772579+00:00
+0.296,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""South Dakota State""}",/games,200,2026-03-09T20:19:32.490592+00:00
+6.267,,False,"{""season"": 2026, ""team"": ""South Dakota State""}",/plays/team,200,2026-03-09T20:19:38.909565+00:00
+0.261,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""La Salle""}",/games,200,2026-03-09T20:19:40.745018+00:00
+5.921,,False,"{""season"": 2026, ""team"": ""La Salle""}",/plays/team,200,2026-03-09T20:19:46.818528+00:00
+0.29,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""New Haven""}",/games,200,2026-03-09T20:19:48.707174+00:00
+5.881,,False,"{""season"": 2026, ""team"": ""New Haven""}",/plays/team,200,2026-03-09T20:19:54.739938+00:00
+0.159,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""West Georgia""}",/games,200,2026-03-09T20:20:00.806903+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""West Georgia""}",/plays/team,200,2026-03-09T20:20:01.335647+00:00
+0.18,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Mercyhurst""}",/games,200,2026-03-09T20:20:02.531606+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Mercyhurst""}",/plays/team,200,2026-03-09T20:20:03.224152+00:00
+0.136,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""South Dakota State""}",/games,200,2026-03-09T20:20:04.380932+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""South Dakota State""}",/plays/team,200,2026-03-09T20:20:04.963449+00:00
+0.135,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""La Salle""}",/games,200,2026-03-09T20:20:06.077255+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""La Salle""}",/plays/team,200,2026-03-09T20:20:06.710596+00:00
+0.127,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""New Haven""}",/games,200,2026-03-09T20:20:07.805018+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""New Haven""}",/plays/team,200,2026-03-09T20:20:08.119897+00:00
