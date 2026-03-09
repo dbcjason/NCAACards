@@ -1304,14 +1304,42 @@ def build_bpm_trend_svg(target: PlayerGameStats, adv_rows: list[dict[str, str]])
     nt = norm_text(target.team)
     ys = norm_season(target.season)
 
-    points_raw: list[tuple[int, str, float]] = []
+    rows_py: list[dict[str, str]] = []
     for r in adv_rows:
         if norm_player_name(r.get("pp", "")) != np:
             continue
-        if norm_text(r.get("tt", "")) != nt:
-            continue
         if norm_season(r.get("year", "")) != ys:
             continue
+        rows_py.append(r)
+
+    if not rows_py:
+        return '<div class="shot-meta">No per-game BPM rows found for this player/season.</div>'
+
+    # Prefer exact team match. If missing, fall back to best fuzzy team match for this player-season.
+    rows_team = [r for r in rows_py if norm_text(r.get("tt", "")) == nt]
+    if not rows_team:
+        team_groups: dict[str, list[dict[str, str]]] = defaultdict(list)
+        for r in rows_py:
+            team_groups[norm_text(r.get("tt", ""))].append(r)
+        if len(team_groups) == 1:
+            rows_team = next(iter(team_groups.values()))
+        else:
+            scored = sorted(
+                (
+                    (difflib.SequenceMatcher(None, nt, t).ratio(), rows)
+                    for t, rows in team_groups.items()
+                    if t
+                ),
+                key=lambda x: x[0],
+                reverse=True,
+            )
+            if scored and scored[0][0] >= 0.55:
+                rows_team = scored[0][1]
+            else:
+                rows_team = []
+
+    points_raw: list[tuple[int, str, float]] = []
+    for r in rows_team:
         nd = (r.get("numdate", "") or "").strip()
         bpm = to_float(r.get("bpm", ""))
         if not nd or bpm is None:

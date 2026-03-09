@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import difflib
 import glob
 import math
 import re
@@ -194,6 +195,52 @@ def load_bt_games_map(bt_csv: Path, season_year: int) -> Dict[tuple[str, str, st
     return out
 
 
+def load_bt_games_by_player(bt_csv: Path, season_year: int) -> Dict[tuple[str, str], list[tuple[str, float]]]:
+    out: Dict[tuple[str, str], list[tuple[str, float]]] = defaultdict(list)
+    if not bt_csv.exists():
+        return {}
+    season = str(season_year)
+    with bt_csv.open(newline="", encoding="utf-8-sig") as f:
+        r = csv.DictReader(f)
+        for row in r:
+            y = str(row.get("year") or "").strip()
+            if y != season:
+                continue
+            p = norm_name(row.get("player_name") or "")
+            t = norm_name(row.get("team") or "")
+            gp = parse_float(row.get("GP") or "")
+            if not p or not t or gp is None or gp <= 0:
+                continue
+            out[(season, p)].append((t, float(gp)))
+    return dict(out)
+
+
+def resolve_bart_games(
+    season: str,
+    team: str,
+    player: str,
+    bt_games_exact: Dict[tuple[str, str, str], float],
+    bt_games_by_player: Dict[tuple[str, str], list[tuple[str, float]]],
+) -> float | None:
+    exact = bt_games_exact.get((season, team, player))
+    if exact is not None:
+        return exact
+    opts = bt_games_by_player.get((season, player), [])
+    if not opts:
+        return None
+    if len(opts) == 1:
+        return opts[0][1]
+    nt = norm_name(team).lower()
+    scored = sorted(
+        ((difflib.SequenceMatcher(None, nt, norm_name(t).lower()).ratio(), gp) for t, gp in opts),
+        key=lambda x: x[0],
+        reverse=True,
+    )
+    if scored and scored[0][0] >= 0.55:
+        return scored[0][1]
+    return None
+
+
 def adjust_possessions_to_bart_games(
     pbp_possessions: float,
     pbp_games: float | None,
@@ -225,6 +272,7 @@ def main() -> None:
     total = len(files)
     team_hints = load_player_team_hints(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
     bt_games_map = load_bt_games_map(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
+    bt_games_by_player = load_bt_games_by_player(Path(args.bt_csv), args.season_year) if args.bt_csv else {}
 
     for i, fp in enumerate(files, start=1):
         with fp.open(newline="", encoding="utf-8") as f:
@@ -391,7 +439,7 @@ def main() -> None:
             off_pos_raw = float(m.get("off_possessions", 0.0))
             def_pos_raw = float(m.get("def_possessions", 0.0))
             pbp_games = float(m.get("pbp_games", 0.0))
-            bart_games = bt_games_map.get((season, team, player))
+            bart_games = resolve_bart_games(season, team, player, bt_games_map, bt_games_by_player)
             off_pos = adjust_possessions_to_bart_games(off_pos_raw, pbp_games, bart_games)
             def_pos = adjust_possessions_to_bart_games(def_pos_raw, pbp_games, bart_games)
             def per100(v: float) -> float:
