@@ -16,7 +16,7 @@
   "include_player_shooting": false,
   "cache_mode": "readwrite",
   "cache_dir": "cbbd_seasons/2025-2026/.http_cache",
-  "started_utc": "2026-03-09T19:11:37.748864+00:00",
+  "started_utc": "2026-03-09T22:39:51.067175+00:00",
   "dataset_rows": {
     "plays_regular": {
       "rows": 435064
@@ -33,5 +33,5 @@
   },
   "request_count": 91,
   "cache_hits": 30,
-  "finished_utc": "2026-03-09T19:17:51.529491+00:00"
+  "finished_utc": "2026-03-09T22:46:11.395691+00:00"
 }

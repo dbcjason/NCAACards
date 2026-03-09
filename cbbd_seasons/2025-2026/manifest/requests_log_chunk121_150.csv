@@ -1,122 +1,122 @@
 duration_sec,error,from_cache,params,path,status,ts_utc
-0.272,,False,"{""season"": 2026}",/teams,200,2026-03-09T19:11:37.594159+00:00
-0.328,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Montana""}",/games,200,2026-03-09T19:11:38.076913+00:00
-6.501,,False,"{""season"": 2026, ""team"": ""Montana""}",/plays/team,200,2026-03-09T19:11:44.730046+00:00
-0.349,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Boston University""}",/games,200,2026-03-09T19:11:46.400160+00:00
-6.483,,False,"{""season"": 2026, ""team"": ""Boston University""}",/plays/team,200,2026-03-09T19:11:53.035262+00:00
-0.354,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iona""}",/games,200,2026-03-09T19:11:54.731054+00:00
-6.804,,False,"{""season"": 2026, ""team"": ""Iona""}",/plays/team,200,2026-03-09T19:12:01.686741+00:00
-0.366,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Columbia""}",/games,200,2026-03-09T19:12:03.423355+00:00
-5.97,,False,"{""season"": 2026, ""team"": ""Columbia""}",/plays/team,200,2026-03-09T19:12:09.545282+00:00
-0.361,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal State Fullerton""}",/games,200,2026-03-09T19:12:11.090642+00:00
-7.692,,False,"{""season"": 2026, ""team"": ""Cal State Fullerton""}",/plays/team,200,2026-03-09T19:12:18.934833+00:00
-0.41,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Dartmouth""}",/games,200,2026-03-09T19:12:20.833459+00:00
-6.681,,False,"{""season"": 2026, ""team"": ""Dartmouth""}",/plays/team,200,2026-03-09T19:12:27.666656+00:00
-0.428,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Detroit Mercy""}",/games,200,2026-03-09T19:12:29.326557+00:00
-7.113,,False,"{""season"": 2026, ""team"": ""Detroit Mercy""}",/plays/team,200,2026-03-09T19:12:36.591723+00:00
-0.334,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Fordham""}",/games,200,2026-03-09T19:12:38.331115+00:00
-5.613,,False,"{""season"": 2026, ""team"": ""Fordham""}",/plays/team,200,2026-03-09T19:12:44.096708+00:00
-0.595,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Rutgers""}",/games,200,2026-03-09T19:12:46.349338+00:00
-5.897,,False,"{""season"": 2026, ""team"": ""Rutgers""}",/plays/team,200,2026-03-09T19:12:52.398218+00:00
-2.258,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Southern Miss""}",/games,200,2026-03-09T19:12:55.993425+00:00
-7.284,,False,"{""season"": 2026, ""team"": ""Southern Miss""}",/plays/team,200,2026-03-09T19:13:03.429300+00:00
-0.383,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Texas State""}",/games,200,2026-03-09T19:13:05.250218+00:00
-6.852,,False,"{""season"": 2026, ""team"": ""Texas State""}",/plays/team,200,2026-03-09T19:13:12.253590+00:00
-0.365,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Holy Cross""}",/games,200,2026-03-09T19:13:13.954502+00:00
-6.841,,False,"{""season"": 2026, ""team"": ""Holy Cross""}",/plays/team,200,2026-03-09T19:13:20.947977+00:00
-0.357,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Ohio State""}",/games,200,2026-03-09T19:13:23.132980+00:00
-6.591,,False,"{""season"": 2026, ""team"": ""Ohio State""}",/plays/team,200,2026-03-09T19:13:29.876228+00:00
-0.36,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Santa Clara""}",/games,200,2026-03-09T19:13:31.548161+00:00
-6.707,,False,"{""season"": 2026, ""team"": ""Santa Clara""}",/plays/team,200,2026-03-09T19:13:38.406682+00:00
-0.915,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Temple""}",/games,200,2026-03-09T19:13:40.756229+00:00
-7.025,,False,"{""season"": 2026, ""team"": ""Temple""}",/plays/team,200,2026-03-09T19:13:47.933682+00:00
-0.375,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Houston Christian""}",/games,200,2026-03-09T19:13:49.618901+00:00
-6.58,,False,"{""season"": 2026, ""team"": ""Houston Christian""}",/plays/team,200,2026-03-09T19:13:56.351429+00:00
-0.359,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Air Force""}",/games,200,2026-03-09T19:13:58.071108+00:00
-6.716,,False,"{""season"": 2026, ""team"": ""Air Force""}",/plays/team,200,2026-03-09T19:14:04.939201+00:00
-0.343,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Kennesaw State""}",/games,200,2026-03-09T19:14:06.576491+00:00
-6.909,,False,"{""season"": 2026, ""team"": ""Kennesaw State""}",/plays/team,200,2026-03-09T19:14:13.637141+00:00
-0.526,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Gardner-Webb""}",/games,200,2026-03-09T19:14:15.564126+00:00
-6.924,,False,"{""season"": 2026, ""team"": ""Gardner-Webb""}",/plays/team,200,2026-03-09T19:14:22.639820+00:00
-0.336,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Hampton""}",/games,200,2026-03-09T19:14:24.453614+00:00
-6.587,,False,"{""season"": 2026, ""team"": ""Hampton""}",/plays/team,200,2026-03-09T19:14:31.192991+00:00
-0.394,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""St. John's""}",/games,200,2026-03-09T19:14:33.021642+00:00
-6.805,,False,"{""season"": 2026, ""team"": ""St. John's""}",/plays/team,200,2026-03-09T19:14:39.978258+00:00
-0.348,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Kent State""}",/games,200,2026-03-09T19:14:41.779895+00:00
-8.057,,False,"{""season"": 2026, ""team"": ""Kent State""}",/plays/team,200,2026-03-09T19:14:49.988669+00:00
-0.36,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Morgan State""}",/games,200,2026-03-09T19:14:51.828956+00:00
-6.533,,False,"{""season"": 2026, ""team"": ""Morgan State""}",/plays/team,200,2026-03-09T19:14:58.514441+00:00
-0.465,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Murray State""}",/games,200,2026-03-09T19:15:00.324257+00:00
-8.233,,False,"{""season"": 2026, ""team"": ""Murray State""}",/plays/team,200,2026-03-09T19:15:08.709077+00:00
-0.384,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Northern Arizona""}",/games,200,2026-03-09T19:15:10.561002+00:00
-7.1,,False,"{""season"": 2026, ""team"": ""Northern Arizona""}",/plays/team,200,2026-03-09T19:15:17.813320+00:00
-0.358,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""New Mexico""}",/games,200,2026-03-09T19:15:19.524253+00:00
-8.227,,False,"{""season"": 2026, ""team"": ""New Mexico""}",/plays/team,200,2026-03-09T19:15:27.903087+00:00
-0.351,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Pittsburgh""}",/games,200,2026-03-09T19:15:29.637908+00:00
-6.101,,False,"{""season"": 2026, ""team"": ""Pittsburgh""}",/plays/team,200,2026-03-09T19:15:35.890665+00:00
-0.358,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Prairie View A&M""}",/games,200,2026-03-09T19:15:37.491971+00:00
-6.817,,False,"{""season"": 2026, ""team"": ""Prairie View A&M""}",/plays/team,200,2026-03-09T19:15:44.461312+00:00
-0.369,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Boise State""}",/games,200,2026-03-09T19:15:46.201673+00:00
-5.847,,False,"{""season"": 2026, ""team"": ""Boise State""}",/plays/team,200,2026-03-09T19:15:52.200461+00:00
-0.341,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Louisville""}",/games,200,2026-03-09T19:15:53.911674+00:00
-7.059,,False,"{""season"": 2026, ""team"": ""Louisville""}",/plays/team,200,2026-03-09T19:16:01.122435+00:00
-0.192,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Montana""}",/games,200,2026-03-09T19:16:31.823183+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Montana""}",/plays/team,200,2026-03-09T19:16:32.196638+00:00
-0.178,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Boston University""}",/games,200,2026-03-09T19:16:33.298771+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Boston University""}",/plays/team,200,2026-03-09T19:16:33.843528+00:00
-0.183,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iona""}",/games,200,2026-03-09T19:16:34.978985+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Iona""}",/plays/team,200,2026-03-09T19:16:35.477647+00:00
-0.224,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Columbia""}",/games,200,2026-03-09T19:16:36.667130+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Columbia""}",/plays/team,200,2026-03-09T19:16:37.204415+00:00
-0.247,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal State Fullerton""}",/games,200,2026-03-09T19:16:38.288244+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Cal State Fullerton""}",/plays/team,200,2026-03-09T19:16:38.639588+00:00
-0.178,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Dartmouth""}",/games,200,2026-03-09T19:16:40.155561+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Dartmouth""}",/plays/team,200,2026-03-09T19:16:40.471267+00:00
-0.181,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Detroit Mercy""}",/games,200,2026-03-09T19:16:41.541359+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Detroit Mercy""}",/plays/team,200,2026-03-09T19:16:42.216198+00:00
-0.184,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Fordham""}",/games,200,2026-03-09T19:16:43.397567+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Fordham""}",/plays/team,200,2026-03-09T19:16:43.719867+00:00
-0.169,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Rutgers""}",/games,200,2026-03-09T19:16:44.810720+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Rutgers""}",/plays/team,200,2026-03-09T19:16:45.555485+00:00
-0.179,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Southern Miss""}",/games,200,2026-03-09T19:16:46.678100+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Southern Miss""}",/plays/team,200,2026-03-09T19:16:47.023753+00:00
-0.171,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Texas State""}",/games,200,2026-03-09T19:16:48.246692+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Texas State""}",/plays/team,200,2026-03-09T19:16:49.082596+00:00
-0.179,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Holy Cross""}",/games,200,2026-03-09T19:16:50.212645+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Holy Cross""}",/plays/team,200,2026-03-09T19:16:50.537228+00:00
-0.183,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Ohio State""}",/games,200,2026-03-09T19:16:51.653479+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Ohio State""}",/plays/team,200,2026-03-09T19:16:52.594764+00:00
-0.192,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Santa Clara""}",/games,200,2026-03-09T19:16:53.730776+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Santa Clara""}",/plays/team,200,2026-03-09T19:16:54.073450+00:00
-0.186,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Temple""}",/games,200,2026-03-09T19:16:55.271929+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Temple""}",/plays/team,200,2026-03-09T19:16:55.593529+00:00
-0.18,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Houston Christian""}",/games,200,2026-03-09T19:16:56.722990+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Houston Christian""}",/plays/team,200,2026-03-09T19:16:57.804368+00:00
-0.187,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Air Force""}",/games,200,2026-03-09T19:16:58.980776+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Air Force""}",/plays/team,200,2026-03-09T19:16:59.303355+00:00
-0.189,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Kennesaw State""}",/games,200,2026-03-09T19:17:00.431098+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Kennesaw State""}",/plays/team,200,2026-03-09T19:17:00.761833+00:00
-0.186,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Gardner-Webb""}",/games,200,2026-03-09T19:17:01.958458+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Gardner-Webb""}",/plays/team,200,2026-03-09T19:17:02.302938+00:00
-0.18,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Hampton""}",/games,200,2026-03-09T19:17:04.424985+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Hampton""}",/plays/team,200,2026-03-09T19:17:04.764270+00:00
-0.182,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""St. John's""}",/games,200,2026-03-09T19:17:05.959146+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""St. John's""}",/plays/team,200,2026-03-09T19:17:06.293904+00:00
-0.245,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Kent State""}",/games,200,2026-03-09T19:17:07.548927+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Kent State""}",/plays/team,200,2026-03-09T19:17:07.893747+00:00
-0.819,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Morgan State""}",/games,200,2026-03-09T19:17:09.769880+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Morgan State""}",/plays/team,200,2026-03-09T19:17:10.097048+00:00
-0.186,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Murray State""}",/games,200,2026-03-09T19:17:12.266506+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Murray State""}",/plays/team,200,2026-03-09T19:17:12.604956+00:00
-0.178,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Northern Arizona""}",/games,200,2026-03-09T19:17:13.809004+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Northern Arizona""}",/plays/team,200,2026-03-09T19:17:14.144011+00:00
-0.192,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""New Mexico""}",/games,200,2026-03-09T19:17:15.305528+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""New Mexico""}",/plays/team,200,2026-03-09T19:17:15.644512+00:00
-0.206,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Pittsburgh""}",/games,200,2026-03-09T19:17:16.841335+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Pittsburgh""}",/plays/team,200,2026-03-09T19:17:17.151486+00:00
-0.185,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Prairie View A&M""}",/games,200,2026-03-09T19:17:18.192636+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Prairie View A&M""}",/plays/team,200,2026-03-09T19:17:19.812033+00:00
-0.184,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Boise State""}",/games,200,2026-03-09T19:17:20.984875+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Boise State""}",/plays/team,200,2026-03-09T19:17:21.311249+00:00
-0.179,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Louisville""}",/games,200,2026-03-09T19:17:22.454134+00:00
-0.0,,True,"{""season"": 2026, ""team"": ""Louisville""}",/plays/team,200,2026-03-09T19:17:22.792731+00:00
+0.156,,False,"{""season"": 2026}",/teams,200,2026-03-09T22:39:50.912510+00:00
+0.296,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Montana""}",/games,200,2026-03-09T22:39:51.363262+00:00
+6.416,,False,"{""season"": 2026, ""team"": ""Montana""}",/plays/team,200,2026-03-09T22:39:57.931398+00:00
+0.277,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Boston University""}",/games,200,2026-03-09T22:39:59.531943+00:00
+8.059,,False,"{""season"": 2026, ""team"": ""Boston University""}",/plays/team,200,2026-03-09T22:40:07.743701+00:00
+0.373,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Iona""}",/games,200,2026-03-09T22:40:09.469492+00:00
+8.976,,False,"{""season"": 2026, ""team"": ""Iona""}",/plays/team,200,2026-03-09T22:40:18.598170+00:00
+0.339,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Columbia""}",/games,200,2026-03-09T22:40:20.319523+00:00
+6.062,,False,"{""season"": 2026, ""team"": ""Columbia""}",/plays/team,200,2026-03-09T22:40:26.533658+00:00
+0.315,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Cal State Fullerton""}",/games,200,2026-03-09T22:40:28.037489+00:00
+7.611,,False,"{""season"": 2026, ""team"": ""Cal State Fullerton""}",/plays/team,200,2026-03-09T22:40:35.801096+00:00
+0.285,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Dartmouth""}",/games,200,2026-03-09T22:40:37.578050+00:00
+6.099,,False,"{""season"": 2026, ""team"": ""Dartmouth""}",/plays/team,200,2026-03-09T22:40:43.829440+00:00
+0.292,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Detroit Mercy""}",/games,200,2026-03-09T22:40:45.372478+00:00
+7.324,,False,"{""season"": 2026, ""team"": ""Detroit Mercy""}",/plays/team,200,2026-03-09T22:40:52.848446+00:00
+0.327,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Fordham""}",/games,200,2026-03-09T22:40:54.600323+00:00
+6.22,,False,"{""season"": 2026, ""team"": ""Fordham""}",/plays/team,200,2026-03-09T22:41:00.972821+00:00
+0.383,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Rutgers""}",/games,200,2026-03-09T22:41:03.030694+00:00
+6.436,,False,"{""season"": 2026, ""team"": ""Rutgers""}",/plays/team,200,2026-03-09T22:41:09.619342+00:00
+0.376,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Southern Miss""}",/games,200,2026-03-09T22:41:11.346676+00:00
+8.155,,False,"{""season"": 2026, ""team"": ""Southern Miss""}",/plays/team,200,2026-03-09T22:41:19.653867+00:00
+0.276,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Texas State""}",/games,200,2026-03-09T22:41:21.381304+00:00
+6.967,,False,"{""season"": 2026, ""team"": ""Texas State""}",/plays/team,200,2026-03-09T22:41:28.500055+00:00
+0.432,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Holy Cross""}",/games,200,2026-03-09T22:41:30.308781+00:00
+6.503,,False,"{""season"": 2026, ""team"": ""Holy Cross""}",/plays/team,200,2026-03-09T22:41:36.964019+00:00
+0.285,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Ohio State""}",/games,200,2026-03-09T22:41:39.152111+00:00
+6.451,,False,"{""season"": 2026, ""team"": ""Ohio State""}",/plays/team,200,2026-03-09T22:41:45.755517+00:00
+0.327,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Santa Clara""}",/games,200,2026-03-09T22:41:47.430999+00:00
+7.387,,False,"{""season"": 2026, ""team"": ""Santa Clara""}",/plays/team,200,2026-03-09T22:41:54.970230+00:00
+0.346,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Temple""}",/games,200,2026-03-09T22:41:56.786010+00:00
+7.724,,False,"{""season"": 2026, ""team"": ""Temple""}",/plays/team,200,2026-03-09T22:42:04.662629+00:00
+0.401,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Houston Christian""}",/games,200,2026-03-09T22:42:06.393514+00:00
+6.884,,False,"{""season"": 2026, ""team"": ""Houston Christian""}",/plays/team,200,2026-03-09T22:42:13.429634+00:00
+0.521,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Air Force""}",/games,200,2026-03-09T22:42:15.323598+00:00
+6.671,,False,"{""season"": 2026, ""team"": ""Air Force""}",/plays/team,200,2026-03-09T22:42:22.147192+00:00
+0.523,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Kennesaw State""}",/games,200,2026-03-09T22:42:24.009974+00:00
+7.881,,False,"{""season"": 2026, ""team"": ""Kennesaw State""}",/plays/team,200,2026-03-09T22:42:32.043703+00:00
+0.541,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Gardner-Webb""}",/games,200,2026-03-09T22:42:33.996872+00:00
+7.087,,False,"{""season"": 2026, ""team"": ""Gardner-Webb""}",/plays/team,200,2026-03-09T22:42:41.235778+00:00
+0.276,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Hampton""}",/games,200,2026-03-09T22:42:43.010018+00:00
+6.677,,False,"{""season"": 2026, ""team"": ""Hampton""}",/plays/team,200,2026-03-09T22:42:49.839274+00:00
+0.472,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""St. John's""}",/games,200,2026-03-09T22:42:51.785405+00:00
+7.268,,False,"{""season"": 2026, ""team"": ""St. John's""}",/plays/team,200,2026-03-09T22:42:59.205402+00:00
+0.421,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Kent State""}",/games,200,2026-03-09T22:43:01.066040+00:00
+8.271,,False,"{""season"": 2026, ""team"": ""Kent State""}",/plays/team,200,2026-03-09T22:43:09.488978+00:00
+0.293,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Morgan State""}",/games,200,2026-03-09T22:43:11.282534+00:00
+7.129,,False,"{""season"": 2026, ""team"": ""Morgan State""}",/plays/team,200,2026-03-09T22:43:18.563790+00:00
+0.376,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Murray State""}",/games,200,2026-03-09T22:43:20.311724+00:00
+6.795,,False,"{""season"": 2026, ""team"": ""Murray State""}",/plays/team,200,2026-03-09T22:43:27.258961+00:00
+0.314,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Northern Arizona""}",/games,200,2026-03-09T22:43:29.065620+00:00
+7.324,,False,"{""season"": 2026, ""team"": ""Northern Arizona""}",/plays/team,200,2026-03-09T22:43:36.542408+00:00
+0.304,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""New Mexico""}",/games,200,2026-03-09T22:43:38.227452+00:00
+7.847,,False,"{""season"": 2026, ""team"": ""New Mexico""}",/plays/team,200,2026-03-09T22:43:46.226755+00:00
+0.389,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Pittsburgh""}",/games,200,2026-03-09T22:43:48.019275+00:00
+6.319,,False,"{""season"": 2026, ""team"": ""Pittsburgh""}",/plays/team,200,2026-03-09T22:43:54.490588+00:00
+0.33,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Prairie View A&M""}",/games,200,2026-03-09T22:43:56.083752+00:00
+7.561,,False,"{""season"": 2026, ""team"": ""Prairie View A&M""}",/plays/team,200,2026-03-09T22:44:03.797613+00:00
+0.41,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Boise State""}",/games,200,2026-03-09T22:44:05.598867+00:00
+7.354,,False,"{""season"": 2026, ""team"": ""Boise State""}",/plays/team,200,2026-03-09T22:44:13.105512+00:00
+0.466,,False,"{""season"": 2026, ""seasonType"": ""regular"", ""team"": ""Louisville""}",/games,200,2026-03-09T22:44:14.946340+00:00
+6.87,,False,"{""season"": 2026, ""team"": ""Louisville""}",/plays/team,200,2026-03-09T22:44:21.968652+00:00
+0.393,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Montana""}",/games,200,2026-03-09T22:44:52.827259+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Montana""}",/plays/team,200,2026-03-09T22:44:53.219497+00:00
+0.119,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Boston University""}",/games,200,2026-03-09T22:44:54.287184+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Boston University""}",/plays/team,200,2026-03-09T22:44:54.865037+00:00
+0.121,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Iona""}",/games,200,2026-03-09T22:44:55.950167+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Iona""}",/plays/team,200,2026-03-09T22:44:56.475661+00:00
+0.123,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Columbia""}",/games,200,2026-03-09T22:44:57.569413+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Columbia""}",/plays/team,200,2026-03-09T22:44:58.152257+00:00
+0.111,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Cal State Fullerton""}",/games,200,2026-03-09T22:44:59.105378+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Cal State Fullerton""}",/plays/team,200,2026-03-09T22:44:59.457863+00:00
+0.117,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Dartmouth""}",/games,200,2026-03-09T22:45:00.943179+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Dartmouth""}",/plays/team,200,2026-03-09T22:45:01.262985+00:00
+0.192,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Detroit Mercy""}",/games,200,2026-03-09T22:45:02.355015+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Detroit Mercy""}",/plays/team,200,2026-03-09T22:45:03.054377+00:00
+0.114,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Fordham""}",/games,200,2026-03-09T22:45:04.174643+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Fordham""}",/plays/team,200,2026-03-09T22:45:04.501888+00:00
+0.128,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Rutgers""}",/games,200,2026-03-09T22:45:05.565581+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Rutgers""}",/plays/team,200,2026-03-09T22:45:06.351479+00:00
+0.119,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Southern Miss""}",/games,200,2026-03-09T22:45:07.428575+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Southern Miss""}",/plays/team,200,2026-03-09T22:45:07.777797+00:00
+0.22,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Texas State""}",/games,200,2026-03-09T22:45:09.053859+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Texas State""}",/plays/team,200,2026-03-09T22:45:09.925374+00:00
+0.13,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Holy Cross""}",/games,200,2026-03-09T22:45:11.029418+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Holy Cross""}",/plays/team,200,2026-03-09T22:45:11.359896+00:00
+0.182,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Ohio State""}",/games,200,2026-03-09T22:45:12.494877+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Ohio State""}",/plays/team,200,2026-03-09T22:45:13.461572+00:00
+0.114,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Santa Clara""}",/games,200,2026-03-09T22:45:14.515413+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Santa Clara""}",/plays/team,200,2026-03-09T22:45:14.860478+00:00
+0.34,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Temple""}",/games,200,2026-03-09T22:45:16.247045+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Temple""}",/plays/team,200,2026-03-09T22:45:16.570516+00:00
+0.226,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Houston Christian""}",/games,200,2026-03-09T22:45:17.730508+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Houston Christian""}",/plays/team,200,2026-03-09T22:45:18.831241+00:00
+0.121,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Air Force""}",/games,200,2026-03-09T22:45:19.940689+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Air Force""}",/plays/team,200,2026-03-09T22:45:20.266312+00:00
+0.125,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Kennesaw State""}",/games,200,2026-03-09T22:45:21.324276+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Kennesaw State""}",/plays/team,200,2026-03-09T22:45:21.658676+00:00
+0.12,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Gardner-Webb""}",/games,200,2026-03-09T22:45:22.781949+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Gardner-Webb""}",/plays/team,200,2026-03-09T22:45:23.132363+00:00
+0.116,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Hampton""}",/games,200,2026-03-09T22:45:25.218685+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Hampton""}",/plays/team,200,2026-03-09T22:45:25.560483+00:00
+0.118,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""St. John's""}",/games,200,2026-03-09T22:45:26.716091+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""St. John's""}",/plays/team,200,2026-03-09T22:45:27.053520+00:00
+0.13,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Kent State""}",/games,200,2026-03-09T22:45:28.198437+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Kent State""}",/plays/team,200,2026-03-09T22:45:28.541943+00:00
+0.202,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Morgan State""}",/games,200,2026-03-09T22:45:29.803997+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Morgan State""}",/plays/team,200,2026-03-09T22:45:30.133801+00:00
+0.114,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Murray State""}",/games,200,2026-03-09T22:45:32.299577+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Murray State""}",/plays/team,200,2026-03-09T22:45:32.641563+00:00
+0.137,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Northern Arizona""}",/games,200,2026-03-09T22:45:33.819546+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Northern Arizona""}",/plays/team,200,2026-03-09T22:45:34.156600+00:00
+0.144,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""New Mexico""}",/games,200,2026-03-09T22:45:35.282780+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""New Mexico""}",/plays/team,200,2026-03-09T22:45:35.623933+00:00
+0.12,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Pittsburgh""}",/games,200,2026-03-09T22:45:36.745587+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Pittsburgh""}",/plays/team,200,2026-03-09T22:45:37.056008+00:00
+0.121,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Prairie View A&M""}",/games,200,2026-03-09T22:45:38.043281+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Prairie View A&M""}",/plays/team,200,2026-03-09T22:45:39.681910+00:00
+0.146,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Boise State""}",/games,200,2026-03-09T22:45:40.835961+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Boise State""}",/plays/team,200,2026-03-09T22:45:41.163470+00:00
+0.117,,False,"{""season"": 2026, ""seasonType"": ""postseason"", ""team"": ""Louisville""}",/games,200,2026-03-09T22:45:42.249449+00:00
+0.0,,True,"{""season"": 2026, ""team"": ""Louisville""}",/plays/team,200,2026-03-09T22:45:42.587314+00:00
