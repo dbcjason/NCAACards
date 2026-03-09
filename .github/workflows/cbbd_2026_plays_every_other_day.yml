@@ -135,9 +135,9 @@ jobs:
           retention-days: 2
 
   merge-and-bart:
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_mode != 'chunks_only' }}
+    if: ${{ always() && (github.event_name != 'workflow_dispatch' || inputs.run_mode != 'chunks_only') && (inputs.run_mode == 'merge_only' || needs.chunked-plays.result == 'success') }}
     runs-on: ubuntu-latest
-    needs: chunked-plays
+    needs: [chunked-plays]
     permissions:
       contents: write
     env:
