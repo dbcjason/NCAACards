@@ -3,7 +3,6 @@ name: Pull 2026 CBBD Plays + Bart (Every Other Day 4AM ET)
 on:
   workflow_dispatch:
   schedule:
-    # Two UTC windows so we hit 4AM ET in both EST and EDT.
     - cron: '5 8 * * *'
     - cron: '5 9 * * *'
 
@@ -22,21 +21,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Gate by 4AM ET every other day
+      - name: Gate by 4AM ET every other day (manual always runs)
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-            echo "reason=manual_run" >> "$GITHUB_OUTPUT"
           else
             python3 player_cards_pipeline/scripts/is_4am_et_every_other_day.py > gate.txt
             echo "should_run=$(cat gate.txt)" >> "$GITHUB_OUTPUT"
-            echo "reason=scheduled_gate" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Skip if outside run window
+      - name: Skip if outside scheduled window
         if: steps.gate.outputs.should_run != 'true'
-        run: echo "Skipping: not 4AM ET every-other-day window (scheduled run)."
+        run: echo "Skipping scheduled run outside window"
 
       - name: Install deps
         if: steps.gate.outputs.should_run == 'true'
