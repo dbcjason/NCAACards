@@ -716,7 +716,7 @@ def shot_svg(
         x = float(s["x"])
         y = float(s["y"])
         made = bool(s.get("made"))
-        fill = "var(--accent)" if made else "var(--bar)"
+        fill = "#2dd4bf" if made else "#f97316"
         points.append(
             f'<circle cx="{map_x(y):.1f}" cy="{map_y(x):.1f}" r="4.2" fill="{fill}" fill-opacity="0.8" />'
         )
@@ -763,16 +763,16 @@ def shot_svg(
     ft_ry = ft_r * px_per_unit_x
 
     court = f"""
-<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="var(--panel-alt)" stroke="var(--line)" stroke-width="2"/>
-<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
-<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="var(--line)" stroke-width="2"/>
-<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="var(--line)" stroke-width="2"/>
-<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
-<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="var(--line)" stroke-width="2"/>
-<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="var(--line)" stroke-width="2"/>
-<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="var(--line)" stroke-width="2"/>
-<polyline points="{three_arc_polyline}" fill="none" stroke="var(--line)" stroke-width="2"/>
-<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="var(--line)" stroke-width="2"/>
+<rect x="{ox1:.1f}" y="{oy1:.1f}" width="{ox2-ox1:.1f}" height="{oy2-oy1:.1f}" fill="#0b1020" stroke="#2a385f" stroke-width="2"/>
+<rect x="{lx1:.1f}" y="{ly1:.1f}" width="{lx2-lx1:.1f}" height="{ly2-ly1:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
+<line x1="{bb1x:.1f}" y1="{bb1y:.1f}" x2="{bb2x:.1f}" y2="{bb2y:.1f}" stroke="#35507f" stroke-width="2"/>
+<ellipse cx="{hx:.1f}" cy="{hy:.1f}" rx="6.0" ry="6.0" fill="none" stroke="#35507f" stroke-width="2"/>
+<path d="M {map_x(hoop_y-restricted_r):.1f} {hy:.1f} A {rr_x:.1f} {rr_y:.1f} 0 0 1 {map_x(hoop_y+restricted_r):.1f} {hy:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
+<ellipse cx="{ftcx:.1f}" cy="{ftcy:.1f}" rx="{ft_rx:.1f}" ry="{ft_ry:.1f}" fill="none" stroke="#35507f" stroke-width="2"/>
+<line x1="{c1x1:.1f}" y1="{c1y1:.1f}" x2="{c1x2:.1f}" y2="{c1y2:.1f}" stroke="#35507f" stroke-width="2"/>
+<line x1="{c2x1:.1f}" y1="{c2y1:.1f}" x2="{c2x2:.1f}" y2="{c2y2:.1f}" stroke="#35507f" stroke-width="2"/>
+<polyline points="{three_arc_polyline}" fill="none" stroke="#35507f" stroke-width="2"/>
+<line x1="{ox1:.1f}" y1="{oy2:.1f}" x2="{ox2:.1f}" y2="{oy2:.1f}" stroke="#35507f" stroke-width="2"/>
 """
     return f"""
 <svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
