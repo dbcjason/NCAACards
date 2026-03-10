@@ -1710,18 +1710,10 @@ def build_grade_boxes_html(
     bt_rows: list[dict[str, str]],
     pbp_rows: list[dict[str, str]],
 ) -> str:
-    include_extended = norm_season(target.season) != "2026"
     categories: list[tuple[str, list[str]]] = [
         ("Impact", ["bpm", "obpm", "dbpm", "net_rating"]),
-        (
-            "Scoring",
-            (
-                ["usg", "ts_per", "twop_per", "dunks_100_bt", "rim_att_100_bt", "rim_pct", "mid_pct", "tp_per", "threepa100", "fta100_bt", "ft_per", "ftr"]
-                if include_extended
-                else ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]
-            ),
-        ),
-        ("Playmaking", (["ast_per", "to_per", "ast_tov", "rim_assists_100_btposs"] if include_extended else ["ast_per", "to_per", "ast_tov"])),
+        ("Scoring", ["usg", "ts_per", "twop_per", "dunks_100_bt", "rim_att_100_bt", "rim_pct", "mid_pct", "tp_per", "threepa100", "fta100_bt", "ft_per", "ftr"]),
+        ("Playmaking", ["ast_per", "to_per", "ast_tov", "rim_assists_100_btposs"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
         ("Rebounding", ["orb_per", "drb_per"]),
     ]
@@ -2116,22 +2108,20 @@ def build_player_comparisons_html(
     if not target_row:
         return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">No matching Bart row for comparisons.</div></div>'
 
-    include_extended = norm_season(target.season) != "2026"
     metric_keys = [
         "bpm", "obpm", "dbpm", "net_rating",
         "usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr",
         "ast_per", "to_per", "ast_tov",
         "stl_per", "blk_per", "orb_per", "drb_per",
     ]
-    if include_extended:
-        metric_keys.extend(
-            [
-                "rim_att_100_bt", "fta100_bt", "rim_assists_100_btposs",
-                "unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100",
-                "unassisted_3pm_100", "unassisted_points_100",
-                "shotdiet_rim", "shotdiet_mid", "shotdiet_three",
-            ]
-        )
+    metric_keys.extend(
+        [
+            "rim_att_100_bt", "fta100_bt", "rim_assists_100_btposs",
+            "unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100",
+            "unassisted_3pm_100", "unassisted_points_100",
+            "shotdiet_rim", "shotdiet_mid", "shotdiet_three",
+        ]
+    )
 
     # Build per-season cohorts once.
     by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
