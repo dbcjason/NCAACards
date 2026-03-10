@@ -178,6 +178,101 @@ def read_csv_rows(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     return header, out
 
 
+def _enriched_nested_value(obj: dict[str, Any], *path: str) -> Any:
+    cur: Any = obj
+    for p in path:
+        if not isinstance(cur, dict):
+            return None
+        cur = cur.get(p)
+    return cur
+
+
+def load_enriched_lookup_for_script_season(
+    season: str,
+    base_dir: Path | None = None,
+) -> dict[tuple[str, str, str], dict[str, Any]]:
+    ys = norm_season(season)
+    if not ys or not ys.isdigit():
+        return {}
+    if base_dir is None:
+        base_dir = (
+            Path(__file__).resolve().parent.parent
+            / "player_cards_pipeline"
+            / "data"
+            / "manual"
+            / "enriched_players"
+            / "by_script_season"
+        )
+    if not base_dir.exists():
+        return {}
+
+    year = int(ys)
+    preferred = base_dir / f"players_all_Men_scriptSeason_{year}_fromJsonYear_{year-1}.json"
+    candidates: list[Path] = [preferred] if preferred.exists() else sorted(
+        base_dir.glob(f"players_all_Men_scriptSeason_{year}_fromJsonYear_*.json")
+    )
+    if not candidates:
+        return {}
+
+    try:
+        obj = json.loads(candidates[0].read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    players = obj.get("players", []) if isinstance(obj, dict) else []
+    out: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for r in players:
+        if not isinstance(r, dict):
+            continue
+        player = norm_player_name(r.get("key", ""))
+        team = norm_team(r.get("team", ""))
+        if not player or not team:
+            continue
+        out[(player, team, ys)] = r
+    return out
+
+
+def inject_enriched_fields_into_bt_rows(
+    bt_rows: list[dict[str, str]],
+    base_dir: Path | None = None,
+) -> None:
+    cache: dict[str, dict[tuple[str, str, str], dict[str, Any]]] = {}
+    for r in bt_rows:
+        ys = norm_season(bt_get(r, ["year"]))
+        if not ys:
+            continue
+        if ys not in cache:
+            cache[ys] = load_enriched_lookup_for_script_season(ys, base_dir=base_dir)
+        lookup = cache[ys]
+        if not lookup:
+            continue
+        k = (
+            norm_player_name(bt_get(r, ["player_name"])),
+            norm_team(bt_get(r, ["team"])),
+            ys,
+        )
+        er = lookup.get(k)
+        if not er:
+            continue
+
+        off_team_poss = to_float(_enriched_nested_value(er, "off_team_poss", "value"))
+        if off_team_poss is not None and math.isfinite(off_team_poss) and off_team_poss > 0:
+            r["off_team_poss.value"] = str(off_team_poss)
+            # Override generic possessions with requested source.
+            r["possessions"] = str(off_team_poss)
+
+        roster_pos = _enriched_nested_value(er, "roster", "pos")
+        if roster_pos is not None and str(roster_pos).strip():
+            r["roster.pos"] = str(roster_pos).strip()
+            r["role"] = str(roster_pos).strip()
+
+        off_rapm = to_float(_enriched_nested_value(er, "off_adj_rapm", "value"))
+        def_rapm = to_float(_enriched_nested_value(er, "def_adj_rapm", "value"))
+        if off_rapm is not None and math.isfinite(off_rapm):
+            r["off_adj_rapm.value"] = str(off_rapm)
+        if def_rapm is not None and math.isfinite(def_rapm):
+            r["def_adj_rapm.value"] = str(def_rapm)
+
+
 def find_col(header: list[str], aliases: list[str]) -> str | None:
     hset = {h: norm_text(h) for h in header}
     alias_norm = {norm_text(a) for a in aliases}
@@ -1225,6 +1320,10 @@ def adjust_possessions_to_bart_games(
 
 def bt_metric_value(row: dict[str, str], key: str) -> float | None:
     def bt_possessions_estimate(r: dict[str, str]) -> float | None:
+        # Preferred source from enrichedPlayers dataset.
+        poss = bt_num(r, ["off_team_poss.value"])
+        if poss is not None and poss > 0:
+            return float(poss)
         poss = bt_num(r, ["possessions", " possessions"])
         if poss is not None and poss > 0:
             return float(poss)
@@ -1242,6 +1341,13 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         if ortg is None or drtg is None:
             return None
         return ortg - drtg
+    if key == "rapm":
+        # Interpreted as net RAPM: offense minus defense.
+        off_rapm = bt_num(row, ["off_adj_rapm.value"])
+        def_rapm = bt_num(row, ["def_adj_rapm.value"])
+        if off_rapm is None or def_rapm is None:
+            return None
+        return float(off_rapm) - float(def_rapm)
     if key == "rim_pct":
         return bt_num(row, ["rimmade/(rimmade+rimmiss)", " rimmade/(rimmade+rimmiss)"])
     if key == "mid_pct":
@@ -1538,7 +1644,7 @@ def bt_category_percentile(
 
 def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     categories: list[tuple[str, list[str]]] = [
-        ("Impact", ["bpm", "obpm", "dbpm", "net_rating"]),
+        ("Impact", ["bpm", "rapm", "net_rating"]),
         ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
         ("Playmaking", ["ast_per", "to_per", "ast_tov"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
@@ -1592,8 +1698,7 @@ def build_bt_percentile_html(
     sections = {
         "Impact": [
             ("BPM", "bpm", False, 1),
-            ("OBPM", "obpm", False, 1),
-            ("DBPM", "dbpm", False, 1),
+            ("RAPM", "rapm", False, 2),
             ("Net Rating", "net_rating", False, 1),
         ],
         "Scoring": [
@@ -2654,6 +2759,9 @@ def main() -> None:
     if args.pbp_metrics_csv:
         _, pbp_rows = read_csv_rows(Path(args.pbp_metrics_csv))
 
+    if bt_rows:
+        inject_enriched_fields_into_bt_rows(bt_rows)
+
     team_hint_map = build_player_team_hint_map(bt_rows) if bt_rows else {}
     stats_map, games_by_player = build_player_stats(
         plays_rows,
@@ -2673,7 +2781,7 @@ def main() -> None:
     target_bt_row = bt_find_target_row(bt_rows, target) if bt_rows else None
     if target_bt_row:
         if not (bio.get("position", "") or "").strip():
-            bio["position"] = bt_get(target_bt_row, ["role"])
+            bio["position"] = bt_get(target_bt_row, ["roster.pos", "role"])
         if not (bio.get("height", "") or "").strip():
             bio["height"] = bt_get(target_bt_row, ["ht"])
         if not (bio.get("dob", "") or "").strip():
