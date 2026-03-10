@@ -1536,184 +1536,11 @@ def bt_category_percentile(
     return percentile(target_score, cohort_scores)
 
 
-def _pbp_row_for_bt_row(
-    br: dict[str, str],
-    pbp_rows: list[dict[str, str]],
-    pbp_lookup: dict[tuple[str, str, str], dict[str, str]],
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] | None = None,
-    pbp_row_cache: dict[int, dict[str, str] | None] | None = None,
-) -> dict[str, str] | None:
-    rid = id(br)
-    if pbp_row_cache is not None and rid in pbp_row_cache:
-        return pbp_row_cache[rid]
-    rk = (
-        norm_player_name(bt_get(br, ["player_name"])),
-        norm_team(bt_get(br, ["team"])),
-        norm_season(bt_get(br, ["year"])),
-    )
-    pr = pbp_lookup.get(rk)
-    if pr:
-        if pbp_row_cache is not None:
-            pbp_row_cache[rid] = pr
-        return pr
-    if pbp_by_player_season is not None:
-        candidates = pbp_by_player_season.get((rk[0], rk[2]), [])
-    else:
-        candidates = [
-            r for r in pbp_rows
-            if norm_player_name(r.get("player", "")) == rk[0]
-            and norm_season(r.get("season", "")) == rk[2]
-        ]
-    if len(candidates) == 1:
-        if pbp_row_cache is not None:
-            pbp_row_cache[rid] = candidates[0]
-        return candidates[0]
-    if not candidates:
-        if pbp_row_cache is not None:
-            pbp_row_cache[rid] = None
-        return None
-    scored = sorted(
-        [
-            (difflib.SequenceMatcher(None, rk[1], norm_team(r.get("team", ""))).ratio(), r)
-            for r in candidates
-        ],
-        key=lambda x: x[0],
-    )
-    out = scored[-1][1] if scored and scored[-1][0] >= 0.55 else None
-    if pbp_row_cache is not None:
-        pbp_row_cache[rid] = out
-    return out
-
-
-def _metric_value_with_context(
-    br: dict[str, str],
-    key: str,
-    pbp_rows: list[dict[str, str]],
-    pbp_lookup: dict[tuple[str, str, str], dict[str, str]],
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] | None = None,
-    pbp_row_cache: dict[int, dict[str, str] | None] | None = None,
-    row_metric_cache: dict[tuple[int, str], float | None] | None = None,
-) -> float | None:
-    ck = (id(br), key)
-    if row_metric_cache is not None and ck in row_metric_cache:
-        return row_metric_cache[ck]
-
-    out: float | None
-    if key == "rim_assists_100_btposs":
-        pr = _pbp_row_for_bt_row(br, pbp_rows, pbp_lookup, pbp_by_player_season, pbp_row_cache)
-        if not pr:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        rim_ast_100 = to_float(pr.get("rim_assists_100", ""))
-        if rim_ast_100 is not None and math.isfinite(rim_ast_100):
-            out = float(rim_ast_100)
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        poss = bt_metric_value(br, "possessions")
-        if poss is None or poss <= 0:
-            tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
-            tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
-            if tpa is not None and tpa100 is not None and tpa100 > 0:
-                poss = (float(tpa) * 100.0) / float(tpa100)
-        if poss is None or poss <= 0:
-            poss = to_float(pr.get("off_possessions", ""))
-        if poss is None or poss <= 0:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        rim_ast = to_float(pr.get("rim_assists", ""))
-        if rim_ast is None:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        out = 100.0 * float(rim_ast) / float(poss)
-        if row_metric_cache is not None:
-            row_metric_cache[ck] = out
-        return out
-
-    if key in {"unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100", "unassisted_3pm_100", "unassisted_points_100"}:
-        pr = _pbp_row_for_bt_row(br, pbp_rows, pbp_lookup, pbp_by_player_season, pbp_row_cache)
-        if not pr:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        if key == "unassisted_points_100":
-            r = to_float(pr.get("unassisted_rim_makes_100", ""))
-            m = to_float(pr.get("unassisted_mid_makes_100", ""))
-            t = to_float(pr.get("unassisted_3pm_100", ""))
-            if r is None or m is None or t is None:
-                out = None
-                if row_metric_cache is not None:
-                    row_metric_cache[ck] = out
-                return out
-            out = (2.0 * r) + (2.0 * m) + (3.0 * t)
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        out = to_float(pr.get(key, ""))
-        if row_metric_cache is not None:
-            row_metric_cache[ck] = out
-        return out
-
-    if key in {"shotdiet_rim", "shotdiet_mid", "shotdiet_three"}:
-        rim_att = bt_num(br, ["rimatt", " rimatt", "rimmade+rimmiss", " rimmade+rimmiss"])
-        if rim_att is None:
-            rm = bt_num(br, ["rimmade", " rimmade"]) or 0.0
-            rx = bt_num(br, ["rimmiss", " rimmiss"]) or 0.0
-            rim_att = rm + rx
-        mid_att = bt_num(br, ["midatt", " midatt", "midmade+midmiss", " midmade+midmiss"])
-        if mid_att is None:
-            mm = bt_num(br, ["midmade", " midmade"]) or 0.0
-            mx = bt_num(br, ["midmiss", " midmiss"]) or 0.0
-            mid_att = mm + mx
-        three_att = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
-        if rim_att is None or mid_att is None or three_att is None:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        total = float(rim_att) + float(mid_att) + float(three_att)
-        if total <= 0:
-            out = None
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        if key == "shotdiet_rim":
-            out = 100.0 * float(rim_att) / total
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        if key == "shotdiet_mid":
-            out = 100.0 * float(mid_att) / total
-            if row_metric_cache is not None:
-                row_metric_cache[ck] = out
-            return out
-        out = 100.0 * float(three_att) / total
-        if row_metric_cache is not None:
-            row_metric_cache[ck] = out
-        return out
-
-    out = bt_metric_value(br, key)
-    if row_metric_cache is not None:
-        row_metric_cache[ck] = out
-    return out
-
-
-def build_grade_boxes_html(
-    target: PlayerGameStats,
-    bt_rows: list[dict[str, str]],
-    pbp_rows: list[dict[str, str]],
-) -> str:
+def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     categories: list[tuple[str, list[str]]] = [
         ("Impact", ["bpm", "obpm", "dbpm", "net_rating"]),
-        ("Scoring", ["usg", "ts_per", "twop_per", "dunks_100_bt", "rim_att_100_bt", "rim_pct", "mid_pct", "tp_per", "threepa100", "fta100_bt", "ft_per", "ftr"]),
-        ("Playmaking", ["ast_per", "to_per", "ast_tov", "rim_assists_100_btposs"]),
+        ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
+        ("Playmaking", ["ast_per", "to_per", "ast_tov"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
         ("Rebounding", ["orb_per", "drb_per"]),
     ]
@@ -1730,78 +1557,9 @@ def build_grade_boxes_html(
             for label, _ in categories
         )
     cohort = bt_cohort_for_year(bt_rows, target.season)
-    pbp_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
-    for r in pbp_rows:
-        k = (norm_player_name(r.get("player", "")), norm_team(r.get("team", "")), norm_season(r.get("season", "")))
-        if k[0] and k[1] and k[2]:
-            pbp_lookup[k] = r
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
-    for r in pbp_rows:
-        k2 = (norm_player_name(r.get("player", "")), norm_season(r.get("season", "")))
-        if k2[0] and k2[1]:
-            pbp_by_player_season[k2].append(r)
-    pbp_row_cache: dict[int, dict[str, str] | None] = {}
-    row_metric_cache: dict[tuple[int, str], float | None] = {}
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
-    for r in pbp_rows:
-        k2 = (norm_player_name(r.get("player", "")), norm_season(r.get("season", "")))
-        if k2[0] and k2[1]:
-            pbp_by_player_season[k2].append(r)
-    pbp_row_cache: dict[int, dict[str, str] | None] = {}
-    row_metric_cache: dict[tuple[int, str], float | None] = {}
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
-    for r in pbp_rows:
-        k2 = (norm_player_name(r.get("player", "")), norm_season(r.get("season", "")))
-        if k2[0] and k2[1]:
-            pbp_by_player_season[k2].append(r)
-    pbp_row_cache: dict[int, dict[str, str] | None] = {}
-    row_metric_cache: dict[tuple[int, str], float | None] = {}
-
-    def category_percentile_with_context(metric_keys: list[str]) -> float | None:
-        vals_by_key: dict[str, list[float]] = {}
-        for key in metric_keys:
-            vals: list[float] = []
-            for r in cohort:
-                v = _metric_value_with_context(
-                    r, key, pbp_rows, pbp_lookup, pbp_by_player_season, pbp_row_cache, row_metric_cache
-                )
-                if v is not None and math.isfinite(v):
-                    vals.append(float(v))
-            if vals:
-                vals_by_key[key] = vals
-        if not vals_by_key:
-            return None
-
-        def row_score(r: dict[str, str]) -> float | None:
-            pcts: list[float] = []
-            for key in metric_keys:
-                vals = vals_by_key.get(key)
-                if not vals:
-                    continue
-                v = _metric_value_with_context(
-                    r, key, pbp_rows, pbp_lookup, pbp_by_player_season, pbp_row_cache, row_metric_cache
-                )
-                if v is None or not math.isfinite(v):
-                    continue
-                p = percentile(float(v), vals)
-                if key == "to_per":
-                    p = 100.0 - p
-                pcts.append(p)
-            if not pcts:
-                return None
-            return sum(pcts) / len(pcts)
-
-        target_score = row_score(target_row)
-        if target_score is None:
-            return None
-        cohort_scores = [s for s in (row_score(r) for r in cohort) if s is not None]
-        if not cohort_scores:
-            return None
-        return percentile(target_score, cohort_scores)
-
     chips = []
     for label, keys in categories:
-        p = category_percentile_with_context(keys)
+        p = bt_category_percentile(target_row, cohort, keys)
         g = grade_from_percentile(p)
         chips.append(
             f'<div class="grade-chip"><div class="grade-k">{html.escape(label)}</div><div class="grade-v">{g}</div></div>'
@@ -1879,15 +1637,55 @@ def build_bt_percentile_html(
                 continue
             if key == "rim_assists_100_btposs":
                 def rate_for_bt_row(br: dict[str, str]) -> float | None:
-                    return _metric_value_with_context(
-                        br,
-                        "rim_assists_100_btposs",
-                        pbp_rows,
-                        pbp_lookup,
-                        pbp_by_player_season,
-                        pbp_row_cache,
-                        row_metric_cache,
+                    rk = (
+                        norm_player_name(bt_get(br, ["player_name"])),
+                        norm_team(bt_get(br, ["team"])),
+                        norm_season(bt_get(br, ["year"])),
                     )
+                    pr = pbp_lookup.get(rk)
+                    if not pr:
+                        # Fallback: name+season match, then fuzzy team tie-break.
+                        candidates = [
+                            r for r in pbp_rows
+                            if norm_player_name(r.get("player", "")) == rk[0]
+                            and norm_season(r.get("season", "")) == rk[2]
+                        ]
+                        if len(candidates) == 1:
+                            pr = candidates[0]
+                        elif candidates:
+                            scored = sorted(
+                                [
+                                    (
+                                        difflib.SequenceMatcher(
+                                            None, rk[1], norm_team(r.get("team", ""))
+                                        ).ratio(),
+                                        r,
+                                    )
+                                    for r in candidates
+                                ],
+                                key=lambda x: x[0],
+                            )
+                            pr = scored[-1][1] if scored and scored[-1][0] >= 0.55 else None
+                    if not pr:
+                        return None
+                    # Prefer precomputed per-100 from pbp metrics when available.
+                    rim_ast_100 = to_float(pr.get("rim_assists_100", ""))
+                    if rim_ast_100 is not None and math.isfinite(rim_ast_100):
+                        return float(rim_ast_100)
+                    poss = bt_metric_value(br, "possessions")
+                    if poss is None or poss <= 0:
+                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
+                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
+                        if tpa is not None and tpa100 is not None and tpa100 > 0:
+                            poss = (float(tpa) * 100.0) / float(tpa100)
+                    if poss is None or poss <= 0:
+                        poss = to_float(pr.get("off_possessions", ""))
+                    if poss is None or poss <= 0:
+                        return None
+                    rim_ast = to_float(pr.get("rim_assists", ""))
+                    if rim_ast is None:
+                        return None
+                    return 100.0 * float(rim_ast) / float(poss)
 
                 value = rate_for_bt_row(target_row)
                 cohort_vals = [v for v in (rate_for_bt_row(r) for r in cohort) if v is not None and math.isfinite(v)]
@@ -2105,7 +1903,6 @@ def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str
 def build_player_comparisons_html(
     target: PlayerGameStats,
     bt_rows: list[dict[str, str]],
-    pbp_rows: list[dict[str, str]],
     bio_lookup: dict[tuple[str, str, str], dict[str, str]],
     top_n: int = 5,
 ) -> str:
@@ -2121,14 +1918,6 @@ def build_player_comparisons_html(
         "ast_per", "to_per", "ast_tov",
         "stl_per", "blk_per", "orb_per", "drb_per",
     ]
-    metric_keys.extend(
-        [
-            "rim_att_100_bt", "fta100_bt", "rim_assists_100_btposs",
-            "unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100",
-            "unassisted_3pm_100", "unassisted_points_100",
-            "shotdiet_rim", "shotdiet_mid", "shotdiet_three",
-        ]
-    )
 
     # Build per-season cohorts once.
     by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
@@ -2153,28 +1942,13 @@ def build_player_comparisons_html(
             i = j
         return out
 
-    pbp_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
-    for r in pbp_rows:
-        k = (norm_player_name(r.get("player", "")), norm_team(r.get("team", "")), norm_season(r.get("season", "")))
-        if k[0] and k[1] and k[2]:
-            pbp_lookup[k] = r
-    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
-    for r in pbp_rows:
-        k2 = (norm_player_name(r.get("player", "")), norm_season(r.get("season", "")))
-        if k2[0] and k2[1]:
-            pbp_by_player_season[k2].append(r)
-    pbp_row_cache: dict[int, dict[str, str] | None] = {}
-    row_metric_cache: dict[tuple[int, str], float | None] = {}
-
     # Precompute metric percentile lookup maps by year/key.
     metric_pct_map: dict[tuple[str, str], dict[int, float]] = {}
     for year, rows in by_year.items():
         for key in metric_keys:
             vals: list[tuple[int, float]] = []
             for r in rows:
-                v = _metric_value_with_context(
-                    r, key, pbp_rows, pbp_lookup, pbp_by_player_season, pbp_row_cache, row_metric_cache
-                )
+                v = bt_metric_value(r, key)
                 if v is None or not math.isfinite(v):
                     continue
                 vals.append((id(r), float(v)))
@@ -2919,11 +2693,11 @@ def main() -> None:
             bt_playerstat_rows = []
 
     bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
-    grade_boxes_html = build_grade_boxes_html(target, bt_rows, pbp_rows)
+    grade_boxes_html = build_grade_boxes_html(target, bt_rows)
     pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
-    player_comparisons_html = build_player_comparisons_html(target, bt_rows, pbp_rows, bio_lookup, top_n=5)
+    player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
     per_game_override = bt_per_game_overrides(target, bt_rows)
