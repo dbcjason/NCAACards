@@ -1749,6 +1749,13 @@ def build_grade_boxes_html(
             pbp_by_player_season[k2].append(r)
     pbp_row_cache: dict[int, dict[str, str] | None] = {}
     row_metric_cache: dict[tuple[int, str], float | None] = {}
+    pbp_by_player_season: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
+    for r in pbp_rows:
+        k2 = (norm_player_name(r.get("player", "")), norm_season(r.get("season", "")))
+        if k2[0] and k2[1]:
+            pbp_by_player_season[k2].append(r)
+    pbp_row_cache: dict[int, dict[str, str] | None] = {}
+    row_metric_cache: dict[tuple[int, str], float | None] = {}
 
     def category_percentile_with_context(metric_keys: list[str]) -> float | None:
         vals_by_key: dict[str, list[float]] = {}
