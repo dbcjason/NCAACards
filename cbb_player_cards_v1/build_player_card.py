@@ -1943,6 +1943,7 @@ def build_player_comparisons_html(
             target_vec[k] = p
     tp_age = age_pct_for_row(target_row)
     tp_hgt = hgt_pct_for_row(target_row)
+    target_age_raw = age_by_row.get(id(target_row))
     if tp_age is not None:
         target_vec["age_pct"] = tp_age
     if tp_hgt is not None:
@@ -1959,6 +1960,14 @@ def build_player_comparisons_html(
             and norm_season(bt_get(other, ["year"])) == norm_season(target.season)
         ):
             return None
+
+        # Hard age window for comps: only compare within +/- 1.0 years.
+        if target_age_raw is not None and math.isfinite(target_age_raw):
+            other_age_raw = age_by_row.get(id(other))
+            if other_age_raw is None or not math.isfinite(other_age_raw):
+                return None
+            if abs(float(other_age_raw) - float(target_age_raw)) > 1.0:
+                return None
 
         keys = list(metric_keys)
         ov: dict[str, float] = {}
