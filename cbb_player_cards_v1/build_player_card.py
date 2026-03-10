@@ -637,6 +637,22 @@ def collect_shots(
     season: str,
     season_hint: str = "",
 ) -> list[dict[str, Any]]:
+    def plausible_coord(row: dict[str, str], x: float, y: float, shot_range: str) -> bool:
+        # Filter obvious coordinate outliers in older feeds that project as fake half-court shots.
+        # Keep true long-heave descriptions.
+        desc = (row.get("description", "") or "").lower()
+        if any(k in desc for k in ["half court", "half-court", "heave", "desperation"]):
+            return True
+        xft = float(x) / 10.0
+        yft = float(y) / 10.0
+        d1 = math.hypot(xft - 4.0, yft - 25.0)
+        d2 = math.hypot(xft - 90.0, yft - 25.0)
+        d = min(d1, d2)
+        # Normal NCAA attempts are well inside this; outliers above this are usually bad coords.
+        if shot_range == "three_pointer":
+            return d <= 35.0
+        return d <= 32.0
+
     out: list[dict[str, Any]] = []
     np, nt, ns = norm_text(player), norm_text(team), norm_text(season)
     for row in plays_rows:
@@ -650,6 +666,8 @@ def collect_shots(
             continue
         made = _shot_made_from_row(row)
         shot_range = _shot_range_from_row(row)
+        if not plausible_coord(row, float(x), float(y), shot_range):
+            continue
         out.append(
             {
                 "x": x,
@@ -1619,14 +1637,6 @@ def build_bt_percentile_html(
                 continue
             if key == "rim_assists_100_btposs":
                 def rate_for_bt_row(br: dict[str, str]) -> float | None:
-                    poss = bt_metric_value(br, "possessions")
-                    if poss is None or poss <= 0:
-                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
-                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
-                        if tpa is not None and tpa100 is not None and tpa100 > 0:
-                            poss = (float(tpa) * 100.0) / float(tpa100)
-                    if poss is None or poss <= 0:
-                        return None
                     rk = (
                         norm_player_name(bt_get(br, ["player_name"])),
                         norm_team(bt_get(br, ["team"])),
@@ -1634,6 +1644,40 @@ def build_bt_percentile_html(
                     )
                     pr = pbp_lookup.get(rk)
                     if not pr:
+                        # Fallback: name+season match, then fuzzy team tie-break.
+                        candidates = [
+                            r for r in pbp_rows
+                            if norm_player_name(r.get("player", "")) == rk[0]
+                            and norm_season(r.get("season", "")) == rk[2]
+                        ]
+                        if len(candidates) == 1:
+                            pr = candidates[0]
+                        elif candidates:
+                            scored = sorted(
+                                (
+                                    difflib.SequenceMatcher(
+                                        None, rk[1], norm_team(r.get("team", ""))
+                                    ).ratio(),
+                                    r,
+                                )
+                                for r in candidates
+                            )
+                            pr = scored[-1][1] if scored and scored[-1][0] >= 0.55 else None
+                    if not pr:
+                        return None
+                    # Prefer precomputed per-100 from pbp metrics when available.
+                    rim_ast_100 = to_float(pr.get("rim_assists_100", ""))
+                    if rim_ast_100 is not None and math.isfinite(rim_ast_100):
+                        return float(rim_ast_100)
+                    poss = bt_metric_value(br, "possessions")
+                    if poss is None or poss <= 0:
+                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
+                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
+                        if tpa is not None and tpa100 is not None and tpa100 > 0:
+                            poss = (float(tpa) * 100.0) / float(tpa100)
+                    if poss is None or poss <= 0:
+                        poss = to_float(pr.get("off_possessions", ""))
+                    if poss is None or poss <= 0:
                         return None
                     rim_ast = to_float(pr.get("rim_assists", ""))
                     if rim_ast is None:
