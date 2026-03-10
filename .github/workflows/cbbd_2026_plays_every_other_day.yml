@@ -22,9 +22,14 @@ on:
         required: false
         default: ""
         type: string
+
   schedule:
     - cron: '5 8 * * *'
     - cron: '5 9 * * *'
+
+concurrency:
+  group: cbbd-2026-${{ github.ref }}-${{ github.event_name }}-${{ inputs.run_mode || 'scheduled' }}
+  cancel-in-progress: false
 
 jobs:
   chunked-plays:
