@@ -1840,6 +1840,9 @@ def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str
             age_val = to_float(age_s)
         if age_val is None:
             age_val = to_float(bio.get("age", ""))
+    if age_val is None:
+        # Fallback to BT age fields when bio lookup is missing/incomplete.
+        age_val = bt_num(row, ["DD Age", "Age", "age"])
 
     height_val: float | None = None
     if bio:
