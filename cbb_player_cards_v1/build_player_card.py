@@ -1654,13 +1654,16 @@ def build_bt_percentile_html(
                             pr = candidates[0]
                         elif candidates:
                             scored = sorted(
-                                (
-                                    difflib.SequenceMatcher(
-                                        None, rk[1], norm_team(r.get("team", ""))
-                                    ).ratio(),
-                                    r,
-                                )
-                                for r in candidates
+                                [
+                                    (
+                                        difflib.SequenceMatcher(
+                                            None, rk[1], norm_team(r.get("team", ""))
+                                        ).ratio(),
+                                        r,
+                                    )
+                                    for r in candidates
+                                ],
+                                key=lambda x: x[0],
                             )
                             pr = scored[-1][1] if scored and scored[-1][0] >= 0.55 else None
                     if not pr:
