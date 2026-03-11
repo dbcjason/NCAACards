@@ -23,6 +23,7 @@ import gzip
 import html
 import json
 import math
+import random
 import re
 from collections import defaultdict
 from datetime import datetime
@@ -231,6 +232,39 @@ def load_enriched_lookup_for_script_season(
     return out
 
 
+def load_enriched_players_for_script_season(
+    season: str,
+    base_dir: Path | None = None,
+) -> list[dict[str, Any]]:
+    ys = norm_season(season)
+    if not ys or not ys.isdigit():
+        return []
+    if base_dir is None:
+        base_dir = (
+            Path(__file__).resolve().parent.parent
+            / "player_cards_pipeline"
+            / "data"
+            / "manual"
+            / "enriched_players"
+            / "by_script_season"
+        )
+    if not base_dir.exists():
+        return []
+    year = int(ys)
+    preferred = base_dir / f"players_all_Men_scriptSeason_{year}_fromJsonYear_{year-1}.json"
+    candidates: list[Path] = [preferred] if preferred.exists() else sorted(
+        base_dir.glob(f"players_all_Men_scriptSeason_{year}_fromJsonYear_*.json")
+    )
+    if not candidates:
+        return []
+    try:
+        obj = json.loads(candidates[0].read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    players = obj.get("players", []) if isinstance(obj, dict) else []
+    return [r for r in players if isinstance(r, dict)]
+
+
 def inject_enriched_fields_into_bt_rows(
     bt_rows: list[dict[str, str]],
     base_dir: Path | None = None,
@@ -282,6 +316,157 @@ def inject_enriched_fields_into_bt_rows(
             v = to_float(_enriched_nested_value(er, *path))
             if v is not None and math.isfinite(v):
                 r[k] = str(v)
+
+
+def _shot_range_from_xy_ft(x_ft: float, y_ft: float) -> str:
+    d = math.hypot(float(x_ft), float(y_ft))
+    if d <= 4.5:
+        return "rim"
+    if d >= 22.0:
+        return "three_pointer"
+    return "jumper"
+
+
+def build_shots_from_enriched_player_row(
+    enriched_row: dict[str, Any],
+) -> tuple[list[dict[str, Any]], int, int]:
+    info = _enriched_nested_value(enriched_row, "shotInfo", "data", "info")
+    if not isinstance(info, list):
+        return [], 0, 0
+
+    shots: list[dict[str, Any]] = []
+    made_total = 0
+    att_total = 0
+    for rec in info:
+        if not isinstance(rec, list) or len(rec) < 4:
+            continue
+        try:
+            x_ft = float(rec[0])
+            y_ft = float(rec[1])
+            fg_points = float(rec[2])
+            fga = int(round(float(rec[3])))
+        except Exception:
+            continue
+        if fga <= 0:
+            continue
+        att_total += fga
+        shot_value = 3.0 if _shot_range_from_xy_ft(x_ft, y_ft) == "three_pointer" else 2.0
+        makes = int(round(fg_points / shot_value))
+        makes = max(0, min(fga, makes))
+        misses = fga - makes
+        made_total += makes
+        rng = _shot_range_from_xy_ft(x_ft, y_ft)
+
+        # Small jitter so expanded bin shots are visible as distinct points.
+        for _ in range(makes):
+            shots.append(
+                {
+                    "x": (x_ft + 4.0) * 10.0 + random.uniform(-2.0, 2.0),
+                    "y": (y_ft + 25.0) * 10.0 + random.uniform(-2.0, 2.0),
+                    "made": True,
+                    "range": rng,
+                }
+            )
+        for _ in range(misses):
+            shots.append(
+                {
+                    "x": (x_ft + 4.0) * 10.0 + random.uniform(-2.0, 2.0),
+                    "y": (y_ft + 25.0) * 10.0 + random.uniform(-2.0, 2.0),
+                    "made": False,
+                    "range": rng,
+                }
+            )
+
+    return shots, made_total, att_total
+
+
+def pps_over_expected_from_enriched(
+    target: PlayerGameStats,
+) -> tuple[float | None, float | None, float | None, float | None]:
+    players = load_enriched_players_for_script_season(target.season)
+    if not players:
+        return None, None, None, None
+
+    # League expected PPS by shot bin key.
+    bin_pts: dict[str, float] = defaultdict(float)
+    bin_att: dict[str, float] = defaultdict(float)
+    for p in players:
+        keys = _enriched_nested_value(p, "shotInfo", "data", "keys")
+        info = _enriched_nested_value(p, "shotInfo", "data", "info")
+        if not isinstance(keys, list) or not isinstance(info, list):
+            continue
+        n = min(len(keys), len(info))
+        for i in range(n):
+            rec = info[i]
+            if not isinstance(rec, list) or len(rec) < 4:
+                continue
+            pts = to_float(rec[2])
+            att = to_float(rec[3])
+            if pts is None or att is None or att <= 0:
+                continue
+            k = str(keys[i])
+            bin_pts[k] += float(pts)
+            bin_att[k] += float(att)
+    exp_pps_by_key = {k: (bin_pts[k] / bin_att[k]) for k in bin_att if bin_att[k] > 0}
+    if not exp_pps_by_key:
+        return None, None, None, None
+
+    def player_pps_oe(p: dict[str, Any]) -> tuple[float | None, float | None, float | None]:
+        keys = _enriched_nested_value(p, "shotInfo", "data", "keys")
+        info = _enriched_nested_value(p, "shotInfo", "data", "info")
+        if not isinstance(keys, list) or not isinstance(info, list):
+            return None, None, None
+        n = min(len(keys), len(info))
+        act_pts = 0.0
+        att_sum = 0.0
+        exp_pts = 0.0
+        for i in range(n):
+            rec = info[i]
+            if not isinstance(rec, list) or len(rec) < 4:
+                continue
+            pts = to_float(rec[2])
+            att = to_float(rec[3])
+            if pts is None or att is None or att <= 0:
+                continue
+            k = str(keys[i])
+            exp_pps = exp_pps_by_key.get(k)
+            if exp_pps is None:
+                continue
+            act_pts += float(pts)
+            att_sum += float(att)
+            exp_pts += float(exp_pps) * float(att)
+        if att_sum <= 0:
+            return None, None, None
+        actual_pps = act_pts / att_sum
+        expected_pps = exp_pts / att_sum
+        if expected_pps <= 0:
+            return actual_pps, expected_pps, None
+        pct_change = ((actual_pps - expected_pps) / expected_pps) * 100.0
+        return actual_pps, expected_pps, pct_change
+
+    target_row = None
+    tk = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
+    for p in players:
+        if (
+            norm_player_name(p.get("key", "")) == tk[0]
+            and norm_team(p.get("team", "")) == tk[1]
+        ):
+            target_row = p
+            break
+    if target_row is None:
+        return None, None, None, None
+
+    targ_actual, targ_expected, targ_pct = player_pps_oe(target_row)
+    if targ_actual is None or targ_expected is None or targ_pct is None:
+        return targ_actual, targ_expected, targ_pct, None
+
+    cohort_vals: list[float] = []
+    for p in players:
+        _, _, c = player_pps_oe(p)
+        if c is not None and math.isfinite(c):
+            cohort_vals.append(float(c))
+    pctile = percentile(float(targ_pct), cohort_vals) if cohort_vals else None
+    return targ_actual, targ_expected, targ_pct, pctile
 
 
 def find_col(header: list[str], aliases: list[str]) -> str | None:
@@ -1718,7 +1903,7 @@ def build_bt_percentile_html(
         "Impact": [
             ("BPM", "bpm", False, 1),
             ("RAPM", "rapm", False, 1),
-            ("On/Off Net Rtg", "onoff_net_rating", False, 2),
+            ("On/Off Net", "onoff_net_rating", False, 1),
         ],
         "Scoring": [
             ("Usage", "usg", False, 1),
@@ -2275,6 +2460,7 @@ def render_card(
     advanced_html: str,
     shot_header_makes: int | None,
     shot_header_attempts: int | None,
+    shot_pps_oe_line: str,
     per_game_overrides: dict[str, float] | None,
     out_path: Path,
 ) -> None:
@@ -2640,6 +2826,7 @@ body {{
         <div class="panel shot-panel shot-chart-col" style="margin-top:14px;">
           <h3>Shot Chart</h3>
           <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
+          <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
           {shot_svg(shots, season_shots, width=355, height=250)}
         </div>
         <div class="right-wrap">
@@ -2850,6 +3037,30 @@ def main() -> None:
                 "range": rng,
             }
         )
+
+    # Prefer enriched shot bins for chart plotting when available.
+    enriched_lookup = load_enriched_lookup_for_script_season(target.season)
+    ek = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
+    erow = enriched_lookup.get(ek)
+    if erow:
+        enr_shots, enr_makes, enr_att = build_shots_from_enriched_player_row(erow)
+        if enr_shots:
+            shots = enr_shots
+            season_shots = enr_shots
+            bt_fgm, bt_fga = enr_makes, enr_att
+
+    act_pps, exp_pps, pps_oe, pps_oe_pct = pps_over_expected_from_enriched(target)
+    if pps_oe is not None:
+        pps_line = (
+            f"Points Per Shot Over Expected: {pps_oe:+.1f}% "
+            f"(Actual PPS: {act_pps:.3f}, Expected PPS: {exp_pps:.3f}, "
+            f"Percentile: {pps_oe_pct:.0f}%)"
+            if pps_oe_pct is not None
+            else f"Points Per Shot Over Expected: {pps_oe:+.1f}% "
+                 f"(Actual PPS: {act_pps:.3f}, Expected PPS: {exp_pps:.3f})"
+        )
+    else:
+        pps_line = "Points Per Shot Over Expected: N/A"
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games)
     render_card(
         target,
@@ -2865,6 +3076,7 @@ def main() -> None:
         advanced_html,
         bt_fgm,
         bt_fga,
+        pps_line,
         per_game_override,
         Path(args.out_html),
     )
