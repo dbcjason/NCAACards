@@ -40,14 +40,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,72501,Jay Rodgers,Central Connecticut,33,32,1,40,57,2,32,57,16,0,0,0
 2026,72504,Jalen Speer,Marshall,26,25,7,49,83,10,89,155,57,1,0,1
 2026,72520,Saba Gigiberia,San Francisco,18,17,9,4,11,0,0,1,0,7,2,5
-2026,72521,DA Houston,Texas A&M Corpus Chris,27,33,0,7,17,1,24,39,18,0,0,0
+2026,72521,DA Houston,Texas A&M Corpus Chris,29,34,0,7,18,1,26,44,20,0,0,0
 2026,72526,Terren Frank,Campbell,3,1,3,1,6,0,0,1,0,0,0,0
-2026,72539,Tyon Grant-Foster,Gonzaga,95,63,52,16,33,5,14,44,13,38,7,28
+2026,72539,Tyon Grant-Foster,Gonzaga,99,64,53,16,34,5,14,45,13,39,7,29
 2026,72614,Monty Bowser,Cal Baptist,3,3,1,0,1,0,5,12,5,1,0,1
 2026,72621,Vukasin Masic,San Francisco,21,13,5,11,14,2,31,77,28,0,0,0
 2026,72635,Yame Butler,Butler,24,20,9,9,9,4,11,27,11,0,0,0
 2026,72638,Anthony Roy,Oklahoma St.,51,43,8,5,15,0,85,130,61,0,0,0
-2026,72639,Graham Ike,Gonzaga,104,41,66,78,75,38,22,42,19,19,1,13
+2026,72639,Graham Ike,Gonzaga,107,44,68,85,78,44,22,43,19,19,1,13
 2026,72656,Quincy Ballard,Mississippi St.,61,30,44,23,29,17,0,0,0,31,3,29
 2026,72675,Freddy Hicks,Tarleton St.,24,39,10,20,28,10,7,15,7,0,0,0
 2026,72677,John Shanu II,Eastern Michigan,10,4,9,1,4,0,0,0,0,7,1,7
@@ -60,7 +60,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,72734,Kaden Metheny,Liberty,46,28,12,3,2,1,89,127,69,0,0,0
 2026,72737,Zion Bethea,Delaware St.,12,8,4,6,25,2,16,48,12,0,0,0
 2026,72740,David Green,Tulsa,86,47,32,23,32,6,58,81,55,9,0,7
-2026,72748,Joey Madimba,Prairie View A&M,47,28,15,8,13,2,12,35,12,1,0,0
+2026,72748,Joey Madimba,Prairie View A&M,47,29,15,8,15,2,12,36,12,1,0,0
 2026,72760,Tramon Mark,Texas,55,27,15,57,57,8,36,83,21,8,1,4
 2026,72773,Davion Bradford,Tulane,0,0,0,0,3,0,0,2,0,0,0,0
 2026,72785,Jadon Jones,Oklahoma,8,2,5,1,7,1,36,64,34,3,0,2
@@ -82,12 +82,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,72912,Sam Towns,Bowling Green,72,57,38,14,34,7,33,67,32,14,4,12
 2026,72931,Jacob Crews,Missouri,26,11,13,4,14,2,55,67,51,6,0,5
 2026,72946,Keith Lamar,Southern,0,2,0,1,1,1,3,12,3,0,0,0
-2026,72959,Te'Jon Sawyer,Montana,78,30,56,17,15,8,26,47,26,9,1,6
+2026,72959,Te'Jon Sawyer,Montana,80,30,56,18,17,8,27,50,27,9,1,6
 2026,72972,KJ McClurg,Longwood,1,3,0,0,0,0,0,5,0,0,0,0
 2026,72993,Jeremiah Oden,San Diego St.,25,7,16,4,15,2,14,34,14,10,2,9
 2026,73004,Trey Hall,Maryland Eastern Shore,4,1,2,3,3,3,5,18,4,0,1,0
 2026,73029,Kasen Jennings,Appalachian St.,54,39,13,46,87,6,54,116,45,1,0,0
-2026,73069,Jaron Pierre Jr.,SMU,87,51,50,45,68,12,69,114,51,22,3,17
+2026,73069,Jaron Pierre Jr.,SMU,89,52,51,45,69,12,74,126,55,23,3,17
 2026,73074,Justin Wright,UNC Asheville,56,38,1,78,88,7,42,76,33,0,0,0
 2026,73085,Kasean Pryor,Louisville,12,6,7,3,3,2,5,17,4,4,0,3
 2026,73103,J'Vonne Hadley,Louisville,78,43,37,20,14,3,33,40,31,6,1,4
@@ -99,16 +99,16 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,73200,Kam Woods,USC,33,22,8,19,24,7,6,31,6,0,0,0
 2026,73210,Trey Fort,Michigan St.,5,9,3,10,18,5,22,49,21,2,0,2
 2026,73215,Brandon Lieb,Illinois St.,31,22,22,9,14,4,0,0,0,10,2,9
-2026,73217,Adam Miller,Gonzaga,29,12,14,21,21,5,38,84,36,3,0,3
-2026,73222,Derrius Ward,Grambling St.,47,46,9,8,23,1,46,96,29,6,2,5
+2026,73217,Adam Miller,Gonzaga,30,13,14,22,21,6,39,85,37,3,0,3
+2026,73222,Derrius Ward,Grambling St.,48,46,9,8,23,1,49,97,29,6,2,5
 2026,73241,Ryan Myers,Western Kentucky,18,24,6,14,30,6,67,97,57,0,0,0
 2026,73244,Truth Harris,La Salle,4,11,2,10,10,4,29,73,24,0,0,0
 2026,73247,Alyn Breed,N.C. State,12,12,0,8,13,1,10,19,10,0,0,0
 2026,73262,Zarique Nutter,Fordham,6,8,2,0,3,0,0,3,0,1,0,1
 2026,73270,Jalen Myers,Hawaii,4,4,3,1,4,1,0,3,0,0,0,0
 2026,73285,Hunter Erickson,Hawaii,37,23,7,12,17,1,34,58,28,0,0,0
-2026,73288,Tai'Reon Joseph,Prairie View A&M,69,46,24,12,45,2,45,108,36,4,0,4
-2026,73307,Jefferson Koulibaly,Georgia Southern,18,23,3,3,7,1,11,39,10,1,0,0
+2026,73288,Tai'Reon Joseph,Prairie View A&M,70,46,25,12,47,2,45,111,36,4,0,4
+2026,73307,Jefferson Koulibaly,Georgia Southern,18,23,3,3,7,1,12,40,11,1,0,0
 2026,73317,Antwan Burnett,Missouri St.,13,9,4,4,10,2,15,25,14,0,0,0
 2026,73324,Devin Tillis,Virginia,13,11,6,6,13,2,23,37,23,0,0,0
 2026,73329,PJ Carter,LSU,6,5,2,0,3,0,28,54,28,0,0,0
@@ -119,7 +119,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,73434,Connor Serven,Mercer,48,24,23,9,14,2,7,16,7,9,0,8
 2026,73443,Nolan Dorsey,California,9,4,8,0,1,0,9,21,9,0,0,0
 2026,73452,Nick Hittle,Western Illinois,4,8,2,2,2,2,1,0,0,0,0,0
-2026,73474,Jalen Celestine,Cincinnati,12,8,6,11,16,1,62,94,52,0,0,0
+2026,73474,Jalen Celestine,Cincinnati,13,8,7,11,16,1,67,97,56,0,0,0
 2026,73495,Howie Fleming Jr.,UNLV,40,32,13,18,24,6,22,51,21,2,1,1
 2026,73499,Boden Skunberg,Illinois St.,29,18,15,23,31,5,56,76,48,0,0,0
 2026,73509,Myles Stute,South Carolina,12,10,6,5,6,3,34,75,34,3,0,1
@@ -180,11 +180,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74350,Chance Moore,West Virginia,83,53,27,3,17,0,9,21,8,13,3,9
 2026,74356,Honor Huff,West Virginia,12,22,1,14,20,2,106,194,69,0,0,0
 2026,74357,Brennan Watkins,Chattanooga,8,5,3,17,23,5,59,73,48,0,0,0
-2026,74369,Tasos Cook,Campbell,30,37,5,5,7,0,38,63,35,5,0,2
+2026,74369,Tasos Cook,Campbell,31,38,5,5,7,0,39,67,36,5,0,2
 2026,74382,Bryce Harris,Howard,102,85,65,14,22,8,33,54,32,20,1,20
 2026,74387,Andres Marrero,Merrimack,16,14,8,16,12,3,52,109,48,0,0,0
 2026,74395,Marcus Greene,Fordham,9,6,5,6,5,0,23,53,22,3,0,2
-2026,74398,Tyler Powell,Eastern Washington,17,7,8,6,11,2,32,48,30,1,1,1
+2026,74398,Tyler Powell,Eastern Washington,18,7,9,6,11,2,32,50,30,1,1,1
 2026,74401,Alex Anderson,Texas Southern,58,44,6,22,19,1,3,11,2,6,0,2
 2026,74404,Tyler Shirley,Florida A&M,61,40,22,34,66,14,27,55,24,5,1,4
 2026,74405,Tahj Staveskie,Incarnate Word,55,68,5,46,45,3,65,113,39,0,0,0
@@ -212,7 +212,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74561,Julien Soumaoro,Western Carolina,29,24,13,14,26,0,58,88,35,0,0,0
 2026,74567,Kacper Klaczek,Elon,58,37,17,5,14,0,30,37,28,7,0,4
 2026,74574,PJ Edwards,Grambling St.,2,2,2,0,1,0,0,8,0,0,0,0
-2026,74586,Brenton Knapper,Santa Clara,41,32,13,13,18,2,30,70,25,1,1,0
+2026,74586,Brenton Knapper,Santa Clara,41,33,13,14,18,2,30,71,25,1,1,0
 2026,74602,Shaqir O'Neal,Sacramento St.,14,15,6,14,21,4,14,30,13,3,0,3
 2026,74618,Chris Howell,New Mexico,10,12,3,2,3,0,5,10,5,1,0,0
 2026,74620,Tyler Lundblade,Belmont,13,10,10,22,21,7,112,162,102,0,0,0
@@ -236,10 +236,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74728,Sir Issac Herron,Louisiana Tech,27,14,18,12,10,4,1,2,1,6,2,6
 2026,74736,Elijah Tucker,Longwood,98,59,60,29,39,13,1,1,1,38,7,28
 2026,74743,Lamin Sabally,Iona,124,71,60,13,22,5,1,9,1,29,2,22
-2026,74746,Jalen Warley,Gonzaga,63,36,27,20,26,12,0,0,0,8,1,4
+2026,74746,Jalen Warley,Gonzaga,64,37,28,20,27,12,0,0,0,9,1,5
 2026,74747,KeShawn Murphy,Auburn,86,44,47,19,27,11,12,26,10,28,2,21
-2026,74749,Alden Applewhite,Georgia Southern,78,44,34,14,25,3,53,85,47,0,0,0
-2026,74752,Josh Odunowo,UMBC,57,42,28,21,29,7,0,0,0,10,2,7
+2026,74749,Alden Applewhite,Georgia Southern,79,45,34,14,25,3,54,90,48,0,0,0
+2026,74752,Josh Odunowo,UMBC,61,43,29,22,31,7,0,0,0,11,2,7
 2026,74767,Ismail Habib,Southern Indiana,58,53,5,10,33,2,51,114,32,0,0,0
 2026,74771,Trey Kaufman-Renn,Purdue,91,30,53,74,88,43,2,11,2,15,0,13
 2026,74772,Grant Hurst,Tennessee,0,0,0,0,0,0,0,2,0,0,0,0
@@ -250,7 +250,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74802,Langston Love,Georgetown,10,6,4,2,4,2,8,22,6,0,0,0
 2026,74806,Ryan Dufault,St. Thomas,60,21,27,8,7,2,3,5,3,0,0,0
 2026,74812,Daylen Berry,Winthrop,32,29,9,15,30,2,33,73,25,0,0,0
-2026,74822,D.J. Smith,Campbell,60,52,7,20,47,1,90,175,53,0,0,0
+2026,74822,D.J. Smith,Campbell,64,52,7,20,48,1,90,180,53,0,0,0
 2026,74839,Trey Woodyard,Vermont,0,2,0,0,0,0,2,3,2,0,0,0
 2026,74841,Milos Ilic,California,36,24,23,3,5,1,2,5,2,4,1,3
 2026,74845,Kyle Cuffe Jr.,Mercer,27,29,12,7,12,1,32,67,31,1,2,1
@@ -263,7 +263,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74891,Will McClendon,North Texas,2,3,1,0,3,0,7,10,7,0,0,0
 2026,74898,Owen Dease,Valparaiso,45,38,13,42,61,9,49,72,44,4,0,4
 2026,74901,Robert McCray V,Florida St.,101,83,12,30,51,0,43,80,26,15,4,5
-2026,74902,Tyler Coleman,Towson,32,25,23,14,21,2,10,17,10,6,3,6
+2026,74902,Tyler Coleman,Towson,32,25,23,14,23,2,10,18,10,6,3,6
 2026,74903,Mike James,Vanderbilt,2,4,2,0,4,0,8,16,8,0,0,0
 2026,74904,Quimari Peterson,Washington,18,9,3,13,17,1,62,121,57,0,0,0
 2026,74908,Will Allen,Louisiana Tech,20,11,12,4,5,2,4,14,4,0,0,0
@@ -274,9 +274,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,74951,Sam Hoiberg,Nebraska,81,32,26,2,14,1,31,46,29,0,0,0
 2026,74955,Quaran McPherson,UAB,11,12,2,11,6,5,9,25,8,0,0,0
 2026,74965,Houston Mallette,Alabama,11,6,2,0,2,0,52,96,51,1,0,0
-2026,74968,James Okonkwo,Utah,27,14,20,4,14,3,0,0,0,14,1,10
+2026,74968,James Okonkwo,Utah,27,16,20,5,14,4,0,0,0,14,1,10
 2026,74982,Kolby Granger,Texas Southern,1,1,1,0,1,0,1,4,1,0,0,0
-2026,74988,Allen Strothers,East Tennessee St.,15,16,2,23,22,0,9,18,8,0,1,0
+2026,74988,Allen Strothers,East Tennessee St.,15,16,2,25,22,0,9,18,8,0,1,0
 2026,74990,Kowacie Reeves Jr.,Georgia Tech,52,28,33,44,63,20,60,95,56,13,3,11
 2026,74991,Wes Peterson,Binghamton,52,53,21,16,42,3,28,47,27,12,1,9
 2026,74995,Anquan Hill,Sacred Heart,98,67,62,17,38,5,40,82,36,21,4,20
@@ -292,10 +292,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75032,Chris Morgan,Coppin St.,16,15,9,8,18,4,0,2,0,3,1,2
 2026,75039,Alex Crawford,Rhode Island,30,20,10,10,25,1,18,47,17,5,0,3
 2026,75045,Elijah Kennedy,Hampton,20,14,10,4,13,1,8,22,6,3,0,2
-2026,75048,Bryce Zephir,Syracuse,6,2,1,0,2,0,1,2,1,0,0,0
+2026,75048,Bryce Zephir,Syracuse,6,2,1,0,2,0,1,3,1,0,0,0
 2026,75050,Scottie Ebube,N.C. State,8,1,7,0,0,0,0,0,0,3,0,3
 2026,75053,Foster Wonders,Cleveland St.,10,6,8,5,4,4,38,74,36,0,0,0
-2026,75058,Legend Geeter,Detroit Mercy,46,31,19,21,26,13,9,22,9,4,0,4
+2026,75058,Legend Geeter,Detroit Mercy,49,35,19,22,26,14,9,23,9,4,0,4
 2026,75059,Rafael Castro,George Washington,121,66,82,16,15,10,0,0,0,48,6,40
 2026,75060,Corey Perkins,Delaware St.,25,26,4,23,36,12,11,25,9,0,0,0
 2026,75070,Jerry Ngopot,Coastal Carolina,6,6,1,2,11,1,6,20,6,0,0,0
@@ -334,7 +334,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75323,Bryson Spell,Elon,11,9,9,0,2,0,0,9,0,1,0,1
 2026,75328,Joseph Venzant,Abilene Christian,23,23,17,2,3,2,10,15,9,0,1,0
 2026,75329,Terrance Jones,Manhattan,44,51,16,39,59,16,44,86,35,3,0,1
-2026,75330,Nate Bittle,Oregon,77,32,54,26,53,13,35,74,34,8,2,8
+2026,75330,Nate Bittle,Oregon,83,36,58,26,54,13,36,77,35,9,2,9
 2026,75331,Isaac Johnson,Hawaii,79,38,32,15,25,7,31,62,28,24,4,11
 2026,75337,Jayden Jackson,Cal Baptist,15,23,0,7,30,2,48,90,38,0,1,0
 2026,75346,Myron Amey Jr.,Loyola Marymount,47,37,14,29,37,3,81,146,64,3,0,1
@@ -348,14 +348,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75409,Malik Thomas,Virginia,42,44,14,24,25,5,57,111,47,2,0,2
 2026,75425,Akiva McBirney-Griffin,UC Irvine,17,16,8,2,10,0,0,8,0,0,1,0
 2026,75438,Imanuel Zorgvol,Youngstown St.,56,22,38,2,8,1,3,7,3,30,2,25
-2026,75444,Zach Bloch,Northern Colorado,15,14,4,7,18,1,75,106,70,0,0,0
+2026,75444,Zach Bloch,Northern Colorado,15,14,4,7,18,1,77,111,72,0,0,0
 2026,75461,Abdou Samb,Towson,2,1,0,0,2,0,0,0,0,0,0,0
 2026,75466,Pablo Tamba,LSU,74,29,31,5,7,1,8,17,8,4,0,1
 2026,75474,Logan Duncomb,Winthrop,136,75,81,43,48,17,0,3,0,15,2,14
 2026,75476,Malcolm Chimezie,Boston University,23,12,15,5,6,1,0,0,0,4,0,4
 2026,75478,Ben Johnson,Vermont,7,5,4,10,12,2,41,58,37,0,0,0
 2026,75482,Angelo Brizzi,Buffalo,80,49,24,7,20,3,45,77,37,1,2,1
-2026,75484,Sam Alamutu,Wright St.,19,12,8,10,12,5,3,6,3,5,1,4
+2026,75484,Sam Alamutu,Wright St.,19,12,8,10,13,5,3,6,3,5,1,4
 2026,75486,Chase Courbat,Northern Iowa,1,0,1,1,1,0,0,0,0,0,0,0
 2026,75487,Michael Duax,Florida Gulf Coast,80,39,36,18,26,5,6,20,6,20,0,13
 2026,75488,Landon Wolf,Illinois St.,38,16,17,10,10,3,33,51,33,6,2,3
@@ -365,12 +365,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75525,Marcus Banks,Massachusetts,30,15,17,37,56,10,107,167,94,1,0,1
 2026,75532,Stephen Giwa,Rice,37,17,25,3,8,0,0,0,0,14,1,11
 2026,75533,Terrion Murdix,Western Kentucky,33,55,5,5,17,0,3,8,3,0,0,0
-2026,75534,Boopie Miller,SMU,55,43,9,67,77,7,59,80,38,0,0,0
+2026,75534,Boopie Miller,SMU,57,43,9,69,79,8,64,84,42,0,0,0
 2026,75542,Amar’e Marshall,St. Bonaventure,9,8,4,5,1,0,6,12,5,1,0,1
 2026,75555,Jaylin Sellers,Providence,78,58,17,31,42,4,76,97,52,14,4,6
 2026,75558,Ali Dibba,Texas A&M,48,51,15,5,9,3,17,25,17,1,1,0
 2026,75567,J.R. Konieczny,Florida Gulf Coast,84,55,29,42,64,15,44,88,38,15,4,8
-2026,75573,Trae English,Nicholls St.,50,46,8,25,49,1,35,83,24,0,0,0
+2026,75573,Trae English,Nicholls St.,56,48,8,25,51,1,35,86,24,0,0,0
 2026,75578,Aidan Noyes,Belmont,5,0,3,0,2,0,22,24,21,1,0,1
 2026,75589,Keaton Norris,Samford,14,13,2,42,47,2,41,91,35,0,0,0
 2026,75592,Keeyan Itejere,Rhode Island,77,32,55,15,16,12,0,0,0,45,4,38
@@ -381,7 +381,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75617,Camren Hunter,Central Arkansas,131,61,43,41,59,7,73,120,61,0,0,0
 2026,75621,Connor Hickman,Charleston,39,29,8,16,23,3,39,99,35,2,2,0
 2026,75623,Javon Ruffin,Bowling Green,17,21,3,4,11,1,43,67,39,1,0,0
-2026,75642,Cam Palesse,Alabama St.,13,29,5,37,50,6,15,22,15,0,0,0
+2026,75642,Cam Palesse,Alabama St.,13,29,5,37,52,6,15,22,15,0,0,0
 2026,75643,Hercy Miller,New Orleans,2,7,0,5,4,2,0,8,0,1,1,0
 2026,75644,Preston Ruedinger,Green Bay,22,33,7,28,33,5,60,91,42,1,0,0
 2026,75648,Cameron Crawford,Duquesne,18,18,13,3,11,1,24,53,24,2,2,2
@@ -400,15 +400,15 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75724,Zaakir Williamson,Saint Peter's,44,45,17,37,42,17,4,9,4,3,0,2
 2026,75740,Zander Yates,Liberty,2,1,2,0,4,0,5,20,5,0,0,0
 2026,75751,Devin Hines,North Florida,35,34,11,4,8,0,9,29,9,4,0,3
-2026,75755,Kaleb Brown,Robert Morris,18,11,8,4,6,1,19,45,18,0,0,0
-2026,75756,Trevon Brazile,Arkansas,86,19,31,15,34,5,37,67,36,41,1,20
+2026,75755,Kaleb Brown,Robert Morris,19,11,8,4,7,1,21,48,20,0,0,0
+2026,75756,Trevon Brazile,Arkansas,86,19,31,14,34,5,37,67,36,41,1,20
 2026,75759,Anton Brookshire,Austin Peay,13,14,2,7,8,0,49,88,45,0,0,0
 2026,75760,Yaya Keita,Albany,7,5,4,2,5,2,0,0,0,0,0,0
 2026,75779,Makai Willis,Texas St.,59,39,38,7,23,3,0,5,0,7,3,5
 2026,75785,TJ Long,Vermont,28,20,9,20,32,4,45,109,34,0,0,0
 2026,75792,Xzavier Long,Hampton,57,46,20,14,20,7,21,63,21,5,2,3
 2026,75805,Kadar Waller,Cal St. Bakersfield,17,23,2,5,19,1,7,18,5,0,0,0
-2026,75809,George Ivory III,Mississippi Valley St.,0,0,0,1,1,1,1,1,1,0,0,0
+2026,75809,George Ivory III,Mississippi Valley St.,1,1,1,1,1,1,2,1,1,0,0,0
 2026,75813,Jake Heidbreder,Fresno St.,75,61,21,4,15,2,62,139,52,0,0,0
 2026,75837,James Cooper,Georgia St.,6,7,3,2,3,2,0,0,0,0,0,0
 2026,75846,Evan Nelson,Arizona,1,1,0,0,1,0,3,5,3,0,0,0
@@ -419,10 +419,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75876,Mohamed Keita,Temple,4,5,2,0,2,0,0,0,0,2,1,2
 2026,75877,Kendall Blue,Nebraska,1,2,0,0,1,0,3,4,2,0,0,0
 2026,75878,Ryan Conwell,Louisville,60,43,22,13,25,1,102,186,79,0,0,0
-2026,75879,Dok Muordar,Monmouth,43,31,30,6,10,6,0,0,0,14,0,13
-2026,75881,William Kyle III,Syracuse,102,43,54,5,13,3,0,0,0,57,9,40
+2026,75879,Dok Muordar,Monmouth,43,31,30,6,11,6,0,0,0,14,0,13
+2026,75881,William Kyle III,Syracuse,104,43,55,5,13,3,0,0,0,59,9,41
 2026,75883,Kolby King,Utah St.,24,6,13,5,9,1,40,64,39,5,0,4
-2026,75884,Christian Winborne,Nicholls St.,20,20,10,2,7,1,51,97,49,2,0,1
+2026,75884,Christian Winborne,Nicholls St.,20,22,10,2,9,1,54,101,52,2,0,1
 2026,75885,Quin Berger,Bucknell,6,9,3,3,5,1,22,50,21,0,0,0
 2026,75888,Austin Benigni,Navy,63,82,7,56,91,17,57,74,42,0,0,0
 2026,75892,Jayden Pierre,TCU,39,29,17,32,39,9,47,84,32,3,0,3
@@ -434,7 +434,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,75910,Evans Kipruto,UC Santa Barbara,15,7,15,8,5,6,0,0,0,3,0,3
 2026,75911,Erik Pratt,Stony Brook,95,94,17,56,68,9,53,113,33,4,0,1
 2026,75912,Tavari Johnson,Akron,95,42,31,56,52,7,65,106,49,1,0,1
-2026,75913,Ryan Prather Jr.,Robert Morris,53,38,19,33,45,9,84,132,78,2,0,1
+2026,75913,Ryan Prather Jr.,Robert Morris,56,39,20,33,45,9,84,136,78,2,0,1
 2026,75914,Cavan Reilly,Delaware,1,1,1,0,1,0,0,5,0,0,0,0
 2026,75915,Houston Emory,Delaware,10,4,7,3,2,2,2,0,2,3,0,2
 2026,75920,Max Mackinnon,LSU,55,45,17,32,69,6,65,107,62,0,0,0
@@ -476,7 +476,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76015,Mike Sharavjamts,South Carolina,74,33,29,14,36,3,26,54,24,14,3,11
 2026,76016,Achile Spadone,Bucknell,83,57,26,19,48,3,43,102,37,0,0,0
 2026,76020,Simeon Womack,Bethune Cookman,0,0,0,0,0,0,0,0,0,0,0,0
-2026,76022,Jack Collins,Monmouth,17,18,7,3,12,1,39,92,35,0,0,0
+2026,76022,Jack Collins,Monmouth,17,18,7,3,12,1,40,97,36,0,0,0
 2026,76023,Joe Hurlburt,Davidson,2,4,1,1,1,1,2,4,2,1,0,0
 2026,76025,Grant Newell,Western Kentucky,46,51,21,22,35,6,51,94,49,11,5,9
 2026,76027,Jack Payne,Idaho,24,19,7,5,8,0,39,80,35,3,0,3
@@ -489,7 +489,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76036,Edward Nnamoko,Winthrop,34,20,18,3,16,3,0,1,0,3,2,3
 2026,76037,Bendji Pierre,Mercer,5,2,2,2,9,0,10,25,10,0,0,0
 2026,76039,Daniel Rivera,UAB,126,72,80,12,43,5,2,5,2,50,4,42
-2026,76041,Jack Doumbia Jr.,Towson,86,60,21,27,55,1,5,33,3,13,1,5
+2026,76041,Jack Doumbia Jr.,Towson,87,63,21,27,56,1,5,33,3,13,1,5
 2026,76060,Keyshawn Hall,Auburn,90,82,31,21,35,3,53,81,37,10,0,7
 2026,76063,Jonathan Beagle,Richmond,38,23,20,7,15,4,0,2,0,6,0,5
 2026,76064,Romad Dean,Tulsa,26,4,20,0,2,0,22,37,22,19,1,16
@@ -498,15 +498,15 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76071,Trejon Ware,Arkansas Pine Bluff,0,0,0,0,1,0,0,0,0,0,0,0
 2026,76072,Joshua Ola-Joseph,Loyola Chicago,36,25,20,3,9,2,23,65,22,12,0,9
 2026,76074,Cam Thrower,Penn,10,12,3,6,23,1,18,30,14,0,0,0
-2026,76076,Nick Krass,Nicholls St.,6,5,6,2,0,1,7,13,7,0,0,0
-2026,76077,Brian Taylor,East Tennessee St.,70,47,20,44,57,6,51,94,43,10,2,7
+2026,76076,Nick Krass,Nicholls St.,6,5,6,2,1,1,7,15,7,0,0,0
+2026,76077,Brian Taylor,East Tennessee St.,75,48,22,45,60,6,52,97,43,11,2,8
 2026,76078,Tre Dinkins,George Washington,12,11,3,5,11,0,67,99,37,1,0,1
 2026,76080,Koren Johnson,Mississippi,3,2,0,7,17,3,6,25,5,0,0,0
 2026,76084,Achor Achor,Mississippi St.,39,29,18,11,20,2,17,43,17,16,2,10
 2026,76086,Sincere Parker,Memphis,54,41,16,43,73,9,28,55,22,2,2,2
 2026,76088,Jerome Palm,UMKC,51,35,28,34,52,14,4,18,4,9,1,8
-2026,76091,Harry Wessels,Saint Mary's,43,32,26,9,16,8,0,0,0,10,5,8
-2026,76092,Silas Sunday,Hofstra,53,15,35,17,19,10,0,1,0,6,1,6
+2026,76091,Harry Wessels,Saint Mary's,43,34,26,9,16,8,0,0,0,10,5,8
+2026,76092,Silas Sunday,Hofstra,54,15,36,18,20,10,0,1,0,6,1,6
 2026,76094,Sadiku Ibine Ayo,St. John's,11,7,9,5,9,3,6,13,6,2,0,2
 2026,76095,Eric Mulder,Iowa St.,4,5,1,0,2,0,1,0,1,1,0,0
 2026,76098,Maleek Arington,Seattle,13,32,0,8,22,4,15,31,14,2,0,0
@@ -516,14 +516,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76108,Brock Matheny,Davidson,0,0,0,0,0,0,1,0,1,0,0,0
 2026,76114,Jacari White,Virginia,17,13,7,4,8,0,56,73,44,5,0,3
 2026,76117,Braxton Bayless,Little Rock,49,32,9,36,77,6,30,61,20,0,0,0
-2026,76119,David Coit,Maryland,42,27,1,27,35,4,68,138,29,0,0,0
+2026,76119,David Coit,Maryland,44,27,1,29,36,5,71,147,29,0,0,0
 2026,76121,DeJuan Campbell,California,9,11,2,5,16,1,9,14,6,0,0,0
 2026,76124,Will Johnston,Richmond,15,21,4,25,39,5,55,89,41,0,0,0
 2026,76128,Mohamed Wague,Oklahoma,72,38,43,2,5,2,1,4,1,21,4,19
 2026,76129,Jestin Porter,Clemson,31,37,5,14,23,2,56,111,47,0,0,0
 2026,76132,Luca Colceag,Tennessee Martin,5,2,1,3,5,0,19,45,18,1,0,0
 2026,76133,Camden Heide,Texas,18,10,6,1,2,1,44,51,42,8,1,4
-2026,76139,Barry Dunning Jr.,Pittsburgh,77,35,40,9,22,4,54,107,52,24,1,22
+2026,76139,Barry Dunning Jr.,Pittsburgh,82,36,42,9,22,4,56,109,54,24,1,22
 2026,76140,Kymany Houinsou,Loyola Chicago,29,19,6,5,10,3,5,7,5,9,1,4
 2026,76144,Iaroslav Niagu,Jacksonville St.,31,22,20,13,23,5,0,0,0,8,1,7
 2026,76148,Owen Kmety,Wake Forest,1,0,0,0,0,0,0,0,0,1,0,0
@@ -532,9 +532,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76151,Cord Stansberry,Western Carolina,47,49,15,27,49,3,56,128,47,7,0,3
 2026,76153,Jevon Porter,Missouri,18,5,7,3,3,1,7,21,7,3,0,1
 2026,76154,David Mager,Pepperdine,17,28,7,8,12,3,16,27,16,0,2,0
-2026,76155,Jorge Diaz Graham,Oregon St.,15,12,9,12,15,9,20,38,20,4,0,3
+2026,76155,Jorge Diaz Graham,Oregon St.,17,13,10,12,15,9,23,40,23,4,0,3
 2026,76156,Denver Anglin,Iona,22,31,6,22,28,6,56,132,42,0,1,0
-2026,76159,JJ Starling,Syracuse,79,59,12,31,66,2,24,57,20,6,1,1
+2026,76159,JJ Starling,Syracuse,79,59,12,32,69,2,24,59,20,6,1,1
 2026,76160,Ven-Allen Lubin,N.C. State,156,53,97,8,16,2,3,8,3,52,5,44
 2026,76161,Aidan Hadaway,Ohio,98,48,46,29,39,4,38,94,31,17,1,13
 2026,76166,Chris Ashby,Queens,3,7,0,10,21,3,103,179,100,0,0,0
@@ -548,19 +548,19 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76182,Seth Hubbard,Milwaukee,20,14,4,15,25,1,14,24,11,3,0,2
 2026,76183,Max Burton,Western Michigan,47,36,23,15,28,8,0,2,0,4,1,4
 2026,76184,Jacob Wilson,Morehead St.,0,1,0,0,0,0,0,4,0,0,0,0
-2026,76185,Jasteven Walker,Alabama St.,15,11,7,2,9,2,9,17,9,5,1,2
+2026,76185,Jasteven Walker,Alabama St.,16,11,8,2,9,2,9,20,9,6,1,3
 2026,76187,Jermaine Ballisager Webb,Portland,64,29,47,13,24,9,21,37,21,23,1,22
 2026,76193,Amani Lyles,Akron,109,51,78,5,10,2,43,60,42,18,1,11
 2026,76196,Braden Smith,Purdue,40,25,7,70,81,9,54,85,32,0,0,0
 2026,76199,Chris Morgan,Purdue Fort Wayne,3,5,1,3,3,0,9,25,8,0,0,0
-2026,76200,Kaleb Banks,DePaul,32,17,21,2,12,1,22,39,22,7,0,6
+2026,76200,Kaleb Banks,DePaul,32,17,21,2,11,1,22,39,22,7,0,6
 2026,76201,Thomas Tut,Jacksonville St.,3,6,1,0,1,0,3,2,3,0,0,0
 2026,76202,Neel Beniwal,San Diego,0,0,0,0,0,0,1,1,1,0,0,0
 2026,76203,Jeremiah Nyarko,Sacramento St.,1,3,1,0,1,0,0,0,0,0,0,0
 2026,76204,Emmanuel Callas,San Diego,2,2,0,3,5,2,0,0,0,1,0,0
 2026,76205,Gus Hurlburt,Northwestern,0,0,0,1,0,1,0,0,0,0,0,0
 2026,76207,KC Ibekwe,Pacific,32,27,22,17,8,10,0,0,0,1,1,1
-2026,76209,Orlando Lovejoy,Detroit Mercy,77,46,16,75,121,15,4,22,1,0,0,0
+2026,76209,Orlando Lovejoy,Detroit Mercy,77,49,16,80,127,15,4,22,1,0,0,0
 2026,76214,Justin Mullins,Northwestern,17,8,11,1,2,0,8,18,7,4,0,3
 2026,76217,Andrew Alia,Drake,13,14,7,11,14,5,42,69,42,0,0,0
 2026,76218,Ja'Kobi Gillespie,Tennessee,74,54,22,28,55,2,85,171,65,3,0,2
@@ -622,7 +622,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76342,Chas Kelley III,Georgia Tech,9,11,4,8,10,2,28,45,25,0,0,0
 2026,76343,Prince Aligbe,Southern Illinois,67,58,34,16,28,4,0,17,0,13,3,9
 2026,76346,Donald Hand Jr.,Boston College,38,39,13,34,61,5,33,113,29,2,1,2
-2026,76347,Dan Skillings Jr.,Baylor,44,37,18,19,30,4,20,48,19,4,1,0
+2026,76347,Dan Skillings Jr.,Baylor,48,38,19,19,31,4,20,49,19,4,1,0
 2026,76349,Davion Sykes,Southern Illinois,81,48,56,9,28,2,0,8,0,36,4,28
 2026,76350,Jordan Mason,Temple,60,44,11,48,82,12,20,40,15,0,0,0
 2026,76351,Koat Keat Tong,UC Santa Barbara,9,3,5,0,2,0,1,0,1,0,0,0
@@ -636,7 +636,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76366,Chase Martin,Oral Roberts,21,21,6,0,5,0,4,2,2,0,0,0
 2026,76367,Amarri Monroe,Quinnipiac,90,69,30,44,78,11,36,95,30,18,4,9
 2026,76368,"Anthony Arrington, Jr.",Mount St. Mary's,19,18,5,16,34,4,12,40,11,0,0,0
-2026,76370,Coleton Benson,New Orleans,23,22,10,44,57,21,86,152,73,0,0,0
+2026,76370,Coleton Benson,New Orleans,24,22,11,45,58,21,89,159,76,0,0,0
 2026,76372,Rex Sunderland,Stonehill,30,40,3,1,15,0,22,59,22,0,0,0
 2026,76374,Ridvan Tutic,Stonehill,78,51,41,5,8,0,0,0,0,15,1,13
 2026,76375,Braden Appelhans,Drake,6,6,1,5,12,3,29,46,26,0,0,0
@@ -673,7 +673,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76458,Wilguens Jr. Exacte,Drake,24,18,12,6,14,0,9,33,8,2,0,1
 2026,76460,Ryan Zan,Fairfield,6,4,2,1,6,1,3,12,3,1,0,1
 2026,76465,Nick Ellington,George Mason,42,25,30,8,15,4,1,0,1,8,3,8
-2026,76466,Marvin McGhee III,UT Rio Grande Valley,27,24,11,8,14,3,65,91,49,0,0,0
+2026,76466,Marvin McGhee III,UT Rio Grande Valley,27,24,11,9,14,3,68,94,52,0,0,0
 2026,76468,Apostolos Roumoglou,Richmond,12,5,8,3,3,1,14,43,14,2,0,1
 2026,76470,Louie Jordan,Radford,4,3,3,0,1,0,27,48,25,0,0,0
 2026,76471,Joseph Pinion,South Florida,41,45,21,8,17,0,98,158,90,6,4,5
@@ -688,7 +688,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76493,Troy Hupstead,Texas Southern,79,46,41,19,34,9,17,40,12,2,0,1
 2026,76494,Jackson Francois,Arizona,1,0,0,1,0,0,0,0,0,0,0,0
 2026,76495,Aidan Shaw,Boston College,47,20,33,5,17,3,2,13,2,39,4,32
-2026,76496,Andrew Ball,Monmouth,56,17,29,17,26,5,24,49,23,18,0,13
+2026,76496,Andrew Ball,Monmouth,59,17,29,18,27,5,24,53,23,20,0,13
 2026,76498,TJ Johnson,VMI,35,27,14,20,27,7,101,190,77,2,1,2
 2026,76499,Daniel Egbuniwe,St. Bonaventure,21,21,8,6,17,1,43,65,40,4,3,2
 2026,76504,Dionjahe Thomas,Jackson St.,33,31,19,9,12,6,1,2,1,6,2,5
@@ -703,20 +703,20 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76530,Marcus Jackson,Siena,0,1,0,1,0,0,0,4,0,0,0,0
 2026,76531,Mak Manciel,Eastern Michigan,9,4,4,5,9,0,35,63,29,1,0,0
 2026,76532,Oumar Koureissi,Texas Southern,8,7,5,0,7,0,0,7,0,2,0,2
-2026,76539,Angel Montas Jr.,UMass Lowell,113,72,34,32,35,10,27,59,26,4,0,3
+2026,76539,Angel Montas Jr.,UMass Lowell,115,76,34,35,37,10,30,61,28,4,0,3
 2026,76540,Brenen Lorient,West Virginia,92,53,55,31,36,17,19,38,19,30,8,23
-2026,76545,Braeden Smith,Gonzaga,26,15,9,19,23,2,16,30,14,0,0,0
+2026,76545,Braeden Smith,Gonzaga,27,15,10,19,23,2,17,32,15,0,0,0
 2026,76546,Brady Cummins,Colgate,5,10,3,5,14,4,12,23,12,1,0,1
 2026,76549,Dylan Arnett,North Texas,57,35,37,46,82,23,0,0,0,14,3,11
 2026,76550,Jaden Slaughter,Sacred Heart,43,31,15,8,22,3,10,19,10,2,0,1
 2026,76551,Isaac Jack,Pacific,96,42,56,20,19,14,0,0,0,19,3,17
 2026,76552,"Aaron Price, Jr.",Cal Poly,12,7,10,0,4,0,3,3,3,8,1,7
 2026,76553,RJ Smith,DePaul,17,22,4,16,17,2,36,82,33,0,0,0
-2026,76555,Logan Woods,Wright St.,20,9,9,14,17,1,22,50,22,0,0,0
+2026,76555,Logan Woods,Wright St.,21,9,10,14,17,1,22,51,22,0,0,0
 2026,76558,Stephon Payne III,Seton Hall,71,56,46,5,10,1,0,0,0,22,2,20
 2026,76559,Treysen Eaglestaff,West Virginia,43,35,7,15,32,0,52,105,47,1,2,1
 2026,76560,Robert Lewis,Lindenwood,43,17,25,12,17,7,2,7,2,9,0,7
-2026,76562,Caden Powell,Baylor,45,20,37,25,15,11,0,2,0,25,5,24
+2026,76562,Caden Powell,Baylor,49,20,41,26,15,12,0,2,0,29,5,28
 2026,76564,Gestin Liberis,Saint Francis,55,33,30,10,18,3,2,9,2,11,0,7
 2026,76567,Will Berg,Wichita St.,69,45,34,16,28,7,0,2,0,20,1,15
 2026,76569,Isaiah Hicks,Gardner Webb,0,0,0,1,1,0,0,2,0,0,0,0
@@ -737,14 +737,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76607,Henri Veesaar,North Carolina,112,38,74,43,33,20,34,48,32,55,7,38
 2026,76611,A'lahn Sumler,Charleston Southern,110,84,17,18,32,2,59,86,43,1,4,1
 2026,76612,Felix Okpara,Tennessee,79,32,64,8,22,8,4,7,4,53,7,46
-2026,76615,LJ Wells,Northern Kentucky,102,50,37,33,36,6,13,32,12,15,1,8
+2026,76615,LJ Wells,Northern Kentucky,109,53,41,35,38,6,13,34,12,16,1,9
 2026,76616,Cody Pennebaker,Lamar,43,28,23,38,48,18,9,23,9,13,1,7
 2026,76617,Nate Calmese,Wake Forest,16,13,3,35,34,4,34,52,20,3,0,0
 2026,76620,Turner Buttry,Eastern Kentucky,13,11,2,13,21,3,56,93,46,0,0,0
 2026,76621,Jaden Daughtry,Marist,38,31,19,13,20,3,8,38,8,9,0,6
 2026,76622,Kyle Carlesimo,Colgate,7,4,4,26,33,10,56,100,54,0,0,0
 2026,76624,Cam Haffner,Western Kentucky,4,6,0,5,5,1,28,60,27,0,0,0
-2026,76625,Sincere Malone,Nicholls St.,89,56,33,15,26,3,17,38,15,9,1,2
+2026,76625,Sincere Malone,Nicholls St.,89,56,33,17,27,4,17,38,15,9,1,2
 2026,76626,Isaiah Brickner,Idaho,64,41,15,16,33,1,41,56,35,8,5,3
 2026,76627,Trace Salton,Marist,4,3,2,0,3,0,3,4,3,0,1,0
 2026,76629,Kyle Thomas,SIU Edwardsville,38,31,24,14,29,8,11,21,11,14,7,12
@@ -765,7 +765,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76659,AJ Smith,Bradley,49,43,26,7,19,4,33,57,33,16,5,8
 2026,76661,Cade Hornecker,Abilene Christian,32,28,24,22,27,20,3,14,3,14,3,13
 2026,76664,Christian May,UNC Wilmington,48,21,18,10,34,0,57,105,48,6,0,5
-2026,76665,Dylan Williamson,Towson,35,35,5,58,89,1,78,152,36,0,0,0
+2026,76665,Dylan Williamson,Towson,37,37,5,62,95,1,79,157,36,0,0,0
 2026,76667,Kylan Blackmon,Charlotte,3,3,3,1,10,0,8,27,8,0,0,0
 2026,76668,Harlan Obioha,West Virginia,52,37,36,2,11,0,1,0,1,8,3,6
 2026,76670,Tyler Andrews,Bethune Cookman,12,8,3,7,8,6,36,48,34,4,0,1
@@ -775,7 +775,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76679,Kareem Watson,Delaware St.,10,7,3,23,42,12,0,1,0,0,0,0
 2026,76683,Chris Moncrief,Saint Francis,48,26,24,16,31,9,9,17,9,3,1,1
 2026,76684,Gabe Spinelli,Central Connecticut,9,9,2,0,3,0,2,4,1,1,0,0
-2026,76688,Michael Rataj,Baylor,32,22,14,38,49,9,12,41,12,1,0,1
+2026,76688,Michael Rataj,Baylor,32,22,14,38,49,9,12,42,12,1,0,1
 2026,76690,George Beale Jr.,UCF,3,2,0,4,17,0,19,35,16,0,0,0
 2026,76691,Perry Smith Jr.,Kennesaw St.,21,14,10,3,1,2,0,1,0,2,2,2
 2026,76692,Jackson Skipper,Vermont,4,5,3,2,2,0,7,19,6,0,0,0
@@ -785,13 +785,13 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76703,Caleb Shaw,Grand Canyon,30,14,15,5,6,3,27,45,27,4,0,4
 2026,76705,Xavier Amos,Loyola Chicago,28,20,10,6,12,1,26,53,25,2,0,0
 2026,76708,Langston Reynolds,Minnesota,116,67,52,12,19,4,11,32,9,12,2,7
-2026,76709,Brock Wisne,Northern Colorado,129,66,59,30,30,7,25,48,25,4,2,2
+2026,76709,Brock Wisne,Northern Colorado,133,68,61,33,33,8,25,49,25,4,2,2
 2026,76713,B.J. Edwards,SMU,64,31,22,24,42,6,42,71,36,11,2,6
 2026,76715,Learic Davis,USC Upstate,43,26,14,6,12,0,21,40,19,9,3,4
 2026,76717,Sami Pissis,Alabama A&M,36,37,9,28,44,3,33,68,21,1,0,0
 2026,76719,PJ Haggerty,Kansas St.,145,79,72,80,120,15,38,72,33,1,0,1
-2026,76721,Leo Torbor,Texas A&M Corpus Chris,41,45,11,11,19,1,1,8,1,1,0,0
-2026,76723,Ibu Yamazaki,Northern Colorado,27,16,7,9,13,1,51,92,47,4,0,3
+2026,76721,Leo Torbor,Texas A&M Corpus Chris,41,47,11,11,19,1,1,8,1,1,1,0
+2026,76723,Ibu Yamazaki,Northern Colorado,28,16,7,10,13,1,54,99,49,4,0,3
 2026,76726,TJ Hurley,Vermont,42,18,17,34,41,6,73,110,59,2,0,2
 2026,76733,Josiah Harris,La Salle,59,49,40,26,53,19,0,0,0,7,1,7
 2026,76736,Fredrick King,Murray St.,137,65,70,15,17,8,5,5,3,39,3,30
@@ -800,19 +800,19 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76741,Cooper Noard,Cornell,70,27,40,17,13,8,76,118,72,1,0,0
 2026,76746,Elijah Hulsewe,UCF,4,3,2,1,0,1,0,0,0,0,0,0
 2026,76747,Jeremy Foumena,UCF,21,12,16,19,20,11,0,1,0,12,2,11
-2026,76750,Jaylen Thompson,Stanford,11,5,5,3,2,0,3,11,2,2,1,2
+2026,76750,Jaylen Thompson,Stanford,11,7,5,4,2,0,4,13,3,2,1,2
 2026,76752,Ahjany Lee,Houston Christian,3,2,2,2,0,1,0,0,0,1,0,1
 2026,76753,Andrew Rohde,Wisconsin,18,14,3,6,9,1,38,79,34,0,0,0
 2026,76755,Carter Bjerke,St. Thomas,20,11,17,4,4,3,71,85,71,0,0,0
 2026,76757,David Idada,Southeast Missouri St.,10,14,4,0,0,0,0,0,0,0,0,0
-2026,76758,Benny Gealer,Stanford,14,11,7,11,9,1,81,115,72,0,0,0
-2026,76759,Ryan Agarwal,Stanford,20,31,9,8,17,3,34,66,31,1,1,1
+2026,76758,Benny Gealer,Stanford,14,11,7,12,10,1,84,118,75,0,0,0
+2026,76759,Ryan Agarwal,Stanford,20,31,9,8,17,3,37,67,33,1,1,1
 2026,76760,Jalen Washington,Vanderbilt,74,34,57,14,19,9,9,22,9,38,4,36
 2026,76761,Tyler Nickel,Vanderbilt,25,7,17,24,23,3,94,140,89,7,1,5
 2026,76768,Matus Hronsky,Portland,21,11,13,12,17,2,26,60,26,4,0,1
 2026,76770,Dominique Ford,San Diego,11,12,5,34,36,13,10,35,9,0,1,0
 2026,76772,David Dixon,Duquesne,74,34,45,11,15,6,3,12,3,37,10,27
-2026,76773,German Plotnikov,Hofstra,24,13,16,13,25,5,50,80,48,4,1,3
+2026,76773,German Plotnikov,Hofstra,25,13,17,13,27,5,52,83,50,4,1,3
 2026,76774,Halil Barre,Akron,12,3,11,0,2,0,0,0,0,6,1,6
 2026,76775,Emanuel Sharp,Houston,31,18,14,37,60,6,83,138,71,3,0,0
 2026,76777,Devin Carney,Denver,0,0,0,0,0,0,1,1,1,0,0,0
@@ -833,14 +833,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76818,Kylan Boswell,Illinois,63,32,19,14,25,2,31,71,13,2,0,0
 2026,76821,Cooper Jones,Old Dominion,0,0,0,0,0,0,1,1,1,0,0,0
 2026,76826,Jaden Alexander,Cal St. Bakersfield,33,33,11,6,18,3,12,19,11,4,0,2
-2026,76833,Ben Vander Wal,Furman,85,40,59,3,5,0,2,7,2,16,5,14
+2026,76833,Ben Vander Wal,Furman,87,40,60,3,5,0,2,7,2,16,5,14
 2026,76835,Chandler Jackson,Arkansas St.,61,42,11,38,36,2,13,35,12,6,1,2
 2026,76836,Riley Kugel,UCF,67,58,31,26,62,4,54,82,38,13,0,10
-2026,76838,Cameron Corhen,Pittsburgh,101,57,67,43,60,23,14,23,14,39,5,35
-2026,76839,Baba Miller,Cincinnati,99,39,56,34,43,9,10,40,10,54,3,42
-2026,76842,Tom House,Furman,18,22,2,10,9,3,40,94,39,0,0,0
+2026,76838,Cameron Corhen,Pittsburgh,104,60,68,45,65,23,14,23,14,40,6,36
+2026,76839,Baba Miller,Cincinnati,103,41,58,35,44,9,10,41,10,57,3,43
+2026,76842,Tom House,Furman,19,22,3,11,9,3,42,97,41,0,0,0
 2026,76856,Brennan Rigsby,Radford,18,12,5,8,7,1,22,56,20,4,0,2
-2026,76857,Damarco Minor,Pittsburgh,15,8,0,15,22,1,54,110,31,3,0,0
+2026,76857,Damarco Minor,Pittsburgh,16,8,0,16,23,1,54,117,31,3,0,0
 2026,76859,Marquel Sutton,LSU,78,49,42,24,34,10,32,75,32,22,1,18
 2026,76860,Lamar Wilkerson,Indiana,78,46,40,39,42,11,103,166,88,8,0,6
 2026,76865,Trey Thomas,Southern Indiana,7,4,5,4,11,1,1,9,1,0,0,0
@@ -857,7 +857,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76885,Jayden Dawson,Kansas,4,3,3,1,3,1,12,30,10,1,0,1
 2026,76886,Jalen Quinn,Drake,92,74,21,83,105,7,46,85,31,1,0,0
 2026,76887,Christoph Tilly,Ohio St.,69,41,40,21,33,9,13,40,11,7,1,5
-2026,76888,Jake Ensminger,Santa Clara,30,8,12,5,4,4,30,48,29,2,0,1
+2026,76888,Jake Ensminger,Santa Clara,30,8,12,5,4,4,32,48,31,2,0,1
 2026,76889,Kosy Akametu,Iona,68,57,31,16,33,4,28,65,25,4,5,2
 2026,76893,Braden Huff,Gonzaga,75,21,44,63,39,37,7,14,7,6,0,6
 2026,76894,Jaylen Peterson,Presbyterian,102,54,58,32,37,11,1,0,1,37,4,28
@@ -874,11 +874,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76921,Deangelo Elisee,Purdue Fort Wayne,47,19,38,0,3,0,1,1,1,9,1,9
 2026,76922,Paul Otieno,Saint Louis,51,37,39,4,6,3,2,1,2,13,1,12
 2026,76924,Federiko Federiko,Texas A&M,21,13,18,0,1,0,0,0,0,14,3,12
-2026,76927,JJ White,Baylor,0,0,0,0,0,0,2,4,2,0,0,0
+2026,76927,JJ White,Baylor,0,0,0,1,0,0,2,4,2,0,0,0
 2026,76928,Jaeden Marshall,La Salle,21,24,15,20,36,9,46,89,42,0,1,0
 2026,76931,Drake Allen,Utah St.,50,34,14,2,10,1,22,47,17,7,1,3
 2026,76932,Bryant Selebangue,Western Kentucky,24,15,12,1,2,1,0,0,0,1,2,1
-2026,76935,Cam Morris III,East Tennessee St.,119,63,67,23,28,9,10,20,10,23,1,20
+2026,76935,Cam Morris III,East Tennessee St.,122,64,68,23,28,9,10,20,10,24,1,21
 2026,76942,Tyler Houser,Delaware,72,43,35,17,24,6,41,64,40,1,1,1
 2026,76944,Taeshaud Jackson,Fairleigh Dickinson,74,61,28,25,32,2,9,37,6,5,0,4
 2026,76947,Asher Woods,Tulane,62,53,30,22,35,7,29,70,23,0,1,0
@@ -888,7 +888,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76953,Terry Anderson,High Point,141,77,55,10,13,2,17,43,15,11,4,6
 2026,76956,Cam Denson,Ball St.,15,26,11,2,6,0,4,9,4,0,0,0
 2026,76960,Duane Posey,Texas Southern,64,51,29,5,16,2,1,3,1,16,2,10
-2026,76961,Jakevion Buckley,New Orleans,59,67,11,53,89,8,29,60,13,0,0,0
+2026,76961,Jakevion Buckley,New Orleans,59,67,11,54,89,8,29,64,13,0,0,0
 2026,76964,Ben Gold,Marquette,48,22,37,4,3,2,36,99,35,12,2,8
 2026,76967,Harrison Carrington,UC Irvine,54,39,41,30,27,15,3,7,3,9,1,8
 2026,76968,Shammah Scott,Akron,31,24,7,27,36,0,69,93,39,0,0,0
@@ -898,8 +898,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,76973,Shawn Jones Jr.,Mississippi St.,29,17,15,11,20,6,20,49,19,13,2,10
 2026,76976,Skyy Clark,UCLA,26,11,6,15,33,6,46,55,30,0,0,0
 2026,76977,Jayden Epps,Mississippi St.,38,29,6,45,49,3,57,127,34,0,0,0
-2026,76978,Sencire Harris,Cincinnati,46,43,29,7,26,1,6,27,3,4,3,4
-2026,76983,Nigel Burris,Weber St.,80,44,35,0,14,0,18,34,18,15,1,13
+2026,76978,Sencire Harris,Cincinnati,48,43,30,7,26,1,6,27,3,4,3,4
+2026,76983,Nigel Burris,Weber St.,84,44,37,1,16,0,18,36,18,16,1,13
 2026,76988,RaSheed Jones,Coastal Carolina,30,27,3,52,81,3,70,124,46,1,3,0
 2026,76991,Marcus Kell,Western Carolina,70,47,23,28,35,3,40,98,36,2,0,2
 2026,77000,Cole Farrell,Long Beach St.,35,32,6,20,42,3,14,34,14,5,1,1
@@ -923,12 +923,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77040,Bryan Etumnu,Wright St.,6,9,5,1,2,0,9,21,9,3,1,3
 2026,77041,Jaden Schertz,Saint Louis,2,3,2,0,0,0,0,0,0,0,0,0
 2026,77042,Rob Martin,High Point,74,48,8,35,61,2,38,95,29,0,0,0
-2026,77044,Cruz Davis,Hofstra,84,73,18,52,83,9,73,106,43,8,4,7
+2026,77044,Cruz Davis,Hofstra,87,76,18,53,88,9,75,109,43,9,4,7
 2026,77045,Malik Reneau,Miami FL,161,82,85,30,47,13,23,40,22,23,7,17
-2026,77046,CJ Gunn,DePaul,37,35,19,58,73,31,55,112,51,9,4,8
-2026,77050,Tyren Moore,Georgia Southern,38,24,4,34,41,2,111,180,50,0,0,0
+2026,77046,CJ Gunn,DePaul,37,35,19,58,74,31,55,111,51,9,4,8
+2026,77050,Tyren Moore,Georgia Southern,39,25,4,34,43,2,113,185,51,0,0,0
 2026,77051,Malcolm Flaggs,Villanova,0,0,0,0,1,0,0,0,0,0,0,0
-2026,77052,Cam Gregory,Campbell,39,24,16,8,12,1,39,79,37,1,0,1
+2026,77052,Cam Gregory,Campbell,41,25,16,8,12,1,39,82,37,1,0,1
 2026,77053,Jamar Franklin,Jacksonville St.,5,9,2,0,3,0,34,56,30,0,0,0
 2026,77055,Henry Thengvall,Wichita St.,0,2,0,0,0,0,0,4,0,0,0,0
 2026,77056,Austin Nunez,UTSA,31,50,1,11,34,1,19,62,12,2,1,0
@@ -957,7 +957,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77105,Chisom Okpara,Stanford,45,50,9,6,16,0,17,39,15,6,0,3
 2026,77106,Sadraque NgaNga,San Jose St.,37,41,16,11,24,6,29,56,28,6,1,4
 2026,77107,Khalil Farmer,UMass Lowell,8,9,3,9,21,4,16,35,14,0,0,0
-2026,77108,Jace Whiting,Weber St.,37,29,13,12,27,3,22,38,20,0,1,0
+2026,77108,Jace Whiting,Weber St.,37,29,13,13,29,3,22,38,20,0,1,0
 2026,77110,Rich Rolf,Youngstown St.,45,25,22,1,8,0,41,74,37,4,0,2
 2026,77113,Elijah Jones,UTEP,63,16,28,29,68,13,48,72,45,19,0,15
 2026,77116,Dorian Finister,Louisiana,58,47,7,53,71,9,40,68,33,1,0,1
@@ -1021,7 +1021,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77224,Jaxon Kohler,Michigan St.,65,20,28,35,45,15,51,78,51,3,0,1
 2026,77225,Nick Sanders,Michigan St.,0,0,0,0,2,0,2,2,2,0,0,0
 2026,77226,Carson Cooper,Michigan St.,74,37,59,40,46,27,1,3,1,43,9,39
-2026,77227,Solomon Washington,Maryland,54,32,19,14,42,3,9,27,9,18,0,11
+2026,77227,Solomon Washington,Maryland,60,33,24,14,43,3,9,28,9,20,0,13
 2026,77228,Jordan Williams,Rice,2,3,0,0,4,0,1,8,1,0,0,0
 2026,77232,Justin Abson,Georgia,31,14,25,1,3,1,0,2,0,13,3,13
 2026,77233,Aidan Braccia,San Francisco,1,0,1,0,1,0,1,11,1,0,0,0
@@ -1091,7 +1091,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77393,Aidan Mahaney,UC Santa Barbara,56,49,13,33,43,7,71,112,55,1,0,0
 2026,77398,Walker Horn,Kentucky,0,0,0,0,0,0,1,5,1,0,0,0
 2026,77402,Kevin Gad,Saint Mary's,2,1,1,0,2,0,2,3,2,0,0,0
-2026,77404,Donovan Oday,Northern Kentucky,120,73,46,12,7,3,53,109,46,15,4,9
+2026,77404,Donovan Oday,Northern Kentucky,123,76,46,13,8,3,55,114,48,16,4,9
 2026,77411,Keon Thompson,Stephen F. Austin,115,83,9,51,65,5,22,51,12,4,0,1
 2026,77413,Caelum Swanton-Rodger,Old Dominion,81,38,53,14,17,5,0,1,0,39,3,30
 2026,77414,Dion Brown,Saint Louis,108,42,55,12,19,3,19,32,18,3,0,1
@@ -1101,7 +1101,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77424,Tae Davis,Oklahoma,124,83,48,12,29,3,7,36,7,22,5,19
 2026,77427,Jaquan Sanders,Florida A&M,25,19,10,21,31,7,53,98,41,0,0,0
 2026,77428,Devin Ree,Jackson St.,16,14,7,12,17,5,27,68,24,3,0,3
-2026,77430,Maurice Odum,Arizona St.,26,26,5,49,72,2,89,138,48,0,0,0
+2026,77430,Maurice Odum,Arizona St.,28,26,5,50,73,2,89,142,48,0,0,0
 2026,77432,Luke Hunger,George Washington,65,49,31,7,11,5,12,27,12,2,0,1
 2026,77433,Dior Johnson,Tarleton St.,58,43,17,50,55,15,25,21,22,0,0,0
 2026,77434,Guillermo Diaz Graham,San Francisco,23,16,13,2,12,0,26,44,26,9,3,8
@@ -1124,7 +1124,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77467,Cyril Martynov,Fairleigh Dickinson,80,52,51,5,22,2,1,6,1,6,0,5
 2026,77468,Kanye Clary,Oklahoma St.,44,50,3,10,29,0,38,67,16,0,0,0
 2026,77469,Kebba Njie,Notre Dame,7,4,5,5,2,3,0,1,0,5,0,5
-2026,77470,Mor Seck,Towson,29,21,22,7,13,5,0,0,0,12,2,11
+2026,77470,Mor Seck,Towson,31,22,24,7,15,5,0,0,0,14,2,13
 2026,77471,Avery Brown,Columbia,1,3,0,0,3,0,3,1,1,0,0,0
 2026,77472,Blair Thompson,Columbia,62,38,36,7,8,3,41,63,41,12,4,11
 2026,77474,Kyrese Mullen,New Mexico St.,16,17,8,1,12,1,7,23,7,0,0,0
@@ -1133,7 +1133,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77478,Demetrius Lilley,Binghamton,29,25,14,10,13,6,4,22,4,2,0,1
 2026,77479,Kimani Hamilton,UNLV,77,43,38,28,47,8,27,50,23,34,4,25
 2026,77482,Tarris Reed Jr.,Connecticut,118,48,90,30,33,20,0,3,0,27,2,23
-2026,77483,Collin Metcalf,Maryland,13,9,6,1,5,1,0,1,0,4,1,4
+2026,77483,Collin Metcalf,Maryland,14,9,6,1,5,1,0,1,0,4,1,4
 2026,77484,Dylan Andrews,Boise St.,37,32,8,25,47,2,41,90,25,2,0,0
 2026,77487,Jack Seidler,UCLA,0,1,0,1,2,0,0,1,0,0,0,0
 2026,77489,Jameel Brown,Delaware,3,7,0,0,1,0,8,7,5,0,0,0
@@ -1141,14 +1141,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77495,Jaden Clayton,Pacific,38,43,3,17,30,4,32,75,26,0,0,0
 2026,77499,Cam Lawin,San Diego St.,0,0,0,1,0,0,2,3,2,0,0,0
 2026,77500,Miles Byrd,San Diego St.,46,36,13,14,30,4,42,83,39,15,5,5
-2026,77501,Elijah Saunders,Maryland,24,24,10,22,23,12,52,80,50,3,0,1
+2026,77501,Elijah Saunders,Maryland,24,24,10,22,23,12,57,81,55,3,0,1
 2026,77502,Toby Onyekonwu,Stony Brook,0,1,0,10,9,2,6,14,5,0,0,0
 2026,77504,Leon Nahar,Stony Brook,0,1,0,0,1,0,2,2,2,0,0,0
 2026,77506,Jared Frey,UMass Lowell,4,1,1,5,9,2,11,31,11,0,0,0
 2026,77510,Brody Rowbury,Idaho,61,31,30,13,14,5,10,16,10,0,0,0
 2026,77511,Jamarques Lawrence,Nebraska,36,25,22,16,29,8,50,89,43,1,0,0
 2026,77515,Justin Bailey,Georgia,9,9,3,4,6,0,26,47,24,0,0,0
-2026,77516,Samuel Murray,Mississippi Valley St.,18,10,11,7,10,4,1,6,1,11,1,7
+2026,77516,Samuel Murray,Mississippi Valley St.,18,11,11,7,10,4,1,6,1,11,1,7
 2026,77521,Braxton Stacker,Southeast Missouri St.,50,38,14,24,41,9,40,93,37,9,3,4
 2026,77524,Jaxon Edwards,IU Indy,98,46,54,22,36,12,9,31,9,32,4,24
 2026,77534,Isaac Holmes,Saint Louis,1,0,1,0,0,0,1,2,1,0,0,0
@@ -1164,8 +1164,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77562,Garry Clark,Utah St.,69,13,40,12,16,9,1,5,1,5,0,4
 2026,77571,Steven Jamerson II,UCLA,18,4,11,2,4,2,0,0,0,8,0,6
 2026,77578,Andrew King,Youngstown St.,13,8,2,5,7,1,5,10,3,0,0,0
-2026,77594,Corey Washington,SMU,51,32,19,20,27,10,42,61,42,5,2,3
-2026,77600,Asjon Anderson,Alabama St.,43,54,3,14,40,0,50,113,27,0,0,0
+2026,77594,Corey Washington,SMU,52,32,20,22,28,11,43,66,43,5,2,3
+2026,77600,Asjon Anderson,Alabama St.,43,55,3,15,43,0,51,114,28,0,0,0
 2026,77606,Marcell McCreary,UT Arlington,37,37,12,31,24,7,46,96,38,2,1,2
 2026,77610,Marshal Destremau,UT Rio Grande Valley,4,8,4,4,5,3,5,8,5,1,0,1
 2026,77614,Connor Gal,Temple,3,0,1,0,0,0,0,2,0,0,0,0
@@ -1229,7 +1229,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77741,Collin Mulholland,Chattanooga,38,21,17,14,14,1,13,47,13,0,0,0
 2026,77749,Malachi Davis,LIU,69,71,16,66,85,9,41,91,27,9,1,5
 2026,77750,Nic McClain,Belmont,27,30,5,6,7,1,14,19,9,3,0,2
-2026,77752,Isaiah Moses,Eastern Washington,44,43,7,69,76,9,60,84,21,0,0,0
+2026,77752,Isaiah Moses,Eastern Washington,45,45,7,72,81,10,62,88,21,0,0,0
 2026,77754,Jeremiah Quigley,Binghamton,56,49,6,79,85,2,8,34,3,0,0,0
 2026,77755,Jean Aranguren,George Washington,54,38,12,6,13,0,23,35,16,0,0,0
 2026,77756,Gabe Cupps,Ohio St.,7,4,2,2,3,0,4,18,4,0,0,0
@@ -1241,13 +1241,13 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77763,Derek Vorst,Indiana St.,45,23,34,4,12,3,8,10,8,13,2,13
 2026,77765,Jaland Lowe,Kentucky,11,15,1,8,9,1,5,19,2,0,0,0
 2026,77769,Papa Amadou Kante,Pittsburgh,7,9,6,2,0,1,0,2,0,4,1,4
-2026,77770,Vincent Delano,Northern Colorado,34,19,11,9,18,0,22,46,21,1,1,1
+2026,77770,Vincent Delano,Northern Colorado,35,19,11,9,19,0,22,46,21,1,1,1
 2026,77771,Kelson Gebbers,Portland,2,0,2,1,0,1,2,5,2,0,0,0
 2026,77772,Collin Kuhl,Stetson,143,57,91,14,24,3,3,5,3,20,0,15
 2026,77775,Eren Banks,Appalachian St.,30,22,6,11,17,4,29,84,28,1,0,1
-2026,77777,Ibrahim Souare,Syracuse,9,2,8,0,2,0,0,1,0,4,0,4
+2026,77777,Ibrahim Souare,Syracuse,10,2,9,0,2,0,0,1,0,5,0,5
 2026,77778,Amir Arrington,George Washington,0,0,0,0,0,0,1,1,0,0,0,0
-2026,77779,Naithan George,Syracuse,33,35,7,40,39,3,36,78,14,0,0,0
+2026,77779,Naithan George,Syracuse,33,36,7,42,40,3,36,87,14,0,0,0
 2026,77780,Avantae Parker,Queens,132,51,68,9,9,1,4,7,3,30,0,17
 2026,77783,Keyshawn Mitchell,VCU,13,6,11,1,3,1,5,19,5,3,1,3
 2026,77785,Almar Atlason,Miami OH,29,14,12,11,9,2,47,84,46,8,0,4
@@ -1265,10 +1265,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77807,Jayden Teat,Sacramento St.,9,21,3,10,22,1,25,55,21,0,0,0
 2026,77808,Nazar Mahmoud,Grambling St.,0,0,0,0,0,0,0,0,0,0,0,0
 2026,77809,Marqueas Bell,Southeast Missouri St.,83,57,21,5,26,1,3,8,3,3,0,1
-2026,77810,Dontae Horne,Prairie View A&M,86,71,19,54,76,20,36,80,26,1,0,0
+2026,77810,Dontae Horne,Prairie View A&M,91,74,20,57,82,21,37,85,27,1,0,0
 2026,77811,William Humer,Northern Colorado,0,0,0,0,0,0,0,1,0,0,0,0
-2026,77815,Kwo Agwa,UT Rio Grande Valley,33,13,27,3,7,2,4,4,4,14,2,13
-2026,77821,Terrence Brown,Utah,140,108,46,44,83,5,32,66,30,20,2,9
+2026,77815,Kwo Agwa,UT Rio Grande Valley,34,14,28,3,7,2,4,4,4,14,2,13
+2026,77821,Terrence Brown,Utah,141,112,46,50,91,5,32,66,30,20,3,9
 2026,77823,Chuck Bailey III,Nevada,28,27,15,12,44,4,24,39,22,2,0,0
 2026,77826,Joshua Hughes,Evansville,39,13,23,16,21,7,41,70,39,8,1,4
 2026,77832,Jace Rayl,Purdue,0,0,0,0,2,0,0,0,0,0,0,0
@@ -1299,7 +1299,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77886,Owen Freeman,Creighton,50,25,33,5,11,2,0,0,0,11,2,10
 2026,77887,Carter Lang,Virginia,1,2,0,0,1,0,1,2,1,0,0,0
 2026,77888,Jordann Dumont,VCU,2,0,0,1,0,0,0,6,0,0,0,0
-2026,77889,Jason Rivera-Torres,Monmouth,70,75,22,39,60,7,51,104,39,10,2,7
+2026,77889,Jason Rivera-Torres,Monmouth,73,78,23,42,62,8,51,106,39,11,3,8
 2026,77890,"JaQualon ""JQ"" Roberts",Davidson,24,16,16,2,9,0,1,8,1,7,2,6
 2026,77891,DaJohn Craig,Coastal Carolina,8,6,3,7,11,1,33,53,25,3,0,2
 2026,77892,Jeremy Fears Jr.,Michigan St.,52,36,9,58,73,6,30,67,25,1,0,0
@@ -1307,7 +1307,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77897,Josh Lee,Denver,7,4,3,3,10,1,6,16,5,0,0,0
 2026,77900,Jasper Floyd,West Virginia,39,26,11,23,26,0,19,32,16,0,0,0
 2026,77901,Nakyel Shelton,Loyola Marymount,7,3,2,2,9,0,10,16,10,0,0,0
-2026,77902,Takai Simpkins,Oregon,46,38,16,29,40,6,50,88,48,9,0,5
+2026,77902,Takai Simpkins,Oregon,48,40,17,29,41,6,50,90,48,9,0,5
 2026,77904,Youssouf Singare,High Point,8,6,4,0,1,0,0,0,0,0,2,0
 2026,77905,Jayden Ross,Connecticut,24,9,15,6,5,1,17,31,17,15,1,10
 2026,77909,Fred Payne,Boston College,55,46,18,59,81,15,67,146,46,9,0,4
@@ -1318,11 +1318,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77918,Grady Whitt,UNC Wilmington,0,0,0,0,0,0,0,1,0,0,0,0
 2026,77919,TJ Biel,Maine,57,39,34,40,53,11,36,72,35,21,3,17
 2026,77921,Doug Young,Prairie View A&M,2,4,1,6,2,1,2,6,2,0,0,0
-2026,77929,Malek Gomma,Weber St.,83,63,47,10,21,3,2,3,2,22,1,19
+2026,77929,Malek Gomma,Weber St.,85,64,47,10,22,3,2,3,2,22,1,19
 2026,77930,Will Heimbrodt,Seattle,99,93,32,28,62,5,16,42,15,4,1,3
 2026,77931,David Tubek,UTEP,2,0,0,2,6,0,3,6,3,0,0,0
 2026,77932,Isaiah Coleman,Oklahoma St.,54,32,34,21,24,7,2,23,1,11,2,8
-2026,77933,Bukky Oboye,Santa Clara,90,25,67,4,3,1,8,22,8,52,9,44
+2026,77933,Bukky Oboye,Santa Clara,90,25,67,5,3,1,8,23,8,52,9,44
 2026,77935,Luke McEldon,Mount St. Mary's,136,56,72,24,28,12,0,4,0,19,0,15
 2026,77936,Isaac Bruns,South Dakota,60,54,18,34,57,5,23,43,21,0,0,0
 2026,77937,Shey Eberwein,South Dakota,18,14,3,4,7,0,3,10,2,5,2,2
@@ -1334,7 +1334,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77944,Ma'Shy Hill,Abilene Christian,20,11,16,6,7,4,0,0,0,4,1,4
 2026,77945,Darrion Baker,SIU Edwardsville,30,19,5,16,26,9,33,40,31,1,0,0
 2026,77948,Tyran Cook,Western Illinois,19,24,2,16,25,1,2,11,2,1,0,0
-2026,77950,Koree Cotton,UT Rio Grande Valley,76,50,39,10,33,4,46,70,39,10,2,5
+2026,77950,Koree Cotton,UT Rio Grande Valley,78,51,41,10,33,4,50,72,40,10,2,5
 2026,77951,Michael Belle,VCU,52,32,27,20,23,5,17,15,16,9,5,8
 2026,77952,AJ Clark,VMI,39,32,18,3,11,0,8,17,6,12,4,7
 2026,77953,Stephen Olowoniyi,Oregon St.,3,3,1,2,4,0,0,0,0,1,0,1
@@ -1343,7 +1343,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77960,Augustinas Kiudulas,Colorado St.,29,10,15,17,19,7,13,14,13,0,0,0
 2026,77961,Julius Mims,New Mexico St.,91,54,69,18,16,14,9,21,9,36,6,33
 2026,77962,Tyler Mrus,BYU,0,0,0,1,0,1,14,32,14,0,0,0
-2026,77963,Quinn Denker,Northern Colorado,74,52,14,63,59,7,39,74,32,0,0,0
+2026,77963,Quinn Denker,Northern Colorado,80,58,15,65,64,7,40,77,33,0,0,0
 2026,77964,EJ Neal,USC,1,0,1,0,0,0,0,4,0,1,0,1
 2026,77965,Cooper Bean,Indiana St.,2,0,2,1,0,1,2,7,2,0,0,0
 2026,77967,Eli Rice,Penn St.,14,22,6,5,10,2,41,64,39,0,0,0
@@ -1354,7 +1354,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,77981,Tariq Francis,Rutgers,31,31,4,90,107,23,46,85,35,0,0,0
 2026,77982,JJ Chaikovsky,Long Beach St.,3,3,2,0,2,0,0,2,0,0,0,0
 2026,77983,Jeffrey Akintolu,NJIT,3,2,0,0,0,0,2,10,2,1,0,0
-2026,77984,Cornelius Robinson Jr.,Monmouth,77,61,43,20,48,3,5,11,5,4,2,1
+2026,77984,Cornelius Robinson Jr.,Monmouth,78,61,44,20,49,3,5,11,5,4,2,1
 2026,77986,Cameron Piggee,NJIT,0,2,0,1,2,1,6,13,5,0,0,0
 2026,77990,Sebastian Robinson,NJIT,73,61,16,66,91,7,10,35,9,1,0,1
 2026,77991,Brady Dunlap,Saint Louis,17,12,9,1,9,0,40,53,39,1,0,1
@@ -1375,8 +1375,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78018,Dylan James,Georgia,37,26,16,16,25,4,1,16,1,16,4,11
 2026,78019,Joe Nugent,Holy Cross,16,5,7,19,23,8,48,70,46,1,0,0
 2026,78022,Jordan Clayton,Northwestern,2,2,1,2,8,1,28,43,28,0,0,0
-2026,78023,Dez White,Oregon St.,9,17,2,19,33,3,66,102,54,0,0,0
-2026,78024,Blake Barkley,East Tennessee St.,115,52,64,20,27,5,18,28,18,11,0,8
+2026,78023,Dez White,Oregon St.,10,17,2,20,34,4,66,108,54,0,0,0
+2026,78024,Blake Barkley,East Tennessee St.,119,55,65,21,28,5,18,28,18,12,0,9
 2026,78026,Dennis Evans,Grand Canyon,18,7,16,4,3,3,0,0,0,15,2,13
 2026,78027,Curtis Williams Jr.,Tulane,50,29,18,23,44,8,61,117,49,2,1,1
 2026,78028,Ty-Laur Johnson,San Diego,65,48,21,30,53,11,23,55,19,2,2,1
@@ -1397,17 +1397,17 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78065,CJ Beaumont,Sam Houston St.,3,6,2,1,5,0,12,15,10,1,0,1
 2026,78066,Armoni Zeigler,Ball St.,56,61,8,30,65,7,31,59,24,4,0,1
 2026,78068,AJ LaBeau,Cornell,0,1,0,1,1,0,0,1,0,0,0,0
-2026,78069,Solomon Callaghan,Wright St.,19,14,8,9,19,2,64,92,47,0,0,0
+2026,78069,Solomon Callaghan,Wright St.,19,14,8,9,19,2,66,96,48,0,0,0
 2026,78070,Parker Gerrits,Washington St.,4,3,2,2,3,0,15,25,12,1,0,0
-2026,78071,Isaiah Watts,Maryland,8,15,5,9,5,6,25,67,23,1,0,1
+2026,78071,Isaiah Watts,Maryland,8,15,5,9,5,6,25,68,23,1,0,1
 2026,78072,Spencer Mahoney,Temple,0,0,0,0,3,0,0,8,0,0,0,0
 2026,78074,Vincent Ricchiuti,Wake Forest,0,0,0,0,0,0,2,2,2,0,0,0
 2026,78076,Myles Rigsby,Tulsa,32,16,9,8,4,0,10,26,10,4,0,2
-2026,78077,Victor Valdes,Troy,95,88,30,13,25,2,25,92,19,2,3,2
-2026,78078,Thomas Dowd,Troy,65,44,28,25,31,6,58,117,44,10,1,5
+2026,78077,Victor Valdes,Troy,98,89,31,14,25,2,25,94,19,2,3,2
+2026,78078,Thomas Dowd,Troy,71,44,31,25,32,6,60,120,46,10,1,5
 2026,78079,Marcus Rigsby Jr.,UT Arlington,19,12,10,7,10,2,20,45,18,1,1,1
 2026,78080,Jarred Hall,Middle Tennessee,4,2,3,1,0,1,3,7,3,1,0,1
-2026,78083,Maki Johnson,East Tennessee St.,11,6,4,0,2,0,50,71,48,1,0,1
+2026,78083,Maki Johnson,East Tennessee St.,13,6,4,0,2,0,50,76,48,1,0,1
 2026,78084,Jaden Harris,Kennesaw St.,3,11,1,3,6,0,34,57,30,0,0,0
 2026,78088,Jamal Albritton,North Alabama,9,8,3,1,2,1,0,0,0,1,0,0
 2026,78089,Jake Davis,Illinois,8,5,5,0,0,0,50,72,49,0,0,0
@@ -1421,7 +1421,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78098,Eddie Ricks III,James Madison,49,27,22,12,12,2,15,37,15,20,1,13
 2026,78099,Tyler Ringgold,Tulane,60,39,22,14,24,8,22,50,22,2,0,1
 2026,78100,Bryce Lindsay,Villanova,38,30,11,12,35,1,69,132,45,0,0,0
-2026,78101,Chris Fields Jr.,Campbell,62,53,27,13,36,3,1,9,1,5,2,4
+2026,78101,Chris Fields Jr.,Campbell,65,55,29,14,36,3,1,10,1,5,2,4
 2026,78102,Jordan Leaks,Norfolk St.,17,11,4,7,19,3,24,62,22,1,0,0
 2026,78103,Cameron Barnes,Illinois St.,2,1,0,0,2,0,0,1,0,1,0,0
 2026,78105,Rashaud Marshall,Austin Peay,152,74,105,22,18,11,0,0,0,34,7,30
@@ -1464,7 +1464,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78168,Danny Stephens,Western Illinois,6,9,1,10,10,5,11,30,10,1,0,1
 2026,78169,Trent Pierce,Missouri,36,15,21,0,5,0,36,53,36,9,0,6
 2026,78172,Cedric Lath,Houston,4,1,3,0,0,0,0,0,0,2,0,2
-2026,78174,Rory Hawke,Saint Mary's,20,10,12,2,2,1,4,14,4,2,0,2
+2026,78174,Rory Hawke,Saint Mary's,21,10,13,2,2,1,4,14,4,2,0,2
 2026,78175,Freddie Dilione V,Penn St.,67,34,22,63,67,6,39,88,28,4,0,2
 2026,78176,Julian Gabbidon,Navy,1,2,1,0,0,0,0,0,0,0,0,0
 2026,78178,Jordan Pennick,Navy,21,22,8,12,17,5,39,90,39,0,0,0
@@ -1480,7 +1480,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78203,Stephen Byard,Chicago St.,45,38,31,32,48,14,5,7,4,4,0,4
 2026,78207,Djahi Binet,Southern Miss,134,64,75,7,17,2,4,8,4,19,3,13
 2026,78211,Jalyke Gaines-Wyatt,Hampton,51,56,9,21,32,6,19,50,15,0,0,0
-2026,78212,Seydou Traore,Utah,36,33,15,16,34,3,41,83,38,5,3,4
+2026,78212,Seydou Traore,Utah,37,34,15,18,36,3,43,86,40,5,3,4
 2026,78214,Nick Richart,Charlotte,3,1,3,0,0,0,0,0,0,1,0,1
 2026,78215,Braeden Shrewsberry,Notre Dame,10,16,2,22,41,5,88,131,60,0,0,0
 2026,78216,Carey Booth,Colorado St.,57,18,33,12,26,3,30,43,28,29,4,18
@@ -1490,7 +1490,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78220,Morris Ugusuk,West Virginia,4,2,4,0,2,0,6,22,5,0,0,0
 2026,78221,Austin Herro,St. Thomas,31,16,8,3,2,0,13,20,11,0,0,0
 2026,78222,Arden Conyers,Charlotte,14,7,9,10,7,2,49,84,45,8,1,7
-2026,78224,Jerrell Bellamy,Troy,83,27,73,6,14,4,6,11,6,39,6,38
+2026,78224,Jerrell Bellamy,Troy,89,28,78,7,17,5,6,11,6,41,6,39
 2026,78226,Lazar Djokovic,VCU,79,45,47,25,33,11,20,34,20,31,3,24
 2026,78227,Jonas Sirtautas,Loyola MD,33,9,19,6,6,2,2,12,2,9,0,8
 2026,78228,Christian Bliss,Delaware,59,44,2,28,60,2,65,100,23,0,0,0
@@ -1503,7 +1503,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78238,Christian Coleman,Oklahoma St.,86,62,53,10,17,3,14,36,12,31,3,26
 2026,78239,Chase Henderson,Montana,6,8,3,0,1,0,4,5,4,0,0,0
 2026,78240,Zack Davidson,Northern Arizona,38,19,21,25,23,9,1,2,1,1,0,1
-2026,78241,Money Williams,Montana,85,52,6,52,61,7,42,76,23,0,0,0
+2026,78241,Money Williams,Montana,89,55,6,56,66,7,44,79,24,0,0,0
 2026,78243,Connor Dick,Montana,7,6,5,0,3,0,1,9,1,1,0,1
 2026,78245,Devin Williams,Florida Atlantic,59,30,37,19,28,15,15,29,15,21,6,18
 2026,78246,Jan Vide,Loyola Marymount,44,40,7,72,93,15,8,21,7,0,0,0
@@ -1519,10 +1519,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78267,Chip Brunt,Northwestern St.,16,13,1,4,9,1,5,6,5,2,1,0
 2026,78269,Keenan Bey,UMass Lowell,0,1,0,0,0,0,0,0,0,0,0,0
 2026,78271,Vice Zanki,Niagara,23,13,13,20,17,3,42,66,40,3,2,1
-2026,78272,Emmett Marquardt,Eastern Washington,17,12,9,9,11,4,28,46,26,3,0,2
+2026,78272,Emmett Marquardt,Eastern Washington,18,12,10,11,11,6,29,50,27,4,0,3
 2026,78273,Zion Stanford,Villanova,4,0,2,1,2,0,0,3,0,0,0,0
 2026,78277,Cade Phillips,Tennessee,15,7,12,2,2,1,0,0,0,11,0,10
-2026,78279,Cameron Carr,Baylor,76,36,48,47,46,15,69,104,50,43,6,34
+2026,78279,Cameron Carr,Baylor,77,36,48,47,48,15,74,113,52,43,6,34
 2026,78280,J.P. Estrella,Tennessee,85,40,53,29,28,25,4,6,4,28,2,24
 2026,78281,Rueben Chinyelu,Florida,108,55,54,29,41,15,0,2,0,32,4,27
 2026,78282,Christian King,Montana St.,35,32,13,23,42,1,49,93,41,1,1,1
@@ -1540,11 +1540,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78306,Pavle Stosic,Pepperdine,28,21,18,6,7,2,4,19,4,0,0,0
 2026,78307,Thomas Tillman,Furman,0,0,0,0,0,0,0,1,0,0,0,0
 2026,78308,Payton Pitts,Harvard,0,1,0,0,0,0,0,0,0,0,0,0
-2026,78313,Drew Carter,Oregon,3,1,2,4,3,1,16,28,15,0,0,0
+2026,78313,Drew Carter,Oregon,3,1,2,4,4,1,16,30,15,0,0,0
 2026,78315,Dominique Daniels Jr.,Cal Baptist,121,109,14,57,76,4,52,114,26,6,0,2
 2026,78316,Cayden Vasko,Wofford,45,42,8,14,16,2,54,109,37,5,2,1
 2026,78317,Jacob Bannarbie,UNLV,42,30,23,3,12,0,1,2,0,8,1,7
-2026,78319,Brooklyn Hicks,Montana,47,25,20,7,17,3,30,54,27,4,1,1
+2026,78319,Brooklyn Hicks,Montana,47,26,20,8,18,4,31,57,28,4,1,1
 2026,78320,Marqui Worthy,UC Riverside,87,77,22,23,35,6,46,92,32,2,0,0
 2026,78322,Jayden Ndjigue,Massachusetts,30,22,18,25,21,9,6,19,6,1,0,1
 2026,78324,Cooper Josefsberg,Florida,0,1,0,0,0,0,1,0,1,0,0,0
@@ -1569,7 +1569,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78350,Spencer Elliott,Charlotte,30,24,18,12,12,1,6,18,6,8,2,5
 2026,78352,KJ Debrick,North Carolina A&T,22,10,10,18,29,9,2,10,2,5,1,3
 2026,78353,Elijah Jones,Longwood,24,21,12,1,3,0,5,10,4,4,0,3
-2026,78357,Kavion McClain,Monmouth,18,10,2,23,17,0,19,31,11,0,0,0
+2026,78357,Kavion McClain,Monmouth,20,13,3,25,18,0,20,35,12,0,0,0
 2026,78359,Tre'Von Spillers,Wake Forest,94,40,67,30,58,15,9,18,9,45,9,40
 2026,78360,Addarin Scott,UMKC,29,16,11,8,24,5,0,2,0,4,5,3
 2026,78361,Reed Trapp,Auburn,0,1,0,0,0,0,0,0,0,0,0,0
@@ -1582,7 +1582,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78376,Ryan Bolton Jr.,Prairie View A&M,4,1,1,0,1,0,0,0,0,1,0,1
 2026,78377,Junjie Wang,San Francisco,41,30,14,7,16,2,37,72,36,3,0,2
 2026,78381,Isaac Harrell,Elon,38,21,26,4,6,0,40,68,39,2,0,1
-2026,78385,Bryce Ford,Arizona St.,16,11,2,13,20,3,31,68,23,3,0,1
+2026,78385,Bryce Ford,Arizona St.,16,11,2,13,21,3,32,69,24,3,0,1
 2026,78388,Stephan Snagg,Binghamton,32,23,23,4,4,1,0,0,0,10,0,8
 2026,78390,Joey Hart,Ball St.,5,2,3,3,2,0,4,6,4,0,0,0
 2026,78392,Kilian Brockhoff,William & Mary,61,30,38,9,18,2,36,82,34,11,1,9
@@ -1604,7 +1604,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78437,Nicco DiGiulio,Canisius,0,1,0,0,0,0,0,2,0,0,0,0
 2026,78438,Trent Middleton Jr.,North Carolina A&T,45,37,8,45,42,6,31,68,20,0,0,0
 2026,78443,Keynan Davis,The Citadel,17,15,5,4,6,0,17,52,15,2,0,2
-2026,78444,Jizzle James,Cincinnati,20,15,5,31,46,8,40,51,36,1,0,0
+2026,78444,Jizzle James,Cincinnati,22,15,6,32,50,8,40,53,36,1,0,0
 2026,78445,Rayvon Griffith,Kent St.,17,13,12,6,9,1,15,36,14,3,1,2
 2026,78446,Mayar Wol,Bowling Green,34,18,12,24,28,7,46,73,44,7,1,6
 2026,78447,James Scott,Mississippi,49,21,37,0,0,0,0,0,0,38,1,31
@@ -1614,9 +1614,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78455,Donovan Draper,Navy,54,29,25,31,39,26,3,32,3,5,1,3
 2026,78456,Deywilk Tavarez,Loyola Chicago,18,17,9,10,20,5,61,136,59,1,0,1
 2026,78458,Jaylen Crocker-Johnson,Minnesota,44,32,24,26,38,11,42,88,41,1,0,1
-2026,78459,Noah Amenhauser,Oregon St.,43,25,28,8,12,2,0,1,0,13,0,13
+2026,78459,Noah Amenhauser,Oregon St.,46,27,30,10,13,2,0,1,0,14,0,14
 2026,78460,Austin Ball,Eastern Kentucky,23,18,9,9,22,1,43,87,41,0,0,0
-2026,78463,Cooper Bowser,Furman,100,25,75,12,11,1,0,0,0,62,7,59
+2026,78463,Cooper Bowser,Furman,104,26,75,17,12,2,0,1,0,62,7,59
 2026,78464,Nick Dorn,Indiana,9,4,3,3,3,3,58,98,53,0,0,0
 2026,78465,Kaden Gumbs,Texas St.,54,43,21,22,37,1,16,25,15,1,0,1
 2026,78467,Ryan Beasley,San Francisco,51,34,21,27,53,6,49,100,28,0,0,0
@@ -1631,7 +1631,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78492,Bradley Douglas,James Madison,54,43,1,22,40,2,52,93,34,2,0,0
 2026,78495,Jaylon McDaniel,Lindenwood,0,2,0,0,1,0,0,0,0,0,0,0
 2026,78497,Johan Nziemi,Longwood,74,56,27,5,21,2,7,15,7,9,3,8
-2026,78498,Michael Imariagbe,Wright St.,113,67,54,8,20,1,1,5,1,10,1,9
+2026,78498,Michael Imariagbe,Wright St.,116,67,55,8,20,1,1,5,1,10,1,9
 2026,78499,Amire Robinson,Nevada,14,4,12,3,4,2,15,26,15,0,0,0
 2026,78503,Tru Washington,Miami FL,65,47,19,20,36,0,32,56,25,5,1,2
 2026,78505,Tyler Rolison,Nevada,18,31,0,22,26,2,7,31,5,0,0,0
@@ -1646,14 +1646,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78529,Terrance Dixon Jr.,Southern,80,17,49,19,27,13,0,0,0,45,5,33
 2026,78532,"Teddy Washington, Jr.",Chattanooga,44,28,12,27,31,5,18,67,14,0,0,0
 2026,78533,Christian Villegas,New Mexico St.,0,0,0,0,0,0,0,1,0,0,0,0
-2026,78534,Kam Parker,Texas A&M Corpus Chris,10,13,4,4,10,1,11,34,10,0,0,0
+2026,78534,Kam Parker,Texas A&M Corpus Chris,10,13,4,5,10,1,11,34,10,0,0,0
 2026,78535,Shilo Jackson,Le Moyne,115,46,72,41,46,21,1,1,0,44,1,32
 2026,78539,Aaron Franklin,Milwaukee,71,45,45,3,4,2,10,18,10,4,0,4
 2026,78540,Darius Duffy,Purdue Fort Wayne,66,23,42,0,1,0,0,0,0,46,1,35
 2026,78545,Devon Ellis,Norfolk St.,69,46,27,15,23,5,19,29,19,2,1,1
-2026,78546,Tyler Mack,Alabama St.,10,4,3,2,1,0,21,50,19,1,0,1
-2026,78547,Egan Shields,Northern Colorado,55,23,39,7,7,3,0,0,0,15,0,13
-2026,78548,Jaylen Smith,East Tennessee St.,31,31,2,17,26,0,49,91,32,1,0,0
+2026,78546,Tyler Mack,Alabama St.,10,4,3,2,1,0,21,55,19,1,0,1
+2026,78547,Egan Shields,Northern Colorado,56,24,40,8,7,4,0,0,0,15,0,13
+2026,78548,Jaylen Smith,East Tennessee St.,32,32,2,19,27,0,50,94,32,1,0,0
 2026,78550,Mason Lee,North Florida,55,16,37,0,3,0,31,53,29,0,0,0
 2026,78552,Jasai Miles,Indiana,7,6,4,1,2,0,6,18,5,3,0,1
 2026,78553,Anthony Doppler,North Dakota,0,1,0,0,4,0,0,1,0,0,0,0
@@ -1696,7 +1696,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78627,Karson Templin,Utah St.,67,35,43,13,19,7,19,31,19,16,3,13
 2026,78630,Tennessee Rainwater,Le Moyne,73,44,36,2,7,1,21,21,18,13,0,7
 2026,78633,Dallin Grant,Utah Tech,1,1,1,1,1,0,1,1,1,0,0,0
-2026,78635,Nate Kingz,Syracuse,62,23,14,8,12,3,62,105,56,6,0,4
+2026,78635,Nate Kingz,Syracuse,68,23,16,10,12,3,65,112,59,6,0,4
 2026,78636,Evan Phelps,East Texas A&M,3,8,2,4,13,2,6,27,5,0,0,0
 2026,78637,KC Ugwuakazi,Merrimack,67,40,37,1,3,1,0,1,0,17,1,16
 2026,78638,Jahmere Tripp,Rhode Island,61,55,21,8,15,2,34,49,31,3,0,1
@@ -1710,7 +1710,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78647,Kristian Gonzalez,Idaho,1,1,0,2,0,0,3,1,3,0,0,0
 2026,78648,Cam Estevez,Fairfield,5,11,0,6,15,0,12,18,11,0,0,0
 2026,78649,Thomas Ndong,Cal Baptist,45,29,28,13,10,9,1,4,0,23,6,17
-2026,78651,Josiah Lake II,Oregon St.,57,39,7,32,46,5,36,56,27,7,2,1
+2026,78651,Josiah Lake II,Oregon St.,58,39,7,32,49,5,37,60,28,7,2,1
 2026,78654,David Fuchs,San Francisco,97,66,46,11,21,3,10,23,9,26,6,21
 2026,78656,Nils Cooper,UC Davis,76,26,38,23,34,7,7,30,6,20,0,16
 2026,78658,Obadiah Curtis,Houston Christian,0,1,0,0,1,0,2,3,1,0,0,0
@@ -1724,14 +1724,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78671,Greg Jones,American,70,71,19,16,26,0,29,76,25,0,0,0
 2026,78674,Jimmy Oladokun Jr.,Rice,38,36,15,13,26,4,0,0,0,9,0,7
 2026,78675,Keyon Kensie Jr.,Portland St.,65,62,45,9,20,4,22,49,22,22,5,19
-2026,78677,Aden Holloway,Alabama,47,38,1,26,25,1,72,94,47,0,0,0
-2026,78678,Nikolaos Chitikoudis,Robert Morris,108,69,65,34,55,12,0,2,0,10,0,8
+2026,78677,Aden Holloway,Alabama,47,38,2,26,25,1,72,94,47,0,0,0
+2026,78678,Nikolaos Chitikoudis,Robert Morris,113,72,68,35,56,13,0,2,0,13,0,11
 2026,78679,Blake Muschalek,Auburn,1,5,0,0,0,0,2,8,2,0,0,0
 2026,78681,Jaylen Wysinger,Texas Southern,42,31,8,10,28,0,33,64,23,2,0,1
 2026,78683,Rob Dockery,La Salle,91,63,35,8,20,4,14,38,13,7,0,6
 2026,78686,Miro Little,UC Santa Barbara,24,17,4,12,14,2,20,36,13,0,0,0
 2026,78693,Kenyon Goodin,Bellarmine,33,20,13,9,8,1,62,86,62,0,0,0
-2026,78694,Andrew McKeever,Saint Mary's,78,53,41,23,40,13,0,0,0,10,2,10
+2026,78694,Andrew McKeever,Saint Mary's,80,57,43,24,41,14,0,0,0,10,2,10
 2026,78696,Finley Sheridan,Stetson,33,16,20,22,16,10,25,30,25,5,0,5
 2026,78699,Yaxel Lendeborg,Michigan,88,31,43,15,24,5,47,90,39,22,0,19
 2026,78700,Carlous Williams,Tennessee St.,30,20,12,11,26,1,14,30,13,8,5,7
@@ -1747,7 +1747,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78714,Mark Butler,Lafayette,73,85,11,43,63,10,5,14,5,0,0,0
 2026,78715,Joshua Wyche,Lafayette,3,3,1,0,0,0,0,2,0,0,0,0
 2026,78716,Luke Rasmussen,Tulane,9,2,7,0,1,0,6,21,6,1,0,1
-2026,78717,Jameel Morris,Alcorn St.,79,55,19,7,35,0,20,45,17,1,0,0
+2026,78717,Jameel Morris,Alcorn St.,90,64,21,12,37,2,20,49,17,2,0,1
 2026,78718,Taylor Bol Bowen,Alabama,21,11,14,5,7,1,23,58,22,6,1,5
 2026,78720,Garwey Dual,McNeese St.,44,30,8,23,30,5,18,46,10,10,1,4
 2026,78721,Carl Parrish,Presbyterian,22,27,11,56,80,12,69,100,55,2,0,1
@@ -1755,7 +1755,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78725,Tyler Harris,Vanderbilt,23,11,12,17,25,2,23,57,23,7,1,6
 2026,78727,Kelcy Phipps,Portland St.,11,9,4,7,5,2,16,24,15,3,0,1
 2026,78730,Josh Townley-Thomas,Creighton,2,0,2,1,1,1,0,0,0,2,0,2
-2026,78733,Day Day Thomas,Cincinnati,18,29,5,26,50,13,71,107,56,3,0,1
+2026,78733,Day Day Thomas,Cincinnati,19,29,5,26,52,13,71,111,56,3,0,1
 2026,78734,Karon Boyd,Wichita St.,59,45,27,25,46,2,34,70,34,12,0,11
 2026,78736,Kobe Rodgers,Louisville,20,14,8,3,1,0,11,18,11,1,0,1
 2026,78737,Aidan Rubio,Eastern Michigan,12,8,5,8,10,4,12,32,11,1,0,1
@@ -1774,8 +1774,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78766,Cian Medley,Kent St.,27,27,1,17,33,2,46,105,29,0,0,0
 2026,78767,Xzayvier Brown,Oklahoma,66,46,12,49,52,1,55,95,47,0,0,0
 2026,78768,Anthony Finkley,Saint Joseph's,13,24,7,3,16,2,27,73,26,3,2,2
-2026,78769,Tsvet Sotirov,Georgia Southern,12,5,8,0,3,0,16,52,16,1,0,1
-2026,78770,Christian Hammond,Santa Clara,70,54,38,58,59,17,48,71,40,0,0,0
+2026,78769,Tsvet Sotirov,Georgia Southern,12,5,8,0,3,0,17,53,17,1,0,1
+2026,78770,Christian Hammond,Santa Clara,71,54,39,59,63,17,49,73,41,0,0,0
 2026,78772,Elmarko Jackson,Kansas,15,18,4,12,27,2,15,25,11,2,1,2
 2026,78774,Marqus Marion,Wake Forest,8,3,2,1,2,0,1,10,1,3,0,2
 2026,78775,Mike Williams III,Seton Hall,29,27,11,13,39,2,30,58,29,1,0,1
@@ -1788,20 +1788,20 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78785,Trent Johnson,Houston Christian,15,10,7,9,10,2,49,71,40,4,4,3
 2026,78790,Eric Parnell,Fairleigh Dickinson,19,5,13,16,28,4,74,148,63,3,0,2
 2026,78792,Isaiah Griffin,Western Illinois,38,36,5,31,70,3,24,56,20,0,0,0
-2026,78793,Kiree Huie,Eastern Washington,121,85,67,35,42,19,0,1,0,14,0,12
+2026,78793,Kiree Huie,Eastern Washington,121,86,67,35,44,19,0,1,0,14,0,12
 2026,78797,Izzy Miles,Northwestern St.,48,42,14,20,40,9,28,40,27,2,1,1
-2026,78798,Emmanuel Innocenti,Gonzaga,44,19,25,10,12,3,21,51,21,6,1,2
+2026,78798,Emmanuel Innocenti,Gonzaga,45,20,26,10,12,3,21,53,21,6,1,2
 2026,78799,Bubu Benjamin,George Washington,29,19,16,3,4,1,21,61,21,6,2,5
 2026,78800,Chase Forte,Boston College,31,33,1,6,20,0,22,65,18,3,1,0
 2026,78801,Tyreese Watson,UTEP,5,6,0,3,12,0,3,8,3,0,0,0
 2026,78804,Sean Smith,Middle Tennessee,27,16,5,50,62,7,24,43,19,2,1,0
-2026,78805,Ubong Okon,Robert Morris,4,0,4,0,1,0,0,0,0,1,0,1
+2026,78805,Ubong Okon,Robert Morris,4,1,4,0,1,0,0,0,0,1,0,1
 2026,78807,Micah Octave,Florida A&M,33,13,10,7,11,4,26,46,22,1,0,0
 2026,78812,Chris Mubiru,Northwestern St.,33,23,22,8,7,6,26,62,24,8,2,7
 2026,78815,Baye Ndongo,Georgia Tech,98,48,54,22,43,17,5,9,5,17,0,9
 2026,78816,Darryl Simmons II,St. Bonaventure,20,19,8,74,92,15,81,110,64,0,0,0
 2026,78817,Dhiaukuei Manyiel Dut,California,2,1,1,0,1,0,0,1,0,0,0,0
-2026,78818,Eddrin Bronson,Furman,17,18,4,9,10,1,27,55,21,0,0,0
+2026,78818,Eddrin Bronson,Furman,18,20,4,9,11,1,28,55,22,0,0,0
 2026,78819,Tommy Humphries,St. Thomas,0,2,0,0,1,0,1,1,1,0,0,0
 2026,78820,Ronald Jessamy,Cal St. Bakersfield,102,51,42,39,74,19,3,12,2,21,1,14
 2026,78825,Patrick Haigh,Mount St. Mary's,1,0,0,3,2,1,15,32,14,0,0,0
@@ -1841,7 +1841,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78893,Evan Ipsaro,Miami OH,26,12,8,9,7,0,12,19,11,0,0,0
 2026,78897,Paul Djobet,Nebraska Omaha,63,29,13,31,45,1,34,48,32,2,0,1
 2026,78898,Eian Elmer,Miami OH,44,16,14,11,24,1,60,78,52,5,0,5
-2026,78899,Keanu Dawes,Utah,93,37,53,20,14,11,30,66,29,50,2,34
+2026,78899,Keanu Dawes,Utah,96,40,55,20,14,11,32,69,31,51,2,35
 2026,78901,Daemar Kelly,Northern Illinois,15,31,4,6,22,3,17,55,14,0,0,0
 2026,78903,Khaden Bennett,Wyoming,45,47,11,3,9,0,41,70,39,3,0,1
 2026,78904,Rihards Vavers,Washington St.,33,7,15,4,14,2,66,99,62,2,1,2
@@ -1896,7 +1896,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,78985,Riley Allenspach,George Mason,97,36,59,34,36,20,21,39,20,14,1,14
 2026,78988,Mookie Cook,San Francisco,31,30,13,4,13,2,23,32,18,11,2,8
 2026,78990,Jackson Shelstad,Oregon,18,8,4,15,23,3,33,72,21,1,0,0
-2026,78991,Kwame Evans Jr.,Oregon,69,52,37,20,21,4,30,68,28,21,0,20
+2026,78991,Kwame Evans Jr.,Oregon,72,55,38,20,22,4,31,71,29,21,0,20
 2026,78993,Kendrick De Luna,Cal St. Fullerton,34,22,21,14,28,10,1,0,1,3,0,3
 2026,78996,Trey Green,Saint Louis,20,18,8,4,4,1,85,97,66,0,0,0
 2026,79000,Carson Schwieger,Queens,18,9,12,5,9,1,90,127,84,2,0,1
@@ -1924,7 +1924,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79044,Villiam Garcia Adsten,Drexel,21,27,7,3,18,1,14,33,13,2,0,2
 2026,79045,Hunter Adam,Davidson,19,6,10,7,4,3,28,45,28,1,0,0
 2026,79046,Niccolo Moretti,Florida Atlantic,40,26,3,7,13,1,8,31,4,0,0,0
-2026,79047,Shawn Simmons II,UMass Lowell,45,33,27,6,17,3,6,13,6,24,3,19
+2026,79047,Shawn Simmons II,UMass Lowell,49,36,27,6,18,3,7,14,6,25,3,19
 2026,79052,Dalen Davis,Princeton,22,45,0,38,50,4,29,49,21,0,0,0
 2026,79054,Jackson Hicke,Princeton,72,55,26,33,45,7,48,74,45,0,0,0
 2026,79055,Jacob Huggins,Princeton,23,38,13,10,15,1,6,13,6,3,6,2
@@ -1933,7 +1933,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79064,Chico Johnson,USC Upstate,1,2,1,0,2,0,1,0,1,0,0,0
 2026,79066,Camaren Sparrow,Coppin St.,19,15,9,4,18,1,5,7,5,1,0,0
 2026,79067,Dragos Lungu,Tennessee Martin,18,7,7,3,3,1,3,7,3,2,0,1
-2026,79068,Santiago Trouet,Arizona St.,52,39,27,27,48,14,5,19,5,6,2,4
+2026,79068,Santiago Trouet,Arizona St.,53,39,27,31,50,15,5,19,5,6,2,4
 2026,79071,Andrew Meadow,Boise St.,65,31,31,15,19,2,39,62,35,13,1,12
 2026,79073,Kyrone Alexander,Boston University,0,0,0,0,1,0,0,1,0,0,0,0
 2026,79074,Chad Moodie,Appalachian St.,25,22,15,0,0,0,0,0,0,8,2,6
@@ -1949,7 +1949,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79088,Vladimir Pavlovic,Mercyhurst,0,1,0,0,1,0,0,1,0,0,0,0
 2026,79089,Ofri Naveh,Oral Roberts,65,61,16,29,35,7,16,36,14,9,5,5
 2026,79090,KJ Lewis,Georgetown,64,65,20,40,59,11,32,73,24,15,2,7
-2026,79093,Paulius Murauskas,Saint Mary's,94,56,50,59,78,26,32,67,30,16,3,13
+2026,79093,Paulius Murauskas,Saint Mary's,98,56,53,62,81,27,34,70,32,16,3,13
 2026,79094,Jackson Cook,Arizona,0,0,0,0,0,0,0,2,0,0,0,0
 2026,79095,Will Kuykendall,Baylor,0,0,0,2,2,1,3,3,3,0,0,0
 2026,79096,Motiejus Krivas,Arizona,66,39,44,44,34,24,4,7,4,26,1,23
@@ -1958,7 +1958,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79105,Prophet Johnson,Sacramento St.,100,68,23,35,65,3,40,69,27,4,1,1
 2026,79107,Harrison Reede,Incarnate Word,0,0,0,0,1,0,20,25,19,0,0,0
 2026,79109,Brock Felder,Seattle,23,2,18,5,5,4,0,1,0,8,0,7
-2026,79114,Ace Valentine,UMBC,63,33,13,16,20,2,37,56,30,1,0,0
+2026,79114,Ace Valentine,UMBC,68,34,15,16,20,2,38,61,30,1,0,0
 2026,79118,Josh Akpovwa,Texas Southern,10,9,4,2,8,0,0,1,0,2,0,2
 2026,79119,Ajay Tew,Louisiana Monroe,0,1,0,0,1,0,1,3,1,0,0,0
 2026,79120,Javoy Thompson,Maryland Eastern Shore,3,3,2,2,10,1,0,3,0,1,1,0
@@ -1969,16 +1969,16 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79130,Elijah Gertrude,Virginia,9,5,4,1,1,0,2,12,2,3,0,1
 2026,79131,Jayson Petty,UMKC,30,23,10,25,35,6,43,102,38,1,0,0
 2026,79132,Anthony Robinson,Xavier,18,10,13,1,5,1,0,0,0,9,3,8
-2026,79134,Muneer Newton,Campbell,71,19,37,12,17,2,0,1,0,11,2,8
+2026,79134,Muneer Newton,Campbell,71,21,37,12,17,2,0,1,0,11,2,8
 2026,79138,Gytis Nemeiksa,Hawaii,54,33,29,17,25,9,22,55,21,3,0,3
 2026,79140,Marcus Glover,Incarnate Word,23,14,10,2,8,1,0,0,0,5,1,4
 2026,79144,Ryan Sabol,Buffalo,32,35,9,38,44,6,109,170,86,0,0,0
 2026,79145,Anquan Boldin Jr.,Florida A&M,33,17,14,4,13,0,3,14,3,5,0,4
 2026,79147,Bryson Wilson,Binghamton,57,54,23,12,24,3,11,36,11,15,4,8
-2026,79150,Churchill Abass,New Orleans,97,31,69,13,28,3,0,4,0,51,5,43
+2026,79150,Churchill Abass,New Orleans,98,32,70,13,29,3,0,4,0,51,5,43
 2026,79153,Adam Tauer,St. Thomas,2,1,1,0,0,0,0,1,0,0,0,0
 2026,79154,Ben Oosterbaan,St. Thomas,48,19,32,6,4,2,37,64,37,4,0,4
-2026,79155,Aidan Cammann,Stanford,45,23,28,6,14,3,9,29,9,6,1,6
+2026,79155,Aidan Cammann,Stanford,46,24,28,6,14,3,9,29,9,6,1,6
 2026,79156,Andrej Stojakovic,Illinois,88,43,21,31,41,4,17,56,17,7,4,5
 2026,79159,Carter Welling,Clemson,69,48,34,20,20,5,16,40,15,21,4,15
 2026,79160,Marcus Adams Jr.,Arizona St.,5,3,5,1,5,0,8,19,8,0,1,0
@@ -2000,7 +2000,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79192,Brandon Gardner,Sacramento St.,8,11,4,4,4,4,4,14,4,3,3,2
 2026,79193,Trevor Mullin,Yale,20,20,6,21,32,7,51,75,44,0,0,0
 2026,79194,Jeannot Basima,Yale,2,3,1,0,0,0,0,1,0,0,0,0
-2026,79196,Viljami Vartiainen,Weber St.,13,6,6,22,21,8,70,91,63,0,0,0
+2026,79196,Viljami Vartiainen,Weber St.,14,6,6,23,22,8,73,99,66,0,0,0
 2026,79197,Samson Aletan,Yale,71,29,50,10,26,6,0,0,0,26,2,22
 2026,79198,Trent Edwards,Morgan St.,3,2,1,0,1,0,0,1,0,1,0,1
 2026,79199,Malcolm Wrisby-Jefferson,Brown,20,9,3,16,39,1,7,23,7,0,0,0
@@ -2018,7 +2018,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79221,DeAndre Craig,Purdue Fort Wayne,60,72,8,21,32,1,46,80,37,0,0,0
 2026,79222,Shane Thomas,Creighton,4,3,2,1,1,1,0,2,0,2,0,1
 2026,79225,Jake Fiegen,Cornell,72,31,38,9,10,0,46,69,45,6,1,4
-2026,79227,Kerrington Kiel,Troy,23,30,7,1,0,0,10,33,10,2,0,2
+2026,79227,Kerrington Kiel,Troy,23,30,7,1,0,0,11,35,11,2,0,2
 2026,79228,Ethan Kizer,South Dakota,2,1,0,0,1,0,32,60,32,0,0,0
 2026,79230,Sonny Wilson,Toledo,72,65,23,82,74,20,40,55,36,0,0,0
 2026,79231,Pasha Goodarzi,San Jose St.,4,6,2,5,16,3,37,54,32,0,0,0
@@ -2041,7 +2041,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79259,RJ Johnson,Kennesaw St.,73,62,6,13,36,2,47,63,32,8,1,2
 2026,79260,Frankquon Sherman,Kennesaw St.,69,46,40,4,12,2,21,50,21,15,0,15
 2026,79263,Colby Garland,San Jose St.,43,32,5,117,115,10,31,50,19,0,0,0
-2026,79265,Jalin Rice,Nicholls St.,30,31,7,10,13,2,5,23,2,6,4,3
+2026,79265,Jalin Rice,Nicholls St.,32,32,7,12,15,3,6,24,3,7,4,3
 2026,79266,Corey Stephenson,FIU,56,42,36,43,64,11,63,96,54,19,0,18
 2026,79268,Tom Mark,Cal St. Bakersfield,35,26,18,9,13,4,17,36,17,10,1,5
 2026,79269,Justin Cross,Kansas,0,0,0,0,1,0,0,0,0,0,0,0
@@ -2065,7 +2065,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79299,Joe Ganton,Fairfield,1,1,1,0,0,0,0,0,0,0,0,0
 2026,79301,Connor Sevilla,UC Davis,22,16,12,22,43,8,60,89,54,0,0,0
 2026,79302,Randall Pettus II,Elon,35,29,7,14,37,3,62,119,53,2,1,0
-2026,79303,Tyler Tejada,Towson,65,39,14,77,101,16,40,98,33,3,1,2
+2026,79303,Tyler Tejada,Towson,65,41,14,84,109,17,42,102,34,3,1,2
 2026,79304,Mekhi Lowery,Illinois Chicago,62,52,29,37,48,9,0,0,0,10,3,6
 2026,79305,Thomas Haugh,Florida,102,60,58,11,24,7,55,105,52,38,4,32
 2026,79306,Jameson O'Toole,Fordham,0,0,0,0,0,0,0,1,0,0,0,0
@@ -2075,7 +2075,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79314,Malik Ferguson,Tennessee Tech,26,27,9,6,7,2,9,22,8,0,1,0
 2026,79315,Nils Machowski,Wofford,62,40,29,22,47,4,89,140,75,2,1,2
 2026,79317,Brandon Muntu,Tennessee Tech,26,17,13,14,16,1,42,93,38,0,0,0
-2026,79318,Don McHenry,Utah,55,47,9,50,59,13,78,118,60,1,0,0
+2026,79318,Don McHenry,Utah,55,47,9,52,62,14,78,123,60,1,0,0
 2026,79319,Tay Knox,Texas St.,28,20,20,1,5,0,0,0,0,9,1,7
 2026,79320,Jack Francis,Texas Tech,0,0,0,0,0,0,0,2,0,0,0,0
 2026,79321,Enoch Kalambay,Campbell,6,2,2,1,2,0,1,11,1,0,0,0
@@ -2091,17 +2091,17 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79351,Quinn Nielsen,Boston University,9,8,3,0,1,0,0,0,0,2,0,2
 2026,79352,Rowan Irelan,The Citadel,0,0,0,0,0,0,0,2,0,0,0,0
 2026,79353,Caleb Foster,Duke,40,45,6,17,18,1,39,58,32,1,1,0
-2026,79355,Sean Stewart,Oregon,58,32,32,23,48,13,1,0,1,27,7,20
+2026,79355,Sean Stewart,Oregon,60,33,34,23,48,13,1,0,1,28,7,21
 2026,79356,TJ Power,Penn,52,43,11,33,55,6,67,84,58,1,0,0
 2026,79357,Jakub Necas,Duquesne,48,30,27,5,16,2,14,20,14,8,1,7
-2026,79358,Asa Thomas,Furman,13,20,6,7,10,2,69,104,60,0,0,0
+2026,79358,Asa Thomas,Furman,14,20,6,7,10,2,71,107,62,0,0,0
 2026,79359,Jack Graham,New Hampshire,46,36,11,13,17,3,52,112,46,5,1,2
 2026,79360,Mikkel Tyne,Richmond,9,9,2,12,27,3,40,58,35,0,0,0
 2026,79362,Ryan Soulis,Columbia,32,14,19,16,25,4,6,20,5,11,1,10
 2026,79363,Collin Tanner,Richmond,28,14,18,14,19,2,16,41,16,1,0,1
 2026,79365,Dean Shepherd,Delaware St.,16,19,6,5,9,1,5,16,5,0,0,0
 2026,79369,Mari Jordan,Radford,30,19,10,6,6,2,9,23,8,0,0,0
-2026,79370,Blue Cain,Georgia,86,46,21,21,21,2,44,97,34,12,1,4
+2026,79370,Blue Cain,Georgia,86,46,22,21,21,2,44,97,34,12,1,4
 2026,79371,Thomas Batties II,Harvard,45,41,18,21,30,5,55,65,52,4,0,4
 2026,79372,Xavier Nesbitt,Harvard,1,2,0,3,5,1,2,14,2,0,0,0
 2026,79373,Malik Mack,Georgetown,45,45,8,42,59,9,53,122,36,0,1,0
@@ -2112,7 +2112,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,79381,Melvin Council Jr.,Kansas,69,64,8,57,94,5,35,72,29,10,1,5
 2026,79384,Isaiah Stafford,Southern Illinois,7,5,5,23,19,13,10,35,8,1,0,1
 2026,79388,Allen Udemadu,Jacksonville,26,12,12,5,10,4,0,0,0,4,0,4
-2026,79391,Roderick Coffee III,Grambling St.,38,40,9,20,30,4,40,72,21,0,0,0
+2026,79391,Roderick Coffee III,Grambling St.,38,41,9,20,32,4,43,74,22,0,0,0
 2026,79401,Nasir Muhammad,Albany,3,11,1,9,14,5,17,39,14,0,0,0
 2026,79402,William Kermoury,Northeastern,28,14,13,22,30,6,74,110,65,0,0,0
 2026,79403,JB Frankel,Northeastern,13,8,3,16,35,5,33,78,28,0,0,0
@@ -2176,10 +2176,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126585,Christian Horry,UCLA,0,0,0,0,1,0,0,1,0,0,0,0
 2026,126586,Baboucarr Njie,UTSA,76,56,19,18,33,2,2,29,2,4,0,2
 2026,126589,Maurizio D'Alessandro,Rider,0,0,0,0,2,0,1,3,1,0,0,0
-2026,126590,Cooper Campbell,Troy,50,50,8,18,27,2,65,101,37,0,0,0
-2026,126591,Cobi Campbell,Troy,23,31,6,2,3,0,64,94,59,0,0,0
-2026,126592,Austin Cross,Troy,8,13,3,0,3,0,23,47,23,0,0,0
-2026,126593,Evan Griffin,Troy,5,7,4,0,0,0,0,0,0,1,0,1
+2026,126590,Cooper Campbell,Troy,53,50,8,19,28,2,65,102,37,0,0,0
+2026,126591,Cobi Campbell,Troy,26,31,8,2,3,0,65,95,60,0,0,0
+2026,126592,Austin Cross,Troy,9,13,3,0,3,0,24,50,24,0,0,0
+2026,126593,Evan Griffin,Troy,5,9,4,0,0,0,0,0,0,1,0,1
 2026,126595,Kevin de Kovachich,North Alabama,47,57,4,30,37,4,30,64,21,1,0,0
 2026,126596,Jalen Crawford,Florida St.,0,0,0,0,0,0,2,4,2,0,0,0
 2026,126597,Alier Maluk,Florida St.,8,10,4,2,6,1,2,5,1,4,1,1
@@ -2188,7 +2188,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126601,Tyler Boston,Holy Cross,28,34,4,65,69,5,45,76,29,0,0,0
 2026,126605,Isaiah Chappell,UC Davis,22,12,19,9,18,7,54,94,53,1,0,1
 2026,126608,Arlandus Keyes,Mount St. Mary's,37,38,4,8,20,0,83,143,62,1,0,0
-2026,126609,Nicholas Shogbonyo,Texas A&M Corpus Chris,19,20,5,22,31,4,39,57,33,1,0,1
+2026,126609,Nicholas Shogbonyo,Texas A&M Corpus Chris,20,21,5,22,33,4,40,59,34,1,0,1
 2026,126610,Loch Cunningham,Denver,0,0,0,0,0,0,0,0,0,0,0,0
 2026,126615,Houran Dan,Seattle,52,32,32,16,18,3,0,0,0,22,4,19
 2026,126619,Quel'Ron House,Southern Illinois,53,33,8,110,133,16,13,40,9,0,0,0
@@ -2251,8 +2251,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126710,Jayden Mott,Central Connecticut,3,6,2,3,5,3,0,1,0,1,0,1
 2026,126711,DaMariee Jones,Southern,68,34,35,30,34,16,0,1,0,12,2,9
 2026,126712,Florian Tenebay,South Carolina St.,25,28,5,21,44,2,7,16,5,0,0,0
-2026,126713,Jerquarius Stanback,Alabama St.,79,50,44,13,26,5,3,16,3,27,2,18
-2026,126714,Jonathan Pace,Mississippi Valley St.,5,4,4,0,1,0,0,0,0,2,0,2
+2026,126713,Jerquarius Stanback,Alabama St.,85,55,46,15,26,7,3,17,3,28,2,19
+2026,126714,Jonathan Pace,Mississippi Valley St.,7,4,5,0,1,0,0,0,0,4,0,3
 2026,126717,Jon O'Neill,New Hampshire,5,1,4,2,0,0,0,0,0,2,0,2
 2026,126720,Nick Sanford,New Hampshire,0,0,0,0,1,0,0,0,0,0,0,0
 2026,126722,Elijah Malone,Colorado,34,29,25,12,9,7,4,9,4,2,2,2
@@ -2273,7 +2273,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126744,Scooter Williams Jr.,Louisiana Tech,44,33,20,27,33,4,18,53,13,15,2,13
 2026,126746,Kevin Kearney,Saint Joseph's,2,1,1,1,2,0,0,8,0,0,0,0
 2026,126747,Liutauras Lelevicius,TCU,28,17,19,8,8,5,43,64,42,1,1,1
-2026,126749,Charles Johnston,Furman,65,24,46,14,9,6,32,83,32,15,1,14
+2026,126749,Charles Johnston,Furman,65,25,46,14,9,6,34,85,34,15,1,14
 2026,126750,Tomas Thrastarson,Washington St.,28,19,10,9,12,1,15,35,11,3,0,1
 2026,126753,Karris Bilal,Louisiana,13,15,3,11,28,2,13,36,13,0,0,0
 2026,126754,Kieran Elliott,Cal Poly,22,17,9,1,0,0,7,12,7,1,0,1
@@ -2323,7 +2323,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126826,Redd Thompson Jr.,Longwood,36,27,6,14,29,3,44,92,37,0,0,0
 2026,126828,Eric Morgan Jr.,Saint Peter's,12,15,5,2,12,2,15,32,13,1,0,1
 2026,126830,Braylhan Thomas,Winthrop,3,4,1,0,1,0,1,3,1,0,0,0
-2026,126831,Nakavieon White,Georgia Southern,58,75,6,5,22,0,36,73,21,6,1,2
+2026,126831,Nakavieon White,Georgia Southern,61,75,6,5,22,0,36,76,21,6,1,2
 2026,126835,Josh Omojafo,South Florida,70,55,34,3,13,2,22,44,20,6,0,3
 2026,126836,Braden Frager,Nebraska,64,16,37,3,14,0,48,90,44,11,2,10
 2026,126838,Jordan Hernandez,UTEP,0,0,0,0,1,0,0,0,0,0,0,0
@@ -2347,7 +2347,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126868,Eze Wali,The Citadel,30,33,6,4,21,0,16,49,15,0,0,0
 2026,126869,Jack Walter,The Citadel,0,0,0,0,0,0,0,1,0,0,0,0
 2026,126870,Oswin Erhunmwunse,Providence,89,33,59,7,13,4,0,0,0,47,5,35
-2026,126871,Davian Williams,Alcorn St.,26,39,11,21,33,5,38,76,31,3,1,2
+2026,126871,Davian Williams,Alcorn St.,27,40,11,22,34,5,39,81,32,3,1,2
 2026,126873,Dylan Grant,Rutgers,63,50,29,22,34,11,21,47,20,14,1,9
 2026,126879,Brayden Fagbemi,UC Davis,26,23,11,28,32,5,13,35,10,0,0,0
 2026,126880,Baron Smith Jr.,Oral Roberts,7,19,5,2,7,1,0,0,0,0,0,0
@@ -2358,7 +2358,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126886,Thokbor Majak,San Diego St.,0,1,0,0,1,0,0,0,0,0,0,0
 2026,126887,Elijah Davis,North Carolina,0,0,0,0,0,0,1,3,1,0,0,0
 2026,126893,Yoav Berman,Queens,63,55,10,24,25,2,41,97,37,3,2,1
-2026,126895,Justin Ray,Monmouth,29,23,11,25,42,4,58,88,49,1,0,1
+2026,126895,Justin Ray,Monmouth,31,24,12,27,43,4,59,88,50,2,0,2
 2026,126899,Maban Jabriel,Queens,40,27,22,5,7,3,47,58,46,6,1,4
 2026,126901,Jordy Barnes,Utah St.,2,4,0,0,0,0,1,10,1,0,0,0
 2026,126903,Tristen Guillouette,Florida Gulf Coast,21,19,11,7,6,5,0,0,0,5,0,4
@@ -2370,7 +2370,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126912,Matt Hodge,Villanova,38,16,24,6,12,5,50,86,49,6,1,5
 2026,126913,Malik Sheppard,Sacred Heart,1,0,0,0,0,0,0,0,0,0,0,0
 2026,126914,Fallou Gueye,Sacred Heart,11,19,3,1,5,0,12,31,9,0,0,0
-2026,126916,Donovan Rakotonanahary,Northern Kentucky,34,11,24,0,0,0,1,2,1,11,0,8
+2026,126916,Donovan Rakotonanahary,Northern Kentucky,37,11,26,0,0,0,1,2,1,11,0,8
 2026,126917,Lenard Taylor Jr.,Florida A&M,7,8,4,1,8,1,3,12,3,0,0,0
 2026,126918,Malcom Stute,Florida A&M,0,1,0,0,1,0,0,0,0,0,0,0
 2026,126921,Brendan Johnson,Merrimack,3,3,2,0,2,0,0,5,0,0,0,0
@@ -2384,21 +2384,21 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126934,Mohamed Binzagr,George Washington,0,0,0,0,0,0,0,0,0,0,0,0
 2026,126937,Devin Brafford,Charleston Southern,9,5,6,2,1,2,2,7,2,4,0,4
 2026,126940,Dailliss Cox,Chicago St.,19,13,9,21,30,17,3,6,3,0,0,0
-2026,126942,Caden Diggs,UMBC,53,37,13,26,32,3,24,41,21,9,0,3
+2026,126942,Caden Diggs,UMBC,55,38,14,28,35,4,25,42,22,9,0,3
 2026,126943,Ibrahim Olajuwon,FIU,33,17,16,10,19,5,0,1,0,5,1,3
 2026,126944,Ashton Williamson,FIU,31,41,12,10,11,0,24,58,20,1,0,0
 2026,126945,Asim Jones,Quinnipiac,68,70,7,31,64,2,44,51,28,1,0,1
 2026,126946,Scottie Hubbard,Old Dominion,7,7,2,3,9,1,22,43,20,0,0,0
 2026,126949,Dimitrije Vukicevic,UC San Diego,18,8,12,6,5,5,0,1,0,3,0,2
 2026,126951,Nic Codie,Texas,18,10,11,7,12,3,1,10,1,7,3,5
-2026,126954,Obi Agbim,Baylor,9,8,0,31,47,7,71,126,63,1,0,0
+2026,126954,Obi Agbim,Baylor,9,9,0,31,48,7,72,132,63,1,0,0
 2026,126955,Chance Puryear,SMU,0,1,0,0,1,0,1,2,1,0,0,0
-2026,126956,Samet Yigitoglu,SMU,109,44,70,35,39,25,0,1,0,46,7,38
+2026,126956,Samet Yigitoglu,SMU,115,46,75,35,42,25,0,1,0,47,7,39
 2026,126957,Maxim Logue,Florida Atlantic,53,18,30,1,4,0,0,3,0,26,2,19
 2026,126958,Mitchell Holmes,SMU,13,4,11,6,4,5,0,0,0,0,0,0
 2026,126959,Niccolo Kalischer-Stork,SMU,0,0,0,0,0,0,0,0,0,0,0,0
-2026,126960,Johan Munch,Oregon St.,79,46,45,8,27,4,1,7,1,12,0,11
-2026,126961,Isaiah Sy,Oregon St.,24,39,7,5,23,2,63,113,63,0,1,0
+2026,126960,Johan Munch,Oregon St.,80,46,46,8,27,4,1,7,1,12,0,11
+2026,126961,Isaiah Sy,Oregon St.,24,40,7,5,23,2,64,117,64,0,1,0
 2026,126963,Nate Deer,Oakland,0,3,0,0,0,0,0,0,0,0,0,0
 2026,126967,Ryan Jones Jr.,Liberty,4,3,2,0,1,0,6,18,6,0,0,0
 2026,126968,Ben Hammond,Virginia Tech,43,38,8,44,68,4,41,57,35,0,0,0
@@ -2413,14 +2413,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,126982,Kevin Pazmino,Nicholls St.,0,1,0,0,0,0,8,12,7,0,0,0
 2026,126983,Viktor Mikic,Florida,6,11,2,0,0,0,1,1,1,0,0,0
 2026,126984,Jacob Dar,Seton Hall,23,17,16,2,2,1,2,13,2,4,2,2
-2026,126986,Jojo Anderson,Eastern Washington,29,21,9,18,30,3,23,40,18,0,0,0
-2026,126989,Allen Graves,Santa Clara,70,40,37,27,32,8,33,46,33,21,2,13
-2026,126990,Elijah Mahi,Santa Clara,72,57,15,39,48,2,48,93,39,1,0,1
+2026,126986,Jojo Anderson,Eastern Washington,31,21,9,18,30,3,23,40,18,0,0,0
+2026,126989,Allen Graves,Santa Clara,72,42,38,27,33,8,34,49,34,21,2,13
+2026,126990,Elijah Mahi,Santa Clara,75,62,16,44,49,2,49,94,40,1,0,1
 2026,126991,Hamad Mousa,Cal Poly,72,63,10,25,29,3,76,127,52,4,2,1
 2026,126992,Amael L'Etang,Dayton,76,35,46,6,19,1,26,49,26,11,2,9
 2026,126994,Luke Skaljac,Miami OH,39,27,2,29,26,1,30,66,22,0,0,0
 2026,126995,Alex Bruskotter,Wright St.,4,1,1,1,2,1,6,2,6,1,0,0
-2026,126996,Andrea Holden,Wright St.,55,33,29,12,13,3,0,0,0,17,3,13
+2026,126996,Andrea Holden,Wright St.,57,35,31,12,14,3,0,0,0,18,3,14
 2026,126997,Isaac Munkadi,Fairfield,30,15,21,1,7,0,1,3,1,10,1,10
 2026,126998,Tanner Ostop,Fairfield,0,0,0,0,0,0,0,2,0,0,0,0
 2026,127000,Brant Byers,Miami OH,54,35,29,5,8,1,57,85,55,13,1,11
@@ -2444,7 +2444,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127028,Jayce Depron,Southern,0,0,0,0,1,0,0,5,0,0,0,0
 2026,127029,Josh Ibukunoluwa,High Point,11,8,6,0,0,0,0,0,0,4,0,3
 2026,127032,Anthony Peoples Jr.,UCLA,0,0,0,1,1,0,0,0,0,0,0,0
-2026,127033,Oleksandr Kobzystyi,Oregon,8,2,3,0,7,0,9,13,8,1,0,0
+2026,127033,Oleksandr Kobzystyi,Oregon,8,3,3,1,7,1,9,14,8,1,0,0
 2026,127034,Aaron Hunkin-Claytor,Hawaii,17,16,2,4,11,0,6,12,5,0,0,0
 2026,127036,AJ Economou,Hawaii,4,1,3,1,2,0,2,15,2,1,0,1
 2026,127037,Christian Richardson,Nebraska Omaha,52,11,44,7,9,2,0,0,0,33,4,30
@@ -2520,7 +2520,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127166,Deshaun Jackson Jr.,Mercyhurst,41,39,9,39,52,11,0,2,0,1,0,0
 2026,127167,Brayden Crump,East Tennessee St.,13,5,9,2,9,2,3,7,3,4,0,4
 2026,127168,Renars Sondors,Louisiana Monroe,33,20,22,13,19,7,42,79,41,2,0,1
-2026,127170,Sash Gavalyugov,Santa Clara,15,20,5,25,22,3,54,97,31,0,0,0
+2026,127170,Sash Gavalyugov,Santa Clara,18,21,5,26,24,3,59,101,32,0,0,0
 2026,127171,Tate McCubbin,Austin Peay,24,26,14,5,14,1,59,111,59,4,1,2
 2026,127172,Brian Amuneke,Wichita St.,6,11,1,3,8,1,16,34,15,1,0,0
 2026,127174,Ronnie Harrison,East Texas A&M,73,44,49,45,60,23,29,73,27,24,3,19
@@ -2559,8 +2559,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127228,Afan Trnka,Tennessee Martin,15,17,1,6,17,3,30,66,27,1,1,0
 2026,127229,Tarence Guinyard,Duquesne,78,54,7,10,15,1,66,114,49,2,0,1
 2026,127230,Kayden Crosby,Texas A&M Corpus Chris,0,0,0,0,0,0,1,1,1,0,0,0
-2026,127231,Sheldon Williams,Texas A&M Corpus Chris,102,61,47,10,25,3,10,24,10,5,1,4
-2026,127232,Jeremiah Johnson,Campbell,82,73,14,13,37,1,42,75,37,4,0,2
+2026,127231,Sheldon Williams,Texas A&M Corpus Chris,108,64,48,10,26,3,11,25,11,5,2,4
+2026,127232,Jeremiah Johnson,Campbell,88,73,18,13,37,1,44,77,37,4,0,2
 2026,127233,Layne Taylor,Murray St.,25,14,2,8,14,0,47,89,26,0,0,0
 2026,127234,Ifiok Peter,Western Illinois,14,16,6,0,5,0,0,0,0,5,1,4
 2026,127235,Labaron Philon,Alabama,101,50,17,46,54,0,65,102,38,5,0,3
@@ -2568,7 +2568,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127238,Stephon Marbury II,California,0,1,0,0,0,0,0,0,0,0,0,0
 2026,127240,Julian Clarke,UNC Asheville,2,0,0,0,2,0,8,14,8,0,0,0
 2026,127243,C.J. O'Hara,Green Bay,130,72,59,13,27,2,7,18,7,19,0,11
-2026,127244,Tyler Thompson,Montana,13,9,8,3,7,0,59,88,56,0,0,0
+2026,127244,Tyler Thompson,Montana,14,9,8,4,7,0,62,91,58,0,0,0
 2026,127246,Dayton Forsythe,Oklahoma,11,15,2,13,24,0,16,34,11,0,0,0
 2026,127247,Jeff Nwankwo,Oklahoma,10,13,4,1,2,1,12,39,11,2,0,1
 2026,127248,Kuol Atak,Oklahoma,10,1,4,4,6,2,38,51,33,3,0,2
@@ -2602,7 +2602,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127291,JC Brooks,Tennessee St.,2,5,0,2,0,1,2,4,2,0,0,0
 2026,127292,Brady Hardewig,West Georgia,1,1,1,4,6,0,31,54,28,0,0,0
 2026,127293,Evan Stinson,Stanford,1,0,1,0,0,0,1,3,1,1,0,1
-2026,127295,Donavin Young,Stanford,8,4,1,4,8,2,8,17,8,1,0,0
+2026,127295,Donavin Young,Stanford,9,7,2,5,8,2,8,18,8,1,0,0
 2026,127297,Peyton Seals,Princeton,4,2,3,1,0,1,6,15,5,0,0,0
 2026,127298,CJ Happy,Princeton,30,23,19,6,18,3,24,53,23,3,1,3
 2026,127299,Zio Kim,Princeton,0,0,0,0,0,0,0,0,0,0,0,0
@@ -2630,7 +2630,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127340,Troy Jenkins,Fresno St.,0,0,0,0,0,0,0,1,0,0,0,0
 2026,127341,Addison Arnold,Arizona,2,3,1,0,4,0,0,2,0,0,0,0
 2026,127342,JJ Rembert,McNeese St.,0,1,0,0,2,0,0,1,0,0,0,0
-2026,127343,Tyler Betsey,Syracuse,5,12,1,13,14,3,45,70,42,0,0,0
+2026,127343,Tyler Betsey,Syracuse,5,12,1,13,15,3,50,73,46,0,0,0
 2026,127344,Colt Langdon,N.C. State,0,0,0,0,2,0,0,4,0,0,0,0
 2026,127345,Chris Torres,Siena,1,1,0,0,2,0,0,0,0,0,0,0
 2026,127351,Aaron Fine,Purdue,3,3,0,2,2,0,0,0,0,0,0,0
@@ -2640,7 +2640,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127356,Cal Liston,VMI,9,6,5,5,8,0,32,66,31,0,0,0
 2026,127357,Linus Holmstrom,VMI,25,20,7,10,12,3,68,109,58,0,0,0
 2026,127358,Ryan Skerry,Towson,0,0,0,0,2,0,0,0,0,0,0,0
-2026,127359,Caleb Embeya,Towson,30,29,16,6,8,2,0,0,0,4,0,3
+2026,127359,Caleb Embeya,Towson,30,30,16,7,8,2,0,0,0,4,0,3
 2026,127360,Eoin Dillon,Belmont,16,7,10,14,17,3,50,57,47,1,0,1
 2026,127362,Cooper Haynes,Belmont,2,4,1,2,3,0,3,1,2,0,0,0
 2026,127363,Jabez Jenkins,Belmont,70,45,28,10,16,1,15,38,15,13,1,10
@@ -2675,7 +2675,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127408,Ian Jackson,St. John's,52,43,20,4,17,2,43,77,36,7,0,4
 2026,127411,Josh Ahayere,Colgate,39,29,13,16,21,2,21,39,19,0,0,0
 2026,127413,Cameron Brennan,Colgate,1,2,1,2,4,2,0,0,0,1,0,1
-2026,127415,Cory Wells,Prairie View A&M,33,41,11,53,95,19,29,54,27,8,1,5
+2026,127415,Cory Wells,Prairie View A&M,33,41,11,54,99,20,30,54,28,8,1,5
 2026,127417,Blake Harper,Creighton,35,25,8,24,34,6,19,34,13,4,0,2
 2026,127418,Isaiah Brown,Howard,12,20,3,0,9,0,6,7,3,0,0,0
 2026,127422,Fischer Brown,Western Carolina,4,1,3,1,0,0,0,4,0,0,0,0
@@ -2696,7 +2696,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127447,Brady Fitzgerald,Green Bay,0,0,0,0,0,0,0,0,0,0,0,0
 2026,127448,Dutch Dowdell,Harvard,0,0,0,0,1,0,5,10,5,0,0,0
 2026,127450,Alec Squires,South Dakota St.,40,19,33,5,14,3,0,0,0,7,3,6
-2026,127451,Jamari Phillips,Oregon,2,2,1,3,4,0,17,41,11,1,0,1
+2026,127451,Jamari Phillips,Oregon,2,2,1,3,5,0,18,43,12,1,0,1
 2026,127452,Elijah Espinosa,Mount St. Mary's,2,4,1,0,1,0,0,0,0,0,0,0
 2026,127455,Ray Adams,Seattle,0,2,0,0,0,0,0,0,0,0,1,0
 2026,127456,Yuto Kawashima,Seattle,1,0,1,0,1,0,0,1,0,0,0,0
@@ -2733,11 +2733,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127516,Erik Taylor,Presbyterian,5,2,1,1,1,1,2,11,1,0,0,0
 2026,127518,Braeden Carlsen,Mercer,0,1,0,0,1,0,2,5,2,0,0,0
 2026,127519,Mason Shrout,Purdue Fort Wayne,1,1,0,0,0,0,1,6,1,0,0,0
-2026,127520,Jaylen Washington,UT Rio Grande Valley,67,35,14,30,35,6,12,26,9,0,0,0
+2026,127520,Jaylen Washington,UT Rio Grande Valley,69,36,14,30,38,6,14,29,10,0,0,0
 2026,127522,Sean Blake,Vermont,78,76,16,16,22,1,18,32,15,0,1,0
 2026,127523,Drew Bessette,Vermont,0,0,0,0,0,0,0,2,0,0,0,0
 2026,127524,Sincere Clemons,Vermont,0,0,0,0,1,0,0,2,0,0,0,0
-2026,127528,Dezdrick Lindsay,Oregon,27,37,10,15,16,9,19,36,16,6,1,3
+2026,127528,Dezdrick Lindsay,Oregon,28,37,10,15,16,9,19,39,16,6,1,3
 2026,127529,Josh Pickett,Presbyterian,11,15,1,4,14,2,37,71,32,0,1,0
 2026,127531,Amarion Dickerson,USC,7,6,5,0,0,0,4,5,4,3,1,2
 2026,127532,Assane Mbaye,Seton Hall,0,1,0,0,0,0,0,0,0,0,0,0
@@ -2787,27 +2787,27 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127619,Zion Fruster,Eastern Illinois,69,56,30,51,96,12,26,64,23,11,3,8
 2026,127622,Josh Meo,Winthrop,24,34,2,6,14,0,22,51,18,0,2,0
 2026,127623,Tamarion Hoover,Jackson St.,10,3,4,4,9,2,39,70,37,2,0,1
-2026,127624,Dominic Pangonis,Wright St.,46,19,27,8,26,4,34,52,27,10,0,8
-2026,127627,TJ Nadeau,Detroit Mercy,10,18,4,54,45,12,60,70,53,0,0,0
-2026,127628,Ryan Kalambay,Detroit Mercy,41,23,19,7,7,6,0,0,0,0,0,0
+2026,127624,Dominic Pangonis,Wright St.,48,20,27,8,26,4,36,52,29,10,0,8
+2026,127627,TJ Nadeau,Detroit Mercy,10,18,4,56,47,14,61,73,54,0,0,0
+2026,127628,Ryan Kalambay,Detroit Mercy,41,25,19,7,7,6,0,0,0,0,0,0
 2026,127630,Divine Ugochukwu,Michigan St.,17,9,7,6,8,4,19,24,18,0,0,0
 2026,127631,Xander Alarie,Northeastern,27,24,13,4,11,2,5,14,5,7,0,7
 2026,127632,Austin Swartz,Creighton,26,13,11,33,33,10,62,98,45,4,0,4
 2026,127634,Graydon Lemke,Belmont,1,0,0,0,1,0,3,4,3,0,0,0
-2026,127635,Ismaila Diagne,Gonzaga,10,8,4,2,3,1,0,0,0,2,2,1
+2026,127635,Ismaila Diagne,Gonzaga,10,9,4,2,3,1,0,0,0,2,2,1
 2026,127636,John Holbrook,North Carolina,0,1,0,0,0,0,0,0,0,0,0,0
 2026,127640,Zion Wilburn,Samford,23,25,8,0,5,0,13,35,13,3,1,1
 2026,127642,Jordan Brathwaite,Yale,19,19,7,5,10,1,37,49,30,4,0,2
 2026,127643,Isaac Celiscar,Yale,71,39,34,23,20,6,14,29,14,4,0,4
 2026,127644,BJ Kolly,UC Riverside,90,57,39,7,18,2,0,12,0,10,5,7
-2026,127645,Elijah Thomas,Eastern Washington,6,3,2,3,0,3,5,27,5,2,1,1
+2026,127645,Elijah Thomas,Eastern Washington,6,3,2,3,0,3,6,28,6,2,1,1
 2026,127648,Marcus Johnson,Kansas St.,0,1,0,0,2,0,8,19,7,0,0,0
 2026,127649,L.J. Cason,Michigan,40,19,13,8,12,2,33,49,30,2,0,1
 2026,127656,Jeremiah Jenkins,Brown,31,43,6,3,22,0,34,60,19,0,0,0
 2026,127657,David Rochester,Brown,24,25,13,8,16,5,6,18,6,0,1,0
 2026,127658,Wyatt DeGraaf,Brown,10,4,8,0,2,0,0,0,0,4,1,4
 2026,127659,Garrett Sundra,Notre Dame,21,7,18,3,7,1,16,36,16,0,0,0
-2026,127661,Biggie Patterson,Hofstra,31,22,17,28,46,7,28,67,26,9,0,7
+2026,127661,Biggie Patterson,Hofstra,31,24,17,28,47,7,29,67,27,9,0,7
 2026,127664,Tyonne Farrell,Morehead St.,30,17,5,1,12,1,4,10,4,1,0,0
 2026,127666,Damone King,Rhode Island,6,3,3,6,5,2,7,20,6,0,0,0
 2026,127667,Nic Book,USC Upstate,5,1,4,0,0,0,0,0,0,0,0,0
@@ -2823,9 +2823,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127682,Ben Ezeagu,Southern Indiana,4,10,2,0,0,0,0,0,0,1,1,1
 2026,127683,Jason Clarke Jr.,Appalachian St.,18,10,2,4,12,0,5,20,5,0,0,0
 2026,127684,Jaiden Lawrence,Southeastern Louisiana,16,15,14,2,4,1,31,71,28,1,1,1
-2026,127685,Jamil Muttilib,Grambling St.,62,24,37,11,20,4,47,102,42,21,4,13
+2026,127685,Jamil Muttilib,Grambling St.,63,25,38,11,22,4,52,105,46,21,4,13
 2026,127686,Mario Andrews,Alabama St.,14,11,4,2,2,2,1,3,0,2,0,1
-2026,127688,Micah Simpson,Alabama St.,44,54,6,25,65,5,69,138,51,2,0,0
+2026,127688,Micah Simpson,Alabama St.,44,56,6,25,66,5,71,144,52,2,0,0
 2026,127690,Makoi Mabor Makoi,UNC Wilmington,7,9,5,8,7,5,0,1,0,0,0,0
 2026,127692,Cameron McNamee,Dartmouth,11,11,5,2,8,1,29,41,27,0,1,0
 2026,127693,Camren Daniels,North Carolina Central,1,1,0,0,1,0,0,0,0,0,0,0
@@ -2833,16 +2833,16 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127698,JaJuan Nicholls,Tennessee Tech,97,53,42,19,22,3,0,0,0,20,1,14
 2026,127700,Christian Anderson,Texas Tech,50,18,7,39,51,3,103,138,45,7,1,2
 2026,127701,Jazz Henderson,Texas Tech,1,0,0,0,2,0,1,1,1,0,0,0
-2026,127703,Tyler Spratt,Detroit Mercy,19,15,5,24,33,10,51,79,47,1,0,1
+2026,127703,Tyler Spratt,Detroit Mercy,19,15,5,26,34,12,53,82,49,1,0,1
 2026,127704,Kaden Stuckey,VMI,38,38,28,1,19,0,0,13,0,4,0,4
-2026,127705,Dan Gherezgher,Northern Kentucky,49,37,10,22,44,6,92,151,81,2,1,0
+2026,127705,Dan Gherezgher,Northern Kentucky,50,39,10,22,45,6,94,154,83,2,1,0
 2026,127706,Ian Smikle,Tulsa,29,22,16,4,7,1,0,0,0,3,2,2
 2026,127707,Alex McFadden,Delaware,1,0,1,0,1,0,0,0,0,0,0,0
 2026,127708,Brett Decker Jr.,Liberty,54,35,23,9,19,1,97,106,87,5,1,4
 2026,127709,Owen Aquino,High Point,87,63,44,6,9,0,14,17,14,13,4,8
 2026,127710,Macon Emory,Delaware,67,42,40,15,19,8,42,106,36,18,0,14
 2026,127711,Izaiah Pasha,Virginia Tech,8,13,1,5,7,0,1,6,1,1,1,0
-2026,127715,DeSean Goode,Robert Morris,120,56,78,21,21,11,36,24,36,3,2,3
+2026,127715,DeSean Goode,Robert Morris,126,56,82,22,23,11,36,26,36,4,2,4
 2026,127717,Keenan Garner,Central Michigan,61,45,30,10,18,4,8,9,8,5,0,2
 2026,127719,Ryan Mela,Providence,70,54,15,18,20,2,16,35,15,0,0,0
 2026,127723,Zawdie Jackson,FIU,52,42,14,14,39,1,24,44,17,0,0,0
@@ -2850,7 +2850,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127728,Eduardo Klafke,Mississippi,8,6,4,22,19,12,17,24,15,1,0,0
 2026,127729,John Bol,UCF,58,13,39,16,10,13,0,0,0,10,0,10
 2026,127731,Royce Parham,Marquette,85,42,51,17,19,7,32,65,29,20,4,15
-2026,127736,Nojus Indrusaitis,Pittsburgh,38,36,14,11,34,2,49,83,40,5,1,4
+2026,127736,Nojus Indrusaitis,Pittsburgh,38,36,14,12,34,2,50,84,41,5,1,4
 2026,127739,Khalil Williams,Bryant,8,16,0,2,7,0,10,35,5,0,0,0
 2026,127740,Frankie Vassalluzzo,Bryant,0,1,0,0,1,0,0,1,0,0,0,0
 2026,127741,Langston Bailey,Bryant,1,1,0,1,0,0,1,2,0,0,0,0
@@ -2867,7 +2867,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127758,Nyle Ralph-Beyer,Sacred Heart,22,15,11,36,48,14,90,113,78,9,2,7
 2026,127759,Juwan Maxey,Ball St.,9,11,5,6,11,4,33,86,27,0,0,0
 2026,127760,Cris Carroll,Youngstown St.,68,35,14,18,26,4,82,129,73,2,1,2
-2026,127764,TJ Burch,Wright St.,99,78,13,21,44,3,21,42,18,2,0,0
+2026,127764,TJ Burch,Wright St.,104,81,14,21,47,3,23,45,19,2,0,0
 2026,127765,Lathan Sommerville,Washington,14,13,9,13,21,8,1,3,1,2,0,2
 2026,127767,Kayde Dotson,Loyola Chicago,21,30,9,8,9,2,55,92,44,0,0,0
 2026,127769,Daniel Thomas,UNC Asheville,27,24,16,0,8,0,0,4,0,8,0,7
@@ -2880,11 +2880,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127781,Cameron Clark,South Carolina St.,56,44,39,9,39,7,0,0,0,14,7,12
 2026,127782,Jemel Jones,New Mexico St.,33,29,2,82,110,11,40,74,33,5,2,1
 2026,127784,James Evans Jr.,Cal St. Northridge,22,29,9,16,26,3,22,46,20,2,1,1
-2026,127785,Omari Hamilton,Alcorn St.,51,40,26,17,34,6,14,30,12,0,0,0
-2026,127786,Tycen McDaniels,Alcorn St.,97,54,38,35,55,10,2,5,1,33,2,20
+2026,127785,Omari Hamilton,Alcorn St.,54,43,29,18,38,7,17,31,14,1,0,1
+2026,127786,Tycen McDaniels,Alcorn St.,102,61,42,36,60,10,2,6,1,35,4,22
 2026,127788,Dakari Thomas,Chicago St.,1,3,1,1,1,1,0,0,0,0,0,0
 2026,127790,Danilo Dozic,Pepperdine,20,15,16,28,41,18,43,77,40,2,1,2
-2026,127791,Dovydas Butka,Campbell,116,77,63,29,51,9,5,25,5,10,1,7
+2026,127791,Dovydas Butka,Campbell,119,79,65,29,51,9,5,25,5,10,1,7
 2026,127792,Hassan Perkins,Coppin St.,25,19,1,8,26,0,29,47,14,0,0,0
 2026,127794,Shadrak Lasu,LIU,54,38,35,2,6,2,8,8,8,25,7,22
 2026,127795,Jalen Lee,Southern Utah,14,14,6,3,12,0,14,32,14,0,0,0
@@ -2896,11 +2896,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127809,Taj DeGourville,San Diego St.,12,19,4,27,41,7,17,33,11,0,0,0
 2026,127810,Pharaoh Compton,San Diego St.,82,17,63,6,13,2,0,2,0,42,4,38
 2026,127811,Mark Drone,Texas St.,77,68,15,49,65,3,25,68,19,1,0,0
-2026,127812,Austin Green,UMass Lowell,88,60,41,18,21,6,0,1,0,10,1,8
+2026,127812,Austin Green,UMass Lowell,92,65,42,18,24,6,0,2,0,10,1,8
 2026,127814,KJ Thomas,UTEP,24,18,4,6,15,2,16,45,16,0,1,0
 2026,127818,Jack Reddick,Florida Gulf Coast,7,7,3,6,5,0,9,27,9,0,0,0
 2026,127819,Darren Williams,Florida Gulf Coast,11,5,7,8,23,0,48,83,44,0,0,0
-2026,127821,Damarien Yates,Alabama St.,28,20,12,11,13,5,28,50,24,4,2,4
+2026,127821,Damarien Yates,Alabama St.,30,20,13,11,14,5,28,54,24,4,2,4
 2026,127822,Bouna Kebe,Delaware,4,0,4,3,5,3,1,7,1,1,0,1
 2026,127823,Jared Harris,Wyoming,7,6,3,0,1,0,6,14,6,3,0,2
 2026,127824,Rolyns Aligbe,Southern Illinois,77,69,50,9,16,7,24,45,23,13,3,11
@@ -2909,8 +2909,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127828,Jamal Miles,South Carolina St.,6,2,2,1,5,1,4,22,4,1,0,1
 2026,127829,D'Shay Knights Wright,South Carolina St.,6,7,2,5,7,4,1,3,1,0,0,0
 2026,127830,Antonio Sisk,Mississippi Valley St.,1,2,1,0,1,0,0,4,0,0,0,0
-2026,127831,Joshua Dent,Saint Mary's,54,31,12,20,38,0,52,80,43,0,0,0
-2026,127832,Mikey Lewis,Saint Mary's,50,55,19,26,52,8,63,104,53,0,1,0
+2026,127831,Joshua Dent,Saint Mary's,54,32,12,22,38,0,52,81,43,0,0,0
+2026,127832,Mikey Lewis,Saint Mary's,53,58,19,28,52,8,66,110,55,1,1,0
 2026,127833,Max Weisbrod,Northern Iowa,6,5,2,1,6,0,52,83,41,0,0,0
 2026,127834,Liam Campbell,Saint Mary's,13,10,6,11,13,2,23,23,23,0,0,0
 2026,127835,Oliver Faubert,Saint Mary's,0,2,0,0,0,0,0,0,0,0,0,0
@@ -2937,7 +2937,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127870,Babatunde Durodola,Temple,42,34,21,8,15,3,0,2,0,1,1,1
 2026,127872,Ajay Holubar,IU Indy,1,0,1,0,1,0,0,1,0,0,0,0
 2026,127873,Damarion Dennis,Wyoming,65,33,33,10,10,3,31,59,30,4,1,2
-2026,127874,Isaac Williams,Baylor,48,26,11,42,39,6,20,23,19,4,1,1
+2026,127874,Isaac Williams,Baylor,52,27,12,42,43,6,22,24,21,4,1,1
 2026,127875,Ethan Wright,Miami OH,1,0,1,0,0,0,0,0,0,0,0,0
 2026,127877,Austin Rapp,Wisconsin,34,19,23,2,9,1,47,84,46,6,0,6
 2026,127878,Todd Jones Jr.,Louisiana,39,22,27,2,6,0,0,1,0,17,1,13
@@ -2976,14 +2976,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127932,Anastasios Rozakeas,Mount St. Mary's,7,5,4,0,10,0,20,45,19,0,0,0
 2026,127934,Daquan Davis,Providence,1,0,0,0,1,0,0,2,0,0,0,0
 2026,127935,Alec Millender,Connecticut,2,1,0,0,0,0,1,6,1,0,0,0
-2026,127937,Andre Mills,Maryland,56,47,12,22,30,2,53,96,44,5,0,2
+2026,127937,Andre Mills,Maryland,57,51,12,23,32,3,54,100,45,5,0,2
 2026,127939,Jayce Nathaniel,Illinois Chicago,45,39,31,17,23,9,13,38,13,8,3,6
 2026,127940,Jadis Jones,Lindenwood,119,70,65,32,43,17,0,8,0,13,1,9
 2026,127941,Janusz Ratowski,Stetson,19,9,15,1,3,1,1,2,1,5,0,4
 2026,127942,Iker Garmendia,Elon,2,4,2,0,1,0,2,4,2,1,0,1
 2026,127943,Aly Tounkara,Arkansas St.,52,25,31,3,11,2,0,0,0,13,2,11
 2026,127944,George Turkson Jr.,Maryland,6,10,4,2,2,2,0,6,0,1,0,1
-2026,127947,Ring Nyeri,Northern Colorado,65,31,41,9,16,3,19,36,19,29,6,24
+2026,127947,Ring Nyeri,Northern Colorado,67,33,43,11,17,3,20,38,20,30,6,25
 2026,127950,Kasheem Grady II,UMKC,29,24,13,26,31,3,31,80,24,5,4,4
 2026,127953,Richard Goods,Stony Brook,48,35,31,4,26,2,31,56,31,22,4,17
 2026,127954,Kellan Lewis,Hampton,0,0,0,0,2,0,1,1,1,0,0,0
@@ -3007,7 +3007,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,127980,Connor Amundsen,Dartmouth,20,15,4,16,30,1,34,73,22,0,0,0
 2026,127981,Kareem Thomas,Dartmouth,47,55,10,19,31,0,41,51,25,8,0,3
 2026,127982,Brewer Carruth,Southern Miss,10,7,5,6,10,1,6,25,6,0,0,0
-2026,127986,Joshua DeCady,Hofstra,43,39,17,5,12,1,15,34,15,11,2,8
+2026,127986,Joshua DeCady,Hofstra,46,41,19,5,12,1,16,39,16,13,2,10
 2026,127988,Micah Robinson,TCU,52,52,32,10,21,1,35,75,34,12,0,11
 2026,127989,Christian Gamble,Mercyhurst,7,3,3,15,27,7,18,51,16,0,0,0
 2026,127991,Ashton Simmons,TCU,0,1,0,1,1,0,1,3,1,0,0,0
@@ -3017,7 +3017,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128000,Landon Williams,Niagara,11,8,4,10,12,4,26,44,25,1,0,0
 2026,128001,Pasha Shemirani,Pepperdine,0,0,0,0,4,0,2,3,1,0,0,0
 2026,128002,Will Shortt,Niagara,76,43,53,12,13,8,0,2,0,18,5,17
-2026,128004,Donnie Freeman,Syracuse,59,30,29,39,47,15,25,57,24,12,1,10
+2026,128004,Donnie Freeman,Syracuse,60,30,29,40,50,16,26,60,25,12,1,10
 2026,128005,Reid Cason,East Carolina,41,19,27,4,9,2,1,7,1,10,0,9
 2026,128006,Jayshayne Woodard,East Carolina,1,1,1,1,0,0,1,4,1,0,0,0
 2026,128008,Ladontae Felton,East Carolina,0,0,0,0,1,0,0,1,0,0,0,0
@@ -3028,7 +3028,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128014,Jayden Gambrell,Lamar,2,0,0,6,20,3,24,49,20,0,0,0
 2026,128015,Ebrahim Kaba,Purdue Fort Wayne,5,7,1,1,0,0,10,30,10,0,0,0
 2026,128016,Braden East,Lamar,95,58,48,44,62,23,5,11,5,19,1,17
-2026,128018,Grant Kemp,New Orleans,2,6,0,0,0,0,0,2,0,0,0,0
+2026,128018,Grant Kemp,New Orleans,2,6,0,0,0,0,0,3,0,0,0,0
 2026,128019,Luke Flynn,Wofford,6,11,2,2,7,0,23,43,23,0,0,0
 2026,128020,Kahmare Holmes,Wofford,98,66,25,24,36,1,45,81,36,7,1,2
 2026,128021,Cannon Richards,Wofford,0,1,0,0,1,0,1,1,1,0,1,0
@@ -3043,7 +3043,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128038,AJ Hopkins,Tennessee Martin,4,3,2,0,3,0,18,40,18,0,0,0
 2026,128039,Pedro Santos,Tennessee Martin,31,24,10,25,35,3,21,47,16,4,1,3
 2026,128040,Stefano Faloppa,New Haven,40,14,24,3,19,1,17,36,16,0,0,0
-2026,128045,Ta'Zir Smith,Robert Morris,28,27,5,9,14,4,24,51,22,0,0,0
+2026,128045,Ta'Zir Smith,Robert Morris,29,27,6,9,14,4,26,52,23,0,0,0
 2026,128046,Micah Caster,Louisiana Monroe,4,26,2,3,6,2,11,21,10,0,0,0
 2026,128047,Connor Martin,Coastal Carolina,0,0,0,0,0,0,0,1,0,0,0,0
 2026,128048,Bennett Stirtz,Iowa,87,34,28,50,57,5,78,126,34,11,1,9
@@ -3053,17 +3053,17 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128056,Kevin Alabi,Alabama St.,1,2,1,0,1,0,0,0,0,1,0,1
 2026,128057,Elijah Moore,Utah,0,1,0,0,0,0,0,0,0,0,0,0
 2026,128061,Jalil Bethea,Alabama,13,11,5,1,2,0,16,32,13,3,1,3
-2026,128064,Nate Johnson,Detroit Mercy,8,14,3,7,18,2,4,17,3,2,2,2
+2026,128064,Nate Johnson,Detroit Mercy,9,14,3,7,18,2,4,17,3,2,2,2
 2026,128065,Isaiah Johnson-Arigu,St. Thomas,78,34,39,6,7,3,23,50,23,16,1,12
 2026,128066,Troy Cole Jr.,Southeast Missouri St.,32,15,13,9,8,1,2,36,2,6,0,3
-2026,128068,Nick Woodard,Alcorn St.,45,30,16,23,48,4,29,68,24,4,1,3
+2026,128068,Nick Woodard,Alcorn St.,47,33,16,24,48,4,32,72,27,4,1,3
 2026,128070,Malcolm Noel,West Georgia,12,11,1,25,27,2,31,68,22,0,0,0
 2026,128072,Jace Winkleman,Morehead St.,0,0,0,0,0,0,1,1,0,0,0,0
 2026,128074,Amari McCottry,Saint Louis,94,59,32,5,13,2,17,42,16,3,2,3
 2026,128076,Gabe Pickens,New Mexico St.,20,23,5,5,12,0,11,30,7,0,0,0
 2026,128077,Jae'Coby Osborne,New Mexico St.,54,22,26,9,15,3,3,12,3,9,1,6
 2026,128080,Joul Karram,Utah Valley,2,0,1,2,0,2,0,0,0,1,0,1
-2026,128081,MJ Thomas,New Orleans,93,70,46,21,24,9,1,1,1,13,1,10
+2026,128081,MJ Thomas,New Orleans,96,80,46,21,24,9,2,1,2,14,1,10
 2026,128085,Antoni Siewruk,New Hampshire,0,0,0,0,0,0,0,0,0,0,0,0
 2026,128086,Caleb Middleton,Elon,31,20,14,3,8,2,0,0,0,1,1,1
 2026,128087,Khalil Badru,Iona,19,16,6,20,15,3,1,10,1,5,0,2
@@ -3143,7 +3143,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128203,Keitenn Bristow,Alabama,11,12,5,0,1,0,1,8,1,2,0,1
 2026,128205,Jordan Mizell,Tarleton St.,38,39,6,10,34,2,0,6,0,0,0,0
 2026,128206,Malek Archie,Tarleton St.,2,0,0,0,0,0,0,0,0,0,0,0
-2026,128211,Tyler McKinley,Cincinnati,16,8,11,4,9,3,0,2,0,3,2,3
+2026,128211,Tyler McKinley,Cincinnati,16,8,11,5,10,3,0,2,0,3,2,3
 2026,128212,Jamichael Stillwell,UCF,72,47,27,39,42,21,12,24,12,2,1,1
 2026,128213,Halvine Dzellat,Cincinnati,19,15,16,2,1,1,0,1,0,4,0,3
 2026,128214,Bradey Henige,Cal Baptist,55,46,31,8,12,5,0,0,0,9,0,2
@@ -3161,7 +3161,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128231,Annor Boateng,Missouri,9,13,4,0,2,0,5,15,5,4,1,2
 2026,128232,Marcus Allen,Miami FL,4,6,2,5,5,2,5,8,5,1,2,1
 2026,128234,Clayton Jackson,Lindenwood,33,21,5,18,37,6,14,53,11,0,0,0
-2026,128236,Kanon Catchings,Georgia,36,20,14,24,37,6,64,102,49,16,0,5
+2026,128236,Kanon Catchings,Georgia,36,20,14,24,37,6,64,102,50,16,0,5
 2026,128237,Josiah LeGree,Morehead St.,30,31,6,16,24,1,24,48,17,3,1,2
 2026,128238,Myles Watkins,Bellarmine,26,17,7,7,10,0,3,10,2,0,0,0
 2026,128240,CJ Hyland,Western Carolina,14,23,1,2,10,0,10,18,8,0,0,0
@@ -3197,7 +3197,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128288,Greyson Uelmen,North Dakota,119,74,8,22,36,2,36,75,24,0,0,0
 2026,128289,TJ Williams,Wichita St.,67,62,27,17,29,3,1,11,1,4,2,3
 2026,128292,David Hansen,Weber St.,0,0,0,0,2,0,7,17,5,0,0,0
-2026,128293,Trevor Hennig,Weber St.,49,32,21,19,27,2,14,40,11,2,0,1
+2026,128293,Trevor Hennig,Weber St.,50,33,22,21,27,2,14,42,11,2,0,1
 2026,128294,Ramondo Battle II,North Carolina Central,5,7,5,1,6,1,5,19,4,3,0,3
 2026,128295,Trent Hundley,Evansville,6,1,3,4,12,1,36,64,33,1,0,1
 2026,128297,Kaia Berridge,Evansville,3,3,2,1,4,0,9,25,6,0,0,0
@@ -3210,7 +3210,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128309,EJ Ryans,Western Michigan,26,28,3,23,29,9,29,61,28,0,0,0
 2026,128310,Melo Sanchez,Central Connecticut,20,6,8,16,29,1,56,75,50,0,0,0
 2026,128311,Trey Deveaux,Mount St. Mary's,63,49,28,14,32,4,25,50,24,8,2,6
-2026,128312,Moustapha Thiam,Cincinnati,66,25,51,71,71,53,11,34,11,36,8,33
+2026,128312,Moustapha Thiam,Cincinnati,67,25,52,74,77,56,12,36,12,37,8,34
 2026,128313,Cameron Simpson,Texas St.,0,0,0,0,0,0,0,1,0,0,0,0
 2026,128314,Seth Jones,Southeastern Louisiana,2,1,0,4,8,1,8,26,5,0,0,0
 2026,128320,Ben Wesson,Vermont,0,0,0,0,1,0,0,1,0,0,0,0
@@ -3248,7 +3248,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128378,Jaden Zimmerman,Quinnipiac,57,61,27,18,47,5,46,101,37,8,0,7
 2026,128380,Vianney Salatchoum,TCU,8,2,6,2,8,0,0,0,0,5,0,5
 2026,128381,Walker Asp,Northern Colorado,0,0,0,0,0,0,0,1,0,0,0,0
-2026,128382,Ariik Mawien,Northern Colorado,18,11,9,5,4,0,3,25,3,4,0,2
+2026,128382,Ariik Mawien,Northern Colorado,18,11,9,5,4,0,4,25,4,4,0,2
 2026,128384,Amar Amkou,Florida Atlantic,25,15,8,0,8,0,13,25,13,3,2,3
 2026,128385,Matas Vokietaitis,Texas,138,58,88,13,29,4,0,0,0,47,5,35
 2026,128388,Théo Pierre-Justin,DePaul,10,15,5,7,4,6,24,36,24,3,1,2
@@ -3257,7 +3257,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128392,Birgir Irving,High Point,0,2,0,0,1,0,0,3,0,0,0,0
 2026,128394,Rubén Prey,St. John's,21,16,11,9,19,4,10,8,10,5,0,3
 2026,128398,Jake Stout,UMBC,1,0,1,0,1,0,1,4,0,0,0,0
-2026,128399,Tim Eze,UMBC,5,3,2,1,2,1,0,3,0,2,0,1
+2026,128399,Tim Eze,UMBC,8,3,3,1,2,1,0,4,0,4,0,2
 2026,128400,Daylon Dickerson,UMBC,28,14,13,4,6,1,2,5,2,1,0,1
 2026,128405,Shelton Williams-Dryden,West Georgia,133,84,53,93,108,38,17,54,16,2,1,0
 2026,128406,Jackson Delaney,Manhattan,0,3,0,0,0,0,2,6,2,0,0,0
@@ -3265,7 +3265,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,128411,Marko Ljubicic,Manhattan,20,20,13,19,12,14,26,66,26,0,0,0
 2026,128413,Kenneth Chime,West Georgia,56,31,34,9,15,5,0,0,0,15,2,15
 2026,128416,Timoty van der Knaap,Bradley,51,42,27,12,13,3,15,49,15,14,3,9
-2026,128418,Rickey Ballard,Grambling St.,15,12,9,1,4,0,42,77,39,1,0,1
+2026,128418,Rickey Ballard,Grambling St.,15,12,9,1,4,0,43,79,40,1,0,1
 2026,128419,Bryce Roberts,Texas Southern,26,21,11,15,22,7,46,79,36,0,0,0
 2026,128421,Braylan Ritvo,Quinnipiac,3,4,3,0,2,0,2,4,1,0,0,0
 2026,128422,Spence Wewe,Quinnipiac,32,24,14,2,9,0,0,0,0,8,0,6
@@ -3296,7 +3296,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133640,Yonatan Levy,Pepperdine,32,26,21,6,10,5,14,31,14,0,0,0
 2026,133641,Abdulai Fanta Kabba,Western Carolina,48,24,31,3,2,1,0,0,0,15,2,12
 2026,133645,Ethan Brown,Colgate,2,4,2,1,4,0,2,4,2,0,0,0
-2026,133646,Trevor Best,Arizona St.,2,1,2,2,3,0,2,9,2,1,0,1
+2026,133646,Trevor Best,Arizona St.,3,1,3,2,3,0,2,9,2,1,0,1
 2026,133648,Nicholas Errica,Western Michigan,1,0,1,0,0,0,1,3,1,0,0,0
 2026,133652,Okku Federiko,Drake,74,44,45,10,14,3,15,39,15,15,2,13
 2026,133654,Trevor Augustine,Canisius,0,0,0,0,0,0,1,0,0,0,0,0
@@ -3323,12 +3323,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133687,Trent Steinour,Clemson,1,2,1,0,1,0,0,0,0,1,0,1
 2026,133689,Zac Foster,Clemson,11,18,4,2,6,0,13,34,9,5,1,2
 2026,133691,Ezra McKenna,Buffalo,27,11,19,3,4,3,22,30,22,5,1,5
-2026,133692,Darrel Yepdo,UMass Lowell,32,43,8,25,40,1,46,83,32,0,0,0
-2026,133693,JJ Massaquoi,UMass Lowell,81,73,40,6,7,3,0,9,0,5,0,4
+2026,133692,Darrel Yepdo,UMass Lowell,32,44,8,26,42,1,50,87,35,0,0,0
+2026,133693,JJ Massaquoi,UMass Lowell,81,76,40,6,7,3,0,10,0,5,0,4
 2026,133696,Jadin Booth,Samford,42,20,13,25,49,3,121,161,98,0,0,0
-2026,133697,Corey Dunning,Prairie View A&M,10,4,5,2,4,1,0,1,0,4,1,3
+2026,133697,Corey Dunning,Prairie View A&M,11,5,5,2,4,1,0,1,0,4,1,3
 2026,133698,Ty Owens,Tennessee Tech,31,30,3,21,32,0,20,45,12,1,0,0
-2026,133699,Lance Williams,Prairie View A&M,20,36,2,31,40,9,23,33,21,0,0,0
+2026,133699,Lance Williams,Prairie View A&M,21,36,3,35,41,11,24,35,22,0,0,0
 2026,133700,Jon Carroll,Morehead St.,114,71,60,4,18,0,0,1,0,13,2,11
 2026,133701,Jah'Kim Payne,Tennessee Tech,7,6,3,3,10,1,11,18,9,0,0,0
 2026,133702,Zack Scherler,NJIT,6,3,6,0,2,0,0,0,0,0,0,0
@@ -3362,12 +3362,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133737,Louis Bond,Idaho St.,18,11,8,8,14,1,11,20,7,2,0,2
 2026,133738,Landen Birley,Idaho St.,1,0,0,1,0,0,0,2,0,0,0,0
 2026,133739,Martin Kheil,Idaho St.,14,15,7,3,5,1,64,113,64,0,3,0
-2026,133741,Tyler Byrd,Alabama St.,73,44,18,13,29,3,19,51,18,15,1,9
+2026,133741,Tyler Byrd,Alabama St.,74,46,18,13,29,3,21,53,20,15,1,9
 2026,133743,Isaiah Denis,North Carolina,2,3,0,1,0,0,4,4,4,0,0,0
 2026,133744,Luka Bogavac,North Carolina,37,32,8,16,28,4,51,90,41,0,0,0
 2026,133745,Tay Smith,North Dakota St.,10,13,2,0,2,0,66,107,55,3,1,1
 2026,133746,Eric Reibe,Connecticut,79,25,66,9,16,9,4,9,4,17,0,16
-2026,133747,Darius Livingston,Robert Morris,12,12,2,14,28,3,58,84,49,1,0,0
+2026,133747,Darius Livingston,Robert Morris,12,12,2,15,30,3,59,90,50,1,0,0
 2026,133749,Emanuel Prospere II,UC San Diego,61,46,10,14,11,5,7,26,6,0,3,0
 2026,133750,Chane Bynum,UNC Greensboro,1,3,0,1,3,0,2,8,2,0,0,0
 2026,133751,Noah Norgaard,UNC Greensboro,30,39,5,9,12,3,46,79,38,0,1,0
@@ -3384,7 +3384,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133765,Peyton White,Nevada,22,20,14,10,18,8,15,29,15,4,1,3
 2026,133766,Myles Walker,Nevada,2,3,0,7,10,0,5,10,3,0,0,0
 2026,133767,Saahil Thakkar,UMBC,0,0,0,0,0,0,1,1,0,0,0,0
-2026,133768,Victor Okojie,UMass Lowell,26,22,17,4,12,1,13,33,13,5,0,5
+2026,133768,Victor Okojie,UMass Lowell,26,22,17,4,12,1,13,35,13,5,0,5
 2026,133769,Alliou Fall,Iona,35,38,22,1,6,1,0,2,0,7,6,7
 2026,133770,Ryan Crotty,Oklahoma St.,3,4,0,0,1,0,15,34,15,0,0,0
 2026,133771,Nas Hart,La Salle,13,22,4,2,4,2,0,0,0,4,0,2
@@ -3416,15 +3416,15 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133806,"Dwayne Wimbley, Jr.",Massachusetts,18,21,7,2,9,2,6,29,6,1,0,1
 2026,133807,Romari Robinson,Sacramento St.,6,5,4,2,6,0,4,13,2,0,0,0
 2026,133808,Ahmad Harrison,Saint Francis,30,48,6,25,44,8,35,62,29,0,1,0
-2026,133809,Ryan Conway,Towson,1,2,0,0,0,0,19,38,18,0,0,0
+2026,133809,Ryan Conway,Towson,1,2,0,0,0,0,20,39,19,0,0,0
 2026,133810,Evan Smith,North Carolina,1,0,0,1,1,0,0,0,0,0,0,0
 2026,133811,Caleb Wilson,North Carolina,115,44,57,48,60,14,7,20,6,67,10,43
 2026,133812,Zoumana Traore,New Haven,3,7,1,1,0,0,3,10,3,0,0,0
-2026,133813,Hassane Diallo,Prairie View A&M,15,9,9,3,2,3,0,0,0,0,0,0
+2026,133813,Hassane Diallo,Prairie View A&M,16,12,9,3,2,3,0,0,0,0,0,0
 2026,133814,Alex Steen,Florida St.,65,30,46,5,10,4,0,1,0,23,5,17
 2026,133815,Preston Murphy Jr.,Alabama,0,0,0,0,0,0,0,1,0,0,0,0
 2026,133816,Tyler Robinett,Youngstown St.,5,4,2,2,3,0,2,8,1,1,0,1
-2026,133818,Daniel Michelini-Jackson,Texas A&M Corpus Chris,8,6,2,8,21,3,9,35,8,0,0,0
+2026,133818,Daniel Michelini-Jackson,Texas A&M Corpus Chris,9,6,3,12,23,5,14,35,13,0,0,0
 2026,133819,Cedric Horton,Texas A&M Corpus Chris,3,2,2,1,2,1,2,3,2,2,1,2
 2026,133820,Rontavious Blackshear,Youngstown St.,12,2,5,10,16,3,34,67,32,0,0,0
 2026,133821,Jordan Tillery,VCU,13,7,2,0,3,0,4,3,3,1,0,1
@@ -3468,7 +3468,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133865,Josiah Shackleford,North Texas,32,24,22,14,17,8,0,0,0,5,0,4
 2026,133866,De'Undrae Perteete,UC Riverside,17,12,5,4,10,0,28,42,25,0,0,0
 2026,133867,Dayjaun Anderson,UAB,12,8,5,7,6,0,31,88,23,2,1,1
-2026,133868,Panagiotis Pagonis,New Orleans,21,24,11,4,9,4,12,37,11,0,0,0
+2026,133868,Panagiotis Pagonis,New Orleans,21,25,11,4,9,4,12,37,11,0,0,0
 2026,133870,Reid Celestin,Queens,1,3,1,0,0,0,0,1,0,0,0,0
 2026,133871,Isaiah Henry,Queens,22,8,11,3,9,0,3,12,3,4,0,2
 2026,133872,Jordan Watford,Queens,111,60,18,9,11,4,8,15,8,4,0,0
@@ -3498,7 +3498,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133900,Josh Ward,Cal St. Fullerton,85,55,28,18,35,5,42,90,36,0,0,0
 2026,133901,Andrew Austin,Eastern Illinois,5,0,4,2,4,2,8,32,8,0,0,0
 2026,133902,Jannoy Thomas,Prairie View A&M,18,7,4,0,7,0,0,1,0,1,0,0
-2026,133903,Elijah Mitchell,Prairie View A&M,2,4,2,2,7,2,5,4,5,0,0,0
+2026,133903,Elijah Mitchell,Prairie View A&M,3,4,3,2,8,2,5,7,5,1,0,1
 2026,133904,Noah Pagotto,East Texas A&M,81,47,54,20,19,16,18,29,18,6,2,3
 2026,133905,Aginaldo Neto,Boise St.,20,30,4,1,7,1,15,29,14,1,0,0
 2026,133906,Jaden Kempson,Albany,46,55,5,13,27,1,21,49,13,1,0,0
@@ -3507,7 +3507,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133910,Kyle Jones,Buffalo,10,10,3,1,0,1,0,3,0,2,0,1
 2026,133911,Toby Nwokolo,Toledo,1,0,1,0,0,0,0,0,0,0,0,0
 2026,133912,Oscar Goodman,Michigan,7,3,5,1,4,1,0,6,0,4,0,3
-2026,133913,Albert Vargas,Robert Morris,13,19,5,13,27,4,32,50,29,0,0,0
+2026,133913,Albert Vargas,Robert Morris,13,19,5,13,28,4,32,51,29,0,0,0
 2026,133914,Simon Majok,Memphis,16,12,8,3,7,1,2,5,2,1,1,1
 2026,133915,Eugene Alvin,Morgan St.,28,15,17,14,26,4,24,38,24,2,0,2
 2026,133916,Cam Polak,Youngstown St.,10,9,4,1,4,0,34,61,33,0,0,0
@@ -3526,7 +3526,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133930,Andrew Alekseyenko,Colgate,90,76,44,44,42,12,41,64,35,6,0,4
 2026,133931,Matthew Zobrist,Bradley,2,0,1,0,1,0,1,5,1,0,0,0
 2026,133932,Montana Wheeler,Bradley,38,30,8,24,36,7,31,65,24,0,0,0
-2026,133934,Edwin Suarez Jr.,Weber St.,107,88,45,2,12,0,0,5,0,4,1,1
+2026,133934,Edwin Suarez Jr.,Weber St.,109,88,45,2,13,0,0,5,0,4,1,1
 2026,133935,Grant Polk,South Carolina,10,3,4,3,6,2,25,53,24,1,0,0
 2026,133937,Cole Middleton,Lipscomb,34,25,11,6,21,2,5,12,3,2,1,1
 2026,133938,Cam Thomas,Tarleton St.,3,1,0,4,9,3,0,5,0,0,0,0
@@ -3537,7 +3537,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133944,Edwin Daniel,La Salle,34,27,22,14,23,10,0,2,0,3,0,3
 2026,133945,Isaac Garrett,Oakland,102,65,61,33,42,17,6,17,6,25,0,19
 2026,133946,Dame Sarr,Duke,28,24,14,3,4,3,35,70,35,15,2,9
-2026,133948,Kedrick Osby,New Orleans,24,29,8,9,13,3,22,32,21,4,0,1
+2026,133948,Kedrick Osby,New Orleans,24,29,8,9,13,3,22,33,21,4,0,1
 2026,133949,Walter Brown,UNLV,20,18,12,4,4,1,12,25,12,2,0,2
 2026,133950,CJ Ray,Chicago St.,58,41,28,57,104,19,41,69,40,1,0,1
 2026,133951,Marcus Pigram,Western Illinois,5,8,2,3,9,0,5,20,5,0,0,0
@@ -3557,7 +3557,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,133967,Justin Monden,Maryland Eastern Shore,11,12,4,36,41,6,17,49,14,0,0,0
 2026,133968,Josiah Lee,Le Moyne,0,0,0,0,0,0,3,7,3,0,0,0
 2026,133969,Aliou Cisse,Merrimack,6,8,1,0,1,0,1,6,1,1,2,1
-2026,133971,Ethan Elliott,Northern Kentucky,29,32,14,6,22,1,17,53,16,0,0,0
+2026,133971,Ethan Elliott,Northern Kentucky,30,35,14,6,23,1,17,54,16,0,0,0
 2026,133972,Adrian McIntyre,San Diego,88,47,26,6,12,2,24,53,20,0,0,0
 2026,133973,RJ Spencer,Minnesota,0,1,0,0,0,0,0,1,0,0,0,0
 2026,133974,NaVuan Peterson,Gardner Webb,9,8,2,4,4,1,16,42,16,0,0,0
@@ -3594,7 +3594,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134019,Zachary Johnson,UCF,0,0,0,0,0,0,0,1,0,0,0,0
 2026,134020,Brian Hawthorne,South Alabama,4,9,2,2,12,0,1,7,1,0,0,0
 2026,134021,Carlos Hart,Eastern Michigan,48,53,10,6,12,0,18,38,16,0,0,0
-2026,134022,Kael Robinson,Northern Kentucky,58,48,30,8,19,0,59,102,57,2,0,2
+2026,134022,Kael Robinson,Northern Kentucky,60,50,31,8,20,0,63,104,61,2,0,2
 2026,134023,Rayzhon Bergersen,Boise St.,1,0,0,0,0,0,0,0,0,0,0,0
 2026,134024,Eltramon Smith Jr.,Stephen F. Austin,9,2,9,0,1,0,2,16,1,2,0,2
 2026,134025,Caden Miller,High Point,21,7,20,1,1,0,0,0,0,10,2,10
@@ -3615,8 +3615,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134043,Harun Zrno,Rutgers,12,10,4,4,11,4,47,96,47,0,1,0
 2026,134044,Derrick Green,Coastal Carolina,20,9,10,0,2,0,0,0,0,2,0,2
 2026,134045,Tristan Thompson,Coastal Carolina,30,26,17,11,16,5,2,24,2,7,1,7
-2026,134047,Stefanos Spartalis,Monmouth,57,49,41,52,75,33,3,11,3,2,1,1
-2026,134049,Grant Sanders,Nicholls St.,33,14,23,2,10,0,2,6,2,20,1,16
+2026,134047,Stefanos Spartalis,Monmouth,60,49,44,52,81,33,3,11,3,2,1,1
+2026,134049,Grant Sanders,Nicholls St.,36,15,25,2,10,0,2,6,2,22,1,17
 2026,134050,Zubayr Griffin,Monmouth,2,1,0,0,0,0,1,3,1,0,0,0
 2026,134051,Zaiden Cross,Nicholls St.,4,8,1,1,4,0,12,34,12,0,2,0
 2026,134053,EJ Spillman,UC Riverside,1,2,0,1,5,0,0,3,0,0,0,0
@@ -3628,10 +3628,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134062,Davante Hackett,Stonehill,63,46,20,21,39,2,61,116,50,8,2,6
 2026,134063,Fredy-Salam Sylla,Arkansas St.,14,9,5,0,3,0,7,16,7,2,0,2
 2026,134068,Kaleb Spencer,William & Mary,2,3,0,0,0,0,0,1,0,0,0,0
-2026,134069,Roman Siulepa,Pittsburgh,81,60,32,7,11,2,29,64,28,17,5,11
+2026,134069,Roman Siulepa,Pittsburgh,87,65,33,7,11,2,29,67,28,18,5,11
 2026,134070,Kieran Mullen,Pittsburgh,5,6,4,0,0,0,0,1,0,2,0,1
 2026,134071,Shainen Carter,Georgia Southern,37,32,23,1,2,1,1,4,1,10,2,9
-2026,134074,Isaiah Sutherland,East Tennessee St.,7,4,5,1,2,0,16,28,16,1,0,0
+2026,134074,Isaiah Sutherland,East Tennessee St.,7,6,5,1,2,0,17,30,17,1,0,0
 2026,134075,Henry Sisemore,East Tennessee St.,1,3,0,1,0,0,0,0,0,1,1,0
 2026,134076,David Gomez,Charlotte,1,2,0,1,0,0,2,1,2,0,0,0
 2026,134077,Jaylen Harrell,Providence,5,0,3,0,0,0,3,8,3,1,0,1
@@ -3658,7 +3658,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134106,Mason Bendinger,USC Upstate,89,80,49,53,95,8,22,48,18,1,0,0
 2026,134108,Luke Azzinaro,Lafayette,0,0,0,0,0,0,0,1,0,0,0,0
 2026,134109,Jojo McIver,Colorado St.,9,7,3,4,8,1,5,19,4,0,0,0
-2026,134111,Davis Fogle,Gonzaga,48,20,19,24,32,6,11,20,8,15,1,11
+2026,134111,Davis Fogle,Gonzaga,50,22,20,24,34,6,12,20,9,16,1,12
 2026,134112,Vince Dawson III,Morehead St.,2,6,0,7,9,3,26,45,26,0,0,0
 2026,134113,Miles Franklin,Columbia,54,39,20,19,28,4,15,48,13,16,1,9
 2026,134114,Anton Strelnikov,Dartmouth,21,10,10,1,3,0,1,0,0,0,0,0
@@ -3677,7 +3677,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134128,Royal Blue Smith,Arkansas St.,21,9,6,1,7,0,21,43,20,0,1,0
 2026,134130,Christian Harmon,Arkansas St.,28,21,5,13,16,5,81,149,75,0,0,0
 2026,134132,Chris Terrell,New Mexico St.,13,19,1,10,14,2,15,21,10,0,0,0
-2026,134133,Cenker Evran,Texas A&M Corpus Chris,36,25,23,14,10,8,0,0,0,1,1,1
+2026,134133,Cenker Evran,Texas A&M Corpus Chris,38,26,24,14,11,8,0,0,0,1,1,1
 2026,134134,Tyler Wagner,Austin Peay,1,0,0,0,0,0,10,20,8,0,0,0
 2026,134135,Ja'Corey Robinson,Austin Peay,54,34,18,12,26,2,3,6,3,8,1,3
 2026,134137,Davion Hill,Ball St.,97,71,25,18,38,2,36,70,31,0,0,0
@@ -3690,12 +3690,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134150,Ademar Santos,Delaware St.,21,15,14,6,27,3,15,40,14,1,0,1
 2026,134152,Paris Papadatos,Saint Francis,11,4,4,9,17,3,10,32,8,0,0,0
 2026,134154,Jamison Guerra,Idaho St.,33,41,0,20,32,1,31,47,13,0,0,0
-2026,134158,Meleek Thomas,Arkansas,55,45,14,42,80,14,70,98,50,2,2,0
+2026,134158,Meleek Thomas,Arkansas,55,45,14,43,80,14,70,98,50,2,2,0
 2026,134159,Elmir Dzafic,Arkansas,0,0,0,0,0,0,0,0,0,0,0,0
-2026,134160,Devyn Franklin,Grambling St.,31,29,20,13,23,6,1,16,1,7,4,6
+2026,134160,Devyn Franklin,Grambling St.,32,29,20,13,24,6,1,16,1,7,4,6
 2026,134162,Hobert Grayson IV,Mississippi,3,2,1,0,1,0,0,1,0,1,0,0
 2026,134163,Michael Wilson Jr.,Bellarmine,36,22,10,4,12,3,9,23,8,2,0,0
-2026,134164,Lance Stone,Detroit Mercy,8,20,1,14,38,1,30,59,23,0,0,0
+2026,134164,Lance Stone,Detroit Mercy,11,23,2,15,38,1,32,62,23,0,0,0
 2026,134165,Keegan Rowell,Louisiana Tech,0,0,0,0,0,0,2,2,1,0,0,0
 2026,134166,Avery Thomas II,Louisiana Tech,42,34,15,10,21,5,23,70,20,6,1,5
 2026,134167,Jaylen Fenner,Louisiana Tech,26,30,14,11,12,0,11,30,11,5,2,5
@@ -3709,7 +3709,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134176,Kendall Taylor,Charleston,2,1,2,1,9,0,0,12,0,0,0,0
 2026,134178,Anthony Wrzeszcz,New Mexico St.,14,12,6,1,3,0,48,100,44,2,0,1
 2026,134179,Jacob Patrick,Utah,2,3,0,3,2,1,20,23,19,0,0,0
-2026,134180,Kendyl Sanders,Utah,26,21,9,3,9,0,31,46,30,4,0,2
+2026,134180,Kendyl Sanders,Utah,27,22,10,3,9,0,31,46,30,4,0,2
 2026,134181,Eric Mejia,Fairfield,25,47,1,15,21,2,11,23,9,0,0,0
 2026,134182,Halon Rawlins,Fairfield,20,29,5,9,12,3,15,50,13,2,0,1
 2026,134183,Brandon Benjamin,Fairfield,165,108,83,23,32,12,2,6,2,11,3,9
@@ -3724,7 +3724,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134195,Charlie OSullivan,Brown,7,2,3,2,1,1,12,30,11,0,0,0
 2026,134196,Brady Loughlin,Brown,6,2,3,1,2,1,16,26,16,0,0,0
 2026,134197,Isaiah Langham,Brown,57,50,30,12,11,1,12,46,11,5,2,5
-2026,134199,Jah'Likai King,UMBC,50,36,18,40,55,7,36,86,28,0,0,0
+2026,134199,Jah'Likai King,UMBC,51,40,19,41,55,7,41,89,32,0,0,0
 2026,134200,King-Njhsanni Wilhite,Lamar,25,34,2,12,29,3,18,32,16,0,0,0
 2026,134201,Spencer Ezewiro,Lamar,1,6,1,1,2,1,0,0,0,1,0,1
 2026,134203,Eian Lowe,Lamar,19,22,4,9,22,0,15,24,13,0,0,0
@@ -3746,15 +3746,15 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134223,Oscar Hourruitiner,Iona,0,0,0,0,2,0,0,1,0,0,0,0
 2026,134225,KJ Cochran,Santa Clara,27,13,17,9,4,5,23,60,21,1,1,1
 2026,134226,Francis Chukwudebelu,Santa Clara,8,3,5,0,6,0,1,2,1,2,0,2
-2026,134227,Thierry Darlan,Santa Clara,22,20,14,2,6,1,35,69,30,3,0,3
+2026,134227,Thierry Darlan,Santa Clara,23,20,15,2,7,1,36,71,31,4,0,4
 2026,134229,Noah Treadwell,South Carolina St.,9,3,5,5,16,0,64,117,54,0,0,0
 2026,134230,Teon Tindal,South Carolina St.,15,11,7,9,11,6,0,0,0,1,1,0
-2026,134231,Franck Yetna,Texas A&M Corpus Chris,39,35,23,9,14,1,16,22,14,9,0,5
+2026,134231,Franck Yetna,Texas A&M Corpus Chris,40,35,24,9,14,1,17,23,15,9,0,5
 2026,134232,Derwin Hodge,South Carolina St.,12,9,7,12,18,8,0,0,0,4,1,4
-2026,134233,Josh Hayes,Utah,33,15,24,4,5,2,0,0,0,8,1,7
+2026,134233,Josh Hayes,Utah,33,16,24,4,5,2,0,0,0,8,1,7
 2026,134234,Jacob Taylor,Charleston Southern,28,23,10,0,3,0,17,36,16,0,0,0
 2026,134235,Mason Gibson,Texas A&M Corpus Chris,19,24,7,22,25,8,37,66,33,1,0,1
-2026,134236,Antonio Munoz,Grambling St.,80,41,37,24,56,6,1,13,1,32,10,21
+2026,134236,Antonio Munoz,Grambling St.,81,45,38,25,59,7,1,13,1,32,11,21
 2026,134237,Christian Williams,Cal St. Fullerton,25,16,4,16,22,8,56,95,50,1,1,0
 2026,134238,Patrick D'Arcy,East Carolina,1,1,1,0,0,0,6,20,6,0,0,0
 2026,134240,Kevo St.Hilaire,Cleveland St.,7,3,6,0,2,0,0,0,0,0,0,0
@@ -3765,7 +3765,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134248,Will Garlock,Wisconsin,9,4,4,2,1,0,0,0,0,0,1,0
 2026,134249,Dailin Smith,Cal St. Bakersfield,43,34,17,39,87,12,44,112,42,0,0,0
 2026,134251,Stratos Papastavrou,Seattle,1,0,0,0,0,0,0,0,0,0,0,0
-2026,134252,Darius Adams,Maryland,49,42,10,23,57,4,32,94,23,1,0,1
+2026,134252,Darius Adams,Maryland,49,45,10,24,58,4,32,99,23,1,0,1
 2026,134254,Aidan Haskins,Hampton,1,4,0,2,11,0,17,31,17,0,0,0
 2026,134255,Tristan Beckford,South Florida,14,7,9,0,1,0,3,9,3,7,1,5
 2026,134256,Vere Anthony,New Haven,8,6,2,1,3,1,1,8,0,0,0,0
@@ -3792,14 +3792,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134281,Ivan Juric,Penn St.,81,33,50,5,7,2,14,37,14,12,3,11
 2026,134282,Aleksa Ristic,Indiana,0,1,0,0,1,0,2,1,2,0,0,0
 2026,134283,Jesse Mcintosh,South Dakota,26,21,4,2,8,1,13,35,13,0,0,0
-2026,134285,Mussa Mzein,Mississippi Valley St.,28,19,15,14,33,7,2,4,2,1,0,1
+2026,134285,Mussa Mzein,Mississippi Valley St.,28,19,15,16,34,9,2,4,2,1,0,1
 2026,134287,Deke Thompson,Texas St.,0,1,0,0,0,0,0,0,0,0,0,0
 2026,134288,Vladimir Khryapa,Tennessee Martin,14,12,11,1,7,0,6,22,6,7,2,5
 2026,134289,Matas Deniusas,Tennessee Martin,53,50,26,29,37,9,43,88,42,9,2,6
 2026,134290,Damien King,Tennessee Martin,26,17,7,7,9,0,9,31,8,7,0,4
 2026,134292,Ryan Richardson,Binghamton,9,11,4,1,13,0,14,38,14,0,0,0
-2026,134293,Olavi Suutela,Oregon St.,48,18,36,8,10,5,11,19,11,3,2,3
-2026,134294,Matija Samar,Oregon St.,9,11,3,7,13,2,25,63,20,0,0,0
+2026,134293,Olavi Suutela,Oregon St.,48,20,36,8,10,5,11,19,11,3,2,3
+2026,134294,Matija Samar,Oregon St.,9,11,3,7,13,2,26,64,21,0,0,0
 2026,134296,Simon Walker,Auburn,1,0,1,2,1,1,8,7,8,0,0,0
 2026,134297,Emeka Opurum,Auburn,10,3,9,0,0,0,0,0,0,7,0,7
 2026,134298,Elyjah Freeman,Auburn,60,41,21,10,24,0,29,54,25,22,0,16
@@ -3810,11 +3810,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134307,Jayden Leverett,Vanderbilt,6,4,1,2,2,1,1,1,1,2,0,1
 2026,134309,Ahmadou Ndiaye,Gardner Webb,0,0,0,0,3,0,1,1,1,0,0,0
 2026,134310,Dylan Diaz,Louisiana Monroe,7,9,6,3,10,2,31,47,27,0,0,0
-2026,134311,Jose Roberto Tanchyn,UMBC,28,10,9,17,24,1,21,36,19,1,0,1
+2026,134311,Jose Roberto Tanchyn,UMBC,29,11,10,18,25,1,22,36,20,1,0,1
 2026,134312,Travis Torain,Austin Peay,13,4,6,2,5,1,0,2,0,5,0,3
 2026,134313,Jackson Furman,Army,27,33,5,5,20,1,52,103,43,0,0,0
 2026,134315,Dylan Benner,Army,3,0,1,0,0,0,4,16,4,0,0,0
-2026,134317,Mario Saint-Supery,Gonzaga,28,28,5,14,33,0,40,50,35,1,0,1
+2026,134317,Mario Saint-Supery,Gonzaga,29,28,5,14,33,0,40,54,35,1,0,1
 2026,134318,Max Ndlovu-Fraser,LIU,1,2,0,0,1,0,1,2,1,0,0,0
 2026,134319,Mekhi Reid,Norfolk St.,0,0,0,0,0,0,1,0,0,0,0,0
 2026,134320,TJ James Jr.,Cal St. Bakersfield,2,0,0,0,0,0,0,7,0,0,0,0
@@ -3869,9 +3869,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134378,Caleb Steger,Boston College,7,9,3,1,1,1,23,52,22,1,0,1
 2026,134379,Marko Radunovic,Boston College,5,16,0,2,3,0,6,20,6,0,0,0
 2026,134380,Kose Egbule,James Madison,10,16,0,3,7,0,11,24,7,0,0,0
-2026,134382,Demarris Winters,UT Rio Grande Valley,1,0,0,3,1,1,4,11,4,0,0,0
+2026,134382,Demarris Winters,UT Rio Grande Valley,1,0,0,3,1,1,5,11,5,0,0,0
 2026,134384,Ace Flagg,Maine,37,29,14,13,24,7,21,38,20,0,0,0
-2026,134385,Tae Dozier,Northern Kentucky,54,21,25,4,8,1,34,70,32,23,2,14
+2026,134385,Tae Dozier,Northern Kentucky,54,23,25,4,8,1,35,71,33,23,2,14
 2026,134387,Jacari Brim,Appalachian St.,0,1,0,0,0,0,1,8,1,0,0,0
 2026,134388,Mazi Mosley,LSU,1,5,0,1,2,0,10,16,7,0,0,0
 2026,134389,Jaiden Haynes,Youngstown St.,13,9,2,5,7,2,10,30,10,0,1,0
@@ -3992,34 +3992,34 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134530,Jake Davis,Cal Poly,28,27,4,1,5,0,26,69,20,1,0,0
 2026,134532,Biko Johnson,Idaho,47,44,10,20,38,1,54,114,44,0,0,0
 2026,134536,Kristers Skrinda,Stanford,2,1,0,0,2,0,1,3,1,0,0,0
-2026,134537,Ebuka Okorie,Stanford,122,99,17,33,47,4,61,108,26,7,0,5
+2026,134537,Ebuka Okorie,Stanford,126,101,17,33,48,4,62,110,26,7,0,5
 2026,134538,Joseph Owens,Chicago St.,20,12,10,2,5,1,0,0,0,3,1,2
-2026,134539,Oskar Giltay,Stanford,32,17,13,5,7,2,0,0,0,8,1,4
+2026,134539,Oskar Giltay,Stanford,35,17,15,5,7,2,0,0,0,9,1,5
 2026,134540,Jae Slack,North Carolina Central,21,30,11,15,25,11,19,37,17,0,0,0
 2026,134541,Caleb Delzell,South Dakota St.,4,5,2,1,5,1,7,14,7,0,0,0
-2026,134543,Tyler Mason,Alabama St.,24,12,15,10,22,8,5,4,4,3,2,3
+2026,134543,Tyler Mason,Alabama St.,27,14,17,11,22,9,6,4,5,4,2,4
 2026,134546,Jerome Williams,Longwood,0,2,0,0,1,0,0,0,0,0,0,0
 2026,134549,Roman Domon,Murray St.,54,29,22,27,36,2,42,69,35,10,1,7
 2026,134552,Dylan Brumfield,Southern Miss,60,41,19,31,60,3,4,19,2,0,0,0
 2026,134553,Matt Compas,IU Indy,53,28,18,20,36,5,7,25,6,7,0,5
 2026,134554,Maguire Mitchell,IU Indy,39,18,17,8,13,4,78,142,75,3,2,2
 2026,134555,Delkedric Holmes,Mississippi Valley St.,10,18,5,15,30,3,3,15,2,0,0,0
-2026,134556,Lamont Sams,Mississippi Valley St.,29,11,18,8,23,3,14,35,10,12,2,9
+2026,134556,Lamont Sams,Mississippi Valley St.,29,11,18,10,25,5,14,36,10,12,2,9
 2026,134557,Chance Sutton,Mississippi Valley St.,14,14,10,4,9,2,0,0,0,4,1,4
 2026,134558,Reece Hagy,IU Indy,13,8,9,2,3,0,6,23,6,0,0,0
 2026,134559,James Dyson-Merwe,Evansville,18,7,7,2,2,1,0,2,0,0,1,0
 2026,134560,Keaton Wagler,Illinois,67,46,10,23,51,1,73,105,38,0,1,0
-2026,134561,Anthony Johnson,Arizona St.,94,75,42,9,29,1,24,48,21,15,4,7
+2026,134561,Anthony Johnson,Arizona St.,98,79,43,10,29,1,26,51,22,15,5,7
 2026,134562,Mihailo Petrovic,Illinois,8,9,2,2,7,0,2,8,1,0,0,0
-2026,134564,Andrija Grbovic,Arizona St.,22,20,12,6,12,4,40,74,36,2,0,2
-2026,134565,Massamba Diop,Arizona St.,105,44,72,48,64,34,8,14,8,51,3,42
+2026,134564,Andrija Grbovic,Arizona St.,25,20,13,7,12,4,42,75,38,3,0,3
+2026,134565,Massamba Diop,Arizona St.,106,44,73,51,65,35,8,17,8,52,3,43
 2026,134566,Phoenix Gill,Northwestern,1,1,0,0,2,0,0,4,0,1,0,0
 2026,134567,Tre Singleton,Northwestern,59,25,35,18,28,10,9,45,9,2,1,2
 2026,134568,Jake West,Northwestern,19,21,6,6,17,3,26,40,20,3,0,1
 2026,134570,Adam Olsen,South Alabama,25,33,8,28,45,12,101,151,93,1,0,1
 2026,134571,Peyton Law,South Alabama,46,17,22,4,9,3,0,1,0,11,0,8
 2026,134573,Thijs De Ridder,Virginia,99,63,35,45,43,23,31,60,29,13,2,6
-2026,134574,Dillan Shaw,Saint Mary's,24,15,12,8,24,4,48,65,47,2,1,1
+2026,134574,Dillan Shaw,Saint Mary's,24,17,12,8,24,4,49,69,48,2,1,1
 2026,134575,Eli Beard,Drexel,19,17,5,10,22,1,63,85,60,0,0,0
 2026,134577,Martin de Laporterie,Drexel,24,13,15,7,18,6,6,12,6,7,0,5
 2026,134578,Grayson Collins,Wofford,0,0,0,0,0,0,0,2,0,0,0,0
@@ -4082,7 +4082,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134662,Victory Onuetu,Hofstra,48,34,36,10,12,3,0,0,0,25,3,24
 2026,134663,Matthew MacLellan,Notre Dame,6,1,6,0,0,0,0,0,0,0,0,0
 2026,134664,Ryder Frost,Notre Dame,2,0,1,1,2,1,20,32,18,0,0,0
-2026,134666,Xavier Spencer,UMass Lowell,41,44,7,41,36,3,48,81,34,3,0,1
+2026,134666,Xavier Spencer,UMass Lowell,41,44,7,43,39,3,49,87,34,3,0,1
 2026,134667,C.J. McPherson,Tennessee Tech,7,9,0,4,9,1,18,29,17,0,0,0
 2026,134670,Preston Fowler,James Madison,22,11,5,8,10,4,36,80,35,3,0,2
 2026,134671,Ryan Tolliver,Northern Kentucky,5,5,2,2,1,2,0,2,0,0,0,0
@@ -4095,15 +4095,15 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134678,Enel St. Bernard,Indiana St.,66,30,55,3,6,1,0,2,0,35,6,32
 2026,134680,Bodey Howell,Rice,5,2,2,6,18,1,16,27,15,0,0,0
 2026,134681,B.J. Davis-Ray,SMU,6,4,3,5,6,2,4,18,4,3,0,2
-2026,134682,Jermaine O'Neal Jr.,SMU,18,18,13,18,19,8,23,35,23,15,8,12
-2026,134683,Jaden Toombs,SMU,35,12,21,33,29,21,6,19,6,2,1,2
+2026,134682,Jermaine O'Neal Jr.,SMU,18,19,13,18,19,8,23,36,23,15,8,12
+2026,134683,Jaden Toombs,SMU,39,14,21,37,33,24,6,19,6,2,1,2
 2026,134684,Nigel Walls,SMU,0,0,0,0,1,0,0,1,0,0,0,0
 2026,134685,Evan Cochran,Rice,0,1,0,0,1,0,0,0,0,0,0,0
 2026,134686,KJ Younger,UNC Greensboro,82,50,20,16,34,0,60,115,55,26,3,14
-2026,134687,Wei Lin,Oregon,9,11,5,22,33,11,30,73,20,0,0,0
+2026,134687,Wei Lin,Oregon,9,11,5,22,33,11,31,74,21,0,0,0
 2026,134688,Hussain Williams,Coppin St.,23,14,8,13,24,7,35,94,33,6,0,2
-2026,134689,Keyshuan Tillery,Cincinnati,17,18,5,5,13,1,12,30,10,0,0,0
-2026,134691,Shon Abaev,Cincinnati,20,11,9,6,17,2,25,74,20,7,1,5
+2026,134689,Keyshuan Tillery,Cincinnati,18,18,5,5,16,1,14,31,11,0,0,0
+2026,134691,Shon Abaev,Cincinnati,20,11,9,6,17,2,26,75,21,7,1,5
 2026,134692,Ja'Juan Carr,Elon,52,44,4,12,24,1,15,40,13,1,0,0
 2026,134693,Omari Moore,Manhattan,1,0,1,0,3,0,1,4,1,0,0,0
 2026,134694,Quron Elliott,Manhattan,20,18,6,12,18,6,7,12,4,1,1,0
@@ -4136,7 +4136,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134730,Brennan Peterson,Northern Arizona,2,7,1,10,12,2,30,51,25,0,0,0
 2026,134732,Christopher Baudreau,Nevada,1,1,0,1,0,1,0,0,0,1,0,0
 2026,134735,Quinn Woidke,Kent St.,13,9,3,7,10,0,61,81,57,0,0,0
-2026,134736,Riley Jacobs,UMBC,44,32,29,2,9,1,0,9,0,20,4,14
+2026,134736,Riley Jacobs,UMBC,45,33,30,2,9,1,0,9,0,21,4,15
 2026,134737,Omer Hamama,Kent St.,8,8,1,3,4,0,1,8,1,0,0,0
 2026,134738,Jordi Rodriguez,Cincinnati,1,2,0,1,2,1,8,21,8,0,0,0
 2026,134740,Jeremiah Green,Texas A&M,0,2,0,0,0,0,1,2,1,0,0,0
@@ -4233,9 +4233,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134856,Gabriel Ferreira,Radford,3,7,1,0,1,0,0,0,0,2,1,1
 2026,134857,Frederik Erichsen,Radford,31,18,10,2,2,1,9,33,9,3,0,2
 2026,134858,Warren Keel,Radford,0,3,0,2,2,0,0,2,0,0,0,0
-2026,134860,Tijan Saine Jr.,Weber St.,85,72,13,21,29,0,48,89,28,0,0,0
+2026,134860,Tijan Saine Jr.,Weber St.,90,74,13,21,31,0,50,90,28,0,0,0
 2026,134861,Will Mortimore,Charleston,5,2,4,0,2,0,0,0,0,0,0,0
-2026,134862,Devon Kobi Pearson,Texas A&M Corpus Chris,24,15,11,2,2,0,3,5,3,9,1,6
+2026,134862,Devon Kobi Pearson,Texas A&M Corpus Chris,24,16,11,2,2,0,3,5,3,9,1,6
 2026,134863,Bryson Wheatfall,Texas A&M Corpus Chris,17,27,2,9,17,5,2,7,2,3,0,2
 2026,134864,Melian Martinez,Louisiana Tech,52,14,40,3,4,3,0,0,0,31,2,30
 2026,134865,Lewis Rowe,Incarnate Word,19,13,12,6,19,2,0,0,0,0,0,0
@@ -4247,7 +4247,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134873,Manok Lual,Morgan St.,4,4,3,3,4,1,0,4,0,1,0,1
 2026,134874,Jamias Ferere,Gardner Webb,53,51,12,8,21,2,9,29,9,1,0,1
 2026,134875,Spence Sims,Gardner Webb,18,21,3,14,17,3,65,87,50,0,0,0
-2026,134876,London Maiden,Detroit Mercy,55,31,32,20,24,10,0,0,0,2,0,2
+2026,134876,London Maiden,Detroit Mercy,56,32,33,20,25,10,0,0,0,2,0,2
 2026,134877,Najai Hines,Seton Hall,66,38,43,8,11,2,0,0,0,19,0,12
 2026,134878,Mason Ellison,Delaware,3,7,2,4,2,0,2,8,2,0,0,0
 2026,134879,Jayden Taylor,Delaware,29,10,20,0,6,0,4,7,4,8,0,7
@@ -4261,18 +4261,18 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134889,Lucas Hobin,Air Force,24,21,11,13,19,6,70,143,70,3,1,2
 2026,134890,Sam Imade,Air Force,1,2,1,0,3,0,2,2,2,0,0,0
 2026,134892,Dietrich Richardson,Bradley,7,8,2,5,6,2,1,10,0,2,0,2
-2026,134894,Duce Paschal,Weber St.,20,20,6,4,13,1,8,26,8,0,1,0
-2026,134895,ArDarius Grayson,Weber St.,10,17,2,12,20,0,9,28,8,0,0,0
+2026,134894,Duce Paschal,Weber St.,21,20,7,5,14,1,8,27,8,0,1,0
+2026,134895,ArDarius Grayson,Weber St.,10,17,2,12,21,0,9,28,8,0,0,0
 2026,134897,Hayden Assemian,South Carolina,23,7,20,2,4,1,0,0,0,8,1,8
 2026,134898,Cameron Williams,Portland,80,54,54,16,28,8,11,30,10,8,1,8
 2026,134899,Isaac Finlinson,Hawaii,56,37,15,4,10,0,29,44,26,3,0,2
 2026,134900,Jhei-R Jones,William & Mary,16,13,7,5,4,5,16,28,15,0,0,0
-2026,134901,Enzo Boudouma,New Orleans,24,20,9,7,10,4,20,52,19,0,1,0
+2026,134901,Enzo Boudouma,New Orleans,24,20,9,7,10,4,20,54,19,0,1,0
 2026,134902,Dante Censori-Hercules,Portland,37,19,23,0,4,0,1,11,1,5,0,5
 2026,134903,Jikari Johnson,Chattanooga,20,13,12,1,5,0,28,41,22,5,2,4
 2026,134904,Rob Stroud,Green Bay,9,5,2,3,6,1,1,4,1,1,1,0
-2026,134905,Grant Kepley,Montana,16,17,4,14,22,1,13,28,13,0,0,0
-2026,134906,Richard Amaefule,Grambling St.,3,2,2,1,3,1,0,1,0,0,0,0
+2026,134905,Grant Kepley,Montana,17,17,4,16,22,1,14,28,14,0,0,0
+2026,134906,Richard Amaefule,Grambling St.,3,4,2,1,4,1,0,1,0,0,0,0
 2026,134907,Jaquias Franklin,Charleston Southern,7,7,2,9,6,1,13,30,8,0,0,0
 2026,134909,Christian Jones,Long Beach St.,5,2,3,4,5,2,9,18,8,0,0,0
 2026,134910,Leopold Levillain,Long Beach St.,42,20,24,5,16,3,0,0,0,8,0,3
@@ -4286,7 +4286,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134923,Giannos Xanthopoulos,New Hampshire,6,9,4,2,3,2,3,8,3,1,1,1
 2026,134925,Caleb Smith,Rider,48,63,21,10,21,4,6,20,5,0,0,0
 2026,134926,Domanic Betancourt,Nicholls St.,0,2,0,0,0,0,0,0,0,0,0,0
-2026,134927,Jalik Dunkley,Nicholls St.,113,64,62,6,16,2,13,22,13,39,6,28
+2026,134927,Jalik Dunkley,Nicholls St.,115,65,64,7,17,2,13,24,13,39,7,28
 2026,134928,Jamir McNeil,Rider,6,11,0,5,9,1,2,2,0,0,0,0
 2026,134929,AB Coulibaly,Rider,9,7,3,12,26,5,11,25,11,3,0,1
 2026,134930,Kristupas Kepezinskas,Rider,3,3,0,1,3,0,4,15,4,0,0,0
@@ -4303,7 +4303,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134945,Sebastian Haubro,Fairleigh Dickinson,0,2,0,0,0,0,0,0,0,0,0,0
 2026,134946,David Jevtic,Fairleigh Dickinson,22,16,5,12,22,2,29,57,24,1,0,0
 2026,134947,Ras Elijah Godbolt,Fairleigh Dickinson,1,8,0,3,8,1,2,13,2,0,0,0
-2026,134948,Jaquan Womack,Towson,41,41,15,10,22,2,22,57,21,3,0,1
+2026,134948,Jaquan Womack,Towson,42,41,15,10,22,2,23,57,22,3,0,1
 2026,134950,Trey McKenney,Michigan,27,14,11,14,15,0,52,84,48,1,0,1
 2026,134951,Harris Dar,Stephen F. Austin,1,0,0,0,0,0,0,0,0,0,0,0
 2026,134952,Anthony Smith lll,North Dakota,60,40,10,14,26,0,10,32,3,0,0,0
@@ -4329,8 +4329,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134977,Andreo Ash,Canisius,2,1,2,1,0,1,0,0,0,1,0,1
 2026,134978,Przemek Hartman,Louisiana Monroe,19,11,8,1,5,1,3,16,3,5,0,3
 2026,134983,Alex Lloyd,Florida,3,2,0,0,1,0,4,14,4,0,0,0
-2026,134985,Tounde Yessoufou,Baylor,60,30,33,83,87,33,52,111,43,17,2,10
-2026,134986,Preston Edmead,Hofstra,24,22,1,32,56,3,79,126,32,0,0,0
+2026,134985,Tounde Yessoufou,Baylor,65,31,34,84,89,33,52,118,43,17,2,10
+2026,134986,Preston Edmead,Hofstra,26,24,2,33,58,3,84,134,33,0,0,0
 2026,134987,Troy Glover II,Bowling Green,73,36,46,14,11,9,0,0,0,33,3,29
 2026,134988,Denis Badalau,Rutgers,9,8,2,6,12,3,10,36,10,0,0,0
 2026,134989,Armari Carraway,Charleston Southern,2,3,0,0,1,0,27,73,19,0,0,0
@@ -4343,7 +4343,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,134996,Nginyu Ngala,Kansas,0,4,0,0,0,0,4,4,3,0,0,0
 2026,134997,Ahamed Mohammed,Stephen F. Austin,14,17,3,8,21,1,19,35,13,0,0,0
 2026,134998,Cayden Charles,St. Bonaventure,62,58,33,39,45,23,28,58,27,2,0,2
-2026,135000,Macari Moore,Pittsburgh,4,6,1,1,4,0,3,1,3,0,0,0
+2026,135000,Macari Moore,Pittsburgh,5,10,1,1,4,0,3,1,3,0,0,0
 2026,135001,Damian Garcia,East Texas A&M,58,44,16,3,20,0,46,102,36,4,2,0
 2026,135002,Carson McDonald,American,6,3,3,5,1,3,0,1,0,1,0,0
 2026,135004,Tahlan Pettway,Western Carolina,8,14,0,29,19,4,47,70,36,0,0,0
@@ -4355,7 +4355,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135014,Melvin Weaver III,Saint Francis,1,0,0,0,0,0,0,0,0,0,0,0
 2026,135015,Brandon Russell,Saint Francis,7,12,2,2,8,0,6,38,6,0,0,0
 2026,135017,Hunter Carter,Hawaii,0,0,0,1,4,0,3,6,1,0,0,0
-2026,135018,Eric Dibami,FIU,84,57,31,15,30,10,0,0,0,10,1,8
+2026,135018,Eric Dibami,FIU,84,57,32,15,30,10,0,0,0,10,1,8
 2026,135020,Will Ashford,Central Michigan,5,4,2,10,11,1,5,19,5,0,0,0
 2026,135022,Jerry Easter II,USC,22,23,15,18,25,11,4,13,4,1,0,1
 2026,135023,Chance Trujillo,Utah Tech,36,38,17,18,14,3,65,122,47,3,1,3
@@ -4373,7 +4373,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135039,Bryceson Melvin,Stephen F. Austin,0,0,0,1,2,0,0,0,0,0,0,0
 2026,135040,Max Jusianiec,Canisius,6,7,5,5,13,2,10,12,9,1,0,0
 2026,135041,Travis Pourciau,Arkansas Pine Bluff,0,0,0,0,1,0,0,0,0,0,0,0
-2026,135042,Straton Rogers,Eastern Washington,61,31,37,8,11,4,1,4,1,2,1,2
+2026,135042,Straton Rogers,Eastern Washington,63,32,38,8,11,4,1,4,1,2,1,2
 2026,135043,Christian Oliver,Morgan St.,21,10,15,18,18,14,2,7,2,4,0,4
 2026,135044,Rickey Mitchell Jr.,Bethune Cookman,2,4,1,2,14,1,11,25,9,0,0,0
 2026,135045,Jaden Henderson,Cal St. Fullerton,24,16,9,25,28,8,33,58,29,1,0,0
@@ -4388,12 +4388,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135061,Nasir Rodriguez,Fairfield,2,10,0,3,10,0,10,22,7,0,0,0
 2026,135062,Cyril Franklin Jr.,UC Davis,7,3,4,1,2,0,0,3,0,1,0,1
 2026,135064,Dailon Minor,Bethune Cookman,0,2,0,1,3,0,2,2,1,0,0,0
-2026,135065,Chancellor Perkins,Grambling St.,3,3,2,0,1,0,3,1,2,0,0,0
-2026,135067,Cole Bowser,Furman,19,12,9,0,1,0,13,24,12,3,4,2
-2026,135068,Alex Wilkins,Furman,83,53,8,58,62,2,52,114,36,4,3,0
+2026,135065,Chancellor Perkins,Grambling St.,3,3,2,0,2,0,3,1,2,0,0,0
+2026,135067,Cole Bowser,Furman,19,13,9,0,2,0,14,25,13,3,4,2
+2026,135068,Alex Wilkins,Furman,85,53,8,58,64,2,54,120,37,5,3,0
 2026,135069,Collin O'Neal,Furman,7,8,1,0,2,0,10,14,9,0,0,0
 2026,135072,Cedric Taylor III,Howard,74,49,34,20,29,5,18,50,16,13,1,12
-2026,135074,Omari Witherspoon,Pittsburgh,30,36,7,29,46,4,22,57,14,1,0,1
+2026,135074,Omari Witherspoon,Pittsburgh,33,38,9,31,49,4,22,58,14,1,0,1
 2026,135075,Legend Smiley,San Francisco,16,12,7,13,16,5,52,73,51,3,0,3
 2026,135076,Weilun Zhao,San Francisco,4,2,0,0,0,0,0,10,0,0,0,0
 2026,135077,Tyler Simon,Incarnate Word,0,1,0,0,1,0,0,0,0,0,0,0
@@ -4460,7 +4460,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135149,CJ Shaw,UC Santa Barbara,61,44,17,4,11,1,36,47,31,2,0,2
 2026,135150,Mantas Juzenas,Saint Mary's,1,2,1,1,2,1,14,16,13,0,0,0
 2026,135151,Sebastian Whitfield,Princeton,14,20,8,9,10,4,11,31,9,0,0,0
-2026,135152,Jimel Lane,Grambling St.,41,38,14,17,30,4,8,22,8,11,3,6
+2026,135152,Jimel Lane,Grambling St.,42,40,14,20,30,7,8,25,8,11,3,6
 2026,135153,Zyree Collins,Austin Peay,86,63,15,19,50,2,28,66,24,0,0,0
 2026,135155,Francis Folefac,Siena,111,88,59,15,16,5,4,8,4,7,0,6
 2026,135157,Uzziah Buntyn,South Dakota,42,45,5,21,30,2,29,75,27,0,0,0
@@ -4474,7 +4474,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135168,Max Majerle,North Dakota St.,2,6,0,1,2,0,0,7,0,0,0,0
 2026,135172,Emondrek Erkins-Ford,Jacksonville St.,61,40,23,21,27,3,8,15,8,5,0,2
 2026,135173,Aitor Anabitarte,Jacksonville St.,6,2,4,1,2,1,0,0,0,0,0,0
-2026,135174,Tavaj Cope,New Orleans,67,30,39,8,15,1,7,21,7,22,2,19
+2026,135174,Tavaj Cope,New Orleans,72,32,42,10,18,2,7,22,7,23,2,20
 2026,135175,Connor Loy,Jacksonville St.,0,0,0,0,0,0,0,1,0,0,0,0
 2026,135176,Jacoby Hill,Jacksonville St.,69,39,27,13,27,2,16,35,14,3,0,2
 2026,135177,Mason Lawson,VMI,0,0,0,0,0,0,1,0,1,0,0,0
@@ -4490,7 +4490,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135190,Lav Cvetkovic',IU Indy,0,1,0,0,0,0,1,4,1,0,0,0
 2026,135191,Aiden Argabright,Richmond,20,16,5,31,43,7,26,49,22,0,0,0
 2026,135192,Kiyan Anthony,Syracuse,46,33,16,13,30,2,18,53,15,4,0,3
-2026,135194,Sadiq White Jr.,Syracuse,60,26,43,11,28,3,7,12,7,34,2,31
+2026,135194,Sadiq White Jr.,Syracuse,63,26,46,11,29,3,7,12,7,37,2,34
 2026,135195,Luke Fennell,Syracuse,0,3,0,1,2,1,2,6,2,0,0,0
 2026,135196,Tiefing Diawara,Syracuse,1,0,1,0,0,0,0,0,0,1,0,1
 2026,135197,Elzie Harrington,San Diego St.,21,14,11,28,38,5,17,22,9,3,1,2
@@ -4507,10 +4507,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135209,Jamal Ambrose,Texas A&M Corpus Chris,2,3,1,1,1,1,0,0,0,0,0,0
 2026,135210,Norbu Jenpa,Stonehill,0,0,0,0,0,0,0,1,0,0,0,0
 2026,135211,Trenton Ruth,Stonehill,12,17,4,9,24,0,12,33,10,0,0,0
-2026,135212,Dwayne Williams Jr.,Georgia Southern,15,19,5,2,7,0,24,57,22,3,0,3
+2026,135212,Dwayne Williams Jr.,Georgia Southern,15,19,5,2,7,0,24,58,22,3,0,3
 2026,135213,Sean Van Dorn Jr.,Georgia Southern,2,1,0,0,0,0,1,1,1,0,0,0
 2026,135217,Jayden Williams,Georgia Southern,4,6,1,0,3,0,1,7,1,0,0,0
-2026,135218,Khayri Dunn,Georgia Southern,29,33,2,10,11,1,43,86,34,0,0,0
+2026,135218,Khayri Dunn,Georgia Southern,29,34,2,10,11,1,44,87,35,0,0,0
 2026,135220,AJ Riggs,Utah Valley,1,0,1,0,0,0,2,2,1,0,0,0
 2026,135221,Isaiah Henderson,Siena,7,7,4,2,1,0,21,48,21,0,0,0
 2026,135222,Tryce Grensing,Indiana,0,0,0,0,0,0,0,1,0,0,0,0
@@ -4533,7 +4533,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135246,Amere Brown,Arkansas,0,1,0,0,2,0,0,1,0,0,0,0
 2026,135248,Camden Karel,Bowling Green,4,3,3,0,3,0,0,1,0,0,0,0
 2026,135249,Aiden Goins,Bowling Green,14,17,3,6,10,0,4,12,3,0,0,0
-2026,135250,Mekhi Fitts,Grambling St.,15,11,8,3,2,1,0,1,0,0,0,0
+2026,135250,Mekhi Fitts,Grambling St.,17,11,10,3,2,1,1,1,1,1,0,1
 2026,135251,Bradley Land,Radford,1,0,0,1,0,0,0,0,0,0,0,0
 2026,135252,Tre Beard,Cleveland St.,19,14,10,7,19,2,80,112,60,0,0,0
 2026,135253,Krystian Lewis,Louisiana Monroe,60,89,9,41,57,4,61,130,52,3,0,0
@@ -4574,14 +4574,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135302,Kayden Nation,Central Michigan,3,3,2,3,5,1,4,8,3,0,0,0
 2026,135304,Alem Fejzic,Southern Indiana,1,0,1,0,0,0,4,17,3,0,0,0
 2026,135305,Timotej Malovec,Miami FL,6,3,4,0,3,0,36,72,36,0,1,0
-2026,135306,Shane Lancaster,Alcorn St.,39,46,16,8,21,3,60,74,57,3,0,1
-2026,135307,Trae Taylor,Montana,19,11,14,1,1,1,0,0,0,10,2,7
+2026,135306,Shane Lancaster,Alcorn St.,41,49,18,8,22,3,61,81,58,3,0,1
+2026,135307,Trae Taylor,Montana,20,11,15,1,1,1,0,0,0,11,2,8
 2026,135308,Jojo Murphy,Seattle,22,19,3,9,18,1,22,48,17,0,0,0
 2026,135309,Ethan Duncan,Lipscomb,36,19,18,15,20,4,62,103,54,0,0,0
 2026,135310,Drew Perry,Baylor,0,0,0,0,0,0,1,3,1,0,0,0
 2026,135311,Derrick Anderson,Youngstown St.,2,0,1,0,0,0,0,2,0,0,0,0
 2026,135312,Ernest Shelton,Merrimack,35,31,17,15,21,8,96,178,86,6,4,3
-2026,135313,AJ Rohosy,Stanford,66,52,28,38,30,16,0,0,0,9,2,8
+2026,135313,AJ Rohosy,Stanford,69,54,28,39,32,16,0,0,0,9,2,8
 2026,135314,Evan Chatman,UAB,57,27,32,12,36,11,22,55,21,11,4,9
 2026,135315,Ari Gooch,UAB,7,8,3,1,1,1,2,9,2,1,1,0
 2026,135316,EJ Horton,North Texas,16,9,5,1,6,0,5,22,5,3,0,2
@@ -4602,11 +4602,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135336,Brayden Johnson,Southern Utah,0,0,0,0,3,0,0,0,0,0,0,0
 2026,135337,Reggie Prudhomme,Niagara,17,20,8,14,16,2,35,66,33,0,0,0
 2026,135338,Adam Harakow,Wyoming,24,22,12,5,0,1,28,46,27,0,0,0
-2026,135339,Jeremy Dent-Smith,Stanford,24,36,6,6,20,0,58,90,44,0,0,0
+2026,135339,Jeremy Dent-Smith,Stanford,25,37,6,6,20,0,58,93,44,0,0,0
 2026,135340,Nathan Claerbaut,Central Michigan,82,38,50,65,68,38,0,6,0,16,0,13
 2026,135342,Jude Haigh,Holy Cross,0,0,0,0,2,0,3,10,2,0,0,0
 2026,135344,Jailen Daniel-Dalton,UC Riverside,40,24,23,4,6,2,7,27,7,7,3,6
-2026,135346,Kenyon Aguino,Montana,52,31,40,29,22,14,9,19,9,0,0,0
+2026,135346,Kenyon Aguino,Montana,57,32,43,29,23,14,9,20,9,2,0,2
 2026,135347,Amir Taylor,Kennesaw St.,36,25,18,3,5,1,12,14,12,0,0,0
 2026,135350,Cam Hutson,Saint Louis,4,3,1,0,1,0,2,8,2,0,0,0
 2026,135351,Jax Kerr,Saint Louis,10,9,6,1,0,0,3,16,3,3,0,3
@@ -4615,7 +4615,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135354,Filip Jovic,Auburn,64,29,30,0,2,0,0,3,0,18,1,12
 2026,135356,Kaden Magwood,Auburn,5,7,2,8,8,3,7,18,3,1,0,0
 2026,135357,Abdullahi Bashir,Auburn,0,0,0,2,0,2,2,11,2,0,0,0
-2026,135358,Keziah Ekissi,Oregon St.,16,27,4,7,14,0,16,31,16,2,2,2
+2026,135358,Keziah Ekissi,Oregon St.,16,28,4,8,14,0,16,31,16,2,2,2
 2026,135359,William Patterson,New Orleans,1,2,0,0,2,0,0,0,0,0,0,0
 2026,135360,Joao Das Chagas,UAB,1,2,0,0,2,0,0,0,0,0,0,0
 2026,135361,Kye Dickson,UT Rio Grande Valley,9,5,3,2,3,0,5,6,5,2,0,1
@@ -4634,7 +4634,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135381,Jack Smiley,Belmont,33,22,10,18,24,4,44,57,30,1,0,1
 2026,135382,Cameron Johnson,Mercyhurst,16,18,8,8,23,4,8,17,8,0,0,0
 2026,135383,Zy Wright,Abilene Christian,27,26,17,5,10,2,16,39,16,3,0,1
-2026,135384,DJ Armstrong,UMBC,26,8,10,18,26,2,73,110,53,2,0,2
+2026,135384,DJ Armstrong,UMBC,26,8,10,20,28,2,74,111,53,2,0,2
 2026,135386,Malachi Moreno,Kentucky,75,46,54,16,16,8,0,2,0,42,4,36
 2026,135388,Andrija Jelavic,Kentucky,36,12,26,9,11,3,20,46,20,10,1,10
 2026,135389,Jasper Johnson,Kentucky,14,10,4,12,19,4,30,54,22,0,0,0
@@ -4646,12 +4646,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135396,"Fawaz ""Tacko"" Ifaola",Colorado,7,0,3,0,2,0,0,0,0,0,0,0
 2026,135397,Jalin Holland,Colorado,32,28,14,8,15,3,12,32,12,4,0,1
 2026,135399,Josiah Sanders,Colorado,43,28,27,9,11,0,3,21,3,3,0,3
-2026,135400,Dane Christensen,UT Rio Grande Valley,10,9,8,1,5,0,12,26,12,4,0,3
-2026,135402,Julien Gomez,UT Rio Grande Valley,35,20,13,4,14,0,31,43,30,0,0,0
+2026,135400,Dane Christensen,UT Rio Grande Valley,11,11,9,1,5,0,12,26,12,4,0,3
+2026,135402,Julien Gomez,UT Rio Grande Valley,37,21,15,5,14,1,33,45,32,0,0,0
 2026,135403,Braylon Mullins,Connecticut,20,15,7,30,22,12,56,98,51,3,2,3
 2026,135406,Ty'Reek Coleman,Illinois St.,58,32,6,13,26,0,32,46,26,2,1,0
 2026,135407,Jared Turner,Old Dominion,7,5,1,6,7,6,54,88,52,0,1,0
-2026,135408,Obomate Abbey,Utah,12,17,1,6,16,1,8,32,6,0,0,0
+2026,135408,Obomate Abbey,Utah,12,17,1,6,16,1,8,33,6,0,0,0
 2026,135410,Mathis Courbon,Murray St.,22,19,5,3,9,0,20,29,19,6,0,3
 2026,135413,Elijah Perryman,Utah St.,34,25,8,4,8,0,14,32,13,7,1,2
 2026,135415,Adlan Elamin,Utah St.,38,22,24,4,9,0,24,52,24,22,3,17
@@ -4675,10 +4675,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135436,Shawn Nelson,Northern Kentucky,10,10,6,4,12,0,5,20,4,1,0,0
 2026,135437,Cougar Downing,UMBC,6,4,2,1,3,0,19,38,15,0,0,0
 2026,135438,JJ Harper,Liberty,85,30,61,3,9,2,23,41,22,24,1,19
-2026,135439,Andres Burney,Georgia Southern,54,21,22,15,14,6,0,0,0,5,1,1
+2026,135439,Andres Burney,Georgia Southern,57,22,23,15,14,6,0,0,0,6,1,1
 2026,135440,Javen Colbert,Troy,2,2,2,0,0,0,2,3,1,0,0,0
 2026,135444,Rashad Bolden,Central Arkansas,0,0,0,3,8,0,2,9,1,0,0,0
-2026,135445,Tavarus Webb,Georgia Southern,98,64,13,31,20,0,40,85,36,2,1,0
+2026,135445,Tavarus Webb,Georgia Southern,101,67,14,31,20,0,42,88,38,2,1,0
 2026,135446,Collin Parker,Austin Peay,85,68,29,45,60,13,55,77,53,2,0,2
 2026,135447,Rex Stirling,Wofford,56,41,37,2,5,2,0,0,0,0,0,0
 2026,135449,Kyler D'Augustino,IU Indy,112,48,59,65,84,30,38,59,33,0,0,0
@@ -4686,12 +4686,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135452,Simm Saadi,Wyoming,12,11,9,0,1,0,23,49,22,0,0,0
 2026,135453,Iwo Baganc,SIU Edwardsville,0,0,0,0,1,0,0,0,0,0,0,0
 2026,135454,William Campbell,Lindenwood,0,0,0,1,0,0,0,0,0,0,0,0
-2026,135455,Filip Brankovic,UT Rio Grande Valley,86,30,54,29,40,19,33,64,31,0,0,0
+2026,135455,Filip Brankovic,UT Rio Grande Valley,93,31,58,31,40,20,33,66,31,0,0,0
 2026,135456,Kevair Kennedy,Merrimack,160,157,36,18,43,6,12,24,10,1,0,0
 2026,135459,Logan Myers,Louisiana,0,0,0,0,1,0,0,0,0,0,0,0
 2026,135460,Trey Simpson,Kennesaw St.,21,11,9,7,10,4,43,91,41,7,1,4
 2026,135461,Jordan Lowery,UT Arlington,16,11,3,8,19,4,16,39,13,0,0,0
-2026,135462,Samuel Obenjo,Robert Morris,11,6,9,2,2,1,0,0,0,5,0,5
+2026,135462,Samuel Obenjo,Robert Morris,12,6,10,2,2,1,0,0,0,6,0,6
 2026,135463,Darius Washington III,Kennesaw St.,21,19,3,4,11,0,6,17,6,0,0,0
 2026,135464,Bahsil Laster,UT Arlington,25,36,2,6,12,2,7,30,7,2,3,1
 2026,135465,Xavier Edmonds,TCU,91,39,55,30,37,11,19,27,19,13,1,10
@@ -4719,9 +4719,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135494,Trevian Carson,North Dakota St.,69,54,34,30,33,8,43,70,42,4,0,2
 2026,135495,Caleb Schoenrock,North Dakota St.,1,0,0,0,0,0,0,0,0,0,0,0
 2026,135496,Riley Saunders,North Dakota St.,0,0,0,0,0,0,2,0,2,0,0,0
-2026,135497,Patrick Punch,Mississippi Valley St.,29,24,14,17,53,3,26,76,22,0,0,0
+2026,135497,Patrick Punch,Mississippi Valley St.,29,26,14,17,54,3,26,78,22,0,0,0
 2026,135500,Declan Duru Jr.,Texas,5,2,3,0,0,0,0,5,0,0,0,0
-2026,135503,Noah Meeusen,Arizona St.,19,8,8,4,12,1,28,64,18,0,0,0
+2026,135503,Noah Meeusen,Arizona St.,19,8,8,5,12,1,31,66,19,0,0,0
 2026,135504,Bryce Quinet,Evansville,41,43,11,30,42,6,19,52,17,0,0,0
 2026,135505,Leif Moeller,Evansville,32,32,9,33,56,2,47,80,33,1,0,1
 2026,135507,Joseph Locandro,Maryland Eastern Shore,45,30,32,23,30,15,32,49,30,0,2,0
@@ -4741,8 +4741,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135527,Griffen Goodbary,Drake,21,12,13,1,2,0,11,21,10,8,3,8
 2026,135528,Cash McSweeney,Princeton,1,1,1,1,2,0,1,4,1,0,0,0
 2026,135529,Jake Sussberg,Princeton,2,1,1,1,2,0,7,14,7,0,0,0
-2026,135531,Alton Hamilton IV,Eastern Washington,117,64,46,14,22,4,14,27,13,6,1,6
-2026,135532,Johnny Radford,Eastern Washington,6,10,3,7,23,2,46,76,39,0,0,0
+2026,135531,Alton Hamilton IV,Eastern Washington,121,66,50,16,22,5,16,27,15,6,1,6
+2026,135532,Johnny Radford,Eastern Washington,6,10,3,8,23,2,49,78,42,0,0,0
 2026,135535,CJ Larry,Northwestern St.,8,18,2,5,17,0,7,8,7,0,0,0
 2026,135536,Moustapha Loum,Northwestern St.,15,10,11,2,1,0,0,0,0,8,2,7
 2026,135537,Kordrick Turner,Northwestern St.,24,20,13,15,15,2,0,1,0,0,0,0
@@ -4750,11 +4750,11 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135541,JD Bowden,Presbyterian,3,8,1,3,8,0,3,13,3,0,0,0
 2026,135542,Amare Bynum,Ohio St.,78,37,50,13,23,6,27,54,27,33,6,27
 2026,135546,Kaden Rickard,Kennesaw St.,22,31,3,8,14,0,16,28,16,0,0,0
-2026,135547,Daniel Mayfield,Mississippi Valley St.,49,44,12,70,96,30,18,40,12,7,0,3
+2026,135547,Daniel Mayfield,Mississippi Valley St.,49,46,12,71,99,31,18,41,12,7,1,3
 2026,135548,Assane Mandian,UNC Greensboro,5,3,3,1,2,1,10,17,8,0,0,0
 2026,135549,Landon King,UNC Greensboro,3,0,1,2,8,1,9,20,7,0,0,0
-2026,135550,Kellen Pickett,Wright St.,63,26,40,17,21,4,12,33,12,12,0,10
-2026,135552,Michael Cooper,Wright St.,50,37,12,37,46,6,42,73,22,0,0,0
+2026,135550,Kellen Pickett,Wright St.,66,27,42,20,21,6,12,34,12,12,0,10
+2026,135552,Michael Cooper,Wright St.,53,39,12,39,46,7,45,76,25,0,0,0
 2026,135553,Daniel Akoue,Bryant,8,1,6,0,3,0,2,9,2,3,0,3
 2026,135554,Mynor Strong,Toledo,11,12,4,20,24,10,17,31,15,3,1,2
 2026,135557,Josh Bowman,Chattanooga,14,15,11,11,6,5,2,6,2,1,0,1
@@ -4770,9 +4770,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135574,Tai Walters-Whitaker,Illinois Chicago,2,3,0,1,4,0,1,2,1,0,0,0
 2026,135575,TJ Drain,Liberty,2,0,1,0,0,0,0,0,0,1,0,1
 2026,135576,Zander Carter,Liberty,16,10,8,1,0,0,9,18,9,0,2,0
-2026,135577,X’Zaevion Barnett,Mississippi Valley St.,26,35,14,4,14,0,6,14,4,0,0,0
-2026,135579,Michael James,Mississippi Valley St.,53,30,25,99,112,46,70,147,55,1,0,1
-2026,135580,Tyrone Iroghama,Mississippi Valley St.,23,15,16,3,13,2,0,0,0,6,3,4
+2026,135577,X’Zaevion Barnett,Mississippi Valley St.,26,36,14,5,15,1,6,15,4,0,0,0
+2026,135579,Michael James,Mississippi Valley St.,54,30,25,101,118,48,74,150,58,1,0,1
+2026,135580,Tyrone Iroghama,Mississippi Valley St.,23,16,16,3,13,2,0,0,0,6,3,4
 2026,135581,Jaeden Roberts,Hofstra,4,2,1,7,7,2,16,23,9,1,0,1
 2026,135582,Ashton Walker,La Salle,36,31,7,25,49,5,20,49,17,0,0,0
 2026,135584,Tyrique Brooks,Missouri St.,6,4,3,1,3,0,3,9,3,0,0,0
@@ -4806,7 +4806,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135625,Damon Howard Jr,Tennessee St.,3,7,1,3,8,0,4,11,2,0,0,0
 2026,135626,Jabrion Spikes,Tennessee St.,21,10,7,5,7,1,5,13,4,0,0,0
 2026,135627,Michael Simcoe,UC Santa Barbara,16,10,13,3,4,1,2,9,2,5,1,5
-2026,135628,Yaak Yaak,Oregon St.,23,10,15,23,24,17,3,6,3,9,3,5
+2026,135628,Yaak Yaak,Oregon St.,24,11,15,23,29,17,3,8,3,9,3,5
 2026,135629,Isaac Taveras,Southern Miss,103,73,38,17,23,3,5,19,4,10,2,4
 2026,135630,Ty Tabales,Bryant,26,35,3,17,36,2,42,124,25,0,0,0
 2026,135631,Gio Sanford,Bryant,9,9,2,0,0,0,1,9,1,1,0,1
@@ -4815,7 +4815,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,135635,Timofei Rudovskii,Bryant,36,24,10,19,36,4,63,112,53,5,1,2
 2026,135637,Ryan Bartley,Houston Christian,27,14,14,34,46,16,43,82,41,2,0,2
 2026,135638,Rrezon Elezaj,Connecticut,0,1,0,0,0,0,0,1,0,0,0,0
-2026,135639,Zee Hamoda,Nicholls St.,22,11,8,14,28,4,52,86,44,1,0,0
+2026,135639,Zee Hamoda,Nicholls St.,22,11,8,15,28,4,53,89,45,1,0,0
 2026,137636,Rayniel Wright,South Carolina St.,22,18,1,15,34,2,1,5,1,0,0,0
 2026,137640,Joseph Carter,East Tennessee St.,0,0,0,0,0,0,0,2,0,0,0,0
 2026,137646,"Owen Bronston, Jr.",South Carolina St.,16,16,5,16,31,6,53,90,53,1,1,0
@@ -4837,8 +4837,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2026,143673,Silas Bennion,South Dakota,10,12,5,3,7,0,10,29,9,0,0,0
 2026,143675,D'Mari Wiltz,Southern,0,0,0,0,0,0,0,1,0,0,0,0
 2026,143676,Trent Hudgens Jr.,South Dakota,7,10,0,5,7,0,3,11,2,0,0,0
-2026,143677,Lucas Langarita,Utah,0,0,0,1,1,0,2,3,2,0,0,0
+2026,143677,Lucas Langarita,Utah,0,0,0,2,2,0,3,4,3,0,0,0
 2026,143678,Calvin Russell III,Syracuse,1,2,0,0,0,0,0,0,0,0,0,0
-2026,143681,Xzayvion Childress,Mississippi Valley St.,13,9,6,9,14,1,11,24,9,0,0,0
+2026,143681,Xzayvion Childress,Mississippi Valley St.,14,11,7,9,14,1,11,26,9,0,0,0
 2026,143683,Samuel Noland,Portland,0,0,0,2,2,0,0,0,0,0,0,0
 2026,143685,PJ McDonald,Mississippi Valley St.,0,1,0,0,0,0,0,0,0,0,0,0
