@@ -1050,15 +1050,18 @@ def shot_svg(
     def pt(full_x: float, full_y: float) -> tuple[float, float]:
         return map_x(full_y), map_y(full_x)
 
-    points = []
+    misses: list[str] = []
+    makes: list[str] = []
     for s in shots:
         x = float(s["x"])
         y = float(s["y"])
         made = bool(s.get("made"))
         fill = "#22c55e" if made else "#ef4444"
-        points.append(
-            f'<circle cx="{map_x(y):.1f}" cy="{map_y(x):.1f}" r="4.2" fill="{fill}" fill-opacity="0.8" />'
-        )
+        dot = f'<circle cx="{map_x(y):.1f}" cy="{map_y(x):.1f}" r="4.2" fill="{fill}" fill-opacity="0.8" />'
+        if made:
+            makes.append(dot)
+        else:
+            misses.append(dot)
 
     # Core court anchors (units where 10 = 1 foot).
     hoop_x = 40.0
@@ -1116,7 +1119,8 @@ def shot_svg(
     return f"""
 <svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
   {court}
-  {''.join(points)}
+  {''.join(misses)}
+  {''.join(makes)}
 </svg>
 """
 
