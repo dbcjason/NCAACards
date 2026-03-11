@@ -2384,8 +2384,7 @@ def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str
     player = bt_get(row, ["player_name"])
     team = bt_get(row, ["team"])
     season = bt_get(row, ["year"])
-    bk = key_player_team_season(player, team, season)
-    bio = bio_lookup.get(bk, {})
+    bio = dict(lookup_bio_fallback(bio_lookup, player, team, season))
 
     age_val: float | None = None
     if bio:
@@ -2527,14 +2526,12 @@ def build_player_comparisons_html(
             return None
 
         # Hard age window for comps: only compare within +/- 1.0 years.
-        # Strict age window: only comps within +/-1.0 years.
-        if target_age_raw is None or not math.isfinite(target_age_raw):
-            return None
-        other_age_raw = age_by_row.get(id(other))
-        if other_age_raw is None or not math.isfinite(other_age_raw):
-            return None
-        if abs(float(other_age_raw) - float(target_age_raw)) > 1.0:
-            return None
+        # Enforce +/-1.0 age window when both players have age available.
+        if target_age_raw is not None and math.isfinite(target_age_raw):
+            other_age_raw = age_by_row.get(id(other))
+            if other_age_raw is not None and math.isfinite(other_age_raw):
+                if abs(float(other_age_raw) - float(target_age_raw)) > 1.0:
+                    return None
 
         keys = list(metric_keys)
         ov: dict[str, float] = {}
