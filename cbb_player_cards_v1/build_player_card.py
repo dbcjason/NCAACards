@@ -272,6 +272,17 @@ def inject_enriched_fields_into_bt_rows(
         if def_rapm is not None and math.isfinite(def_rapm):
             r["def_adj_rapm.value"] = str(def_rapm)
 
+        # On/off adjusted PPP fields for requested On/Off Net Rtg impact metric.
+        for k, path in [
+            ("on.off_adj_ppp.value", ("on", "off_adj_ppp", "value")),
+            ("on.def_adj_ppp.value", ("on", "def_adj_ppp", "value")),
+            ("off.off_adj_ppp.value", ("off", "off_adj_ppp", "value")),
+            ("off.def_adj_ppp.value", ("off", "def_adj_ppp", "value")),
+        ]:
+            v = to_float(_enriched_nested_value(er, *path))
+            if v is not None and math.isfinite(v):
+                r[k] = str(v)
+
 
 def find_col(header: list[str], aliases: list[str]) -> str | None:
     hset = {h: norm_text(h) for h in header}
@@ -1348,6 +1359,14 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         if off_rapm is None or def_rapm is None:
             return None
         return float(off_rapm) - float(def_rapm)
+    if key == "onoff_net_rating":
+        on_off = bt_num(row, ["on.off_adj_ppp.value"])
+        on_def = bt_num(row, ["on.def_adj_ppp.value"])
+        off_off = bt_num(row, ["off.off_adj_ppp.value"])
+        off_def = bt_num(row, ["off.def_adj_ppp.value"])
+        if on_off is None or on_def is None or off_off is None or off_def is None:
+            return None
+        return (float(on_off) - float(on_def)) - (float(off_off) - float(off_def))
     if key == "rim_pct":
         return bt_num(row, ["rimmade/(rimmade+rimmiss)", " rimmade/(rimmade+rimmiss)"])
     if key == "mid_pct":
@@ -1644,7 +1663,7 @@ def bt_category_percentile(
 
 def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     categories: list[tuple[str, list[str]]] = [
-        ("Impact", ["bpm", "rapm", "net_rating"]),
+        ("Impact", ["bpm", "rapm", "onoff_net_rating"]),
         ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
         ("Playmaking", ["ast_per", "to_per", "ast_tov"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
@@ -1698,8 +1717,8 @@ def build_bt_percentile_html(
     sections = {
         "Impact": [
             ("BPM", "bpm", False, 1),
-            ("RAPM", "rapm", False, 2),
-            ("Net Rating", "net_rating", False, 1),
+            ("RAPM", "rapm", False, 1),
+            ("On/Off Net Rtg", "onoff_net_rating", False, 2),
         ],
         "Scoring": [
             ("Usage", "usg", False, 1),
@@ -2024,9 +2043,12 @@ def build_player_comparisons_html(
         "stl_per", "blk_per", "orb_per", "drb_per",
     ]
 
-    # Build per-season cohorts once.
+    # Build per-season cohorts once (comparison pool: 2019+).
+    bt_rows_pool = [r for r in bt_rows if (norm_season(bt_get(r, ["year"])).isdigit() and int(norm_season(bt_get(r, ["year"]))) >= 2019)]
+    if target_row not in bt_rows_pool:
+        bt_rows_pool.append(target_row)
     by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
-    for r in bt_rows:
+    for r in bt_rows_pool:
         by_year[norm_season(bt_get(r, ["year"]))].append(r)
 
     def build_pct_lookup(items: list[tuple[int, float]]) -> dict[int, float]:
@@ -2068,7 +2090,7 @@ def build_player_comparisons_html(
 
     age_by_row: dict[int, float] = {}
     hgt_by_row: dict[int, float] = {}
-    for r in bt_rows:
+    for r in bt_rows_pool:
         age_v, h_v = _bio_age_height_for_row(r, bio_lookup)
         if age_v is not None and math.isfinite(age_v):
             age_by_row[id(r)] = age_v
@@ -2154,7 +2176,7 @@ def build_player_comparisons_html(
         return max(0.0, min(100.0, score))
 
     ranked: list[tuple[float, dict[str, str]]] = []
-    for r in bt_rows:
+    for r in bt_rows_pool:
         s = similarity(r)
         if s is None:
             continue
@@ -2780,8 +2802,9 @@ def main() -> None:
     bio = dict(lookup_bio_fallback(bio_lookup, target.player, target.team, target.season))
     target_bt_row = bt_find_target_row(bt_rows, target) if bt_rows else None
     if target_bt_row:
-        if not (bio.get("position", "") or "").strip():
-            bio["position"] = bt_get(target_bt_row, ["roster.pos", "role"])
+        pos_from_bt = bt_get(target_bt_row, ["roster.pos", "role"])
+        if pos_from_bt.strip():
+            bio["position"] = pos_from_bt
         if not (bio.get("height", "") or "").strip():
             bio["height"] = bt_get(target_bt_row, ["ht"])
         if not (bio.get("dob", "") or "").strip():
