@@ -70,13 +70,11 @@ jobs:
           adv_map = cfg.get('advgames_csv_by_year', {})
           pbp_map = cfg.get('pbp_metrics_csv_by_year', {})
 
-          plays = plays_map.get(year, '')
-          if not plays:
-              raise SystemExit(f'No plays_csv_by_year entry for year={year} in settings.json')
-
           env_lines = []
           env_lines.append(f"YEAR={year}")
-          env_lines.append(f"PLAYS_CSV={resolve_from_repo(plays)}")
+          plays = plays_map.get(year, '').strip()
+          if plays:
+              env_lines.append(f"PLAYS_CSV={resolve_from_repo(plays)}")
 
           bio = cfg.get('bio_csv', '').strip()
           if bio:
@@ -113,12 +111,11 @@ jobs:
 
       - name: Validate required files
         run: |
-          test -f "$PLAYS_CSV" || (echo "Missing plays CSV: $PLAYS_CSV" && exit 1)
           test -f "$BT_CSV" || (echo "Missing BT CSV: $BT_CSV" && exit 1)
 
       - name: Expand gz plays (if needed)
         run: |
-          if [[ "$PLAYS_CSV" == *.gz ]]; then
+          if [[ -n "${PLAYS_CSV:-}" && "$PLAYS_CSV" == *.gz ]]; then
             OUT="${RUNNER_TEMP}/plays_unzipped.csv"
             gunzip -c "$PLAYS_CSV" > "$OUT"
             echo "PLAYS_CSV=$OUT" >> "$GITHUB_ENV"
@@ -127,12 +124,15 @@ jobs:
       - name: Build card
         run: |
           CMD=(python3 cbb_player_cards_v1/build_player_card.py \
-            --plays-csv "$PLAYS_CSV" \
             --player "${{ github.event.inputs.player }}" \
             --season "$YEAR" \
             --bt-csv "$BT_CSV" \
             --bt-playerstat-url-template "$BT_PLAYERSTAT_URL_TEMPLATE" \
             --out-html "$OUT_HTML")
+
+          if [ -n "${PLAYS_CSV:-}" ] && [ -f "$PLAYS_CSV" ]; then
+            CMD+=(--plays-csv "$PLAYS_CSV")
+          fi
 
           if [ -n "${{ github.event.inputs.team }}" ]; then
             CMD+=(--team "${{ github.event.inputs.team }}")
