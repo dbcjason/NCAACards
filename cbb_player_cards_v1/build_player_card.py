@@ -1234,6 +1234,14 @@ def format_height(raw: str) -> str:
     return s
 
 
+def ordinal(n: int) -> str:
+    if 10 <= (n % 100) <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
 def build_advanced_html(
     target: PlayerGameStats,
     lebron_rows: list[dict[str, str]],
@@ -1903,7 +1911,7 @@ def build_bt_percentile_html(
         "Impact": [
             ("BPM", "bpm", False, 1),
             ("RAPM", "rapm", False, 1),
-            ("On/Off Net", "onoff_net_rating", False, 1),
+            ("On/Off NetR", "onoff_net_rating", False, 1),
         ],
         "Scoring": [
             ("Usage", "usg", False, 1),
@@ -3118,16 +3126,13 @@ def main() -> None:
 
     act_pps, exp_pps, pps_oe, pps_oe_pct = pps_over_expected_from_enriched(target)
     if pps_oe is not None:
-        pps_line = (
-            f"Points Per Shot Over Expected: {pps_oe:+.1f}% "
-            f"(Actual PPS: {act_pps:.3f}, Expected PPS: {exp_pps:.3f}, "
-            f"Percentile: {pps_oe_pct:.0f}%)"
-            if pps_oe_pct is not None
-            else f"Points Per Shot Over Expected: {pps_oe:+.1f}% "
-                 f"(Actual PPS: {act_pps:.3f}, Expected PPS: {exp_pps:.3f})"
-        )
+        if pps_oe_pct is not None:
+            p_rank = max(1, min(99, int(round(pps_oe_pct))))
+            pps_line = f"Points per Shot Over Expected: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
+        else:
+            pps_line = f"Points per Shot Over Expected: {pps_oe:+.1f}% (Percentile N/A)"
     else:
-        pps_line = "Points Per Shot Over Expected: N/A"
+        pps_line = "Points per Shot Over Expected: N/A"
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games)
     render_card(
         target,
