@@ -317,6 +317,41 @@ def inject_enriched_fields_into_bt_rows(
             if v is not None and math.isfinite(v):
                 r[k] = str(v)
 
+        # Team impact fields used for On/Off table in cards.
+        for k, path in [
+            ("on.off_efg.old_value", ("on", "off_efg", "old_value")),
+            ("off.off_efg.old_value", ("off", "off_efg", "old_value")),
+            ("on.off_to.value", ("on", "off_to", "value")),
+            ("off.off_to.value", ("off", "off_to", "value")),
+            ("on.off_2prim.value", ("on", "off_2prim", "value")),
+            ("off.off_2prim.value", ("off", "off_2prim", "value")),
+            ("on.off_2primr.value", ("on", "off_2primr", "value")),
+            ("off.off_2primr.value", ("off", "off_2primr", "value")),
+            ("on.off_ft.value", ("on", "off_ft", "value")),
+            ("off.off_ft.value", ("off", "off_ft", "value")),
+            ("on.off_3pr.value", ("on", "off_3pr", "value")),
+            ("off.off_3pr.value", ("off", "off_3pr", "value")),
+            ("on.def_efg.old_value", ("on", "def_efg", "old_value")),
+            ("off.def_efg.old_value", ("off", "def_efg", "old_value")),
+            ("on.def_to.value", ("on", "def_to", "value")),
+            ("off.def_to.value", ("off", "def_to", "value")),
+            ("on.def_2prim.value", ("on", "def_2prim", "value")),
+            ("off.def_2prim.value", ("off", "def_2prim", "value")),
+            ("on.def_2primr.value", ("on", "def_2primr", "value")),
+            ("off.def_2primr.value", ("off", "def_2primr", "value")),
+            ("on.def_ft.value", ("on", "def_ft", "value")),
+            ("off.def_ft.value", ("off", "def_ft", "value")),
+            ("on.def_3pr.value", ("on", "def_3pr", "value")),
+            ("off.def_3pr.value", ("off", "def_3pr", "value")),
+            ("on.off_orb.value", ("on", "off_orb", "value")),
+            ("off.off_orb.value", ("off", "off_orb", "value")),
+            ("on.def_orb.value", ("on", "def_orb", "value")),
+            ("off.def_orb.value", ("off", "def_orb", "value")),
+        ]:
+            v = to_float(_enriched_nested_value(er, *path))
+            if v is not None and math.isfinite(v):
+                r[k] = str(v)
+
 
 def _shot_range_from_xy_ft(x_ft: float, y_ft: float) -> str:
     d = math.hypot(float(x_ft), float(y_ft))
@@ -2176,6 +2211,95 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
 """
 
 
+def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
+    if not bt_rows:
+        return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+
+    row = bt_find_target_row(bt_rows, target)
+    if not row:
+        return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+
+    def val(key: str) -> float | None:
+        v = to_float(row.get(key, ""))
+        if v is None or not math.isfinite(v):
+            return None
+        return fmt_percent_source_value(v)
+
+    def fmt_cell(v: float | None) -> str:
+        return "-" if v is None else f"{v:.1f}"
+
+    def fmt_diff(v: float | None) -> str:
+        return "-" if v is None else f"{v:+.1f}"
+
+    def diff_color(diff: float | None, good_positive: bool) -> str:
+        if diff is None or abs(diff) < 1e-12:
+            return "var(--muted)"
+        if good_positive:
+            return "#22c55e" if diff > 0 else "#ef4444"
+        return "#22c55e" if diff < 0 else "#ef4444"
+
+    def render_rows(
+        title: str,
+        specs: list[tuple[str, str, str, bool]],
+    ) -> str:
+        rows_html = ""
+        for label, on_key, off_key, good_positive in specs:
+            on_v = val(on_key)
+            off_v = val(off_key)
+            diff_v = (on_v - off_v) if (on_v is not None and off_v is not None) else None
+            rows_html += (
+                f'<tr>'
+                f'<td class="ti-metric">{html.escape(label)}</td>'
+                f'<td class="ti-num">{fmt_cell(on_v)}</td>'
+                f'<td class="ti-num">{fmt_cell(off_v)}</td>'
+                f'<td class="ti-num" style="color:{diff_color(diff_v, good_positive)};font-weight:700;">{fmt_diff(diff_v)}</td>'
+                f'</tr>'
+            )
+        return f"""
+        <div class="ti-section">
+          <div class="ti-subhead">{html.escape(title)}</div>
+          <table class="ti-table">
+            <thead>
+              <tr><th></th><th>On</th><th>Off</th><th>Diff</th></tr>
+            </thead>
+            <tbody>
+              {rows_html}
+            </tbody>
+          </table>
+        </div>
+        """
+
+    offense_specs = [
+        ("eFG%", "on.off_efg.old_value", "off.off_efg.old_value", True),
+        ("TO%", "on.off_to.value", "off.off_to.value", False),
+        ("Rim%", "on.off_2prim.value", "off.off_2prim.value", True),
+        ("Rim Rate", "on.off_2primr.value", "off.off_2primr.value", True),
+        ("FTr", "on.off_ft.value", "off.off_ft.value", True),
+        ("3Pr", "on.off_3pr.value", "off.off_3pr.value", True),
+    ]
+    defense_specs = [
+        ("Opp eFG%", "on.def_efg.old_value", "off.def_efg.old_value", False),
+        ("Opp TO%", "on.def_to.value", "off.def_to.value", True),
+        ("Opp Rim%", "on.def_2prim.value", "off.def_2prim.value", False),
+        ("Opp Rim Rate", "on.def_2primr.value", "off.def_2primr.value", False),
+        ("Opp FTr", "on.def_ft.value", "off.def_ft.value", False),
+        ("Opp 3Pr", "on.def_3pr.value", "off.def_3pr.value", False),
+    ]
+    reb_specs = [
+        ("OREB%", "on.off_orb.value", "off.off_orb.value", True),
+        ("Opp OREB%", "on.def_orb.value", "off.def_orb.value", False),
+    ]
+
+    return f"""
+      <div class="panel">
+        <h3>Team Impact</h3>
+        {render_rows("Offense", offense_specs)}
+        {render_rows("Defense", defense_specs)}
+        {render_rows("Rebounding", reb_specs)}
+      </div>
+"""
+
+
 def _height_to_inches(raw: str) -> float | None:
     s = (raw or "").strip()
     if not s:
@@ -2467,6 +2591,7 @@ def render_card(
     grade_boxes_html: str,
     bt_percentiles_html: str,
     self_creation_html: str,
+    team_impact_html: str,
     shot_diet_html: str,
     player_comparisons_html: str,
     advanced_html: str,
@@ -2636,6 +2761,13 @@ body {{
   gap: 12px;
   align-items: stretch;
 }}
+.left-wrap {{
+  flex: 0 0 33%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}}
 .shot-panel {{
   min-width: 0;
 }}
@@ -2643,10 +2775,7 @@ body {{
   display: block;
   margin: 0 auto;
 }}
-.shot-chart-col {{
-  flex: 0 0 33%;
-  min-width: 320px;
-}}
+.shot-chart-col {{ min-width: 0; }}
 .chip {{
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -2753,19 +2882,11 @@ body {{
 }}
 .right-wrap {{
   flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  margin-top: 14px;
-}}
-.right-top {{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   align-items: start;
-}}
-.right-bottom {{
-  width: calc(50% - 6px);
-  margin-top: auto;
+  margin-top: 14px;
 }}
 .comp-table {{
   display: grid;
@@ -2795,17 +2916,53 @@ body {{
   text-align: right;
   font-weight: 700;
 }}
+.ti-section {{
+  margin-top: 8px;
+}}
+.ti-subhead {{
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}}
+.ti-table {{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 6px 0;
+  font-size: 11px;
+}}
+.ti-table th, .ti-table td {{
+  border: 1px solid var(--line);
+  padding: 3px 5px;
+}}
+.ti-table th {{
+  color: var(--muted);
+  font-weight: 700;
+  text-align: right;
+}}
+.ti-table th:first-child {{
+  text-align: left;
+}}
+.ti-metric {{
+  color: var(--muted);
+  text-align: left;
+  white-space: nowrap;
+}}
+.ti-num {{
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}}
 @media (max-width: 920px) {{
   .title-row {{ flex-direction: column; }}
   .grade-strip {{ min-width: 0; width: 100%; grid-template-columns: repeat(2, minmax(130px, 1fr)); }}
   .row {{ grid-template-columns: 1fr; }}
   .stat-strip {{ grid-template-columns: repeat(3, 1fr); }}
   .section-grid {{ grid-template-columns: 1fr; }}
+  .left-wrap {{ width: 100%; flex: 1 1 auto; min-width: 0; }}
   .shot-panel {{ width: 100%; min-width: 0; }}
-  .shot-chart-col {{ flex: 1 1 auto; min-width: 0; }}
+  .shot-chart-col {{ min-width: 0; }}
   .right-wrap {{ width: 100%; margin-top: 14px; }}
-  .right-top {{ grid-template-columns: 1fr; }}
-  .right-bottom {{ width: 100%; }}
+  .right-wrap {{ grid-template-columns: 1fr; }}
 }}
 </style>
 </head>
@@ -2835,20 +2992,19 @@ body {{
       {bt_percentiles_html}
 
       <div class="shot-wrap">
-        <div class="panel shot-panel shot-chart-col" style="margin-top:14px;">
-          <h3>Shot Chart</h3>
-          <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
-          <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
-          {shot_svg(shots, season_shots, width=355, height=250)}
+        <div class="left-wrap">
+          <div class="panel shot-panel shot-chart-col" style="margin-top:14px;">
+            <h3>Shot Chart</h3>
+            <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
+            <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
+            {shot_svg(shots, season_shots, width=355, height=250)}
+          </div>
+          {shot_diet_html}
         </div>
         <div class="right-wrap">
-          <div class="right-top">
-            {self_creation_html}
-            {player_comparisons_html}
-          </div>
-          <div class="right-bottom">
-            {shot_diet_html}
-          </div>
+          {self_creation_html}
+          {team_impact_html}
+          {player_comparisons_html}
         </div>
       </div>
       {advanced_html}
@@ -3091,6 +3247,7 @@ def main() -> None:
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
     pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
+    team_impact_html = build_team_impact_html(target, bt_rows)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
@@ -3147,6 +3304,7 @@ def main() -> None:
         grade_boxes_html,
         bt_percentiles_html,
         self_creation_html,
+        team_impact_html,
         shot_diet_html,
         player_comparisons_html,
         advanced_html,
