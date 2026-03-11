@@ -3128,11 +3128,11 @@ def main() -> None:
     if pps_oe is not None:
         if pps_oe_pct is not None:
             p_rank = max(1, min(99, int(round(pps_oe_pct))))
-            pps_line = f"Points per Shot Over Expected: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
+            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
         else:
-            pps_line = f"Points per Shot Over Expected: {pps_oe:+.1f}% (Percentile N/A)"
+            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
     else:
-        pps_line = "Points per Shot Over Expected: N/A"
+        pps_line = "Points per Shot Over Expectation: N/A"
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games)
     render_card(
         target,
