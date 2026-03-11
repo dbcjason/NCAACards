@@ -1383,6 +1383,17 @@ def bt_num(row: dict[str, str], aliases: list[str]) -> float | None:
     return to_float(bt_get(row, aliases))
 
 
+def bt_num_priority(row: dict[str, str], aliases: list[str]) -> float | None:
+    # Respect alias order (first alias has highest priority), unlike bt_get/bt_num.
+    norm_map = {norm_text(k): v for k, v in row.items()}
+    for a in aliases:
+        v = norm_map.get(norm_text(a))
+        n = to_float(v)
+        if n is not None and math.isfinite(n):
+            return n
+    return None
+
+
 def bt_find_target_row(rows: list[dict[str, str]], target: PlayerGameStats) -> dict[str, str] | None:
     np = norm_text(target.player)
     nt = norm_team(target.team)
@@ -1625,12 +1636,12 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         return 100.0 * float(dunks_att) / float(poss)
     if key == "bpm":
         # Use game-BPM columns from Bart exports per user preference.
-        return bt_num(row, ["gbpm", "GBPM", " gbpm", "bpm", "BPM", " bpm"])
+        return bt_num_priority(row, ["gbpm", "GBPM", " gbpm", "bpm", "BPM", " bpm"])
     if key == "obpm":
         return bt_num(row, ["obpm", "OBPM", "Obpm", " obpm"])
     if key == "dbpm":
         # Use defensive game-BPM columns from Bart exports per user preference.
-        return bt_num(row, ["dgbpm", "DGBPM", " dgbpm", "dbpm", "DBPM", "Dbpm", " dbpm"])
+        return bt_num_priority(row, ["dgbpm", "DGBPM", " dgbpm", "dbpm", "DBPM", "Dbpm", " dbpm"])
     if key == "rim_assists_100_btposs":
         poss = bt_possessions_estimate(row)
         if poss is None or poss <= 0:
