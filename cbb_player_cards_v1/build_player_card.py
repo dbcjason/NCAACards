@@ -2919,9 +2919,69 @@ def build_player_team_hint_map(bt_rows: list[dict[str, str]]) -> dict[tuple[str,
     return out
 
 
+def build_player_pool_from_bt(bt_rows: list[dict[str, str]]) -> list[PlayerGameStats]:
+    out: list[PlayerGameStats] = []
+    for r in bt_rows:
+        player = bt_get(r, ["player_name"]).strip()
+        team = bt_get(r, ["team"]).strip()
+        season = norm_season(bt_get(r, ["year"]))
+        if not player or not team or not season:
+            continue
+
+        gp = bt_num(r, ["GP", "gp"]) or 0.0
+        if gp <= 0:
+            gp = 1.0
+
+        # Per-game box-score stats from BT.
+        ppg = bt_num(r, ["pts", "PTS"]) or 0.0
+        oreb = bt_num(r, ["oreb", "OREB"]) or 0.0
+        dreb = bt_num(r, ["dreb", "DREB"]) or 0.0
+        apg = bt_num(r, ["ast", "AST"]) or 0.0
+        spg = bt_num(r, ["stl", "STL"]) or 0.0
+        bpg = bt_num(r, ["blk", "BLK"]) or 0.0
+
+        # Build FG/3P/FT from make/attempt pairs when available.
+        two_m = bt_num(r, ["twoPM", "2PM", "2PM_per_g"]) or 0.0
+        two_a = bt_num(r, ["twoPA", "2PA", "2PA_per_g"]) or 0.0
+        three_m = bt_num(r, ["TPM", "3PM"]) or 0.0
+        three_a = bt_num(r, ["TPA", "3PA"]) or 0.0
+        ft_m = bt_num(r, ["FTM"]) or 0.0
+        ft_a = bt_num(r, ["FTA"]) or 0.0
+
+        fgm_pg = two_m + three_m
+        fga_pg = two_a + three_a
+        if fga_pg <= 0:
+            fg_pct = bt_num(r, ["eFG", "FG_per", "fg_per"])
+            if fg_pct is not None and fg_pct > 1.0 and ppg > 0:
+                # Approximate FGA from points and FG%; better than zeros for percentile cohorts.
+                fga_pg = ppg / (2.0 * max(0.01, fg_pct / 100.0))
+                fgm_pg = fga_pg * (fg_pct / 100.0)
+
+        out.append(
+            PlayerGameStats(
+                player=player,
+                team=team,
+                season=season,
+                games=max(1, int(round(gp))),
+                points=max(0, int(round(ppg * gp))),
+                rebounds=max(0, int(round((oreb + dreb) * gp))),
+                assists=max(0, int(round(apg * gp))),
+                steals=max(0, int(round(spg * gp))),
+                blocks=max(0, int(round(bpg * gp))),
+                fgm=max(0, int(round(fgm_pg * gp))),
+                fga=max(0, int(round(fga_pg * gp))),
+                tpm=max(0, int(round(three_m * gp))),
+                tpa=max(0, int(round(three_a * gp))),
+                ftm=max(0, int(round(ft_m * gp))),
+                fta=max(0, int(round(ft_a * gp))),
+            )
+        )
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build a college basketball player card HTML.")
-    ap.add_argument("--plays-csv", required=True, help="Path to CBBD plays CSV (regular/fullseason).")
+    ap.add_argument("--plays-csv", default="", help="Optional CBBD plays CSV (regular/fullseason).")
     ap.add_argument("--player", required=True, help="Player name.")
     ap.add_argument("--team", default="", help="Optional team filter.")
     ap.add_argument("--season", default="", help="Optional season filter (e.g. 2025).")
@@ -2942,9 +3002,11 @@ def main() -> None:
     ap.add_argument("--min-games", type=int, default=5, help="Min games for percentile cohort.")
     args = ap.parse_args()
 
-    _, plays_rows = read_csv_rows(Path(args.plays_csv))
-    if not plays_rows:
-        raise RuntimeError("Plays CSV had no rows.")
+    plays_rows: list[dict[str, str]] = []
+    if args.plays_csv:
+        plays_path = Path(args.plays_csv)
+        if plays_path.exists():
+            _, plays_rows = read_csv_rows(plays_path)
 
     # Optional advanced sources.
     bt_rows: list[dict[str, str]] = []
@@ -2971,15 +3033,18 @@ def main() -> None:
     if bt_rows:
         inject_enriched_fields_into_bt_rows(bt_rows)
 
-    team_hint_map = build_player_team_hint_map(bt_rows) if bt_rows else {}
-    stats_map, games_by_player = build_player_stats(
-        plays_rows,
-        season_hint=args.season or "",
-        team_hint_by_player_season=team_hint_map,
-    )
-    players = list(stats_map.values())
+    games_by_player: dict[tuple[str, str, str], set[str]] = {}
+    players: list[PlayerGameStats] = build_player_pool_from_bt(bt_rows) if bt_rows else []
+    if not players and plays_rows:
+        team_hint_map = build_player_team_hint_map(bt_rows) if bt_rows else {}
+        stats_map, games_by_player = build_player_stats(
+            plays_rows,
+            season_hint=args.season or "",
+            team_hint_by_player_season=team_hint_map,
+        )
+        players = list(stats_map.values())
     if not players:
-        raise RuntimeError("Could not build player stats from plays data.")
+        raise RuntimeError("Could not build player pool from BT data (and no usable plays fallback).")
 
     target = choose_player(players, args.player, args.team or None, args.season or None)
 
@@ -3020,23 +3085,25 @@ def main() -> None:
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
     per_game_override = bt_per_game_overrides(target, bt_rows)
 
-    shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
+    shots: list[dict[str, Any]] = []
     season_shots: list[dict[str, Any]] = []
-    for row in plays_rows:
-        if norm_text(_season_from_row(row, args.season or "")) != norm_text(target.season):
-            continue
-        x, y = _shot_loc_from_row(row)
-        rng = _shot_range_from_row(row)
-        if x is None or y is None or rng not in {"rim", "jumper", "three_pointer"}:
-            continue
-        season_shots.append(
-            {
-                "x": x,
-                "y": y,
-                "made": _shot_made_from_row(row),
-                "range": rng,
-            }
-        )
+    if plays_rows:
+        shots = collect_shots(plays_rows, target.player, target.team, target.season, season_hint=args.season or "")
+        for row in plays_rows:
+            if norm_text(_season_from_row(row, args.season or "")) != norm_text(target.season):
+                continue
+            x, y = _shot_loc_from_row(row)
+            rng = _shot_range_from_row(row)
+            if x is None or y is None or rng not in {"rim", "jumper", "three_pointer"}:
+                continue
+            season_shots.append(
+                {
+                    "x": x,
+                    "y": y,
+                    "made": _shot_made_from_row(row),
+                    "range": rng,
+                }
+            )
 
     # Prefer enriched shot bins for chart plotting when available.
     enriched_lookup = load_enriched_lookup_for_script_season(target.season)
