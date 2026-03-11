@@ -2265,6 +2265,12 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         return f"""
         <div class="ti-section">
           <table class="ti-table">
+            <colgroup>
+              <col style="width:46%">
+              <col style="width:18%">
+              <col style="width:18%">
+              <col style="width:18%">
+            </colgroup>
             <thead>
               <tr><th class="ti-subhead">{html.escape(title)}</th><th>On</th><th>Off</th><th>Diff</th></tr>
             </thead>
@@ -2969,6 +2975,7 @@ body {{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  table-layout: fixed;
   margin: 0 0 6px 0;
   font-size: 11px;
 }}
