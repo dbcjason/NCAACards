@@ -2452,9 +2452,48 @@ def build_player_comparisons_html(
             i = j
         return out
 
-    # Self-creation metrics need Bart playerstat JSON + possessions.
+    # Self-creation metrics: prefer prebuilt per-year cache CSV (fast),
+    # fallback to raw Bart playerstat JSON when cache is missing.
+    sc_cache_by_year: dict[str, dict[tuple[str, str], dict[str, float]]] = {}
     ps_rows_by_year: dict[str, list[dict[str, Any]] | None] = {}
     self_creation_by_row: dict[tuple[int, str], float] = {}
+
+    def load_self_creation_cache_year(ys: str) -> dict[tuple[str, str], dict[str, float]]:
+        if ys in sc_cache_by_year:
+            return sc_cache_by_year[ys]
+        out: dict[tuple[str, str], dict[str, float]] = {}
+        p = (
+            Path(__file__).resolve().parent.parent
+            / "player_cards_pipeline"
+            / "data"
+            / "bt"
+            / "self_creation_by_year"
+            / f"self_creation_cache_{ys}.csv"
+        )
+        if p.exists():
+            try:
+                with p.open("r", encoding="utf-8", newline="") as f:
+                    for row in csv.DictReader(f):
+                        k = (norm_player_name(row.get("player_name", "")), norm_team(row.get("team", "")))
+                        if not k[0] or not k[1]:
+                            continue
+                        m: dict[str, float] = {}
+                        for mk in [
+                            "unassisted_dunks_100",
+                            "unassisted_rim_makes_100",
+                            "unassisted_mid_makes_100",
+                            "unassisted_3pm_100",
+                            "unassisted_points_100",
+                        ]:
+                            v = to_float(row.get(mk, ""))
+                            if v is not None and math.isfinite(v):
+                                m[mk] = float(v)
+                        if m:
+                            out[k] = m
+            except Exception:
+                out = {}
+        sc_cache_by_year[ys] = out
+        return out
 
     def self_creation_value(r: dict[str, str], k: str) -> float | None:
         ys = norm_season(bt_get(r, ["year"]))
@@ -2463,6 +2502,17 @@ def build_player_comparisons_html(
         cache_key = (id(r), k)
         if cache_key in self_creation_by_row:
             return self_creation_by_row[cache_key]
+
+        ck = (
+            norm_player_name(bt_get(r, ["player_name"])),
+            norm_team(bt_get(r, ["team"])),
+        )
+        sc_cache = load_self_creation_cache_year(ys)
+        cv = sc_cache.get(ck, {}).get(k)
+        if cv is not None and math.isfinite(cv):
+            self_creation_by_row[cache_key] = float(cv)
+            return float(cv)
+
         if ys not in ps_rows_by_year:
             raw = (
                 Path(__file__).resolve().parent.parent
@@ -3361,11 +3411,28 @@ def main() -> None:
     if args.bt_playerstat_json:
         bt_playerstat_rows = load_bt_playerstat_rows_from_source(args.bt_playerstat_json)
     else:
-        bt_ps_url = args.bt_playerstat_url_template.format(year=norm_season(target.season))
-        try:
-            bt_playerstat_rows = load_bt_playerstat_rows_from_source(bt_ps_url)
-        except Exception:
-            bt_playerstat_rows = []
+        ys = norm_season(target.season)
+        local_ps = (
+            Path(__file__).resolve().parent.parent
+            / "player_cards_pipeline"
+            / "data"
+            / "bt"
+            / "raw_playerstat_json"
+            / f"{ys}_pbp_playerstat_array.json"
+        )
+        if local_ps.exists():
+            try:
+                bt_playerstat_rows = load_bt_playerstat_rows_from_source(str(local_ps))
+            except Exception:
+                bt_playerstat_rows = []
+        if bt_playerstat_rows:
+            pass
+        else:
+            bt_ps_url = args.bt_playerstat_url_template.format(year=ys)
+            try:
+                bt_playerstat_rows = load_bt_playerstat_rows_from_source(bt_ps_url)
+            except Exception:
+                bt_playerstat_rows = []
 
     bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)

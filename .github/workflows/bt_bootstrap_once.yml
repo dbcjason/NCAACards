@@ -36,6 +36,12 @@ jobs:
         run: |
           python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py --project-root .
 
+      - name: Build self-creation cache (2010-2025)
+        run: |
+          python3 player_cards_pipeline/scripts/build_self_creation_cache.py \
+            --project-root "." \
+            --years 2010-2025
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
