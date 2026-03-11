@@ -1623,6 +1623,14 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         if dunks_att is None or poss is None or poss <= 0:
             return None
         return 100.0 * float(dunks_att) / float(poss)
+    if key == "bpm":
+        # Use game-BPM columns from Bart exports per user preference.
+        return bt_num(row, ["gbpm", "GBPM", " gbpm", "bpm", "BPM", " bpm"])
+    if key == "obpm":
+        return bt_num(row, ["obpm", "OBPM", "Obpm", " obpm"])
+    if key == "dbpm":
+        # Use defensive game-BPM columns from Bart exports per user preference.
+        return bt_num(row, ["dgbpm", "DGBPM", " dgbpm", "dbpm", "DBPM", "Dbpm", " dbpm"])
     if key == "rim_assists_100_btposs":
         poss = bt_possessions_estimate(row)
         if poss is None or poss <= 0:
@@ -2421,9 +2429,6 @@ def build_player_comparisons_html(
         "ast_per", "to_per", "ast_tov", "rim_assists_100_btposs",
         # Defense/Rebounding
         "stl_per", "blk_per", "dbpm", "orb_per", "drb_per",
-        # Self Creation
-        "unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100",
-        "unassisted_3pm_100", "unassisted_points_100",
     ]
 
     # Build per-season cohorts once (comparison pool: 2019+).
@@ -2452,109 +2457,13 @@ def build_player_comparisons_html(
             i = j
         return out
 
-    # Self-creation metrics: prefer prebuilt per-year cache CSV (fast),
-    # fallback to raw Bart playerstat JSON when cache is missing.
-    sc_cache_by_year: dict[str, dict[tuple[str, str], dict[str, float]]] = {}
-    ps_rows_by_year: dict[str, list[dict[str, Any]] | None] = {}
-    self_creation_by_row: dict[tuple[int, str], float] = {}
-
-    def load_self_creation_cache_year(ys: str) -> dict[tuple[str, str], dict[str, float]]:
-        if ys in sc_cache_by_year:
-            return sc_cache_by_year[ys]
-        out: dict[tuple[str, str], dict[str, float]] = {}
-        p = (
-            Path(__file__).resolve().parent.parent
-            / "player_cards_pipeline"
-            / "data"
-            / "bt"
-            / "self_creation_by_year"
-            / f"self_creation_cache_{ys}.csv"
-        )
-        if p.exists():
-            try:
-                with p.open("r", encoding="utf-8", newline="") as f:
-                    for row in csv.DictReader(f):
-                        k = (norm_player_name(row.get("player_name", "")), norm_team(row.get("team", "")))
-                        if not k[0] or not k[1]:
-                            continue
-                        m: dict[str, float] = {}
-                        for mk in [
-                            "unassisted_dunks_100",
-                            "unassisted_rim_makes_100",
-                            "unassisted_mid_makes_100",
-                            "unassisted_3pm_100",
-                            "unassisted_points_100",
-                        ]:
-                            v = to_float(row.get(mk, ""))
-                            if v is not None and math.isfinite(v):
-                                m[mk] = float(v)
-                        if m:
-                            out[k] = m
-            except Exception:
-                out = {}
-        sc_cache_by_year[ys] = out
-        return out
-
-    def self_creation_value(r: dict[str, str], k: str) -> float | None:
-        ys = norm_season(bt_get(r, ["year"]))
-        if not ys or not ys.isdigit():
-            return None
-        cache_key = (id(r), k)
-        if cache_key in self_creation_by_row:
-            return self_creation_by_row[cache_key]
-
-        ck = (
-            norm_player_name(bt_get(r, ["player_name"])),
-            norm_team(bt_get(r, ["team"])),
-        )
-        sc_cache = load_self_creation_cache_year(ys)
-        cv = sc_cache.get(ck, {}).get(k)
-        if cv is not None and math.isfinite(cv):
-            self_creation_by_row[cache_key] = float(cv)
-            return float(cv)
-
-        if ys not in ps_rows_by_year:
-            raw = (
-                Path(__file__).resolve().parent.parent
-                / "player_cards_pipeline"
-                / "data"
-                / "bt"
-                / "raw_playerstat_json"
-                / f"{ys}_pbp_playerstat_array.json"
-            )
-            if raw.exists():
-                try:
-                    ps_rows_by_year[ys] = load_bt_playerstat_rows_from_source(str(raw))
-                except Exception:
-                    ps_rows_by_year[ys] = []
-            else:
-                ps_rows_by_year[ys] = []
-        ps_rows = ps_rows_by_year.get(ys) or []
-        ps = find_bt_playerstat_row(ps_rows, bt_get(r, ["player_name"]), bt_get(r, ["team"]))
-        if not ps:
-            return None
-        poss = bt_metric_value(r, "possessions")
-        m = bt_playerstat_metrics_from_row(ps, poss)
-        if not m:
-            return None
-        v = m.get(k)
-        if v is None or not math.isfinite(v):
-            return None
-        self_creation_by_row[cache_key] = float(v)
-        return float(v)
-
-    def comp_metric_value(r: dict[str, str], k: str) -> float | None:
-        if k.startswith("unassisted_"):
-            return self_creation_value(r, k)
-        return bt_metric_value(r, k)
-
     # Precompute metric percentile lookup maps by year/key.
     metric_pct_map: dict[tuple[str, str], dict[int, float]] = {}
     for year, rows in by_year.items():
         for key in metric_keys:
             vals: list[tuple[int, float]] = []
             for r in rows:
-                v = comp_metric_value(r, key)
+                v = bt_metric_value(r, key)
                 if v is None or not math.isfinite(v):
                     continue
                 vals.append((id(r), float(v)))
