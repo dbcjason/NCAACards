@@ -347,6 +347,8 @@ def inject_enriched_fields_into_bt_rows(
             ("off.off_orb.value", ("off", "off_orb", "value")),
             ("on.def_orb.value", ("on", "def_orb", "value")),
             ("off.def_orb.value", ("off", "def_orb", "value")),
+            ("off_ast_rim.value", ("off_ast_rim", "value")),
+            ("off_ast_rim.old_value", ("off_ast_rim", "old_value")),
         ]:
             v = to_float(_enriched_nested_value(er, *path))
             if v is not None and math.isfinite(v):
@@ -1621,6 +1623,26 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         if dunks_att is None or poss is None or poss <= 0:
             return None
         return 100.0 * float(dunks_att) / float(poss)
+    if key == "rim_assists_100_btposs":
+        poss = bt_possessions_estimate(row)
+        if poss is None or poss <= 0:
+            return None
+
+        ast_total = bt_num(row, ["AST_total", "ast_total", "assists", "AST", "ast"])
+        gp = bt_num(row, ["GP", "gp"])
+        if ast_total is not None and gp is not None and gp > 0:
+            # In this pipeline AST/ast is typically per-game; convert to season total assists.
+            ast_total = float(ast_total) * float(gp)
+        if ast_total is None:
+            return None
+
+        rim_ast_pct = bt_num(row, ["off_ast_rim.value", "off_ast_rim.old_value", "off_ast_rim"])
+        if rim_ast_pct is None:
+            return None
+        p = float(rim_ast_pct) / 100.0 if float(rim_ast_pct) > 1.0 else float(rim_ast_pct)
+        p = max(0.0, min(1.0, p))
+        rim_ast_total = float(ast_total) * p
+        return 100.0 * rim_ast_total / float(poss)
     key_aliases = {
         "bpm": ["bpm", " bpm"],
         "obpm": ["obpm", " obpm"],
@@ -1897,7 +1919,7 @@ def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
     categories: list[tuple[str, list[str]]] = [
         ("Impact", ["bpm", "rapm", "onoff_net_rating"]),
         ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
-        ("Playmaking", ["ast_per", "to_per", "ast_tov"]),
+        ("Playmaking", ["ast_per", "to_per", "ast_tov", "rim_assists_100_btposs"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
         ("Rebounding", ["orb_per", "drb_per"]),
     ]
@@ -1993,6 +2015,33 @@ def build_bt_percentile_html(
                 continue
             if key == "rim_assists_100_btposs":
                 def rate_for_bt_row(br: dict[str, str]) -> float | None:
+                    # Preferred source: estimate from BT/enriched fields:
+                    # rim_ast_total = total_ast * off_ast_rim%
+                    # rim_ast_per100 = rim_ast_total / possessions * 100
+                    poss = bt_metric_value(br, "possessions")
+                    if poss is None or poss <= 0:
+                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
+                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
+                        if tpa is not None and tpa100 is not None and tpa100 > 0:
+                            poss = (float(tpa) * 100.0) / float(tpa100)
+
+                    ast_total = bt_num(br, ["AST_total", "ast_total", "assists", "AST", "ast"])
+                    gp = bt_num(br, ["GP", "gp"])
+                    if ast_total is not None and gp is not None and gp > 0:
+                        # In this pipeline, AST/ast is typically per-game; convert to total assists.
+                        ast_total = float(ast_total) * float(gp)
+
+                    rim_ast_pct = bt_num(br, ["off_ast_rim.value", "off_ast_rim.old_value", "off_ast_rim"])
+                    if (
+                        poss is not None and poss > 0
+                        and ast_total is not None and ast_total >= 0
+                        and rim_ast_pct is not None and rim_ast_pct >= 0
+                    ):
+                        p = float(rim_ast_pct) / 100.0 if float(rim_ast_pct) > 1.0 else float(rim_ast_pct)
+                        rim_ast_total = float(ast_total) * max(0.0, min(1.0, p))
+                        return 100.0 * rim_ast_total / float(poss)
+
+                    # Fallback: pbp metrics rows (if provided).
                     rk = (
                         norm_player_name(bt_get(br, ["player_name"])),
                         norm_team(bt_get(br, ["team"])),
