@@ -2274,13 +2274,6 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
             return None
         return fmt_percent_source_value(v)
 
-    def first_num(keys: list[str]) -> float | None:
-        for k in keys:
-            v = to_float(row.get(k, ""))
-            if v is not None and math.isfinite(v):
-                return float(v)
-        return None
-
     def fmt_cell(v: float | None) -> str:
         return "-" if v is None else f"{v:.1f}"
 
@@ -2351,37 +2344,9 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         ("Opp OREB%", "on.def_orb.value", "off.def_orb.value", False),
     ]
 
-    on_poss = first_num(["off_team_poss.value", "on.off_team_poss.value", "on.off_poss.value", "on.off_poss"])
-    off_poss = first_num(["off.off_team_poss.value", "off.off_poss.value", "off.off_poss"])
-    poss_played_pct = first_num(
-        [
-            "poss_pct.value",
-            "poss_pct.old_value",
-            "off_poss_pct.value",
-            "off_poss_pct.old_value",
-            "off_poss_pct",
-            "off_team_poss_pct.value",
-            "off_team_poss_pct.old_value",
-            "off_team_poss_pct",
-        ]
-    )
-    if off_poss is None and on_poss is not None and poss_played_pct is not None and poss_played_pct > 0:
-        p = poss_played_pct / 100.0 if poss_played_pct > 1.0 else poss_played_pct
-        if p > 0:
-            team_total = on_poss / p
-            off_poss = max(0.0, team_total - on_poss)
-    poss_meta = (
-        f"On Poss: {on_poss:.0f} | Off Poss: {off_poss:.0f}"
-        if on_poss is not None and off_poss is not None
-        else "On Poss: - | Off Poss: -"
-    )
-
     return f"""
       <div class="panel">
-        <div class="ti-head">
-          <h3>Team Impact</h3>
-          <div class="ti-meta">{poss_meta}</div>
-        </div>
+        <h3>Team Impact</h3>
         {render_rows("Offense", offense_specs)}
         {render_rows("Defense", defense_specs)}
         {render_rows("Rebounding", reb_specs)}
@@ -2423,7 +2388,7 @@ def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str
             age_val = to_float(bio.get("age", ""))
     if age_val is None:
         # Fallback to BT age fields when bio lookup is missing/incomplete.
-        age_val = bt_num(row, ["DD Age", "Age", "age"])
+        age_val = bt_num(row, ["DD Age", " DD Age", "Age", " age", "age"])
 
     height_val: float | None = None
     if bio:
@@ -2447,10 +2412,18 @@ def build_player_comparisons_html(
         return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">No matching Bart row for comparisons.</div></div>'
 
     metric_keys = [
-        "bpm", "obpm", "dbpm", "net_rating",
-        "usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr",
-        "ast_per", "to_per", "ast_tov",
-        "stl_per", "blk_per", "orb_per", "drb_per",
+        # Impact
+        "bpm", "rapm", "onoff_net_rating",
+        # Scoring
+        "usg", "ts_per", "twop_per", "dunks_100_bt", "rim_att_100_bt", "rim_pct", "mid_pct",
+        "tp_per", "threepa100", "fta100_bt", "ft_per", "ftr",
+        # Playmaking
+        "ast_per", "to_per", "ast_tov", "rim_assists_100_btposs",
+        # Defense/Rebounding
+        "stl_per", "blk_per", "dbpm", "orb_per", "drb_per",
+        # Self Creation
+        "unassisted_dunks_100", "unassisted_rim_makes_100", "unassisted_mid_makes_100",
+        "unassisted_3pm_100", "unassisted_points_100",
     ]
 
     # Build per-season cohorts once (comparison pool: 2019+).
@@ -2479,13 +2452,59 @@ def build_player_comparisons_html(
             i = j
         return out
 
+    # Self-creation metrics need Bart playerstat JSON + possessions.
+    ps_rows_by_year: dict[str, list[dict[str, Any]] | None] = {}
+    self_creation_by_row: dict[tuple[int, str], float] = {}
+
+    def self_creation_value(r: dict[str, str], k: str) -> float | None:
+        ys = norm_season(bt_get(r, ["year"]))
+        if not ys or not ys.isdigit():
+            return None
+        cache_key = (id(r), k)
+        if cache_key in self_creation_by_row:
+            return self_creation_by_row[cache_key]
+        if ys not in ps_rows_by_year:
+            raw = (
+                Path(__file__).resolve().parent.parent
+                / "player_cards_pipeline"
+                / "data"
+                / "bt"
+                / "raw_playerstat_json"
+                / f"{ys}_pbp_playerstat_array.json"
+            )
+            if raw.exists():
+                try:
+                    ps_rows_by_year[ys] = load_bt_playerstat_rows_from_source(str(raw))
+                except Exception:
+                    ps_rows_by_year[ys] = []
+            else:
+                ps_rows_by_year[ys] = []
+        ps_rows = ps_rows_by_year.get(ys) or []
+        ps = find_bt_playerstat_row(ps_rows, bt_get(r, ["player_name"]), bt_get(r, ["team"]))
+        if not ps:
+            return None
+        poss = bt_metric_value(r, "possessions")
+        m = bt_playerstat_metrics_from_row(ps, poss)
+        if not m:
+            return None
+        v = m.get(k)
+        if v is None or not math.isfinite(v):
+            return None
+        self_creation_by_row[cache_key] = float(v)
+        return float(v)
+
+    def comp_metric_value(r: dict[str, str], k: str) -> float | None:
+        if k.startswith("unassisted_"):
+            return self_creation_value(r, k)
+        return bt_metric_value(r, k)
+
     # Precompute metric percentile lookup maps by year/key.
     metric_pct_map: dict[tuple[str, str], dict[int, float]] = {}
     for year, rows in by_year.items():
         for key in metric_keys:
             vals: list[tuple[int, float]] = []
             for r in rows:
-                v = bt_metric_value(r, key)
+                v = comp_metric_value(r, key)
                 if v is None or not math.isfinite(v):
                     continue
                 vals.append((id(r), float(v)))
@@ -2549,12 +2568,14 @@ def build_player_comparisons_html(
             return None
 
         # Hard age window for comps: only compare within +/- 1.0 years.
-        if target_age_raw is not None and math.isfinite(target_age_raw):
-            other_age_raw = age_by_row.get(id(other))
-            if other_age_raw is None or not math.isfinite(other_age_raw):
-                return None
-            if abs(float(other_age_raw) - float(target_age_raw)) > 1.0:
-                return None
+        # Strict age window: only comps within +/-1.0 years.
+        if target_age_raw is None or not math.isfinite(target_age_raw):
+            return None
+        other_age_raw = age_by_row.get(id(other))
+        if other_age_raw is None or not math.isfinite(other_age_raw):
+            return None
+        if abs(float(other_age_raw) - float(target_age_raw)) > 1.0:
+            return None
 
         keys = list(metric_keys)
         ov: dict[str, float] = {}
@@ -2863,6 +2884,7 @@ body {{
 .shot-panel svg {{
   display: block;
   margin: 0 auto;
+  transform: translateX(-8px);
 }}
 .shot-chart-col {{ min-width: 0; }}
 .chip {{
