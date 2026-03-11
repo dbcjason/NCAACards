@@ -2225,6 +2225,13 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
             return None
         return fmt_percent_source_value(v)
 
+    def first_num(keys: list[str]) -> float | None:
+        for k in keys:
+            v = to_float(row.get(k, ""))
+            if v is not None and math.isfinite(v):
+                return float(v)
+        return None
+
     def fmt_cell(v: float | None) -> str:
         return "-" if v is None else f"{v:.1f}"
 
@@ -2257,10 +2264,9 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
             )
         return f"""
         <div class="ti-section">
-          <div class="ti-subhead">{html.escape(title)}</div>
           <table class="ti-table">
             <thead>
-              <tr><th></th><th>On</th><th>Off</th><th>Diff</th></tr>
+              <tr><th class="ti-subhead">{html.escape(title)}</th><th>On</th><th>Off</th><th>Diff</th></tr>
             </thead>
             <tbody>
               {rows_html}
@@ -2290,9 +2296,37 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         ("Opp OREB%", "on.def_orb.value", "off.def_orb.value", False),
     ]
 
+    on_poss = first_num(["off_team_poss.value", "on.off_team_poss.value", "on.off_poss.value", "on.off_poss"])
+    off_poss = first_num(["off.off_team_poss.value", "off.off_poss.value", "off.off_poss"])
+    poss_played_pct = first_num(
+        [
+            "poss_pct.value",
+            "poss_pct.old_value",
+            "off_poss_pct.value",
+            "off_poss_pct.old_value",
+            "off_poss_pct",
+            "off_team_poss_pct.value",
+            "off_team_poss_pct.old_value",
+            "off_team_poss_pct",
+        ]
+    )
+    if off_poss is None and on_poss is not None and poss_played_pct is not None and poss_played_pct > 0:
+        p = poss_played_pct / 100.0 if poss_played_pct > 1.0 else poss_played_pct
+        if p > 0:
+            team_total = on_poss / p
+            off_poss = max(0.0, team_total - on_poss)
+    poss_meta = (
+        f"On Poss: {on_poss:.0f} | Off Poss: {off_poss:.0f}"
+        if on_poss is not None and off_poss is not None
+        else "On Poss: - | Off Poss: -"
+    )
+
     return f"""
       <div class="panel">
-        <h3>Team Impact</h3>
+        <div class="ti-head">
+          <h3>Team Impact</h3>
+          <div class="ti-meta">{poss_meta}</div>
+        </div>
         {render_rows("Offense", offense_specs)}
         {render_rows("Defense", defense_specs)}
         {render_rows("Rebounding", reb_specs)}
@@ -2888,6 +2922,11 @@ body {{
   align-items: start;
   margin-top: 14px;
 }}
+.right-col {{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}}
 .comp-table {{
   display: grid;
   gap: 6px;
@@ -2920,20 +2959,22 @@ body {{
   margin-top: 8px;
 }}
 .ti-subhead {{
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text);
   font-weight: 700;
-  margin: 0 0 4px 0;
+  margin: 0;
+  text-align: left !important;
 }}
 .ti-table {{
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 0 0 6px 0;
   font-size: 11px;
 }}
 .ti-table th, .ti-table td {{
-  border: 1px solid var(--line);
-  padding: 3px 5px;
+  border: none;
+  padding: 2px 4px;
 }}
 .ti-table th {{
   color: var(--muted);
@@ -2963,6 +3004,7 @@ body {{
   .shot-chart-col {{ min-width: 0; }}
   .right-wrap {{ width: 100%; margin-top: 14px; }}
   .right-wrap {{ grid-template-columns: 1fr; }}
+  .right-col {{ width: 100%; }}
 }}
 </style>
 </head>
@@ -3002,9 +3044,13 @@ body {{
           {shot_diet_html}
         </div>
         <div class="right-wrap">
-          {self_creation_html}
-          {team_impact_html}
-          {player_comparisons_html}
+          <div class="right-col">
+            {self_creation_html}
+            {player_comparisons_html}
+          </div>
+          <div class="right-col">
+            {team_impact_html}
+          </div>
         </div>
       </div>
       {advanced_html}
