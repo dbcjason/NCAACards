@@ -1435,6 +1435,54 @@ def bt_cohort_for_year(rows: list[dict[str, str]], season: str) -> list[dict[str
     return cohort if cohort else rows
 
 
+def bt_row_position_bucket(row: dict[str, str]) -> str | None:
+    # Prefer explicit enriched roster position when available.
+    rp = norm_text(bt_get(row, ["roster.pos"]))
+    if rp in {"g", "f", "c"}:
+        return rp.upper()
+
+    raw = " ".join(
+        [
+            str(bt_get(row, ["roster.pos"])),
+            str(bt_get(row, ["role"])),
+            str(bt_get(row, ["posClass"])),
+        ]
+    ).upper()
+    if not raw.strip():
+        return None
+
+    # Tokenize common position labels/codes.
+    tokens = [t for t in re.split(r"[^A-Z0-9]+", raw) if t]
+    for t in tokens:
+        if t in {"PG", "SG", "CG", "WG", "G", "GUARD"}:
+            return "G"
+        if t in {"SF", "PF", "WF", "F", "FORWARD"}:
+            return "F"
+        if t in {"C", "CENTER"}:
+            return "C"
+
+    # Fallbacks for compact codes like "SPG", "PFC".
+    compact = re.sub(r"[^A-Z0-9]+", "", raw)
+    if "PG" in compact or "SG" in compact or "CG" in compact or compact.endswith("G"):
+        return "G"
+    if "SF" in compact or "PF" in compact or "WF" in compact or compact.endswith("F"):
+        return "F"
+    if "C" in compact:
+        return "C"
+    return None
+
+
+def bt_position_filtered_cohort(
+    cohort_rows: list[dict[str, str]],
+    target_row: dict[str, str],
+) -> list[dict[str, str]]:
+    target_bucket = bt_row_position_bucket(target_row)
+    if not target_bucket:
+        return cohort_rows
+    filtered = [r for r in cohort_rows if bt_row_position_bucket(r) == target_bucket]
+    return filtered if filtered else cohort_rows
+
+
 def pbp_find_target_row(rows: list[dict[str, str]], target: PlayerGameStats) -> dict[str, str] | None:
     np = norm_text(target.player)
     nt = norm_team(target.team)
@@ -1984,7 +2032,7 @@ def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
             f'<div class="grade-chip"><div class="grade-k">{html.escape(label)}</div><div class="grade-v">--</div></div>'
             for label, _ in categories
         )
-    cohort = bt_cohort_for_year(bt_rows, target.season)
+    cohort = bt_position_filtered_cohort(bt_cohort_for_year(bt_rows, target.season), target_row)
     chips = []
     for label, keys in categories:
         p = bt_category_percentile(target_row, cohort, keys)
@@ -2008,7 +2056,7 @@ def build_bt_percentile_html(
     if not target_row:
         return '<div class="panel" style="margin-top:14px;"><h3>Advanced Percentiles</h3><div class="shot-meta">No matching Bart Torvik row found for this player/team/season.</div></div>'
 
-    cohort = bt_cohort_for_year(bt_rows, target.season)
+    cohort = bt_position_filtered_cohort(bt_cohort_for_year(bt_rows, target.season), target_row)
     pbp_target = pbp_find_target_row(pbp_rows, target) if pbp_rows else None
     pbp_cohort = pbp_cohort_for_year(pbp_rows, target.season) if pbp_rows else []
     pbp_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
@@ -3167,8 +3215,28 @@ def build_per_game_percentiles(
     players: list[PlayerGameStats],
     target: PlayerGameStats,
     min_games: int,
+    bt_rows: list[dict[str, str]] | None = None,
 ) -> dict[str, float | None]:
     cohort = [p for p in players if norm_text(p.season) == norm_text(target.season) and p.games >= min_games]
+    if bt_rows:
+        pos_map: dict[tuple[str, str, str], str] = {}
+        for r in bt_rows:
+            p = norm_player_name(bt_get(r, ["player_name"]))
+            t = norm_team(bt_get(r, ["team"]))
+            y = norm_season(bt_get(r, ["year"]))
+            b = bt_row_position_bucket(r)
+            if p and t and y and b:
+                pos_map[(p, t, y)] = b
+
+        tk = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
+        tb = pos_map.get(tk)
+        if tb:
+            pos_cohort = [
+                p for p in cohort
+                if pos_map.get((norm_player_name(p.player), norm_team(p.team), norm_season(p.season))) == tb
+            ]
+            if pos_cohort:
+                cohort = pos_cohort
     if not cohort:
         cohort = [p for p in players if p.games >= min_games]
     metrics = {
@@ -3432,7 +3500,7 @@ def main() -> None:
             pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
     else:
         pps_line = "Points per Shot Over Expectation: N/A"
-    per_game_pcts = build_per_game_percentiles(players, target, args.min_games)
+    per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
     render_card(
         target,
         bio,
