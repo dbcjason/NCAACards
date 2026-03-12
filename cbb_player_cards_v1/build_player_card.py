@@ -2338,9 +2338,10 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
     rows_html = ""
     shown_rows = 0
     for label, ppp_path, vol_path in specs:
-        ppp_v = to_float(_enriched_nested_value(erow, *ppp_path))
+        ppp_raw = to_float(_enriched_nested_value(erow, *ppp_path))
         vol_raw = to_float(_enriched_nested_value(erow, *vol_path))
-        vol_v = (vol_raw * 100.0) if vol_raw is not None and math.isfinite(vol_raw) else None
+        ppp_v = float(ppp_raw) if ppp_raw is not None and math.isfinite(ppp_raw) else 0.0
+        vol_v = (float(vol_raw) * 100.0) if vol_raw is not None and math.isfinite(vol_raw) else 0.0
 
         ppp_vals: list[float] = []
         vol_vals: list[float] = []
@@ -2352,17 +2353,15 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
             if rv_vol is not None and math.isfinite(rv_vol):
                 vol_vals.append(float(rv_vol) * 100.0)
 
-        ppp_pct = percentile(ppp_v, ppp_vals) if (ppp_v is not None and ppp_vals) else None
-        vol_pct = percentile(vol_v, vol_vals) if (vol_v is not None and vol_vals) else None
-        if ppp_v is None and vol_v is None:
-            continue
+        ppp_pct = 0.0 if ppp_v <= 0 else (percentile(ppp_v, ppp_vals) if ppp_vals else 0.0)
+        vol_pct = 0.0 if vol_v <= 0 else (percentile(vol_v, vol_vals) if vol_vals else 0.0)
 
-        ppp_w = max(0.0, min(100.0, float(ppp_pct if ppp_pct is not None else 0.0)))
-        vol_w = max(0.0, min(100.0, float(vol_pct if vol_pct is not None else 0.0)))
-        ppp_badge = f"{int(round(ppp_w))}" if ppp_pct is not None else "-"
-        vol_badge = f"{int(round(vol_w))}" if vol_pct is not None else "-"
-        ppp_txt = f"{ppp_v:.2f} PPP" if ppp_v is not None else "N/A PPP"
-        vol_txt = f"{vol_v:.2f} poss/100" if vol_v is not None else "N/A poss/100"
+        ppp_w = max(0.0, min(100.0, float(ppp_pct)))
+        vol_w = max(0.0, min(100.0, float(vol_pct)))
+        ppp_badge = f"{int(round(ppp_w))}"
+        vol_badge = f"{int(round(vol_w))}"
+        ppp_txt = f"{ppp_v:.2f} PPP"
+        vol_txt = f"{vol_v:.2f} poss/100"
 
         rows_html += f"""
         <div class="play-row">
@@ -3133,13 +3132,14 @@ body {{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
   margin-top: 14px;
 }}
 .right-col {{
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-height: 100%;
 }}
 .comp-table {{
   display: grid;
@@ -3175,7 +3175,7 @@ body {{
 }}
 .play-row {{
   display: grid;
-  grid-template-columns: 92px 1fr;
+  grid-template-columns: 82px 1fr;
   gap: 8px;
   align-items: center;
 }}
@@ -3190,7 +3190,7 @@ body {{
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 44px 1fr 96px;
+  grid-template-columns: 34px 1fr 82px;
   gap: 6px;
   align-items: center;
 }}
@@ -3236,6 +3236,19 @@ body {{
   color: var(--muted);
   font-size: 10px;
   white-space: nowrap;
+}}
+.playstyles-wrap {{
+  flex: 1 1 auto;
+  display: flex;
+}}
+.playstyles-wrap .panel {{
+  width: 100%;
+}}
+.team-impact-wrap {{
+  margin-top: 2px;
+}}
+.comp-bottom {{
+  margin-top: auto;
 }}
 .ti-section {{
   margin-top: 8px;
@@ -3324,16 +3337,16 @@ body {{
             <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
             {shot_svg(shots, season_shots, width=355, height=250)}
           </div>
-          {shot_diet_html}
         </div>
         <div class="right-wrap">
           <div class="right-col">
             {self_creation_html}
-            {playstyles_html}
+            <div class="playstyles-wrap">{playstyles_html}</div>
           </div>
           <div class="right-col">
-            {team_impact_html}
-            {player_comparisons_html}
+            {shot_diet_html}
+            <div class="team-impact-wrap">{team_impact_html}</div>
+            <div class="comp-bottom">{player_comparisons_html}</div>
           </div>
         </div>
       </div>
