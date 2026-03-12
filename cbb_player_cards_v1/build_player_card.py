@@ -3143,19 +3143,19 @@ def choose_player(
     team: str | None,
     season: str | None,
 ) -> PlayerGameStats:
-    np = norm_text(player)
-    nt = norm_text(team or "")
-    ns = norm_text(season or "")
+    np = norm_player_name(player)
+    nt = norm_team(team or "")
+    ns = norm_season(season or "")
 
-    candidates = [p for p in players if norm_text(p.player) == np]
+    candidates = [p for p in players if norm_player_name(p.player) == np]
     if nt:
         candidates = [
             p
             for p in candidates
-            if nt in norm_text(p.team) or norm_text(p.team) in nt
+            if nt in norm_team(p.team) or norm_team(p.team) in nt
         ]
     if ns:
-        candidates = [p for p in candidates if norm_text(p.season) == ns]
+        candidates = [p for p in candidates if norm_season(p.season) == ns]
     if not candidates:
         raise RuntimeError("No player match found with the supplied player/team/season filters.")
     if len(candidates) > 1:
