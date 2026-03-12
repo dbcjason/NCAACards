@@ -33,8 +33,22 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout (sparse)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            .github/workflows
+            cbb_player_cards_v1
+            player_cards_pipeline/config
+            player_cards_pipeline/data/bt
+            player_cards_pipeline/data/manual/bio
+            player_cards_pipeline/data/manual/enriched_players/by_script_season
+            player_cards_pipeline/data/manual/pbp_metrics
+            player_cards_pipeline/data/manual/plays_by_year
+            cbbd_seasons/2024-2025/tables
+            cbbd_seasons/2025-2026/tables
 
       - name: Setup Python
         uses: actions/setup-python@v5
