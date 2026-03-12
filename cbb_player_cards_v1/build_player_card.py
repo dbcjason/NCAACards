@@ -2312,41 +2312,41 @@ def build_self_creation_html(
 
 
 def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
-    if not bt_rows:
-        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+    enriched_lookup = load_enriched_lookup_for_script_season(target.season)
+    ek = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
+    erow = enriched_lookup.get(ek)
+    if not erow:
+        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No matching enriched playstyle row found for this player/team/season.</div></div>'
 
-    row = bt_find_target_row(bt_rows, target)
-    if not row:
-        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+    cohort_players = load_enriched_players_for_script_season(target.season)
+    if not cohort_players:
+        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No enriched cohort loaded for this season.</div></div>'
 
-    cohort = bt_cohort_for_year(bt_rows, target.season)
-    cohort = bt_position_filtered_cohort(cohort, row)
-
-    specs: list[tuple[str, str, str]] = [
-        ("Drives", "style.Rim Attack.adj_pts.value", "style.Rim Attack.possPctUsg.value"),
-        ("Spotup 3", "style.Perimeter Sniper.adj_pts.value", "style.Perimeter Sniper.possPctUsg.value"),
-        ("OTD 3", "style.Dribble Jumper.adj_pts.value", "style.Dribble Jumper.possPctUsg.value"),
-        ("Mid Range", "style.Mid-Range.adj_pts.value", "style.Mid-Range.possPctUsg.value"),
-        ("PnR Passer", "style.PnR Passer.adj_pts.value", "style.PnR Passer.possPctUsg.value"),
-        ("PnR Roller", "style.Big Cut & Roll.adj_pts.value", "style.Big Cut & Roll.possPctUsg.value"),
-        ("Pick & Pop", "style.Pick & Pop.adj_pts.value", "style.Pick & Pop.possPctUsg.value"),
-        ("Post Up", "style.Post-Up.adj_pts.value", "style.Post-Up.possPctUsg.value"),
-        ("Cutter", "style.Backdoor Cut.adj_pts.value", "style.Backdoor Cut.possPctUsg.value"),
-        ("Transition", "style.Transition.adj_pts.value", "style.Transition.possPctUsg.value"),
+    specs: list[tuple[str, tuple[str, ...], tuple[str, ...]]] = [
+        ("Drives", ("style", "Rim Attack", "adj_pts", "value"), ("style", "Rim Attack", "possPctUsg", "value")),
+        ("Spotup 3", ("style", "Perimeter Sniper", "adj_pts", "value"), ("style", "Perimeter Sniper", "possPctUsg", "value")),
+        ("OTD 3", ("style", "Dribble Jumper", "adj_pts", "value"), ("style", "Dribble Jumper", "possPctUsg", "value")),
+        ("Mid Range", ("style", "Mid-Range", "adj_pts", "value"), ("style", "Mid-Range", "possPctUsg", "value")),
+        ("PnR Passer", ("style", "PnR Passer", "adj_pts", "value"), ("style", "PnR Passer", "possPctUsg", "value")),
+        ("PnR Roller", ("style", "Big Cut & Roll", "adj_pts", "value"), ("style", "Big Cut & Roll", "possPctUsg", "value")),
+        ("Pick & Pop", ("style", "Pick & Pop", "adj_pts", "value"), ("style", "Pick & Pop", "possPctUsg", "value")),
+        ("Post Up", ("style", "Post-Up", "adj_pts", "value"), ("style", "Post-Up", "possPctUsg", "value")),
+        ("Cutter", ("style", "Backdoor Cut", "adj_pts", "value"), ("style", "Backdoor Cut", "possPctUsg", "value")),
+        ("Transition", ("style", "Transition", "adj_pts", "value"), ("style", "Transition", "possPctUsg", "value")),
     ]
 
     rows_html = ""
     shown_rows = 0
-    for label, ppp_key, vol_key in specs:
-        ppp_v = bt_num(row, [ppp_key])
-        vol_raw = bt_num(row, [vol_key])
+    for label, ppp_path, vol_path in specs:
+        ppp_v = to_float(_enriched_nested_value(erow, *ppp_path))
+        vol_raw = to_float(_enriched_nested_value(erow, *vol_path))
         vol_v = (vol_raw * 100.0) if vol_raw is not None and math.isfinite(vol_raw) else None
 
         ppp_vals: list[float] = []
         vol_vals: list[float] = []
-        for r in cohort:
-            rv_ppp = bt_num(r, [ppp_key])
-            rv_vol = bt_num(r, [vol_key])
+        for r in cohort_players:
+            rv_ppp = to_float(_enriched_nested_value(r, *ppp_path))
+            rv_vol = to_float(_enriched_nested_value(r, *vol_path))
             if rv_ppp is not None and math.isfinite(rv_ppp):
                 ppp_vals.append(float(rv_ppp))
             if rv_vol is not None and math.isfinite(rv_vol):
