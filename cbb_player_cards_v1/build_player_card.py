@@ -345,8 +345,8 @@ def inject_enriched_fields_into_bt_rows(
             ("off.off_2prim.value", ("off", "off_2prim", "value")),
             ("on.off_2primr.value", ("on", "off_2primr", "value")),
             ("off.off_2primr.value", ("off", "off_2primr", "value")),
-            ("on.off_ft.value", ("on", "off_ft", "value")),
-            ("off.off_ft.value", ("off", "off_ft", "value")),
+            ("on.off_ftr.value", ("on", "off_ftr", "value")),
+            ("off.off_ftr.value", ("off", "off_ftr", "value")),
             ("on.off_3pr.value", ("on", "off_3pr", "value")),
             ("off.off_3pr.value", ("off", "off_3pr", "value")),
             ("on.def_efg.old_value", ("on", "def_efg", "old_value")),
@@ -357,8 +357,8 @@ def inject_enriched_fields_into_bt_rows(
             ("off.def_2prim.value", ("off", "def_2prim", "value")),
             ("on.def_2primr.value", ("on", "def_2primr", "value")),
             ("off.def_2primr.value", ("off", "def_2primr", "value")),
-            ("on.def_ft.value", ("on", "def_ft", "value")),
-            ("off.def_ft.value", ("off", "def_ft", "value")),
+            ("on.def_ftr.value", ("on", "def_ftr", "value")),
+            ("off.def_ftr.value", ("off", "def_ftr", "value")),
             ("on.def_3pr.value", ("on", "def_3pr", "value")),
             ("off.def_3pr.value", ("off", "def_3pr", "value")),
             ("on.off_orb.value", ("on", "off_orb", "value")),
@@ -2377,7 +2377,7 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         ("TO%", "on.off_to.value", "off.off_to.value", False),
         ("Rim%", "on.off_2prim.value", "off.off_2prim.value", True),
         ("Rim Rate", "on.off_2primr.value", "off.off_2primr.value", True),
-        ("FTr", "on.off_ft.value", "off.off_ft.value", True),
+        ("FTr", "on.off_ftr.value", "off.off_ftr.value", True),
         ("3Pr", "on.off_3pr.value", "off.off_3pr.value", True),
     ]
     defense_specs = [
@@ -2385,7 +2385,7 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
         ("Opp TO%", "on.def_to.value", "off.def_to.value", True),
         ("Opp Rim%", "on.def_2prim.value", "off.def_2prim.value", False),
         ("Opp Rim Rate", "on.def_2primr.value", "off.def_2primr.value", False),
-        ("Opp FTr", "on.def_ft.value", "off.def_ft.value", False),
+        ("Opp FTr", "on.def_ftr.value", "off.def_ftr.value", False),
         ("Opp 3Pr", "on.def_3pr.value", "off.def_3pr.value", False),
     ]
     reb_specs = [
