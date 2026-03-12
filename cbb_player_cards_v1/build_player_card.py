@@ -2311,6 +2311,97 @@ def build_self_creation_html(
 """
 
 
+def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
+    if not bt_rows:
+        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+
+    row = bt_find_target_row(bt_rows, target)
+    if not row:
+        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+
+    cohort = bt_cohort_for_year(bt_rows, target.season)
+    cohort = bt_position_filtered_cohort(cohort, row)
+
+    specs: list[tuple[str, str, str]] = [
+        ("Drives", "style.Rim Attack.adj_pts.value", "style.Rim Attack.possPctUsg.value"),
+        ("Spotup 3", "style.Perimeter Sniper.adj_pts.value", "style.Perimeter Sniper.possPctUsg.value"),
+        ("OTD 3", "style.Dribble Jumper.adj_pts.value", "style.Dribble Jumper.possPctUsg.value"),
+        ("Mid Range", "style.Mid-Range.adj_pts.value", "style.Mid-Range.possPctUsg.value"),
+        ("PnR Passer", "style.PnR Passer.adj_pts.value", "style.PnR Passer.possPctUsg.value"),
+        ("PnR Roller", "style.Big Cut & Roll.adj_pts.value", "style.Big Cut & Roll.possPctUsg.value"),
+        ("Pick & Pop", "style.Pick & Pop.adj_pts.value", "style.Pick & Pop.possPctUsg.value"),
+        ("Post Up", "style.Post-Up.adj_pts.value", "style.Post-Up.possPctUsg.value"),
+        ("Cutter", "style.Backdoor Cut.adj_pts.value", "style.Backdoor Cut.possPctUsg.value"),
+        ("Transition", "style.Transition.adj_pts.value", "style.Transition.possPctUsg.value"),
+    ]
+
+    rows_html = ""
+    shown_rows = 0
+    for label, ppp_key, vol_key in specs:
+        ppp_v = bt_num(row, [ppp_key])
+        vol_raw = bt_num(row, [vol_key])
+        vol_v = (vol_raw * 100.0) if vol_raw is not None and math.isfinite(vol_raw) else None
+
+        ppp_vals: list[float] = []
+        vol_vals: list[float] = []
+        for r in cohort:
+            rv_ppp = bt_num(r, [ppp_key])
+            rv_vol = bt_num(r, [vol_key])
+            if rv_ppp is not None and math.isfinite(rv_ppp):
+                ppp_vals.append(float(rv_ppp))
+            if rv_vol is not None and math.isfinite(rv_vol):
+                vol_vals.append(float(rv_vol) * 100.0)
+
+        ppp_pct = percentile(ppp_v, ppp_vals) if (ppp_v is not None and ppp_vals) else None
+        vol_pct = percentile(vol_v, vol_vals) if (vol_v is not None and vol_vals) else None
+        if ppp_v is None and vol_v is None:
+            continue
+
+        ppp_w = max(0.0, min(100.0, float(ppp_pct if ppp_pct is not None else 0.0)))
+        vol_w = max(0.0, min(100.0, float(vol_pct if vol_pct is not None else 0.0)))
+        ppp_badge = f"{int(round(ppp_w))}" if ppp_pct is not None else "-"
+        vol_badge = f"{int(round(vol_w))}" if vol_pct is not None else "-"
+        ppp_txt = f"{ppp_v:.2f} PPP" if ppp_v is not None else "N/A PPP"
+        vol_txt = f"{vol_v:.2f} poss/100" if vol_v is not None else "N/A poss/100"
+
+        rows_html += f"""
+        <div class="play-row">
+          <div class="play-name">{html.escape(label)}</div>
+          <div class="play-stack">
+            <div class="play-line">
+              <div class="play-mini">Volume</div>
+              <div class="play-track">
+                <div class="play-fill play-vol" style="width:{vol_w:.1f}%"></div>
+                <span class="play-badge" style="left:{vol_w:.1f}%">{vol_badge}</span>
+              </div>
+              <div class="play-tag">{vol_txt}</div>
+            </div>
+            <div class="play-line">
+              <div class="play-mini">PPP</div>
+              <div class="play-track">
+                <div class="play-fill play-ppp" style="width:{ppp_w:.1f}%"></div>
+                <span class="play-badge" style="left:{ppp_w:.1f}%">{ppp_badge}</span>
+              </div>
+              <div class="play-tag">{ppp_txt}</div>
+            </div>
+          </div>
+        </div>
+        """
+        shown_rows += 1
+
+    if shown_rows == 0:
+        return '<div class="panel"><h3>Playstyles</h3><div class="shot-meta">No playstyle values available for this player.</div></div>'
+
+    return f"""
+      <div class="panel">
+        <h3>Playstyles</h3>
+        <div class="play-grid">
+          {rows_html}
+        </div>
+      </div>
+"""
+
+
 def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     if not bt_rows:
         return '<div class="panel"><h3>Shot Diet</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
@@ -2746,6 +2837,7 @@ def render_card(
     grade_boxes_html: str,
     bt_percentiles_html: str,
     self_creation_html: str,
+    playstyles_html: str,
     team_impact_html: str,
     shot_diet_html: str,
     player_comparisons_html: str,
@@ -3077,6 +3169,74 @@ body {{
   text-align: right;
   font-weight: 700;
 }}
+.play-grid {{
+  display: grid;
+  gap: 8px;
+}}
+.play-row {{
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 8px;
+  align-items: center;
+}}
+.play-name {{
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}}
+.play-stack {{
+  display: grid;
+  gap: 4px;
+}}
+.play-line {{
+  display: grid;
+  grid-template-columns: 44px 1fr 96px;
+  gap: 6px;
+  align-items: center;
+}}
+.play-mini {{
+  color: var(--muted);
+  font-size: 10px;
+  text-align: right;
+}}
+.play-track {{
+  position: relative;
+  height: 10px;
+  background: var(--bar-track);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: visible;
+}}
+.play-fill {{
+  height: 100%;
+  border-radius: 999px;
+}}
+.play-vol {{
+  background: #60a5fa;
+}}
+.play-ppp {{
+  background: var(--bar);
+}}
+.play-badge {{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 17px;
+  height: 17px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #0e0e0e;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: center;
+}}
+.play-tag {{
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}}
 .ti-section {{
   margin-top: 8px;
 }}
@@ -3169,10 +3329,11 @@ body {{
         <div class="right-wrap">
           <div class="right-col">
             {self_creation_html}
-            {player_comparisons_html}
+            {playstyles_html}
           </div>
           <div class="right-col">
             {team_impact_html}
+            {player_comparisons_html}
           </div>
         </div>
       </div>
@@ -3453,6 +3614,7 @@ def main() -> None:
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
     pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
     self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
+    playstyles_html = build_playstyles_html(target, bt_rows)
     team_impact_html = build_team_impact_html(target, bt_rows)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
@@ -3510,6 +3672,7 @@ def main() -> None:
         grade_boxes_html,
         bt_percentiles_html,
         self_creation_html,
+        playstyles_html,
         team_impact_html,
         shot_diet_html,
         player_comparisons_html,
