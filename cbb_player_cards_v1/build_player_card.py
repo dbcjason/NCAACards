@@ -1713,6 +1713,18 @@ def bt_display_stl_pct(value: float | None) -> float | None:
     return (value * 0.01) if abs(value) >= 10.0 else value
 
 
+def bt_display_blk_pct(value: float | None) -> float | None:
+    if value is None:
+        return None
+    # Keep true 0..1 block rates as-is (e.g. 0.3 -> 0.3, not 30.0).
+    if -1.0 <= value <= 1.0:
+        return value
+    # Some exports carry BLK% as basis-points-like values.
+    if abs(value) >= 10.0:
+        return value * 0.01
+    return value
+
+
 def bt_row_html(
     label: str,
     value: float | None,
@@ -2121,8 +2133,8 @@ def build_bt_percentile_html(
                 stl_val = bt_display_stl_pct(value)
                 rows_html += bt_row_html(label, stl_val, pct, is_percent=is_pct, digits=1, truncate=True)
             elif label == "BLK%":
-                # Render directly from BT value so non-zero block rates display correctly.
-                rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=1, truncate=True)
+                blk_val = bt_display_blk_pct(value)
+                rows_html += bt_row_html(label, blk_val, pct, is_percent=False, digits=1, truncate=True)
             else:
                 rows_html += bt_row_html(label, value, pct, is_percent=is_pct, digits=digits)
         return rows_html
