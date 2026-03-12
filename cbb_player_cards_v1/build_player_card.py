@@ -117,7 +117,25 @@ def norm_player_name(v: Any) -> str:
     if "," in s:
         last, first = s.split(",", 1)
         s = f"{first.strip()} {last.strip()}".strip()
-    return norm_text(s)
+    s = norm_text(s)
+    parts = s.split()
+    # Ignore common generational suffixes so user input without suffix still matches.
+    suffixes = {
+        "jr",
+        "sr",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi",
+        "vii",
+        "viii",
+        "ix",
+        "x",
+    }
+    while parts and re.sub(r"[^a-z0-9]+", "", parts[-1]) in suffixes:
+        parts.pop()
+    return " ".join(parts)
 
 
 def norm_season(v: Any) -> str:
