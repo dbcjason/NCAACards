@@ -2898,15 +2898,17 @@ def build_draft_projection_html(
     if len(candidates_raw) < 500:
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
 
-    # Use nearest score neighborhood with smooth kernel for calibrated odds.
-    candidates_raw.sort(key=lambda c: abs(float(c["score"]) - float(target_score)))
-    # Use a tighter neighborhood so elite/poor profiles don't get flattened by distant comps.
-    candidates = candidates_raw[:1200]
+    drafted_candidates = [c for c in candidates_raw if c["pick"] is not None and int(c["bucket"]) < 9]
+    if len(drafted_candidates) < 350:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough drafted history to build projection.</div></div>'
 
+    # Step 1: drafted-only comps for conditional pick-range distribution.
+    drafted_candidates.sort(key=lambda c: abs(float(c["score"]) - float(target_score)))
+    drafted_neighbors = drafted_candidates[:900]
     target_pos = bt_row_position_bucket(target_row)
-    score_sigma = 4.8
-    scored_neighbors: list[tuple[float, int]] = []
-    for c in candidates:
+    score_sigma = 4.2
+    drafted_neighbor_weights: list[tuple[float, int, float]] = []
+    for c in drafted_neighbors:
         idx = int(c["bucket"])
         d = (float(c["score"]) - float(target_score)) / score_sigma
         wt = math.exp(-0.5 * d * d)
@@ -2919,31 +2921,34 @@ def build_draft_projection_html(
         if target_pos and c["pos"] and target_pos != c["pos"]:
             wt *= 0.78
         if wt > 1e-10:
-            scored_neighbors.append((wt, idx))
+            drafted_neighbor_weights.append((wt, idx, abs(float(c["score"]) - float(target_score))))
 
-    total_w = sum(w for w, _ in scored_neighbors)
+    total_w = sum(w for w, _, _ in drafted_neighbor_weights)
     if total_w <= 0:
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
 
-    # Stage 1: drafted probability (buckets 0..8 vs bucket 9).
-    drafted_w = sum(w for w, idx in scored_neighbors if idx < 9)
-    undrafted_w = sum(w for w, idx in scored_neighbors if idx == 9)
-    drafted_prob = (drafted_w + 1.0) / (drafted_w + undrafted_w + 2.0)
-    drafted_prob = max(0.02, min(0.98, drafted_prob))
-
-    # Stage 2: conditional bucket mix among drafted outcomes only.
+    # Drafted-only conditional bucket mix.
     drafted_bucket_w = [0.0 for _ in range(9)]
-    for w, idx in scored_neighbors:
-        if idx < 9:
-            drafted_bucket_w[idx] += w
+    for w, idx, _gap in drafted_neighbor_weights:
+        drafted_bucket_w[idx] += w
     drafted_total = sum(drafted_bucket_w)
     if drafted_total <= 0:
         drafted_mix = [1.0 / 9.0 for _ in range(9)]
     else:
-        drafted_mix = [(drafted_bucket_w[i] + 0.15) / (drafted_total + 9 * 0.15) for i in range(9)]
+        drafted_mix = [(drafted_bucket_w[i] + 0.10) / (drafted_total + 9 * 0.10) for i in range(9)]
+
+    # Step 2: undrafted gate based on "how drafted-like" this profile is.
+    drafted_scores = [float(c["score"]) for c in drafted_candidates if c.get("score") is not None and math.isfinite(float(c["score"]))]
+    drafted_score_pct = percentile(float(target_score), drafted_scores) if drafted_scores else 0.0
+    nearest_gap = min((gap for _w, _idx, gap in drafted_neighbor_weights), default=999.0)
+    nearest_similarity = math.exp(-0.5 * (nearest_gap / 5.0) ** 2)
+    drafted_like = 0.65 * (drafted_score_pct / 100.0) + 0.35 * nearest_similarity
+
+    # Convert drafted-like signal into drafted probability; keeps elite profiles from flattening.
+    drafted_prob = max(0.05, min(0.99, (drafted_like - 0.18) / 0.72))
 
     probs = [drafted_prob * m for m in drafted_mix]
-    probs.append(1.0 - drafted_prob)
+    probs.append(max(0.0, 1.0 - drafted_prob))
 
     drafted_prob = sum(probs[:9])
     first_round_prob = sum(probs[:6])
