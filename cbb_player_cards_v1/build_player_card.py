@@ -1301,6 +1301,73 @@ def ordinal(n: int) -> str:
     return f"{n}{suffix}"
 
 
+def parse_rsci_rank(raw: str) -> int | None:
+    s = (raw or "").strip()
+    if not s:
+        return None
+    m = re.search(r"(?i)^t?\s*(\d+)$", s)
+    if not m:
+        return None
+    try:
+        v = int(m.group(1))
+        return v if v > 0 else None
+    except Exception:
+        return None
+
+
+def load_rsci_rankings(path: Path) -> dict[str, int]:
+    if not path.exists():
+        return {}
+    out: dict[str, int] = {}
+    with path.open("r", newline="", encoding="utf-8-sig") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if len(row) < 2:
+                continue
+            rank_raw = (row[0] or "").strip()
+            player_raw = (row[1] or "").strip()
+            if not rank_raw or not player_raw:
+                continue
+            if norm_text(rank_raw) in {"rank", "rsci"} or norm_text(player_raw) == "player":
+                continue
+            if "totals" in norm_text(player_raw) or "summary" in norm_text(player_raw):
+                continue
+            rank = parse_rsci_rank(rank_raw)
+            if rank is None:
+                continue
+            key = norm_player_name(player_raw)
+            if not key:
+                continue
+            prev = out.get(key)
+            if prev is None or rank < prev:
+                out[key] = rank
+    return out
+
+
+def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
+    if not rsci_map:
+        return None
+    key = norm_player_name(player_name)
+    if not key:
+        return None
+    if key in rsci_map:
+        return rsci_map[key]
+
+    candidates = list(rsci_map.keys())
+    scored = sorted(
+        ((difflib.SequenceMatcher(None, key, cand).ratio(), cand) for cand in candidates),
+        key=lambda x: x[0],
+        reverse=True,
+    )
+    if not scored:
+        return None
+    best_score, best_name = scored[0]
+    second_score = scored[1][0] if len(scored) > 1 else 0.0
+    if best_score >= 0.88 and (best_score - second_score) >= 0.02:
+        return rsci_map.get(best_name)
+    return None
+
+
 def build_advanced_html(
     target: PlayerGameStats,
     lebron_rows: list[dict[str, str]],
@@ -2834,6 +2901,7 @@ def bt_per_game_overrides(target: PlayerGameStats, bt_rows: list[dict[str, str]]
 def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
+    rsci_display: str,
     shots: list[dict[str, Any]],
     season_shots: list[dict[str, Any]],
     per_game_pcts: dict[str, float | None],
@@ -2860,7 +2928,7 @@ def render_card(
         age = bio.get("age", "") or "N/A"
     height = format_height(bio.get("height", ""))
     position = bio.get("position", "") or "N/A"
-    subtitle = f"{team} | {season} | Position: {position} | Age: {age} | Height: {height}"
+    subtitle = f"{team} | {season} | Position: {position} | Age: {age} | Height: {height} | RSCI: {rsci_display}"
 
     # Use full event-derived FG totals for header stats, not only plotted (x/y) shots.
     shot_makes = shot_header_makes if shot_header_makes is not None else stats.fgm
@@ -3557,6 +3625,7 @@ def main() -> None:
     ap.add_argument("--style-csv", default="", help="Optional style/playtype CSV (e.g., master sheet).")
     ap.add_argument("--advgames-csv", default="", help="Optional per-game labeled advgames CSV for BPM trend.")
     ap.add_argument("--pbp-metrics-csv", default="", help="Optional player metrics CSV derived from ncaahoopR pbp logs.")
+    ap.add_argument("--rsci-csv", default="", help="Optional RSCI rankings CSV path.")
     ap.add_argument("--bt-playerstat-json", default="", help="Optional Bart playerstat JSON file path or URL.")
     ap.add_argument(
         "--bt-playerstat-url-template",
@@ -3594,6 +3663,16 @@ def main() -> None:
         _, adv_rows = read_csv_rows(Path(args.advgames_csv))
     if args.pbp_metrics_csv:
         _, pbp_rows = read_csv_rows(Path(args.pbp_metrics_csv))
+
+    rsci_csv_path = Path(args.rsci_csv) if args.rsci_csv else (
+        Path(__file__).resolve().parent.parent
+        / "player_cards_pipeline"
+        / "data"
+        / "manual"
+        / "rsci"
+        / "rsci_rankings.csv"
+    )
+    rsci_map = load_rsci_rankings(rsci_csv_path) if rsci_csv_path.exists() else {}
 
     if bt_rows:
         inject_enriched_fields_into_bt_rows(bt_rows)
@@ -3710,9 +3789,12 @@ def main() -> None:
     else:
         pps_line = "Points per Shot Over Expectation: N/A"
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
+    rsci_rank = find_rsci_rank(target.player, rsci_map)
+    rsci_display = ordinal(int(rsci_rank)) if rsci_rank is not None else "Unranked"
     render_card(
         target,
         bio,
+        rsci_display,
         shots,
         season_shots,
         per_game_pcts,
