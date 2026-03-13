@@ -2368,7 +2368,6 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
           <div class="play-name">{html.escape(label)}</div>
           <div class="play-stack">
             <div class="play-line">
-              <div class="play-mini">Volume</div>
               <div class="play-track">
                 <div class="play-fill play-vol" style="width:{vol_w:.1f}%"></div>
                 <span class="play-badge" style="left:{vol_w:.1f}%">{vol_badge}</span>
@@ -2376,7 +2375,6 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
               <div class="play-tag">{vol_txt}</div>
             </div>
             <div class="play-line">
-              <div class="play-mini">PPP</div>
               <div class="play-track">
                 <div class="play-fill play-ppp" style="width:{ppp_w:.1f}%"></div>
                 <span class="play-badge" style="left:{ppp_w:.1f}%">{ppp_badge}</span>
@@ -2396,6 +2394,10 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
         <h3>Playstyles</h3>
         <div class="play-grid">
           {rows_html}
+        </div>
+        <div class="play-legend">
+          <div class="play-legend-item"><span class="play-legend-dot play-vol"></span>Volume</div>
+          <div class="play-legend-item"><span class="play-legend-dot play-ppp"></span>PPP</div>
         </div>
       </div>
 """
@@ -3171,11 +3173,11 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 8px;
+  gap: 14px;
 }}
 .play-row {{
   display: grid;
-  grid-template-columns: 82px 1fr;
+  grid-template-columns: 74px 1fr;
   gap: 8px;
   align-items: center;
 }}
@@ -3186,22 +3188,17 @@ body {{
 }}
 .play-stack {{
   display: grid;
-  gap: 4px;
+  gap: 7px;
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 34px 1fr 82px;
-  gap: 6px;
+  grid-template-columns: 1fr 82px;
+  gap: 8px;
   align-items: center;
-}}
-.play-mini {{
-  color: var(--muted);
-  font-size: 10px;
-  text-align: right;
 }}
 .play-track {{
   position: relative;
-  height: 10px;
+  height: 12px;
   background: var(--bar-track);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -3236,6 +3233,25 @@ body {{
   color: var(--muted);
   font-size: 10px;
   white-space: nowrap;
+}}
+.play-legend {{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--muted);
+}}
+.play-legend-item {{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}}
+.play-legend-dot {{
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  display: inline-block;
 }}
 .playstyles-wrap {{
   flex: 1 1 auto;
