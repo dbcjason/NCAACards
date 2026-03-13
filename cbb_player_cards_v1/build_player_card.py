@@ -1411,6 +1411,65 @@ def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
     return None
 
 
+DRAFT_BUCKETS: list[tuple[str, int | None, int | None]] = [
+    ("1st Pick", 1, 1),
+    ("Top 5", 2, 5),
+    ("Top 10", 6, 10),
+    ("Lottery", 11, 14),
+    ("Top 20", 15, 20),
+    ("Late 1st Round", 21, 30),
+    ("Early 2nd Round", 31, 40),
+    ("Mid 2nd Round", 41, 50),
+    ("Late 2nd Round", 51, 60),
+    ("Undrafted/Return to School", None, None),
+]
+
+
+def parse_pick_number(raw: str) -> int | None:
+    s = (raw or "").strip()
+    if not s:
+        return None
+    m = re.search(r"(\d+)", s)
+    if not m:
+        return None
+    try:
+        v = int(m.group(1))
+        return v if 1 <= v <= 60 else None
+    except Exception:
+        return None
+
+
+def draft_bucket_index_for_pick(pick: int | None) -> int:
+    if pick is None:
+        return len(DRAFT_BUCKETS) - 1
+    if pick == 1:
+        return 0
+    if 2 <= pick <= 5:
+        return 1
+    if 6 <= pick <= 10:
+        return 2
+    if 11 <= pick <= 14:
+        return 3
+    if 15 <= pick <= 20:
+        return 4
+    if 21 <= pick <= 30:
+        return 5
+    if 31 <= pick <= 40:
+        return 6
+    if 41 <= pick <= 50:
+        return 7
+    if 51 <= pick <= 60:
+        return 8
+    return len(DRAFT_BUCKETS) - 1
+
+
+def rsci_rank_to_score(rank: int | None) -> float | None:
+    if rank is None:
+        return 0.0
+    # 1 -> ~100, 100 -> ~1
+    return max(0.0, min(100.0, 101.0 - float(rank)))
+
+
 def build_advanced_html(
     target: PlayerGameStats,
     lebron_rows: list[dict[str, str]],
@@ -2655,6 +2714,275 @@ def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]
 """
 
 
+def build_draft_projection_html(
+    target: PlayerGameStats,
+    bt_rows: list[dict[str, str]],
+    bio_lookup: dict[tuple[str, str, str], dict[str, str]],
+    rsci_map: dict[str, int],
+) -> str:
+    if not bt_rows:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+    target_row = bt_find_target_row(bt_rows, target)
+    if not target_row:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+
+    ys = norm_season(target.season)
+    if not ys.isdigit():
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Invalid season for projection.</div></div>'
+    target_year = int(ys)
+
+    metric_keys = [
+        "bpm", "dbpm", "usg", "ts_per", "twop_per", "tp_per",
+        "ast_per", "to_per", "stl_per", "blk_per", "orb_per", "drb_per",
+        "ftr", "threepa100", "rim_att_100_bt", "dunks_100_bt",
+        "rim_assists_100_btposs", "rapm", "onoff_net_rating",
+    ]
+    score_weights = {
+        "bpm": 1.45,
+        "dbpm": 1.10,
+        "usg": 0.95,
+        "ts_per": 0.95,
+        "twop_per": 0.60,
+        "tp_per": 0.70,
+        "ast_per": 0.80,
+        "to_per": 0.70,
+        "stl_per": 0.65,
+        "blk_per": 0.65,
+        "orb_per": 0.50,
+        "drb_per": 0.50,
+        "ftr": 0.45,
+        "threepa100": 0.50,
+        "rim_att_100_bt": 0.50,
+        "dunks_100_bt": 0.45,
+        "rim_assists_100_btposs": 0.50,
+        "rapm": 0.65,
+        "onoff_net_rating": 0.65,
+    }
+
+    # Build per-year percentile maps once for comparability across eras.
+    rows_for_maps: list[dict[str, str]] = []
+    for r in bt_rows:
+        y = norm_season(bt_get(r, ["year"]))
+        if not y.isdigit():
+            continue
+        yi = int(y)
+        if 2010 <= yi <= target_year:
+            rows_for_maps.append(r)
+    by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for r in rows_for_maps:
+        by_year[norm_season(bt_get(r, ["year"]))].append(r)
+
+    def build_pct_lookup(items: list[tuple[int, float]]) -> dict[int, float]:
+        if not items:
+            return {}
+        n = len(items)
+        s = sorted(items, key=lambda x: x[1])
+        out: dict[int, float] = {}
+        i = 0
+        while i < n:
+            j = i + 1
+            while j < n and s[j][1] == s[i][1]:
+                j += 1
+            p = 100.0 * (i + 0.5 * (j - i)) / n
+            for k in range(i, j):
+                out[s[k][0]] = p
+            i = j
+        return out
+
+    metric_pct_map: dict[tuple[str, str], dict[int, float]] = {}
+    for year, rows in by_year.items():
+        for key in metric_keys:
+            vals: list[tuple[int, float]] = []
+            for r in rows:
+                v = bt_metric_value(r, key)
+                if v is None or not math.isfinite(v):
+                    continue
+                vals.append((id(r), float(v)))
+            mp = build_pct_lookup(vals)
+            if key == "to_per":
+                mp = {rk: 100.0 - pv for rk, pv in mp.items()}
+            metric_pct_map[(year, key)] = mp
+
+    def metric_pct_for_row(r: dict[str, str], key: str) -> float | None:
+        year = norm_season(bt_get(r, ["year"]))
+        return metric_pct_map.get((year, key), {}).get(id(r))
+
+    rsci_exact = {norm_player_name(k): v for k, v in rsci_map.items()}
+
+    def row_age_height(r: dict[str, str]) -> tuple[float | None, float | None]:
+        return _bio_age_height_for_row(r, bio_lookup)
+
+    def row_rsci_score(r: dict[str, str]) -> float | None:
+        n = norm_player_name(bt_get(r, ["player_name"]))
+        rank = rsci_exact.get(n)
+        return rsci_rank_to_score(rank)
+
+    target_vec: dict[str, float] = {}
+    for key in metric_keys:
+        p = metric_pct_for_row(target_row, key)
+        if p is not None and math.isfinite(p):
+            target_vec[key] = float(p)
+    t_age, t_hgt = row_age_height(target_row)
+    t_rsci = rsci_rank_to_score(find_rsci_rank(target.player, rsci_map))
+
+    if len(target_vec) < 6:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough data to build projection.</div></div>'
+
+    def score_from_features(
+        vec: dict[str, float],
+        age: float | None,
+        hgt: float | None,
+        rsci_score: float | None,
+    ) -> float | None:
+        num = 0.0
+        den = 0.0
+        for k, w in score_weights.items():
+            v = vec.get(k)
+            if v is None or not math.isfinite(v):
+                continue
+            num += w * float(v)
+            den += w
+        if rsci_score is not None and math.isfinite(rsci_score):
+            num += 0.90 * float(rsci_score)
+            den += 0.90
+        if hgt is not None and math.isfinite(hgt):
+            # 72" ~= neutral. Taller gets some positive signal.
+            h_score = max(0.0, min(100.0, 50.0 + (float(hgt) - 72.0) * 6.5))
+            num += 0.45 * h_score
+            den += 0.45
+        if age is not None and math.isfinite(age):
+            # Younger prospects generally draft earlier for equal production.
+            a_score = max(0.0, min(100.0, 90.0 - (float(age) - 19.0) * 14.0))
+            num += 0.85 * a_score
+            den += 0.85
+        if den <= 0:
+            return None
+        return num / den
+
+    target_score = score_from_features(target_vec, t_age, t_hgt, t_rsci)
+    if target_score is None:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough core metrics to build projection.</div></div>'
+
+    # Build candidate historical set (exclude current season and likely still-active undrafted players).
+    candidates_raw: list[dict[str, Any]] = []
+    for r in bt_rows:
+        y = norm_season(bt_get(r, ["year"]))
+        if not y.isdigit():
+            continue
+        yi = int(y)
+        if yi < 2010 or yi >= target_year:
+            continue
+
+        pick = parse_pick_number(bt_get(r, ["pick"]))
+        age, hgt = row_age_height(r)
+
+        vec: dict[str, float] = {}
+        for key in metric_keys:
+            p = metric_pct_for_row(r, key)
+            if p is not None and math.isfinite(p):
+                vec[key] = float(p)
+        score = score_from_features(vec, age, hgt, row_rsci_score(r))
+        if score is None:
+            continue
+        candidates_raw.append(
+            {
+                "score": score,
+                "pick": pick,
+                "bucket": draft_bucket_index_for_pick(pick),
+                "age": age,
+                "hgt": hgt,
+                "pos": bt_row_position_bucket(r),
+            }
+        )
+
+    if len(candidates_raw) < 500:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
+
+    # Use nearest score neighborhood with smooth kernel for calibrated odds.
+    candidates_raw.sort(key=lambda c: abs(float(c["score"]) - float(target_score)))
+    candidates = candidates_raw[:3500]
+
+    target_pos = bt_row_position_bucket(target_row)
+    score_sigma = 10.5
+    w_by_bucket = [0.0 for _ in DRAFT_BUCKETS]
+    base_counts = [0.0 for _ in DRAFT_BUCKETS]
+    for c in candidates:
+        idx = int(c["bucket"])
+        base_counts[idx] += 1.0
+        d = (float(c["score"]) - float(target_score)) / score_sigma
+        wt = math.exp(-0.5 * d * d)
+        c_age = c["age"]
+        c_hgt = c["hgt"]
+        if t_age is not None and c_age is not None and math.isfinite(t_age) and math.isfinite(c_age):
+            wt *= math.exp(-0.5 * ((float(c_age) - float(t_age)) / 1.35) ** 2)
+        if t_hgt is not None and c_hgt is not None and math.isfinite(t_hgt) and math.isfinite(c_hgt):
+            wt *= math.exp(-0.5 * ((float(c_hgt) - float(t_hgt)) / 2.4) ** 2)
+        if target_pos and c["pos"] and target_pos != c["pos"]:
+            wt *= 0.82
+        w_by_bucket[idx] += wt
+
+    total_w = sum(w_by_bucket)
+    if total_w <= 0:
+        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
+
+    base_total = sum(base_counts)
+    if base_total <= 0:
+        base_probs = [1.0 / len(DRAFT_BUCKETS) for _ in DRAFT_BUCKETS]
+    else:
+        base_probs = [c / base_total for c in base_counts]
+
+    # Smoothing prevents unstable extremes while keeping player signal dominant.
+    prior_strength = max(8.0, total_w * 0.05)
+    probs = [
+        (w_by_bucket[i] + prior_strength * base_probs[i]) / (total_w + prior_strength)
+        for i in range(len(DRAFT_BUCKETS))
+    ]
+    z = sum(probs)
+    probs = [p / z for p in probs] if z > 0 else probs
+
+    proj_idx = max(range(len(DRAFT_BUCKETS)), key=lambda i: probs[i])
+    proj_label = DRAFT_BUCKETS[proj_idx][0]
+
+    drafted_prob = sum(probs[:9])
+    first_round_prob = sum(probs[:6])
+    target_yr_raw = norm_text(bt_get(target_row, ["yr"]))
+    target_return_profile = (
+        ("fr" in target_yr_raw)
+        or ("freshman" in target_yr_raw)
+        or ("so" in target_yr_raw)
+        or ("soph" in target_yr_raw)
+        or ("jr" in target_yr_raw)
+        or ("junior" in target_yr_raw)
+        or (t_age is not None and math.isfinite(t_age) and t_age < 22.0)
+    )
+    target_pick = parse_pick_number(bt_get(target_row, ["pick"]))
+    note = ""
+    if target_return_profile and target_pick is None:
+        note = "This profile can map to either undrafted outcome or returning to school."
+
+    rows_html = ""
+    for i, (lbl, _a, _b) in enumerate(DRAFT_BUCKETS):
+        pct = 100.0 * probs[i]
+        rows_html += (
+            f'<div class="draft-odd-row">'
+            f'<div class="draft-odd-k">{html.escape(lbl)}</div>'
+            f'<div class="draft-odd-v">{pct:.1f}%</div>'
+            f'</div>'
+        )
+
+    return f"""
+      <div class="panel draft-proj-panel">
+        <h3>NBA Draft Projection</h3>
+        <div class="draft-proj-main">{html.escape(proj_label)}</div>
+        <div class="draft-proj-sub">Drafted: {100.0 * drafted_prob:.1f}% | 1st Round: {100.0 * first_round_prob:.1f}%</div>
+        {f'<div class="draft-proj-sub">{html.escape(note)}</div>' if note else ''}
+        <div class="draft-odds-grid">
+          {rows_html}
+        </div>
+      </div>
+"""
+
+
 def _height_to_inches(raw: str) -> float | None:
     s = (raw or "").strip()
     if not s:
@@ -2959,6 +3287,7 @@ def render_card(
     shot_header_makes: int | None,
     shot_header_attempts: int | None,
     shot_pps_oe_line: str,
+    draft_projection_html: str,
     per_game_overrides: dict[str, float] | None,
     out_path: Path,
 ) -> None:
@@ -3388,6 +3717,40 @@ body {{
 .comp-bottom {{
   margin-top: 0;
 }}
+.draft-proj-main {{
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-top: 2px;
+}}
+.draft-proj-sub {{
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}}
+.draft-odds-grid {{
+  margin-top: 8px;
+  display: grid;
+  gap: 4px;
+}}
+.draft-odd-row {{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 6px;
+  background: var(--panel-alt);
+}}
+.draft-odd-k {{
+  color: var(--muted);
+}}
+.draft-odd-v {{
+  font-weight: 700;
+  color: var(--text);
+}}
 .ti-comp-stack {{
   display: flex;
   flex-direction: column;
@@ -3480,6 +3843,7 @@ body {{
             <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
             {shot_svg(shots, season_shots, width=355, height=250)}
           </div>
+          {draft_projection_html}
         </div>
         <div class="right-wrap">
           <div class="right-col">
@@ -3803,6 +4167,7 @@ def main() -> None:
     team_impact_html = build_team_impact_html(target, bt_rows)
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
+    draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
     stage("Built card section HTML blocks")
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
@@ -3871,6 +4236,7 @@ def main() -> None:
         bt_fgm,
         bt_fga,
         pps_line,
+        draft_projection_html,
         per_game_override,
         Path(args.out_html),
     )
