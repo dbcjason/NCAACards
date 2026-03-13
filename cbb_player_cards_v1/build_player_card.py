@@ -2956,16 +2956,27 @@ def build_draft_projection_html(
         or (t_age is not None and math.isfinite(t_age) and t_age < 22.0)
     )
     target_pick = parse_pick_number(bt_get(target_row, ["pick"]))
+    undrafted_is_return_school = (
+        t_age is None or (math.isfinite(t_age) and t_age < 22.0)
+    )
+
+    def display_bucket_label(lbl: str) -> str:
+        if lbl == "Undrafted/Return to School" and not undrafted_is_return_school:
+            return "Undrafted"
+        return lbl
+
+    proj_label = display_bucket_label(proj_label)
     note = ""
-    if target_return_profile and target_pick is None:
+    if undrafted_is_return_school and target_return_profile and target_pick is None:
         note = "This profile can map to either undrafted outcome or returning to school."
 
     rows_html = ""
     for i, (lbl, _a, _b) in enumerate(DRAFT_BUCKETS):
+        lbl_disp = display_bucket_label(lbl)
         pct = 100.0 * probs[i]
         rows_html += (
             f'<div class="draft-odd-row">'
-            f'<div class="draft-odd-k">{html.escape(lbl)}</div>'
+            f'<div class="draft-odd-k">{html.escape(lbl_disp)}</div>'
             f'<div class="draft-odd-v">{pct:.1f}%</div>'
             f'</div>'
         )
