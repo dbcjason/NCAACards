@@ -3177,7 +3177,7 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 11px;
+  gap: 12px;
 }}
 .play-row {{
   display: grid;
@@ -3196,7 +3196,7 @@ body {{
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 38px 1fr 82px;
+  grid-template-columns: 34px 1fr 82px;
   gap: 6px;
   align-items: center;
 }}
