@@ -3009,6 +3009,49 @@ def build_draft_projection_html(
     # Convert drafted-like signal into drafted probability; keeps elite profiles from flattening.
     drafted_prob = max(0.05, min(0.99, (drafted_like - 0.18) / 0.72))
 
+    # Elite-profile floor:
+    # prevent clearly elite younger prospects from getting implausibly high undrafted odds.
+    elite_keys = ["bpm", "dbpm", "rapm", "onoff_net_rating", "ts_per", "usg", "ast_per", "tp_per"]
+    elite_vals = [target_vec[k] for k in elite_keys if k in target_vec and math.isfinite(target_vec[k])]
+    elite_stat_score = (sum(elite_vals) / len(elite_vals)) if elite_vals else 0.0
+    elite_age = (t_age is not None and math.isfinite(t_age) and float(t_age) <= 20.8)
+    elite_rsci = (t_rsci is not None and math.isfinite(t_rsci) and float(t_rsci) >= 82.0)
+
+    # Intra-drafted calibration:
+    # shift drafted bucket mix toward earlier slots for elite profiles,
+    # and toward later slots for weaker drafted profiles.
+    top_signal = max(
+        0.0,
+        min(
+            1.0,
+            0.60 * (drafted_score_pct / 100.0)
+            + 0.40 * (elite_stat_score / 100.0),
+        ),
+    )
+    # Positive tilt => earlier picks, negative tilt => later picks.
+    tilt = (top_signal - 0.5) * 1.1
+    # For buckets [1st, Top5, Lottery, Late1st, 2nd]
+    bucket_axis = [2.0, 1.0, 0.0, -1.0, -2.0]
+    if drafted_bucket_count == len(bucket_axis):
+        tilted = []
+        for i, p in enumerate(drafted_mix):
+            factor = math.exp(tilt * bucket_axis[i])
+            tilted.append(max(1e-9, p * factor))
+        zt = sum(tilted)
+        if zt > 0:
+            drafted_mix = [v / zt for v in tilted]
+
+    undrafted_cap: float | None = None
+    if elite_stat_score >= 95.0:
+        undrafted_cap = 0.05
+    elif elite_stat_score >= 92.0 and (elite_age or elite_rsci):
+        undrafted_cap = 0.08
+    elif elite_stat_score >= 89.0 and elite_age and elite_rsci:
+        undrafted_cap = 0.12
+
+    if undrafted_cap is not None:
+        drafted_prob = max(drafted_prob, 1.0 - undrafted_cap)
+
     probs = [drafted_prob * m for m in drafted_mix]
     probs.append(max(0.0, 1.0 - drafted_prob))
 
