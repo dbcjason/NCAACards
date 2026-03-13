@@ -3125,7 +3125,7 @@ def build_draft_projection_html(
         <div class="draft-odds-grid">
           {rows_html}
         </div>
-        <div class="draft-proj-sub">Projections based solely on statistical profile in an averge draft</div>
+        <div class="draft-proj-sub">Projections based solely on statistical profile in an average draft</div>
       </div>
 """
 
