@@ -2900,45 +2900,50 @@ def build_draft_projection_html(
 
     # Use nearest score neighborhood with smooth kernel for calibrated odds.
     candidates_raw.sort(key=lambda c: abs(float(c["score"]) - float(target_score)))
-    candidates = candidates_raw[:3500]
+    # Use a tighter neighborhood so elite/poor profiles don't get flattened by distant comps.
+    candidates = candidates_raw[:1200]
 
     target_pos = bt_row_position_bucket(target_row)
-    score_sigma = 10.5
-    w_by_bucket = [0.0 for _ in DRAFT_BUCKETS]
-    base_counts = [0.0 for _ in DRAFT_BUCKETS]
+    score_sigma = 4.8
+    scored_neighbors: list[tuple[float, int]] = []
     for c in candidates:
         idx = int(c["bucket"])
-        base_counts[idx] += 1.0
         d = (float(c["score"]) - float(target_score)) / score_sigma
         wt = math.exp(-0.5 * d * d)
         c_age = c["age"]
         c_hgt = c["hgt"]
         if t_age is not None and c_age is not None and math.isfinite(t_age) and math.isfinite(c_age):
-            wt *= math.exp(-0.5 * ((float(c_age) - float(t_age)) / 1.35) ** 2)
+            wt *= math.exp(-0.5 * ((float(c_age) - float(t_age)) / 1.1) ** 2)
         if t_hgt is not None and c_hgt is not None and math.isfinite(t_hgt) and math.isfinite(c_hgt):
-            wt *= math.exp(-0.5 * ((float(c_hgt) - float(t_hgt)) / 2.4) ** 2)
+            wt *= math.exp(-0.5 * ((float(c_hgt) - float(t_hgt)) / 2.0) ** 2)
         if target_pos and c["pos"] and target_pos != c["pos"]:
-            wt *= 0.82
-        w_by_bucket[idx] += wt
+            wt *= 0.78
+        if wt > 1e-10:
+            scored_neighbors.append((wt, idx))
 
-    total_w = sum(w_by_bucket)
+    total_w = sum(w for w, _ in scored_neighbors)
     if total_w <= 0:
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
 
-    base_total = sum(base_counts)
-    if base_total <= 0:
-        base_probs = [1.0 / len(DRAFT_BUCKETS) for _ in DRAFT_BUCKETS]
-    else:
-        base_probs = [c / base_total for c in base_counts]
+    # Stage 1: drafted probability (buckets 0..8 vs bucket 9).
+    drafted_w = sum(w for w, idx in scored_neighbors if idx < 9)
+    undrafted_w = sum(w for w, idx in scored_neighbors if idx == 9)
+    drafted_prob = (drafted_w + 1.0) / (drafted_w + undrafted_w + 2.0)
+    drafted_prob = max(0.02, min(0.98, drafted_prob))
 
-    # Smoothing prevents unstable extremes while keeping player signal dominant.
-    prior_strength = max(8.0, total_w * 0.05)
-    probs = [
-        (w_by_bucket[i] + prior_strength * base_probs[i]) / (total_w + prior_strength)
-        for i in range(len(DRAFT_BUCKETS))
-    ]
-    z = sum(probs)
-    probs = [p / z for p in probs] if z > 0 else probs
+    # Stage 2: conditional bucket mix among drafted outcomes only.
+    drafted_bucket_w = [0.0 for _ in range(9)]
+    for w, idx in scored_neighbors:
+        if idx < 9:
+            drafted_bucket_w[idx] += w
+    drafted_total = sum(drafted_bucket_w)
+    if drafted_total <= 0:
+        drafted_mix = [1.0 / 9.0 for _ in range(9)]
+    else:
+        drafted_mix = [(drafted_bucket_w[i] + 0.15) / (drafted_total + 9 * 0.15) for i in range(9)]
+
+    probs = [drafted_prob * m for m in drafted_mix]
+    probs.append(1.0 - drafted_prob)
 
     proj_idx = max(range(len(DRAFT_BUCKETS)), key=lambda i: probs[i])
     proj_label = DRAFT_BUCKETS[proj_idx][0]
@@ -2970,10 +2975,18 @@ def build_draft_projection_html(
     if undrafted_is_return_school and target_return_profile and target_pick is None:
         note = "This profile can map to either undrafted outcome or returning to school."
 
+    # Display cumulative odds for draft ranges (through Late 2nd); keep undrafted as standalone.
+    display_probs = list(probs)
+    cum = 0.0
+    for i in range(9):
+        cum += probs[i]
+        display_probs[i] = cum
+    display_probs[9] = probs[9]
+
     rows_html = ""
     for i, (lbl, _a, _b) in enumerate(DRAFT_BUCKETS):
         lbl_disp = display_bucket_label(lbl)
-        pct = 100.0 * probs[i]
+        pct = 100.0 * display_probs[i]
         rows_html += (
             f'<div class="draft-odd-row">'
             f'<div class="draft-odd-k">{html.escape(lbl_disp)}</div>'
