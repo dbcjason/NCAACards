@@ -2725,27 +2725,6 @@ def build_draft_projection_html(
         "ftr", "threepa100", "rim_att_100_bt", "dunks_100_bt",
         "rim_assists_100_btposs", "rapm", "onoff_net_rating",
     ]
-    score_weights = {
-        "bpm": 1.45,
-        "dbpm": 1.10,
-        "usg": 0.95,
-        "ts_per": 0.95,
-        "twop_per": 0.60,
-        "tp_per": 0.70,
-        "ast_per": 0.80,
-        "to_per": 0.70,
-        "stl_per": 0.65,
-        "blk_per": 0.65,
-        "orb_per": 0.50,
-        "drb_per": 0.50,
-        "ftr": 0.45,
-        "threepa100": 0.50,
-        "rim_att_100_bt": 0.50,
-        "dunks_100_bt": 0.45,
-        "rim_assists_100_btposs": 0.50,
-        "rapm": 0.65,
-        "onoff_net_rating": 0.65,
-    }
 
     # Build per-year percentile maps once for comparability across eras.
     rows_for_maps: list[dict[str, str]] = []
@@ -2816,40 +2795,40 @@ def build_draft_projection_html(
     if len(target_vec) < 6:
         return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough data to build projection.</div></div>'
 
-    def score_from_features(
+    def feature_components(
         vec: dict[str, float],
         age: float | None,
         hgt: float | None,
         rsci_score: float | None,
-    ) -> float | None:
-        num = 0.0
-        den = 0.0
-        for k, w in score_weights.items():
+    ) -> dict[str, float]:
+        out: dict[str, float] = {}
+        for k in metric_keys:
             v = vec.get(k)
             if v is None or not math.isfinite(v):
                 continue
+            out[k] = float(v)
+        if rsci_score is not None and math.isfinite(rsci_score):
+            out["rsci"] = float(rsci_score)
+        if hgt is not None and math.isfinite(hgt):
+            h_score = max(0.0, min(100.0, 50.0 + (float(hgt) - 72.0) * 6.5))
+            out["height"] = float(h_score)
+        if age is not None and math.isfinite(age):
+            a_score = max(0.0, min(100.0, 90.0 - (float(age) - 19.0) * 14.0))
+            out["age"] = float(a_score)
+        return out
+
+    def score_from_components(comps: dict[str, float], weights: dict[str, float]) -> float | None:
+        num = 0.0
+        den = 0.0
+        for k, v in comps.items():
+            w = float(weights.get(k, 0.0))
+            if w <= 0.0 or not math.isfinite(v):
+                continue
             num += w * float(v)
             den += w
-        if rsci_score is not None and math.isfinite(rsci_score):
-            num += 0.90 * float(rsci_score)
-            den += 0.90
-        if hgt is not None and math.isfinite(hgt):
-            # 72" ~= neutral. Taller gets some positive signal.
-            h_score = max(0.0, min(100.0, 50.0 + (float(hgt) - 72.0) * 6.5))
-            num += 0.45 * h_score
-            den += 0.45
-        if age is not None and math.isfinite(age):
-            # Younger prospects generally draft earlier for equal production.
-            a_score = max(0.0, min(100.0, 90.0 - (float(age) - 19.0) * 14.0))
-            num += 0.85 * a_score
-            den += 0.85
-        if den <= 0:
+        if den <= 0.0:
             return None
         return num / den
-
-    target_score = score_from_features(target_vec, t_age, t_hgt, t_rsci)
-    if target_score is None:
-        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough core metrics to build projection.</div></div>'
 
     # Build candidate historical set (exclude current season and likely still-active undrafted players).
     candidates_raw: list[dict[str, Any]] = []
@@ -2869,12 +2848,12 @@ def build_draft_projection_html(
             p = metric_pct_for_row(r, key)
             if p is not None and math.isfinite(p):
                 vec[key] = float(p)
-        score = score_from_features(vec, age, hgt, row_rsci_score(r))
-        if score is None:
+        comps = feature_components(vec, age, hgt, row_rsci_score(r))
+        if len(comps) < 6:
             continue
         candidates_raw.append(
             {
-                "score": score,
+                "comps": comps,
                 "pick": pick,
                 "bucket": draft_bucket_index_for_pick(pick),
                 "age": age,
@@ -2886,10 +2865,64 @@ def build_draft_projection_html(
     if len(candidates_raw) < 500:
         return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
 
+    def corr(xs: list[float], ys: list[float]) -> float:
+        if len(xs) < 10 or len(ys) < 10 or len(xs) != len(ys):
+            return 0.0
+        mx = sum(xs) / len(xs)
+        my = sum(ys) / len(ys)
+        num = 0.0
+        dx2 = 0.0
+        dy2 = 0.0
+        for x, y in zip(xs, ys):
+            dx = x - mx
+            dy = y - my
+            num += dx * dy
+            dx2 += dx * dx
+            dy2 += dy * dy
+        den = math.sqrt(dx2 * dy2)
+        if den <= 1e-12:
+            return 0.0
+        return num / den
+
+    all_feature_keys = sorted({k for c in candidates_raw for k in c["comps"].keys()})
+    learned_weights: dict[str, float] = {}
+    for fk in all_feature_keys:
+        xs_d: list[float] = []
+        ys_d: list[float] = []
+        xs_p: list[float] = []
+        ys_p: list[float] = []
+        for c in candidates_raw:
+            v = c["comps"].get(fk)
+            if v is None or not math.isfinite(v):
+                continue
+            picked = c["pick"] is not None
+            xs_d.append(float(v))
+            ys_d.append(1.0 if picked else 0.0)
+            if picked:
+                pnum = int(c["pick"])
+                xs_p.append(float(v))
+                ys_p.append((61.0 - float(pnum)) / 60.0)
+        c_d = corr(xs_d, ys_d)
+        c_p = corr(xs_p, ys_p)
+        w = max(0.0, 0.35 * c_d + 0.65 * c_p)
+        if math.isfinite(w) and w > 0.0:
+            learned_weights[fk] = w
+
+    if not learned_weights:
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Unable to learn feature weights for projection.</div></div>'
+
+    target_comps = feature_components(target_vec, t_age, t_hgt, t_rsci)
+    target_score = score_from_components(target_comps, learned_weights)
+    if target_score is None:
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough core metrics to build projection.</div></div>'
+
+    for c in candidates_raw:
+        c["score"] = score_from_components(c["comps"], learned_weights)
+
     drafted_bucket_count = len(DRAFT_BUCKETS) - 1
     drafted_candidates = [
         c for c in candidates_raw
-        if c["pick"] is not None and int(c["bucket"]) < drafted_bucket_count
+        if c["pick"] is not None and int(c["bucket"]) < drafted_bucket_count and c.get("score") is not None
     ]
     if len(drafted_candidates) < 350:
         return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough drafted history to build projection.</div></div>'
