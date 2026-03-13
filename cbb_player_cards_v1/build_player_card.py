@@ -2433,18 +2433,22 @@ def build_self_creation_html(
     if not target_bt or not target_ps:
         return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">No matching player/team/season in Bart playerstat JSON.</div></div>'
 
-    pbp_poss_map = build_pbp_off_possessions_map(pbp_rows)
-    target_key = (norm_player_name(target.player), norm_team(target.team), norm_season(target.season))
-    target_poss = pbp_poss_map.get(target_key)
-    target_bt_gp = bt_num(target_bt, ["GP"]) if target_bt else None
-    target_pbp_games = (pbp_games_map or {}).get(target_key) if pbp_games_map else None
-    target_poss = adjust_possessions_to_bart_games(target_poss, target_pbp_games, target_bt_gp)
-    if target_poss is None and target_bt:
-        # Fallback when pbp metrics are unavailable in the runtime environment.
-        target_poss = bt_metric_value(target_bt, "possessions")
+    enriched_lookup = load_enriched_lookup_for_script_season(target.season)
+
+    def enriched_off_poss(player_name: str, team_name: str, season: str) -> float | None:
+        k = (norm_player_name(player_name), norm_team(team_name), norm_season(season))
+        er = enriched_lookup.get(k)
+        if not er:
+            return None
+        v = to_float(_enriched_nested_value(er, "off_team_poss", "value"))
+        if v is None or not math.isfinite(v) or v <= 0:
+            return None
+        return float(v)
+
+    target_poss = enriched_off_poss(target.player, target.team, target.season)
     target_metrics = bt_playerstat_metrics_from_row(target_ps, target_poss)
     if not target_metrics:
-        return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">Missing possessions for self-creation rate normalization.</div></div>'
+        return '<div class="panel"><h3>Self Creation</h3><div class="shot-meta">Missing enriched off_team_poss.value for self-creation normalization.</div></div>'
 
     cohort_bt = bt_cohort_for_year(bt_rows, target.season)
     metric_vals: dict[str, list[float]] = defaultdict(list)
@@ -2452,24 +2456,7 @@ def build_self_creation_html(
         ps = find_bt_playerstat_row(bt_playerstat_rows, bt_get(r, ["player_name"]), bt_get(r, ["team"]))
         if not ps:
             continue
-        poss = pbp_poss_map.get(
-            (
-                norm_player_name(bt_get(r, ["player_name"])),
-                norm_team(bt_get(r, ["team"])),
-                norm_season(bt_get(r, ["year"])),
-            )
-        )
-        if poss is not None:
-            rk = (
-                norm_player_name(bt_get(r, ["player_name"])),
-                norm_team(bt_get(r, ["team"])),
-                norm_season(bt_get(r, ["year"])),
-            )
-            pbp_gp = (pbp_games_map or {}).get(rk) if pbp_games_map else None
-            bt_gp = bt_num(r, ["GP"])
-            poss = adjust_possessions_to_bart_games(poss, pbp_gp, bt_gp)
-        if poss is None:
-            poss = bt_metric_value(r, "possessions")
+        poss = enriched_off_poss(bt_get(r, ["player_name"]), bt_get(r, ["team"]), bt_get(r, ["year"]))
         m = bt_playerstat_metrics_from_row(ps, poss)
         if not m:
             continue
