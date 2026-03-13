@@ -2709,14 +2709,14 @@ def build_draft_projection_html(
     rsci_map: dict[str, int],
 ) -> str:
     if not bt_rows:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
     target_row = bt_find_target_row(bt_rows, target)
     if not target_row:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
 
     ys = norm_season(target.season)
     if not ys.isdigit():
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Invalid season for projection.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Invalid season for projection.</div></div>'
     target_year = int(ys)
 
     metric_keys = [
@@ -2814,7 +2814,7 @@ def build_draft_projection_html(
     t_rsci = rsci_rank_to_score(find_rsci_rank(target.player, rsci_map))
 
     if len(target_vec) < 6:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough data to build projection.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough data to build projection.</div></div>'
 
     def score_from_features(
         vec: dict[str, float],
@@ -2849,7 +2849,7 @@ def build_draft_projection_html(
 
     target_score = score_from_features(target_vec, t_age, t_hgt, t_rsci)
     if target_score is None:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough core metrics to build projection.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough core metrics to build projection.</div></div>'
 
     # Build candidate historical set (exclude current season and likely still-active undrafted players).
     candidates_raw: list[dict[str, Any]] = []
@@ -2884,7 +2884,7 @@ def build_draft_projection_html(
         )
 
     if len(candidates_raw) < 500:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
 
     drafted_bucket_count = len(DRAFT_BUCKETS) - 1
     drafted_candidates = [
@@ -2892,7 +2892,7 @@ def build_draft_projection_html(
         if c["pick"] is not None and int(c["bucket"]) < drafted_bucket_count
     ]
     if len(drafted_candidates) < 350:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough drafted history to build projection.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Not enough drafted history to build projection.</div></div>'
 
     # Step 1: drafted-only comps for conditional pick-range distribution.
     drafted_candidates.sort(key=lambda c: abs(float(c["score"]) - float(target_score)))
@@ -2917,7 +2917,7 @@ def build_draft_projection_html(
 
     total_w = sum(w for w, _, _ in drafted_neighbor_weights)
     if total_w <= 0:
-        return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
+        return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
 
     # Drafted-only conditional bucket mix.
     drafted_bucket_w = [0.0 for _ in range(drafted_bucket_count)]
@@ -3009,7 +3009,7 @@ def build_draft_projection_html(
 
     return f"""
       <div class="panel draft-proj-panel">
-        <h3>NBA Draft Projection</h3>
+        <h3>Statistical NBA Draft Projection</h3>
         <div class="draft-proj-main">{html.escape(proj_label)}</div>
         <div class="draft-proj-sub">Drafted: {100.0 * drafted_prob:.1f}% | 1st Round: {100.0 * first_round_prob:.1f}%</div>
         <div class="draft-odds-grid">
