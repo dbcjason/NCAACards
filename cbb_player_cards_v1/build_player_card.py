@@ -3175,7 +3175,7 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }}
 .play-row {{
   display: grid;
@@ -3190,7 +3190,7 @@ body {{
 }}
 .play-stack {{
   display: grid;
-  gap: 6px;
+  gap: 5px;
 }}
 .play-line {{
   display: grid;
@@ -3200,7 +3200,7 @@ body {{
 }}
 .play-track {{
   position: relative;
-  height: 13px;
+  height: 10px;
   background: var(--bar-track);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -3220,15 +3220,15 @@ body {{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #0e0e0e;
   color: #fff;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
-  line-height: 18px;
+  line-height: 15px;
   text-align: center;
 }}
 .play-tag {{
@@ -3241,7 +3241,7 @@ body {{
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }}
 .play-head h3 {{
   margin: 0;
