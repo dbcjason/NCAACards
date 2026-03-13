@@ -1607,7 +1607,7 @@ def build_draft_projection_html(
     picks: list[int | None] = [parse_pick_value(bt_get(r, ["pick"])) for r in train_rows]
     buckets: list[str] = [pick_to_draft_bucket(p) for p in picks]
 
-    # Weighted kernel nearest-profile projection.
+    # Weighted nearest-profile projection (smoothed to avoid single-neighbor collapse).
     sims: list[tuple[float, int]] = []
     for i, feats in enumerate(norm_train):
         dist2 = 0.0
@@ -1615,10 +1615,11 @@ def build_draft_projection_html(
             d = target_norm[k] - feats[k]
             dist2 += float(w) * (d * d)
         dist = math.sqrt(max(0.0, dist2))
-        sim = math.exp(-(dist * dist) / 2.0)
+        # Smoother than exp(-dist^2/2): prevents extreme one-row domination.
+        sim = 1.0 / (1.0 + dist)
         sims.append((sim, i))
     sims.sort(key=lambda x: x[0], reverse=True)
-    top = sims[: min(1200, len(sims))]
+    top = sims[: min(2000, len(sims))]
     total_w = sum(w for w, _ in top)
     if total_w <= 0:
         return '<div class="panel" style="margin-top:14px;"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute profile similarity.</div></div>'
@@ -1638,10 +1639,14 @@ def build_draft_projection_html(
     bucket_prob: dict[str, float] = {b: 0.0 for b in bucket_names}
     drafted_w = 0.0
     first_round_w = 0.0
+    # Use a continuous proxy pick for range projection; undrafted maps above 60.
+    expected_pick_num = 0.0
     for w, idx in top:
         p = picks[idx]
         b = buckets[idx]
         bucket_prob[b] = bucket_prob.get(b, 0.0) + w
+        p_proxy = float(p) if (p is not None and 1 <= p <= 60) else 75.0
+        expected_pick_num += w * p_proxy
         if p is not None and 1 <= p <= 60:
             drafted_w += w
             if p <= 30:
@@ -1652,11 +1657,32 @@ def build_draft_projection_html(
 
     drafted_pct = 100.0 * drafted_w / total_w
     first_round_pct = 100.0 * first_round_w / total_w
-    projected_bucket = max(bucket_names, key=lambda b: bucket_prob.get(b, 0.0))
+    expected_pick = expected_pick_num / total_w
 
-    # If player already has known historical pick, use it as bucket display for that season.
-    if target_pick is not None and norm_season(target.season).isdigit() and int(norm_season(target.season)) <= 2025:
-        projected_bucket = target_bucket
+    def bucket_from_expected_pick(x: float, drafted_prob: float) -> str:
+        if drafted_prob < 35.0 or x > 60.0:
+            return "Undrafted"
+        if x <= 1.5:
+            return "1st Pick"
+        if x <= 5.5:
+            return "Top 5"
+        if x <= 10.5:
+            return "Top 10"
+        if x <= 14.5:
+            return "Lottery"
+        if x <= 20.5:
+            return "Top 20"
+        if x <= 30.5:
+            return "Late 1st Round (21-30)"
+        if x <= 40.5:
+            return "Early 2nd Round (31-40)"
+        if x <= 50.5:
+            return "Mid 2nd Round (41-50)"
+        if x <= 60.5:
+            return "Late 2nd Round (51-60)"
+        return "Undrafted"
+
+    projected_bucket = bucket_from_expected_pick(expected_pick, drafted_pct)
 
     return f"""
       <div class="panel" style="margin-top:14px;">
