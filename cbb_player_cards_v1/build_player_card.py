@@ -3177,7 +3177,7 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 11px;
+  gap: 10px;
 }}
 .play-row {{
   display: grid;
@@ -3192,11 +3192,11 @@ body {{
 }}
 .play-stack {{
   display: grid;
-  gap: 6px;
+  gap: 5px;
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 42px 1fr 82px;
+  grid-template-columns: 38px 1fr 82px;
   gap: 6px;
   align-items: center;
 }}
@@ -3370,6 +3370,7 @@ body {{
 
       <div class="shot-wrap">
         <div class="left-wrap">
+          {shot_diet_html}
           <div class="panel shot-panel shot-chart-col" style="margin-top:14px;">
             <h3>Shot Chart</h3>
             <div class="shot-meta">Attempts: {shot_att} | Made: {shot_makes} | FG%: {fmt(shot_pct)}%</div>
@@ -3383,7 +3384,6 @@ body {{
             <div class="playstyles-wrap">{playstyles_html}</div>
           </div>
           <div class="right-col">
-            {shot_diet_html}
             <div class="ti-comp-stack">
               <div class="team-impact-wrap">{team_impact_html}</div>
               <div class="comp-bottom">{player_comparisons_html}</div>
