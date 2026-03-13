@@ -376,12 +376,23 @@ def inject_enriched_fields_into_bt_rows(
         # Net points summary from enriched field.
         net_o = to_float(_enriched_nested_value(er, "net_pts", "o"))
         net_d = to_float(_enriched_nested_value(er, "net_pts", "d"))
+        net_owowy = to_float(_enriched_nested_value(er, "net_pts", "oWowy"))
+        net_dwowy = to_float(_enriched_nested_value(er, "net_pts", "dWowy"))
         if net_o is not None and math.isfinite(net_o):
             r["net_pts.o"] = str(net_o)
         if net_d is not None and math.isfinite(net_d):
             r["net_pts.d"] = str(net_d)
+        if net_owowy is not None and math.isfinite(net_owowy):
+            r["net_pts.oWowy"] = str(net_owowy)
+        if net_dwowy is not None and math.isfinite(net_dwowy):
+            r["net_pts.dWowy"] = str(net_dwowy)
         if net_o is not None and net_d is not None and math.isfinite(net_o) and math.isfinite(net_d):
-            r["net_pts.value"] = str(float(net_o) + float(net_d))
+            wowy_total = 0.0
+            if net_owowy is not None and math.isfinite(net_owowy):
+                wowy_total += float(net_owowy)
+            if net_dwowy is not None and math.isfinite(net_dwowy):
+                wowy_total += float(net_dwowy)
+            r["net_pts.value"] = str((float(net_o) + float(net_d)) - wowy_total)
 
 
 def _shot_range_from_xy_ft(x_ft: float, y_ft: float) -> str:
