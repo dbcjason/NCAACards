@@ -1820,19 +1820,10 @@ def adjust_possessions_to_bart_games(
 
 def bt_metric_value(row: dict[str, str], key: str) -> float | None:
     def bt_possessions_estimate(r: dict[str, str]) -> float | None:
-        # Preferred source from enrichedPlayers dataset.
+        # Only use enrichedPlayers possessions for all possession-normalized BT stats.
         poss = bt_num(r, ["off_team_poss.value"])
         if poss is not None and poss > 0:
             return float(poss)
-        poss = bt_num(r, ["possessions", " possessions"])
-        if poss is not None and poss > 0:
-            return float(poss)
-        # Backfill for years where getadvstats possessions is blank:
-        # 3PA/100 = (TPA / possessions) * 100  => possessions = (TPA * 100) / (3PA/100)
-        tpa = bt_num(r, ["TPA", " TPA", "tpa", " tpa"])
-        tpa100 = bt_num(r, ["3p/100?", " 3p/100?"])
-        if tpa is not None and tpa100 is not None and tpa100 > 0:
-            return (float(tpa) * 100.0) / float(tpa100)
         return None
 
     if key == "net_rating":
@@ -2300,82 +2291,7 @@ def build_bt_percentile_html(
                 continue
             if key == "rim_assists_100_btposs":
                 def rate_for_bt_row(br: dict[str, str]) -> float | None:
-                    # Preferred source: estimate from BT/enriched fields:
-                    # rim_ast_total = total_ast * off_ast_rim%
-                    # rim_ast_per100 = rim_ast_total / possessions * 100
-                    poss = bt_metric_value(br, "possessions")
-                    if poss is None or poss <= 0:
-                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
-                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
-                        if tpa is not None and tpa100 is not None and tpa100 > 0:
-                            poss = (float(tpa) * 100.0) / float(tpa100)
-
-                    ast_total = bt_num(br, ["AST_total", "ast_total", "assists", "AST", "ast"])
-                    gp = bt_num(br, ["GP", "gp"])
-                    if ast_total is not None and gp is not None and gp > 0:
-                        # In this pipeline, AST/ast is typically per-game; convert to total assists.
-                        ast_total = float(ast_total) * float(gp)
-
-                    rim_ast_pct = bt_num(br, ["off_ast_rim.value", "off_ast_rim.old_value", "off_ast_rim"])
-                    if (
-                        poss is not None and poss > 0
-                        and ast_total is not None and ast_total >= 0
-                        and rim_ast_pct is not None and rim_ast_pct >= 0
-                    ):
-                        p = float(rim_ast_pct) / 100.0 if float(rim_ast_pct) > 1.0 else float(rim_ast_pct)
-                        rim_ast_total = float(ast_total) * max(0.0, min(1.0, p))
-                        return 100.0 * rim_ast_total / float(poss)
-
-                    # Fallback: pbp metrics rows (if provided).
-                    rk = (
-                        norm_player_name(bt_get(br, ["player_name"])),
-                        norm_team(bt_get(br, ["team"])),
-                        norm_season(bt_get(br, ["year"])),
-                    )
-                    pr = pbp_lookup.get(rk)
-                    if not pr:
-                        # Fallback: name+season match, then fuzzy team tie-break.
-                        candidates = [
-                            r for r in pbp_rows
-                            if norm_player_name(r.get("player", "")) == rk[0]
-                            and norm_season(r.get("season", "")) == rk[2]
-                        ]
-                        if len(candidates) == 1:
-                            pr = candidates[0]
-                        elif candidates:
-                            scored = sorted(
-                                [
-                                    (
-                                        difflib.SequenceMatcher(
-                                            None, rk[1], norm_team(r.get("team", ""))
-                                        ).ratio(),
-                                        r,
-                                    )
-                                    for r in candidates
-                                ],
-                                key=lambda x: x[0],
-                            )
-                            pr = scored[-1][1] if scored and scored[-1][0] >= 0.55 else None
-                    if not pr:
-                        return None
-                    # Prefer precomputed per-100 from pbp metrics when available.
-                    rim_ast_100 = to_float(pr.get("rim_assists_100", ""))
-                    if rim_ast_100 is not None and math.isfinite(rim_ast_100):
-                        return float(rim_ast_100)
-                    poss = bt_metric_value(br, "possessions")
-                    if poss is None or poss <= 0:
-                        tpa = bt_num(br, ["TPA", " TPA", "tpa", " tpa"])
-                        tpa100 = bt_num(br, ["3p/100?", " 3p/100?"])
-                        if tpa is not None and tpa100 is not None and tpa100 > 0:
-                            poss = (float(tpa) * 100.0) / float(tpa100)
-                    if poss is None or poss <= 0:
-                        poss = to_float(pr.get("off_possessions", ""))
-                    if poss is None or poss <= 0:
-                        return None
-                    rim_ast = to_float(pr.get("rim_assists", ""))
-                    if rim_ast is None:
-                        return None
-                    return 100.0 * float(rim_ast) / float(poss)
+                    return bt_metric_value(br, "rim_assists_100_btposs")
 
                 value = rate_for_bt_row(target_row)
                 cohort_vals = [v for v in (rate_for_bt_row(r) for r in cohort) if v is not None and math.isfinite(v)]
