@@ -2368,7 +2368,6 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
           <div class="play-name">{html.escape(label)}</div>
           <div class="play-stack">
             <div class="play-line">
-              <div class="play-mini">Volume</div>
               <div class="play-track">
                 <div class="play-fill play-vol" style="width:{vol_w:.1f}%"></div>
                 <span class="play-badge" style="left:{vol_w:.1f}%">{vol_badge}</span>
@@ -2376,7 +2375,6 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
               <div class="play-tag">{vol_txt}</div>
             </div>
             <div class="play-line">
-              <div class="play-mini">PPP</div>
               <div class="play-track">
                 <div class="play-fill play-ppp" style="width:{ppp_w:.1f}%"></div>
                 <span class="play-badge" style="left:{ppp_w:.1f}%">{ppp_badge}</span>
@@ -3196,18 +3194,13 @@ body {{
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 34px 1fr 82px;
+  grid-template-columns: 1fr 82px;
   gap: 6px;
   align-items: center;
 }}
-.play-mini {{
-  color: var(--muted);
-  font-size: 10px;
-  text-align: right;
-}}
 .play-track {{
   position: relative;
-  height: 10px;
+  height: 13px;
   background: var(--bar-track);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -3227,15 +3220,15 @@ body {{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #0e0e0e;
   color: #fff;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
-  line-height: 15px;
+  line-height: 18px;
   text-align: center;
 }}
 .play-tag {{
