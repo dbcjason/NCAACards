@@ -3704,8 +3704,6 @@ body {{
         </div>
       </div>
 
-      {draft_projection_html}
-
       {bt_percentiles_html}
 
       <div class="shot-wrap">
@@ -3716,6 +3714,7 @@ body {{
             <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
             {shot_svg(shots, season_shots, width=355, height=250)}
           </div>
+          {draft_projection_html}
         </div>
         <div class="right-wrap">
           <div class="right-col">
