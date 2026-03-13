@@ -3177,7 +3177,7 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 10px;
+  gap: 11px;
 }}
 .play-row {{
   display: grid;
@@ -3192,7 +3192,7 @@ body {{
 }}
 .play-stack {{
   display: grid;
-  gap: 5px;
+  gap: 6px;
 }}
 .play-line {{
   display: grid;
