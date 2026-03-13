@@ -2990,10 +2990,6 @@ def build_draft_projection_html(
         proj_label = "2nd Round"
 
     proj_label = display_bucket_label(proj_label)
-    note = ""
-    if undrafted_is_return_school and target_return_profile and target_pick is None:
-        note = "This profile can map to either undrafted outcome or returning to school."
-
     # Display cumulative odds for draft ranges; keep undrafted as standalone.
     display_probs = list(probs)
     for i in range(drafted_bucket_count):
@@ -3016,10 +3012,10 @@ def build_draft_projection_html(
         <h3>NBA Draft Projection</h3>
         <div class="draft-proj-main">{html.escape(proj_label)}</div>
         <div class="draft-proj-sub">Drafted: {100.0 * drafted_prob:.1f}% | 1st Round: {100.0 * first_round_prob:.1f}%</div>
-        {f'<div class="draft-proj-sub">{html.escape(note)}</div>' if note else ''}
         <div class="draft-odds-grid">
           {rows_html}
         </div>
+        <div class="draft-proj-sub">Projections based purely on statistical profile in an averge draft</div>
       </div>
 """
 
@@ -3764,6 +3760,11 @@ body {{
   color: var(--accent);
   margin-top: 2px;
 }}
+.draft-proj-panel {{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}}
 .draft-proj-sub {{
   margin-top: 4px;
   color: var(--muted);
@@ -3773,6 +3774,8 @@ body {{
   margin-top: 8px;
   display: grid;
   gap: 4px;
+  flex: 1 1 auto;
+  align-content: start;
 }}
 .draft-odd-row {{
   display: grid;
