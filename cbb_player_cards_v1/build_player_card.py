@@ -1484,25 +1484,58 @@ def build_draft_projection_html(
         ("rsci_inv", 2.2),  # lower rank number should help
     ]
 
+    rsci_compact_map: dict[str, int] = {}
+    for nkey, rank in rsci_map.items():
+        ckey = _name_key_compact(nkey)
+        if not ckey:
+            continue
+        prev = rsci_compact_map.get(ckey)
+        if prev is None or rank < prev:
+            rsci_compact_map[ckey] = rank
+
+    def rsci_rank_fast(player_name: str, allow_fuzzy: bool) -> int | None:
+        nkey = norm_player_name(player_name)
+        if not nkey:
+            return None
+        if nkey in rsci_map:
+            return rsci_map[nkey]
+        ckey = _name_key_compact(nkey)
+        if ckey in rsci_compact_map:
+            return rsci_compact_map[ckey]
+        if allow_fuzzy:
+            return find_rsci_rank(player_name, rsci_map)
+        return None
+
+    age_height_cache: dict[int, tuple[float | None, float | None]] = {}
+
+    def age_height_for_row_cached(row: dict[str, str]) -> tuple[float | None, float | None]:
+        k = id(row)
+        hit = age_height_cache.get(k)
+        if hit is not None:
+            return hit
+        v = _bio_age_height_for_row(row, bio_lookup)
+        age_height_cache[k] = v
+        return v
+
     def rsci_inverse(rank: int | None) -> float:
         if rank is None:
             return 0.0
         return 1.0 / float(rank)
 
-    def row_feature(row: dict[str, str], key: str) -> float | None:
+    def row_feature(row: dict[str, str], key: str, allow_fuzzy_rsci: bool = False) -> float | None:
         if key == "to_per_inv":
             v = bt_metric_value(row, "to_per")
             if v is None or not math.isfinite(v):
                 return None
             return -float(v)
         if key == "height_inches":
-            _, h = _bio_age_height_for_row(row, bio_lookup)
+            _, h = age_height_for_row_cached(row)
             return h if (h is not None and math.isfinite(h)) else None
         if key == "age":
-            a, _ = _bio_age_height_for_row(row, bio_lookup)
+            a, _ = age_height_for_row_cached(row)
             return a if (a is not None and math.isfinite(a)) else None
         if key == "rsci_inv":
-            rnk = find_rsci_rank(bt_get(row, ["player_name"]), rsci_map)
+            rnk = rsci_rank_fast(bt_get(row, ["player_name"]), allow_fuzzy=allow_fuzzy_rsci)
             return rsci_inverse(rnk)
         return bt_metric_value(row, key)
 
@@ -1533,7 +1566,7 @@ def build_draft_projection_html(
     for r in train_rows:
         feats: dict[str, float | None] = {}
         for k, _w in feature_specs:
-            v = row_feature(r, k)
+            v = row_feature(r, k, allow_fuzzy_rsci=False)
             if v is not None and math.isfinite(v):
                 feats[k] = float(v)
                 raw_values[k].append(float(v))
@@ -1567,7 +1600,7 @@ def build_draft_projection_html(
             out[k] = (float(v) - means[k]) / (stds[k] if stds[k] > 0 else 1.0)
         return out
 
-    target_raw = {k: row_feature(target_row, k) for k, _w in feature_specs}
+    target_raw = {k: row_feature(target_row, k, allow_fuzzy_rsci=True) for k, _w in feature_specs}
     target_norm = normalize(target_raw)
 
     norm_train: list[dict[str, float]] = [normalize(f) for f in train_feat]
