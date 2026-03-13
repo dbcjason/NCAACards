@@ -27,7 +27,7 @@ import random
 import re
 import time
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -2884,29 +2884,63 @@ def build_draft_projection_html(
             return 0.0
         return num / den
 
-    all_feature_keys = sorted({k for c in candidates_raw for k in c["comps"].keys()})
+    model_path = (
+        Path(__file__).resolve().parent.parent
+        / "player_cards_pipeline"
+        / "data"
+        / "models"
+        / "stat_draft_weights_v1.json"
+    )
+
     learned_weights: dict[str, float] = {}
-    for fk in all_feature_keys:
-        xs_d: list[float] = []
-        ys_d: list[float] = []
-        xs_p: list[float] = []
-        ys_p: list[float] = []
-        for c in candidates_raw:
-            v = c["comps"].get(fk)
-            if v is None or not math.isfinite(v):
-                continue
-            picked = c["pick"] is not None
-            xs_d.append(float(v))
-            ys_d.append(1.0 if picked else 0.0)
-            if picked:
-                pnum = int(c["pick"])
-                xs_p.append(float(v))
-                ys_p.append((61.0 - float(pnum)) / 60.0)
-        c_d = corr(xs_d, ys_d)
-        c_p = corr(xs_p, ys_p)
-        w = max(0.0, 0.35 * c_d + 0.65 * c_p)
-        if math.isfinite(w) and w > 0.0:
-            learned_weights[fk] = w
+    if model_path.exists():
+        try:
+            payload = json.loads(model_path.read_text(encoding="utf-8"))
+            wobj = payload.get("weights", {}) if isinstance(payload, dict) else {}
+            if isinstance(wobj, dict):
+                for k, v in wobj.items():
+                    fv = to_float(v)
+                    if fv is not None and math.isfinite(fv) and fv > 0.0:
+                        learned_weights[str(k)] = float(fv)
+        except Exception:
+            learned_weights = {}
+
+    if not learned_weights:
+        all_feature_keys = sorted({k for c in candidates_raw for k in c["comps"].keys()})
+        for fk in all_feature_keys:
+            xs_d: list[float] = []
+            ys_d: list[float] = []
+            xs_p: list[float] = []
+            ys_p: list[float] = []
+            for c in candidates_raw:
+                v = c["comps"].get(fk)
+                if v is None or not math.isfinite(v):
+                    continue
+                picked = c["pick"] is not None
+                xs_d.append(float(v))
+                ys_d.append(1.0 if picked else 0.0)
+                if picked:
+                    pnum = int(c["pick"])
+                    xs_p.append(float(v))
+                    ys_p.append((61.0 - float(pnum)) / 60.0)
+            c_d = corr(xs_d, ys_d)
+            c_p = corr(xs_p, ys_p)
+            w = max(0.0, 0.35 * c_d + 0.65 * c_p)
+            if math.isfinite(w) and w > 0.0:
+                learned_weights[fk] = w
+        if learned_weights:
+            try:
+                model_path.parent.mkdir(parents=True, exist_ok=True)
+                payload = {
+                    "model": "stat_draft_projection",
+                    "version": 1,
+                    "created_utc": datetime.now(timezone.utc).isoformat(),
+                    "feature_count": len(learned_weights),
+                    "weights": learned_weights,
+                }
+                model_path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+            except Exception:
+                pass
 
     if not learned_weights:
         return '<div class="panel"><h3>Statistical NBA Draft Projection</h3><div class="shot-meta">Unable to learn feature weights for projection.</div></div>'
