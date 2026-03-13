@@ -1411,288 +1411,6 @@ def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
     return None
 
 
-def pick_to_draft_bucket(pick: int | None) -> str:
-    if pick is None or pick <= 0 or pick > 60:
-        return "Undrafted"
-    if pick == 1:
-        return "1st Pick"
-    if pick <= 5:
-        return "Top 5"
-    if pick <= 10:
-        return "Top 10"
-    if pick <= 14:
-        return "Lottery"
-    if pick <= 20:
-        return "Top 20"
-    if pick <= 30:
-        return "Late 1st Round (21-30)"
-    if pick <= 40:
-        return "Early 2nd Round (31-40)"
-    if pick <= 50:
-        return "Mid 2nd Round (41-50)"
-    return "Late 2nd Round (51-60)"
-
-
-def parse_pick_value(raw: Any) -> int | None:
-    s = str(raw or "").strip()
-    if not s:
-        return None
-    m = re.search(r"(\d+)", s)
-    if not m:
-        return None
-    try:
-        v = int(m.group(1))
-        return v if v > 0 else None
-    except Exception:
-        return None
-
-
-def build_draft_projection_html(
-    target: PlayerGameStats,
-    bt_rows: list[dict[str, str]],
-    bio_lookup: dict[tuple[str, str, str], dict[str, str]],
-    rsci_map: dict[str, int],
-) -> str:
-    if not bt_rows:
-        return '<div class="panel" style="margin-top:14px;"><h3>NBA Draft Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
-
-    target_row = bt_find_target_row(bt_rows, target)
-    if not target_row:
-        return '<div class="panel" style="margin-top:14px;"><h3>NBA Draft Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
-
-    # Exclude all seasons for players still active in 2026+.
-    still_active: set[str] = set()
-    for r in bt_rows:
-        ys = norm_season(bt_get(r, ["year"]))
-        if ys.isdigit() and int(ys) >= 2026:
-            still_active.add(norm_player_name(bt_get(r, ["player_name"])))
-
-    feature_specs: list[tuple[str, float]] = [
-        ("bpm", 2.0),
-        ("dbpm", 1.0),
-        ("rapm", 1.3),
-        ("onoff_net_rating", 1.3),
-        ("ts_per", 1.0),
-        ("tp_per", 0.8),
-        ("usg", 0.9),
-        ("ast_per", 0.8),
-        ("to_per_inv", 0.7),  # inverse turnover%
-        ("stl_per", 0.8),
-        ("blk_per", 0.8),
-        ("height_inches", 1.2),
-        ("age", 1.8),
-        ("rsci_inv", 2.2),  # lower rank number should help
-    ]
-
-    rsci_compact_map: dict[str, int] = {}
-    for nkey, rank in rsci_map.items():
-        ckey = _name_key_compact(nkey)
-        if not ckey:
-            continue
-        prev = rsci_compact_map.get(ckey)
-        if prev is None or rank < prev:
-            rsci_compact_map[ckey] = rank
-
-    def rsci_rank_fast(player_name: str, allow_fuzzy: bool) -> int | None:
-        nkey = norm_player_name(player_name)
-        if not nkey:
-            return None
-        if nkey in rsci_map:
-            return rsci_map[nkey]
-        ckey = _name_key_compact(nkey)
-        if ckey in rsci_compact_map:
-            return rsci_compact_map[ckey]
-        if allow_fuzzy:
-            return find_rsci_rank(player_name, rsci_map)
-        return None
-
-    age_height_cache: dict[int, tuple[float | None, float | None]] = {}
-
-    def age_height_for_row_cached(row: dict[str, str]) -> tuple[float | None, float | None]:
-        k = id(row)
-        hit = age_height_cache.get(k)
-        if hit is not None:
-            return hit
-        v = _bio_age_height_for_row(row, bio_lookup)
-        age_height_cache[k] = v
-        return v
-
-    def rsci_inverse(rank: int | None) -> float:
-        if rank is None:
-            return 0.0
-        return 1.0 / float(rank)
-
-    def row_feature(row: dict[str, str], key: str, allow_fuzzy_rsci: bool = False) -> float | None:
-        if key == "to_per_inv":
-            v = bt_metric_value(row, "to_per")
-            if v is None or not math.isfinite(v):
-                return None
-            return -float(v)
-        if key == "height_inches":
-            _, h = age_height_for_row_cached(row)
-            return h if (h is not None and math.isfinite(h)) else None
-        if key == "age":
-            a, _ = age_height_for_row_cached(row)
-            return a if (a is not None and math.isfinite(a)) else None
-        if key == "rsci_inv":
-            rnk = rsci_rank_fast(bt_get(row, ["player_name"]), allow_fuzzy=allow_fuzzy_rsci)
-            return rsci_inverse(rnk)
-        return bt_metric_value(row, key)
-
-    target_pick = parse_pick_value(bt_get(target_row, ["pick"]))
-    target_bucket = pick_to_draft_bucket(target_pick)
-
-    train_rows: list[dict[str, str]] = []
-    for r in bt_rows:
-        ys = norm_season(bt_get(r, ["year"]))
-        if not ys.isdigit():
-            continue
-        y = int(ys)
-        if y > 2025:
-            continue
-        pname = norm_player_name(bt_get(r, ["player_name"]))
-        if not pname or pname in still_active:
-            continue
-        # Must have known outcome: drafted pick or considered undrafted.
-        # Keep all players for full scope.
-        train_rows.append(r)
-
-    if len(train_rows) < 200:
-        return '<div class="panel" style="margin-top:14px;"><h3>NBA Draft Projection</h3><div class="shot-meta">Insufficient historical training data.</div></div>'
-
-    # Build feature matrix with median imputation and z-score normalization.
-    raw_values: dict[str, list[float]] = {k: [] for k, _ in feature_specs}
-    train_feat: list[dict[str, float | None]] = []
-    for r in train_rows:
-        feats: dict[str, float | None] = {}
-        for k, _w in feature_specs:
-            v = row_feature(r, k, allow_fuzzy_rsci=False)
-            if v is not None and math.isfinite(v):
-                feats[k] = float(v)
-                raw_values[k].append(float(v))
-            else:
-                feats[k] = None
-        train_feat.append(feats)
-
-    medians: dict[str, float] = {}
-    means: dict[str, float] = {}
-    stds: dict[str, float] = {}
-    for k, _w in feature_specs:
-        vals = sorted(raw_values[k])
-        if vals:
-            n = len(vals)
-            medians[k] = vals[n // 2] if n % 2 == 1 else 0.5 * (vals[n // 2 - 1] + vals[n // 2])
-            mu = sum(vals) / n
-            means[k] = mu
-            var = sum((x - mu) ** 2 for x in vals) / max(1, n - 1)
-            stds[k] = math.sqrt(var) if var > 1e-12 else 1.0
-        else:
-            medians[k] = 0.0
-            means[k] = 0.0
-            stds[k] = 1.0
-
-    def normalize(feats: dict[str, float | None]) -> dict[str, float]:
-        out: dict[str, float] = {}
-        for k, _w in feature_specs:
-            v = feats.get(k)
-            if v is None or not math.isfinite(v):
-                v = medians[k]
-            out[k] = (float(v) - means[k]) / (stds[k] if stds[k] > 0 else 1.0)
-        return out
-
-    target_raw = {k: row_feature(target_row, k, allow_fuzzy_rsci=True) for k, _w in feature_specs}
-    target_norm = normalize(target_raw)
-
-    norm_train: list[dict[str, float]] = [normalize(f) for f in train_feat]
-    picks: list[int | None] = [parse_pick_value(bt_get(r, ["pick"])) for r in train_rows]
-    buckets: list[str] = [pick_to_draft_bucket(p) for p in picks]
-
-    # Weighted nearest-profile projection (smoothed to avoid single-neighbor collapse).
-    sims: list[tuple[float, int]] = []
-    for i, feats in enumerate(norm_train):
-        dist2 = 0.0
-        for k, w in feature_specs:
-            d = target_norm[k] - feats[k]
-            dist2 += float(w) * (d * d)
-        dist = math.sqrt(max(0.0, dist2))
-        # Smoother than exp(-dist^2/2): prevents extreme one-row domination.
-        sim = 1.0 / (1.0 + dist)
-        sims.append((sim, i))
-    sims.sort(key=lambda x: x[0], reverse=True)
-    top = sims[: min(2000, len(sims))]
-    total_w = sum(w for w, _ in top)
-    if total_w <= 0:
-        return '<div class="panel" style="margin-top:14px;"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute profile similarity.</div></div>'
-
-    bucket_names = [
-        "1st Pick",
-        "Top 5",
-        "Top 10",
-        "Lottery",
-        "Top 20",
-        "Late 1st Round (21-30)",
-        "Early 2nd Round (31-40)",
-        "Mid 2nd Round (41-50)",
-        "Late 2nd Round (51-60)",
-        "Undrafted",
-    ]
-    bucket_prob: dict[str, float] = {b: 0.0 for b in bucket_names}
-    drafted_w = 0.0
-    first_round_w = 0.0
-    # Use a continuous proxy pick for range projection; undrafted maps above 60.
-    expected_pick_num = 0.0
-    for w, idx in top:
-        p = picks[idx]
-        b = buckets[idx]
-        bucket_prob[b] = bucket_prob.get(b, 0.0) + w
-        p_proxy = float(p) if (p is not None and 1 <= p <= 60) else 75.0
-        expected_pick_num += w * p_proxy
-        if p is not None and 1 <= p <= 60:
-            drafted_w += w
-            if p <= 30:
-                first_round_w += w
-
-    for b in bucket_names:
-        bucket_prob[b] = 100.0 * bucket_prob.get(b, 0.0) / total_w
-
-    drafted_pct = 100.0 * drafted_w / total_w
-    first_round_pct = 100.0 * first_round_w / total_w
-    expected_pick = expected_pick_num / total_w
-
-    def bucket_from_expected_pick(x: float, drafted_prob: float) -> str:
-        if drafted_prob < 35.0 or x > 60.0:
-            return "Undrafted"
-        if x <= 1.5:
-            return "1st Pick"
-        if x <= 5.5:
-            return "Top 5"
-        if x <= 10.5:
-            return "Top 10"
-        if x <= 14.5:
-            return "Lottery"
-        if x <= 20.5:
-            return "Top 20"
-        if x <= 30.5:
-            return "Late 1st Round (21-30)"
-        if x <= 40.5:
-            return "Early 2nd Round (31-40)"
-        if x <= 50.5:
-            return "Mid 2nd Round (41-50)"
-        if x <= 60.5:
-            return "Late 2nd Round (51-60)"
-        return "Undrafted"
-
-    projected_bucket = bucket_from_expected_pick(expected_pick, drafted_pct)
-
-    return f"""
-      <div class="panel" style="margin-top:14px;">
-        <h3>NBA Draft Projection</h3>
-        <div class="draft-main">{html.escape(projected_bucket)}</div>
-        <div class="draft-sub">Drafted: {drafted_pct:.1f}% | 1st Round: {first_round_pct:.1f}%</div>
-      </div>
-"""
-
-
 def build_advanced_html(
     target: PlayerGameStats,
     lebron_rows: list[dict[str, str]],
@@ -3227,7 +2945,6 @@ def render_card(
     stats: PlayerGameStats,
     bio: dict[str, str],
     rsci_display: str,
-    draft_projection_html: str,
     shots: list[dict[str, Any]],
     season_shots: list[dict[str, Any]],
     per_game_pcts: dict[str, float | None],
@@ -3476,17 +3193,6 @@ body {{
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 8px;
-}}
-.draft-main {{
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 1.2;
-  color: var(--accent);
-}}
-.draft-sub {{
-  margin-top: 6px;
-  font-size: 12px;
-  color: var(--muted);
 }}
 .trend-wrap {{
   margin-top: 8px;
@@ -3774,7 +3480,6 @@ body {{
             <div class="shot-meta">{html.escape(shot_pps_oe_line)}</div>
             {shot_svg(shots, season_shots, width=355, height=250)}
           </div>
-          {draft_projection_html}
         </div>
         <div class="right-wrap">
           <div class="right-col">
@@ -4147,13 +3852,11 @@ def main() -> None:
     per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
     rsci_rank = find_rsci_rank(target.player, rsci_map)
     rsci_display = ordinal(int(rsci_rank)) if rsci_rank is not None else "Unranked"
-    draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
-    stage("Computed percentiles, RSCI, and draft projection")
+    stage("Computed percentiles and RSCI")
     render_card(
         target,
         bio,
         rsci_display,
-        draft_projection_html,
         shots,
         season_shots,
         per_game_pcts,
