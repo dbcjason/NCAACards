@@ -1695,11 +1695,11 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
             return None
         return 100.0 * float(rim_att) / float(poss)
     if key == "dunks_100_bt":
-        dunks_att = bt_num(row, ["dunksmiss+dunksmade", " dunksmiss+dunksmade", "dunksatt", " dunksatt"])
+        dunks_made = bt_num(row, ["dunksmade", " dunksmade"])
         poss = bt_possessions_estimate(row)
-        if dunks_att is None or poss is None or poss <= 0:
+        if dunks_made is None or poss is None or poss <= 0:
             return None
-        return 100.0 * float(dunks_att) / float(poss)
+        return 100.0 * float(dunks_made) / float(poss)
     if key == "bpm":
         # Use game-BPM columns from Bart exports per user preference.
         return bt_num_priority(row, ["gbpm", "GBPM", " gbpm", "bpm", "BPM", " bpm"])
