@@ -1344,6 +1344,15 @@ def load_rsci_rankings(path: Path) -> dict[str, int]:
     return out
 
 
+def _name_key_compact(v: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", norm_player_name(v))
+
+
+def _name_tokens(v: str) -> list[str]:
+    s = norm_player_name(v)
+    return [t for t in re.split(r"[^a-z0-9]+", s) if t]
+
+
 def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
     if not rsci_map:
         return None
@@ -1353,9 +1362,41 @@ def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
     if key in rsci_map:
         return rsci_map[key]
 
+    compact_key = _name_key_compact(player_name)
+    if compact_key:
+        by_compact: dict[str, tuple[str, int]] = {}
+        for cand, rank in rsci_map.items():
+            ckey = _name_key_compact(cand)
+            if not ckey:
+                continue
+            prev = by_compact.get(ckey)
+            if prev is None or rank < prev[1]:
+                by_compact[ckey] = (cand, rank)
+        hit = by_compact.get(compact_key)
+        if hit is not None:
+            return hit[1]
+
+    # Strong token/last-name fallback (handles initials, punctuation, suffix variance).
+    target_tokens = _name_tokens(player_name)
+    if not target_tokens:
+        return None
+    target_last = target_tokens[-1]
+    target_first_initial = target_tokens[0][0] if target_tokens[0] else ""
     candidates = list(rsci_map.keys())
+    narrowed: list[str] = []
+    for cand in candidates:
+        ct = _name_tokens(cand)
+        if not ct:
+            continue
+        last_ok = (ct[-1] == target_last)
+        init_ok = bool(target_first_initial and ct[0].startswith(target_first_initial))
+        overlap = len(set(target_tokens) & set(ct))
+        if (last_ok and init_ok) or overlap >= max(1, min(2, len(target_tokens) - 1)):
+            narrowed.append(cand)
+    pool = narrowed if narrowed else candidates
+
     scored = sorted(
-        ((difflib.SequenceMatcher(None, key, cand).ratio(), cand) for cand in candidates),
+        ((difflib.SequenceMatcher(None, key, cand).ratio(), cand) for cand in pool),
         key=lambda x: x[0],
         reverse=True,
     )
@@ -1363,7 +1404,8 @@ def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
         return None
     best_score, best_name = scored[0]
     second_score = scored[1][0] if len(scored) > 1 else 0.0
-    if best_score >= 0.88 and (best_score - second_score) >= 0.02:
+    # Relax threshold to avoid false "Unranked" when obvious match exists.
+    if best_score >= 0.82 and (best_score - second_score) >= 0.005:
         return rsci_map.get(best_name)
     return None
 
