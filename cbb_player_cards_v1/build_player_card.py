@@ -373,6 +373,16 @@ def inject_enriched_fields_into_bt_rows(
             if v is not None and math.isfinite(v):
                 r[k] = str(v)
 
+        # Net points summary from enriched field.
+        net_o = to_float(_enriched_nested_value(er, "net_pts", "o"))
+        net_d = to_float(_enriched_nested_value(er, "net_pts", "d"))
+        if net_o is not None and math.isfinite(net_o):
+            r["net_pts.o"] = str(net_o)
+        if net_d is not None and math.isfinite(net_d):
+            r["net_pts.d"] = str(net_d)
+        if net_o is not None and net_d is not None and math.isfinite(net_o) and math.isfinite(net_d):
+            r["net_pts.value"] = str(float(net_o) + float(net_d))
+
 
 def _shot_range_from_xy_ft(x_ft: float, y_ft: float) -> str:
     d = math.hypot(float(x_ft), float(y_ft))
@@ -1835,6 +1845,15 @@ def bt_metric_value(row: dict[str, str], key: str) -> float | None:
         if on_off is None or on_def is None or off_off is None or off_def is None:
             return None
         return (float(on_off) - float(on_def)) - (float(off_off) - float(off_def))
+    if key == "net_pts":
+        v = bt_num(row, ["net_pts.value"])
+        if v is not None:
+            return v
+        o = bt_num(row, ["net_pts.o"])
+        d = bt_num(row, ["net_pts.d"])
+        if o is None or d is None:
+            return None
+        return float(o) + float(d)
     if key == "rim_pct":
         return bt_num(row, ["rimmade/(rimmade+rimmiss)", " rimmade/(rimmade+rimmiss)"])
     if key == "mid_pct":
@@ -2171,7 +2190,7 @@ def bt_category_percentile(
 
 def build_grade_boxes_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
     categories: list[tuple[str, list[str]]] = [
-        ("Impact", ["bpm", "rapm", "onoff_net_rating"]),
+        ("Impact", ["bpm", "rapm", "net_pts", "onoff_net_rating"]),
         ("Scoring", ["usg", "ts_per", "twop_per", "dunksmade", "rim_pct", "mid_pct", "tp_per", "threepa100", "ft_per", "ftr"]),
         ("Playmaking", ["ast_per", "to_per", "ast_tov", "rim_assists_100_btposs"]),
         ("Defense", ["stl_per", "blk_per", "dbpm"]),
@@ -2226,6 +2245,7 @@ def build_bt_percentile_html(
         "Impact": [
             ("BPM", "bpm", False, 1),
             ("RAPM", "rapm", False, 1),
+            ("Net Pts", "net_pts", False, 1),
             ("On/Off NetR", "onoff_net_rating", False, 1),
         ],
         "Scoring": [
@@ -2723,7 +2743,7 @@ def build_draft_projection_html(
         "bpm", "dbpm", "usg", "ts_per", "twop_per", "tp_per",
         "ast_per", "to_per", "stl_per", "blk_per", "orb_per", "drb_per",
         "ftr", "threepa100", "rim_att_100_bt", "dunks_100_bt",
-        "rim_assists_100_btposs", "rapm", "onoff_net_rating",
+        "rim_assists_100_btposs", "rapm", "net_pts", "onoff_net_rating",
     ]
 
     # Build per-year percentile maps once for comparability across eras.
@@ -3011,7 +3031,7 @@ def build_draft_projection_html(
 
     # Elite-profile floor:
     # prevent clearly elite younger prospects from getting implausibly high undrafted odds.
-    elite_keys = ["bpm", "dbpm", "rapm", "onoff_net_rating", "ts_per", "usg", "ast_per", "tp_per"]
+    elite_keys = ["bpm", "dbpm", "rapm", "net_pts", "onoff_net_rating", "ts_per", "usg", "ast_per", "tp_per"]
     elite_vals = [target_vec[k] for k in elite_keys if k in target_vec and math.isfinite(target_vec[k])]
     elite_stat_score = (sum(elite_vals) / len(elite_vals)) if elite_vals else 0.0
     elite_age = (t_age is not None and math.isfinite(t_age) and float(t_age) <= 20.8)

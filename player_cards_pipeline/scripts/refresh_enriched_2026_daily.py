@@ -9,6 +9,7 @@ output used by `build_player_card.py`.
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import subprocess
 import tempfile
@@ -63,6 +64,25 @@ def copy_sources(src_files: list[Path], dst_dir: Path) -> None:
         shutil.copy2(src, dst_dir / src.name)
 
 
+def verify_net_pts_present(src_files: list[Path]) -> None:
+    checked = 0
+    with_net = 0
+    for p in src_files:
+        obj = json.loads(p.read_text(encoding="utf-8"))
+        players = obj.get("players", []) if isinstance(obj, dict) else []
+        has = False
+        for r in players:
+            if isinstance(r, dict) and isinstance(r.get("net_pts"), dict):
+                has = True
+                break
+        checked += 1
+        if has:
+            with_net += 1
+    if checked == 0 or with_net == 0:
+        raise RuntimeError("Refreshed enriched files do not contain net_pts; aborting refresh.")
+    print(f"net_pts check: {with_net}/{checked} source files contain net_pts")
+
+
 def run_combiner(project_root: Path, input_dir: Path) -> None:
     combine_script = project_root / "player_cards_pipeline" / "scripts" / "combine_enriched_players_json.py"
     out_dir = project_root / "player_cards_pipeline" / "data" / "manual" / "enriched_players"
@@ -104,6 +124,7 @@ def main() -> None:
         if not src_files:
             raise RuntimeError("No players_all_Men_2025_*.json files found in downloaded zip.")
 
+        verify_net_pts_present(src_files)
         copy_sources(src_files, source_dir)
         run_combiner(root, source_dir)
 
@@ -116,4 +137,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
