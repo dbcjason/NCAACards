@@ -2945,9 +2945,6 @@ def build_draft_projection_html(
     probs = [drafted_prob * m for m in drafted_mix]
     probs.append(1.0 - drafted_prob)
 
-    proj_idx = max(range(len(DRAFT_BUCKETS)), key=lambda i: probs[i])
-    proj_label = DRAFT_BUCKETS[proj_idx][0]
-
     drafted_prob = sum(probs[:9])
     first_round_prob = sum(probs[:6])
     target_yr_raw = norm_text(bt_get(target_row, ["yr"]))
@@ -2970,6 +2967,35 @@ def build_draft_projection_html(
             return "Undrafted"
         return lbl
 
+    # Projected range should be based on cumulative draft-range probability,
+    # not single disjoint bucket maxima (which over-selects Undrafted/Return).
+    cum_probs: list[float] = []
+    csum = 0.0
+    for i in range(9):
+        csum += probs[i]
+        cum_probs.append(csum)
+
+    if probs[9] >= 0.5:
+        proj_label = "Undrafted/Return to School"
+    elif cum_probs[0] >= 0.5:
+        proj_label = "1st Pick"
+    elif cum_probs[1] >= 0.5:
+        proj_label = "Top 5"
+    elif cum_probs[2] >= 0.5:
+        proj_label = "Top 10"
+    elif cum_probs[3] >= 0.5:
+        proj_label = "Lottery"
+    elif cum_probs[4] >= 0.5:
+        proj_label = "Top 20"
+    elif cum_probs[5] >= 0.5:
+        proj_label = "Late 1st Round"
+    elif cum_probs[6] >= 0.5:
+        proj_label = "Early 2nd Round"
+    elif cum_probs[7] >= 0.5:
+        proj_label = "Mid 2nd Round"
+    else:
+        proj_label = "Late 2nd Round"
+
     proj_label = display_bucket_label(proj_label)
     note = ""
     if undrafted_is_return_school and target_return_profile and target_pick is None:
@@ -2977,10 +3003,8 @@ def build_draft_projection_html(
 
     # Display cumulative odds for draft ranges (through Late 2nd); keep undrafted as standalone.
     display_probs = list(probs)
-    cum = 0.0
     for i in range(9):
-        cum += probs[i]
-        display_probs[i] = cum
+        display_probs[i] = cum_probs[i]
     display_probs[9] = probs[9]
 
     rows_html = ""
