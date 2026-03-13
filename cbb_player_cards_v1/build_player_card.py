@@ -25,6 +25,7 @@ import json
 import math
 import random
 import re
+import time
 from collections import defaultdict
 from datetime import datetime
 from dataclasses import dataclass
@@ -3913,12 +3914,21 @@ def main() -> None:
     ap.add_argument("--out-html", required=True, help="Output HTML path.")
     ap.add_argument("--min-games", type=int, default=5, help="Min games for percentile cohort.")
     args = ap.parse_args()
+    t0 = time.perf_counter()
+    t_last = t0
+
+    def stage(label: str) -> None:
+        nonlocal t_last
+        now = time.perf_counter()
+        print(f"[timing] {label}: +{(now - t_last):.3f}s (total {(now - t0):.3f}s)")
+        t_last = now
 
     plays_rows: list[dict[str, str]] = []
     if args.plays_csv:
         plays_path = Path(args.plays_csv)
         if plays_path.exists():
             _, plays_rows = read_csv_rows(plays_path)
+    stage("Loaded plays CSV")
 
     # Optional advanced sources.
     bt_rows: list[dict[str, str]] = []
@@ -3941,6 +3951,7 @@ def main() -> None:
         _, adv_rows = read_csv_rows(Path(args.advgames_csv))
     if args.pbp_metrics_csv:
         _, pbp_rows = read_csv_rows(Path(args.pbp_metrics_csv))
+    stage("Loaded optional CSV inputs")
 
     rsci_csv_path = Path(args.rsci_csv) if args.rsci_csv else (
         Path(__file__).resolve().parent.parent
@@ -3951,9 +3962,11 @@ def main() -> None:
         / "rsci_rankings.csv"
     )
     rsci_map = load_rsci_rankings(rsci_csv_path) if rsci_csv_path.exists() else {}
+    stage("Loaded RSCI rankings")
 
     if bt_rows:
         inject_enriched_fields_into_bt_rows(bt_rows)
+    stage("Injected enriched fields into BT rows")
 
     games_by_player: dict[tuple[str, str, str], set[str]] = {}
     players: list[PlayerGameStats] = build_player_pool_from_bt(bt_rows) if bt_rows else []
@@ -3967,8 +3980,10 @@ def main() -> None:
         players = list(stats_map.values())
     if not players:
         raise RuntimeError("Could not build player pool from BT data (and no usable plays fallback).")
+    stage("Built player pool")
 
     target = choose_player(players, args.player, args.team or None, args.season or None)
+    stage("Selected target player")
 
     bio_lookup: dict[tuple[str, str, str], dict[str, str]] = {}
     if args.bio_csv:
@@ -3987,6 +4002,7 @@ def main() -> None:
         inches = bt_num(target_bt_row, ["inches", " inches"])
         if inches is not None and math.isfinite(inches):
             bio["height"] = str(int(round(inches)))
+    stage("Loaded/merged bio fields")
 
     if args.bt_playerstat_json:
         bt_playerstat_rows = load_bt_playerstat_rows_from_source(args.bt_playerstat_json)
@@ -4013,6 +4029,7 @@ def main() -> None:
                 bt_playerstat_rows = load_bt_playerstat_rows_from_source(bt_ps_url)
             except Exception:
                 bt_playerstat_rows = []
+    stage("Loaded Bart playerstat JSON")
 
     bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
     grade_boxes_html = build_grade_boxes_html(target, bt_rows)
@@ -4023,6 +4040,7 @@ def main() -> None:
     shot_diet_html = build_shot_diet_html(target, bt_rows)
     player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
+    stage("Built card section HTML blocks")
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
     per_game_override = bt_per_game_overrides(target, bt_rows)
 
@@ -4045,6 +4063,7 @@ def main() -> None:
                     "range": rng,
                 }
             )
+    stage("Built shot data from plays/enriched")
 
     # Prefer enriched shot bins for chart plotting when available.
     enriched_lookup = load_enriched_lookup_for_script_season(target.season)
@@ -4070,6 +4089,7 @@ def main() -> None:
     rsci_rank = find_rsci_rank(target.player, rsci_map)
     rsci_display = ordinal(int(rsci_rank)) if rsci_rank is not None else "Unranked"
     draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
+    stage("Computed percentiles, RSCI, and draft projection")
     render_card(
         target,
         bio,
@@ -4092,6 +4112,7 @@ def main() -> None:
         per_game_override,
         Path(args.out_html),
     )
+    stage("Rendered HTML card")
 
     print(f"Wrote card: {args.out_html}")
     print(f"Player: {target.player} | Team: {target.team} | Season: {target.season}")
