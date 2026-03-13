@@ -1414,13 +1414,9 @@ def find_rsci_rank(player_name: str, rsci_map: dict[str, int]) -> int | None:
 DRAFT_BUCKETS: list[tuple[str, int | None, int | None]] = [
     ("1st Pick", 1, 1),
     ("Top 5", 2, 5),
-    ("Top 10", 6, 10),
-    ("Lottery", 11, 14),
-    ("Top 20", 15, 20),
+    ("Lottery", 6, 14),
     ("Late 1st Round", 21, 30),
-    ("Early 2nd Round", 31, 40),
-    ("Mid 2nd Round", 41, 50),
-    ("Late 2nd Round", 51, 60),
+    ("2nd Round", 31, 60),
     ("Undrafted/Return to School", None, None),
 ]
 
@@ -1446,20 +1442,12 @@ def draft_bucket_index_for_pick(pick: int | None) -> int:
         return 0
     if 2 <= pick <= 5:
         return 1
-    if 6 <= pick <= 10:
+    if 6 <= pick <= 14:
         return 2
-    if 11 <= pick <= 14:
-        return 3
-    if 15 <= pick <= 20:
-        return 4
     if 21 <= pick <= 30:
-        return 5
-    if 31 <= pick <= 40:
-        return 6
-    if 41 <= pick <= 50:
-        return 7
-    if 51 <= pick <= 60:
-        return 8
+        return 3
+    if 31 <= pick <= 60:
+        return 4
     return len(DRAFT_BUCKETS) - 1
 
 
@@ -2898,7 +2886,11 @@ def build_draft_projection_html(
     if len(candidates_raw) < 500:
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Insufficient historical sample for projection.</div></div>'
 
-    drafted_candidates = [c for c in candidates_raw if c["pick"] is not None and int(c["bucket"]) < 9]
+    drafted_bucket_count = len(DRAFT_BUCKETS) - 1
+    drafted_candidates = [
+        c for c in candidates_raw
+        if c["pick"] is not None and int(c["bucket"]) < drafted_bucket_count
+    ]
     if len(drafted_candidates) < 350:
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Not enough drafted history to build projection.</div></div>'
 
@@ -2928,14 +2920,17 @@ def build_draft_projection_html(
         return '<div class="panel"><h3>NBA Draft Projection</h3><div class="shot-meta">Could not compute projection weights.</div></div>'
 
     # Drafted-only conditional bucket mix.
-    drafted_bucket_w = [0.0 for _ in range(9)]
+    drafted_bucket_w = [0.0 for _ in range(drafted_bucket_count)]
     for w, idx, _gap in drafted_neighbor_weights:
         drafted_bucket_w[idx] += w
     drafted_total = sum(drafted_bucket_w)
     if drafted_total <= 0:
-        drafted_mix = [1.0 / 9.0 for _ in range(9)]
+        drafted_mix = [1.0 / drafted_bucket_count for _ in range(drafted_bucket_count)]
     else:
-        drafted_mix = [(drafted_bucket_w[i] + 0.10) / (drafted_total + 9 * 0.10) for i in range(9)]
+        drafted_mix = [
+            (drafted_bucket_w[i] + 0.10) / (drafted_total + drafted_bucket_count * 0.10)
+            for i in range(drafted_bucket_count)
+        ]
 
     # Step 2: undrafted gate based on "how drafted-like" this profile is.
     drafted_scores = [float(c["score"]) for c in drafted_candidates if c.get("score") is not None and math.isfinite(float(c["score"]))]
@@ -2950,8 +2945,9 @@ def build_draft_projection_html(
     probs = [drafted_prob * m for m in drafted_mix]
     probs.append(max(0.0, 1.0 - drafted_prob))
 
-    drafted_prob = sum(probs[:9])
-    first_round_prob = sum(probs[:6])
+    drafted_prob = sum(probs[:drafted_bucket_count])
+    # Buckets through Late 1st Round.
+    first_round_prob = sum(probs[:4])
     target_yr_raw = norm_text(bt_get(target_row, ["yr"]))
     target_return_profile = (
         ("fr" in target_yr_raw)
@@ -2976,41 +2972,33 @@ def build_draft_projection_html(
     # not single disjoint bucket maxima (which over-selects Undrafted/Return).
     cum_probs: list[float] = []
     csum = 0.0
-    for i in range(9):
+    for i in range(drafted_bucket_count):
         csum += probs[i]
         cum_probs.append(csum)
 
-    if probs[9] >= 0.5:
+    if probs[drafted_bucket_count] >= 0.5:
         proj_label = "Undrafted/Return to School"
     elif cum_probs[0] >= 0.5:
         proj_label = "1st Pick"
     elif cum_probs[1] >= 0.5:
         proj_label = "Top 5"
     elif cum_probs[2] >= 0.5:
-        proj_label = "Top 10"
-    elif cum_probs[3] >= 0.5:
         proj_label = "Lottery"
-    elif cum_probs[4] >= 0.5:
-        proj_label = "Top 20"
-    elif cum_probs[5] >= 0.5:
+    elif cum_probs[3] >= 0.5:
         proj_label = "Late 1st Round"
-    elif cum_probs[6] >= 0.5:
-        proj_label = "Early 2nd Round"
-    elif cum_probs[7] >= 0.5:
-        proj_label = "Mid 2nd Round"
     else:
-        proj_label = "Late 2nd Round"
+        proj_label = "2nd Round"
 
     proj_label = display_bucket_label(proj_label)
     note = ""
     if undrafted_is_return_school and target_return_profile and target_pick is None:
         note = "This profile can map to either undrafted outcome or returning to school."
 
-    # Display cumulative odds for draft ranges (through Late 2nd); keep undrafted as standalone.
+    # Display cumulative odds for draft ranges; keep undrafted as standalone.
     display_probs = list(probs)
-    for i in range(9):
+    for i in range(drafted_bucket_count):
         display_probs[i] = cum_probs[i]
-    display_probs[9] = probs[9]
+    display_probs[drafted_bucket_count] = probs[drafted_bucket_count]
 
     rows_html = ""
     for i, (lbl, _a, _b) in enumerate(DRAFT_BUCKETS):
