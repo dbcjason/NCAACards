@@ -2368,6 +2368,7 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
           <div class="play-name">{html.escape(label)}</div>
           <div class="play-stack">
             <div class="play-line">
+              <div class="play-mini">Volume</div>
               <div class="play-track">
                 <div class="play-fill play-vol" style="width:{vol_w:.1f}%"></div>
                 <span class="play-badge" style="left:{vol_w:.1f}%">{vol_badge}</span>
@@ -2375,6 +2376,7 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
               <div class="play-tag">{vol_txt}</div>
             </div>
             <div class="play-line">
+              <div class="play-mini">PPP</div>
               <div class="play-track">
                 <div class="play-fill play-ppp" style="width:{ppp_w:.1f}%"></div>
                 <span class="play-badge" style="left:{ppp_w:.1f}%">{ppp_badge}</span>
@@ -2391,13 +2393,15 @@ def build_playstyles_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]
 
     return f"""
       <div class="panel">
-        <h3>Playstyles</h3>
+        <div class="play-head">
+          <h3>Playstyles</h3>
+          <div class="play-legend">
+            <div class="play-legend-item"><span class="play-legend-dot play-vol"></span>Volume</div>
+            <div class="play-legend-item"><span class="play-legend-dot play-ppp"></span>PPP</div>
+          </div>
+        </div>
         <div class="play-grid">
           {rows_html}
-        </div>
-        <div class="play-legend">
-          <div class="play-legend-item"><span class="play-legend-dot play-vol"></span>Volume</div>
-          <div class="play-legend-item"><span class="play-legend-dot play-ppp"></span>PPP</div>
         </div>
       </div>
 """
@@ -3173,12 +3177,12 @@ body {{
 }}
 .play-grid {{
   display: grid;
-  gap: 14px;
+  gap: 10px;
 }}
 .play-row {{
   display: grid;
   grid-template-columns: 74px 1fr;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }}
 .play-name {{
@@ -3188,17 +3192,22 @@ body {{
 }}
 .play-stack {{
   display: grid;
-  gap: 7px;
+  gap: 5px;
 }}
 .play-line {{
   display: grid;
-  grid-template-columns: 1fr 82px;
-  gap: 8px;
+  grid-template-columns: 42px 1fr 82px;
+  gap: 6px;
   align-items: center;
+}}
+.play-mini {{
+  color: var(--muted);
+  font-size: 10px;
+  text-align: right;
 }}
 .play-track {{
   position: relative;
-  height: 12px;
+  height: 10px;
   background: var(--bar-track);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -3218,27 +3227,36 @@ body {{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #0e0e0e;
   color: #fff;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
-  line-height: 17px;
+  line-height: 15px;
   text-align: center;
 }}
 .play-tag {{
   color: var(--muted);
-  font-size: 10px;
+  font-size: 9px;
   white-space: nowrap;
 }}
-.play-legend {{
-  margin-top: 12px;
+.play-head {{
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}}
+.play-head h3 {{
+  margin: 0;
+}}
+.play-legend {{
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 11px;
   color: var(--muted);
 }}
@@ -3264,7 +3282,12 @@ body {{
   margin-top: 2px;
 }}
 .comp-bottom {{
-  margin-top: auto;
+  margin-top: 0;
+}}
+.ti-comp-stack {{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }}
 .ti-section {{
   margin-top: 8px;
@@ -3361,8 +3384,10 @@ body {{
           </div>
           <div class="right-col">
             {shot_diet_html}
-            <div class="team-impact-wrap">{team_impact_html}</div>
-            <div class="comp-bottom">{player_comparisons_html}</div>
+            <div class="ti-comp-stack">
+              <div class="team-impact-wrap">{team_impact_html}</div>
+              <div class="comp-bottom">{player_comparisons_html}</div>
+            </div>
           </div>
         </div>
       </div>
