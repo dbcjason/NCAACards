@@ -3156,6 +3156,13 @@ def _bio_age_height_for_row(row: dict[str, str], bio_lookup: dict[tuple[str, str
     if age_val is None:
         # Fallback to BT age fields when bio lookup is missing/incomplete.
         age_val = bt_num(row, ["DD Age", " DD Age", "Age", " age", "age"])
+    if age_val is None:
+        # Fallback to BT DOB when age fields are absent.
+        bt_dob = bt_get(row, ["dob", "DOB"])
+        if bt_dob.strip():
+            age_s = age_on_june25_for_season(bt_dob, season)
+            if age_s != "N/A":
+                age_val = to_float(age_s)
 
     height_val: float | None = None
     if bio:
@@ -3281,6 +3288,8 @@ def build_player_comparisons_html(
 
     if len(target_vec) < 8:
         return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">Not enough data to compute comparisons.</div></div>'
+    if target_age_raw is None or not math.isfinite(target_age_raw):
+        return '<div class="panel"><h3>Player Comparisons</h3><div class="shot-meta">Missing target age for strict +/-1 year age comps.</div></div>'
 
     def similarity(other: dict[str, str]) -> float | None:
         # Exclude exact same player-season.
