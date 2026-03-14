@@ -25,6 +25,11 @@ on:
         required: false
         default: false
         type: boolean
+      include_plays_data:
+        description: "Include plays/PBP inputs (slower checkout)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build-card:
@@ -46,9 +51,14 @@ jobs:
             player_cards_pipeline/data/manual/bio
             player_cards_pipeline/data/manual/rsci
             player_cards_pipeline/data/manual/enriched_players/by_script_season
-            player_cards_pipeline/data/manual/pbp_metrics
-            player_cards_pipeline/data/manual/plays_by_year
-            cbbd_seasons/2024-2025/tables
+
+      - name: Optionally include plays/PBP paths
+        if: ${{ github.event.inputs.include_plays_data == 'true' }}
+        run: |
+          git sparse-checkout add \
+            player_cards_pipeline/data/manual/pbp_metrics \
+            player_cards_pipeline/data/manual/plays_by_year \
+            cbbd_seasons/2024-2025/tables \
             cbbd_seasons/2025-2026/tables
 
       - name: Setup Python
@@ -84,11 +94,12 @@ jobs:
           plays_map = cfg.get('plays_csv_by_year', {})
           adv_map = cfg.get('advgames_csv_by_year', {})
           pbp_map = cfg.get('pbp_metrics_csv_by_year', {})
+          include_plays = '${{ github.event.inputs.include_plays_data }}'.strip().lower() == 'true'
 
           env_lines = []
           env_lines.append(f"YEAR={year}")
           plays = plays_map.get(year, '').strip()
-          if plays:
+          if include_plays and plays:
               env_lines.append(f"PLAYS_CSV={resolve_from_repo(plays)}")
 
           bio = cfg.get('bio_csv', '').strip()
@@ -104,7 +115,7 @@ jobs:
               env_lines.append(f"ADVGAMES_CSV={resolve_from_repo(adv)}")
 
           pbp = pbp_map.get(year, '').strip()
-          if pbp:
+          if include_plays and pbp:
               env_lines.append(f"PBP_METRICS_CSV={resolve_from_repo(pbp)}")
 
           bt_ps_tpl = cfg.get('bt_playerstat_url_template', 'https://barttorvik.com/{year}_pbp_playerstat_array.json')
