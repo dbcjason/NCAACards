@@ -25,6 +25,7 @@ import json
 import math
 import random
 import re
+import sqlite3
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -48,6 +49,8 @@ BIO_ALIAS_MAP = {
     "conference": ["Conference", "conference", "Conf", "conf"],
     "dob": ["DOB", "dob", "Birthdate", "birthdate", "Birthday", "birthday", "Date of Birth"],
 }
+
+CACHE_SCHEMA_VERSION = 1
 
 
 @dataclass
@@ -137,6 +140,61 @@ def norm_player_name(v: Any) -> str:
     while parts and re.sub(r"[^a-z0-9]+", "", parts[-1]) in suffixes:
         parts.pop()
     return " ".join(parts)
+
+
+def card_cache_key(player: str, team: str, season: str) -> str:
+    return f"{norm_player_name(player)}|{norm_team(team)}|{norm_season(season)}"
+
+
+def default_card_cache_db_path(season: str) -> Path:
+    return (
+        Path(__file__).resolve().parent.parent
+        / "player_cards_pipeline"
+        / "data"
+        / "cache"
+        / "card_sections"
+        / f"{norm_season(season)}.sqlite"
+    )
+
+
+def load_cached_card_sections(
+    cache_db_path: Path,
+    target: PlayerGameStats,
+    min_games: int,
+) -> dict[str, Any] | None:
+    if not cache_db_path.exists():
+        return None
+    key = card_cache_key(target.player, target.team, target.season)
+    try:
+        conn = sqlite3.connect(str(cache_db_path))
+        conn.row_factory = sqlite3.Row
+    except Exception:
+        return None
+    try:
+        row = conn.execute(
+            "SELECT value FROM metadata WHERE key='schema_version'"
+        ).fetchone()
+        if not row or int(str(row["value"])) != CACHE_SCHEMA_VERSION:
+            return None
+        row = conn.execute(
+            "SELECT value FROM metadata WHERE key='min_games'"
+        ).fetchone()
+        if not row or int(str(row["value"])) != int(min_games):
+            return None
+        row = conn.execute(
+            "SELECT payload_json FROM card_cache WHERE cache_key=?",
+            (key,),
+        ).fetchone()
+        if not row:
+            return None
+        payload = json.loads(str(row["payload_json"]))
+        if not isinstance(payload, dict):
+            return None
+        return payload
+    except Exception:
+        return None
+    finally:
+        conn.close()
 
 
 def norm_season(v: Any) -> str:
@@ -4127,6 +4185,8 @@ def main() -> None:
         default="https://barttorvik.com/{year}_pbp_playerstat_array.json",
         help="Bart playerstat URL template; {year} is replaced with target season year.",
     )
+    ap.add_argument("--card-cache-db", default="", help="Optional precomputed season cache sqlite path.")
+    ap.add_argument("--disable-card-cache", action="store_true", help="Disable reading precomputed card-section cache.")
     ap.add_argument("--out-html", required=True, help="Output HTML path.")
     ap.add_argument("--min-games", type=int, default=5, help="Min games for percentile cohort.")
     args = ap.parse_args()
@@ -4247,18 +4307,58 @@ def main() -> None:
                 bt_playerstat_rows = []
     stage("Loaded Bart playerstat JSON")
 
-    bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
-    grade_boxes_html = build_grade_boxes_html(target, bt_rows)
-    pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
-    self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
-    playstyles_html = build_playstyles_html(target, bt_rows)
-    team_impact_html = build_team_impact_html(target, bt_rows)
-    shot_diet_html = build_shot_diet_html(target, bt_rows)
-    player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
-    draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
+    bt_percentiles_html = ""
+    grade_boxes_html = ""
+    self_creation_html = ""
+    playstyles_html = ""
+    team_impact_html = ""
+    shot_diet_html = ""
+    player_comparisons_html = ""
+    draft_projection_html = ""
+    pps_line = "Points per Shot Over Expectation: N/A"
+    bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
+    per_game_pcts: dict[str, float] = {}
+    cached_payload: dict[str, Any] | None = None
+
+    if not args.disable_card_cache:
+        cache_db_path = Path(args.card_cache_db) if args.card_cache_db else default_card_cache_db_path(target.season)
+        cached_payload = load_cached_card_sections(cache_db_path, target, args.min_games)
+
+    if cached_payload:
+        bt_percentiles_html = str(cached_payload.get("bt_percentiles_html", ""))
+        grade_boxes_html = str(cached_payload.get("grade_boxes_html", ""))
+        self_creation_html = str(cached_payload.get("self_creation_html", ""))
+        playstyles_html = str(cached_payload.get("playstyles_html", ""))
+        team_impact_html = str(cached_payload.get("team_impact_html", ""))
+        shot_diet_html = str(cached_payload.get("shot_diet_html", ""))
+        player_comparisons_html = str(cached_payload.get("player_comparisons_html", ""))
+        draft_projection_html = str(cached_payload.get("draft_projection_html", ""))
+        pps_line = str(cached_payload.get("pps_line", pps_line))
+        per_game_pcts = dict(cached_payload.get("per_game_pcts", {}) or {})
+        cached_fgm = to_float(cached_payload.get("bt_fgm"))
+        cached_fga = to_float(cached_payload.get("bt_fga"))
+        if cached_fgm is not None and cached_fga is not None:
+            bt_fgm, bt_fga = int(round(cached_fgm)), int(round(cached_fga))
+    else:
+        bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
+        grade_boxes_html = build_grade_boxes_html(target, bt_rows)
+        pbp_games_map = {k: float(len(v)) for k, v in games_by_player.items() if v}
+        self_creation_html = build_self_creation_html(target, bt_rows, bt_playerstat_rows, pbp_rows, pbp_games_map=pbp_games_map)
+        playstyles_html = build_playstyles_html(target, bt_rows)
+        team_impact_html = build_team_impact_html(target, bt_rows)
+        shot_diet_html = build_shot_diet_html(target, bt_rows)
+        player_comparisons_html = build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
+        draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
+        act_pps, exp_pps, pps_oe, pps_oe_pct = pps_over_expected_from_enriched(target)
+        if pps_oe is not None:
+            if pps_oe_pct is not None:
+                p_rank = max(1, min(99, int(round(pps_oe_pct))))
+                pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
+            else:
+                pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
+        per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
     advanced_html = build_advanced_html(target, lebron_rows, rim_rows, style_rows)
     stage("Built card section HTML blocks")
-    bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
     per_game_override = bt_per_game_overrides(target, bt_rows)
 
     shots: list[dict[str, Any]] = []
@@ -4293,16 +4393,6 @@ def main() -> None:
             season_shots = enr_shots
             bt_fgm, bt_fga = enr_makes, enr_att
 
-    act_pps, exp_pps, pps_oe, pps_oe_pct = pps_over_expected_from_enriched(target)
-    if pps_oe is not None:
-        if pps_oe_pct is not None:
-            p_rank = max(1, min(99, int(round(pps_oe_pct))))
-            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
-        else:
-            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
-    else:
-        pps_line = "Points per Shot Over Expectation: N/A"
-    per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
     rsci_rank = find_rsci_rank(target.player, rsci_map)
     rsci_display = ordinal(int(rsci_rank)) if rsci_rank is not None else "Unranked"
     stage("Computed percentiles and RSCI")
