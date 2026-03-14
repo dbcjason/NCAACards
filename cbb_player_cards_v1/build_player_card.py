@@ -3194,6 +3194,12 @@ def build_player_comparisons_html(
     bt_rows_pool = [r for r in bt_rows if (norm_season(bt_get(r, ["year"])).isdigit() and int(norm_season(bt_get(r, ["year"]))) >= 2019)]
     if target_row not in bt_rows_pool:
         bt_rows_pool.append(target_row)
+    # Keep player comps position-consistent (G/F/C) now that percentiles are position-based.
+    target_bucket = bt_row_position_bucket(target_row)
+    if target_bucket:
+        by_pos = [r for r in bt_rows_pool if bt_row_position_bucket(r) == target_bucket]
+        if by_pos:
+            bt_rows_pool = by_pos
     by_year: dict[str, list[dict[str, str]]] = defaultdict(list)
     for r in bt_rows_pool:
         by_year[norm_season(bt_get(r, ["year"]))].append(r)
