@@ -53,7 +53,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
           git add player_cards_pipeline/data/bt/ || true
           git add player_cards_pipeline/data/manual/enriched_players/ || true
           git add player_cards_pipeline/data/bt/self_creation_by_year/ || true
@@ -62,4 +61,5 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh 2026 Bart + enriched datasets"
-          git push origin main
+          git pull --rebase origin main
+          git push origin main || (git pull --rebase origin main && git push origin main)
