@@ -2647,7 +2647,7 @@ def _row_transfer_metrics(row: dict[str, str]) -> dict[str, float]:
 
     for k in [
         "bpm", "usg", "ts_per", "rim_pct", "ast_per", "ast_tov",
-        "stl_per", "blk_per", "orb_per", "drb_per",
+        "stl_per", "blk_per", "orb_per", "drb_per", "rapm", "net_pts", "onoff_net_rating",
     ]:
         v = bt_metric_value(row, k)
         if v is not None and math.isfinite(v):
