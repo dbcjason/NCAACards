@@ -104,54 +104,67 @@ def build_year_cache(
 
     adv_rows = adv_rows_by_year.get(ys, [])
 
+    teams: dict[str, list[bpc.PlayerGameStats]] = {}
+    for p in players:
+        tname = (p.team or "").strip() or "Unknown Team"
+        teams.setdefault(tname, []).append(p)
+    team_names = sorted(teams.keys(), key=lambda s: s.lower())
+    total_teams = len(team_names)
+
     t0 = time.perf_counter()
-    print(f"[cache] {ys}: players={len(players)}")
+    print(f"[cache] {ys}: players={len(players)} teams={total_teams}")
     with conn:
-        for idx, target in enumerate(players, start=1):
-            bt_percentiles_html = bpc.build_bt_percentile_html(target, bt_rows, adv_rows, [])
-            grade_boxes_html = bpc.build_grade_boxes_html(target, bt_rows)
-            self_creation_html = bpc.build_self_creation_html(target, bt_rows, bt_playerstat_rows, [], pbp_games_map={})
-            playstyles_html = bpc.build_playstyles_html(target, bt_rows)
-            team_impact_html = bpc.build_team_impact_html(target, bt_rows)
-            shot_diet_html = bpc.build_shot_diet_html(target, bt_rows)
-            player_comparisons_html = bpc.build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
-            draft_projection_html = bpc.build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
-            bt_fgm, bt_fga = bpc.bt_fg_totals_for_target(target, bt_rows)
-            per_game_pcts = bpc.build_per_game_percentiles(players_all, target, min_games, bt_rows=bt_rows)
+        done_players = 0
+        for team_idx, team_name in enumerate(team_names, start=1):
+            team_players = teams[team_name]
+            for target in team_players:
+                bt_percentiles_html = bpc.build_bt_percentile_html(target, bt_rows, adv_rows, [])
+                grade_boxes_html = bpc.build_grade_boxes_html(target, bt_rows)
+                self_creation_html = bpc.build_self_creation_html(target, bt_rows, bt_playerstat_rows, [], pbp_games_map={})
+                playstyles_html = bpc.build_playstyles_html(target, bt_rows)
+                team_impact_html = bpc.build_team_impact_html(target, bt_rows)
+                shot_diet_html = bpc.build_shot_diet_html(target, bt_rows)
+                player_comparisons_html = bpc.build_player_comparisons_html(target, bt_rows, bio_lookup, top_n=5)
+                draft_projection_html = bpc.build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
+                bt_fgm, bt_fga = bpc.bt_fg_totals_for_target(target, bt_rows)
+                per_game_pcts = bpc.build_per_game_percentiles(players_all, target, min_games, bt_rows=bt_rows)
 
-            _act_pps, _exp_pps, pps_oe, pps_oe_pct = bpc.pps_over_expected_from_enriched(target)
-            if pps_oe is not None:
-                if pps_oe_pct is not None:
-                    p_rank = max(1, min(99, int(round(pps_oe_pct))))
-                    pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({bpc.ordinal(p_rank)} Percentile)"
+                _act_pps, _exp_pps, pps_oe, pps_oe_pct = bpc.pps_over_expected_from_enriched(target)
+                if pps_oe is not None:
+                    if pps_oe_pct is not None:
+                        p_rank = max(1, min(99, int(round(pps_oe_pct))))
+                        pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({bpc.ordinal(p_rank)} Percentile)"
+                    else:
+                        pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
                 else:
-                    pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
-            else:
-                pps_line = "Points per Shot Over Expectation: N/A"
+                    pps_line = "Points per Shot Over Expectation: N/A"
 
-            payload = {
-                "bt_percentiles_html": bt_percentiles_html,
-                "grade_boxes_html": grade_boxes_html,
-                "self_creation_html": self_creation_html,
-                "playstyles_html": playstyles_html,
-                "team_impact_html": team_impact_html,
-                "shot_diet_html": shot_diet_html,
-                "player_comparisons_html": player_comparisons_html,
-                "draft_projection_html": draft_projection_html,
-                "pps_line": pps_line,
-                "bt_fgm": bt_fgm,
-                "bt_fga": bt_fga,
-                "per_game_pcts": per_game_pcts,
-            }
-            ck = bpc.card_cache_key(target.player, target.team, target.season)
-            conn.execute(
-                "INSERT OR REPLACE INTO card_cache(cache_key, payload_json) VALUES(?, ?)",
-                (ck, json.dumps(payload, ensure_ascii=True)),
+                payload = {
+                    "bt_percentiles_html": bt_percentiles_html,
+                    "grade_boxes_html": grade_boxes_html,
+                    "self_creation_html": self_creation_html,
+                    "playstyles_html": playstyles_html,
+                    "team_impact_html": team_impact_html,
+                    "shot_diet_html": shot_diet_html,
+                    "player_comparisons_html": player_comparisons_html,
+                    "draft_projection_html": draft_projection_html,
+                    "pps_line": pps_line,
+                    "bt_fgm": bt_fgm,
+                    "bt_fga": bt_fga,
+                    "per_game_pcts": per_game_pcts,
+                }
+                ck = bpc.card_cache_key(target.player, target.team, target.season)
+                conn.execute(
+                    "INSERT OR REPLACE INTO card_cache(cache_key, payload_json) VALUES(?, ?)",
+                    (ck, json.dumps(payload, ensure_ascii=True)),
+                )
+                done_players += 1
+
+            elapsed = time.perf_counter() - t0
+            print(
+                f"[cache] {ys}: team ({team_idx}/{total_teams}) {team_name} "
+                f"players={len(team_players)} total={done_players}/{len(players)} elapsed={elapsed:.1f}s"
             )
-
-            if idx % 100 == 0 or idx == len(players):
-                elapsed = time.perf_counter() - t0
-                print(f"[cache] {ys}: {idx}/{len(players)} ({elapsed:.1f}s)")
 
     conn.close()
     print(f"[cache] {ys}: wrote {out_db}")
