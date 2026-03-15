@@ -2611,12 +2611,15 @@ def _conference_tier(conf_key: str) -> str:
 
 def _row_transfer_metrics(row: dict[str, str]) -> dict[str, float]:
     out: dict[str, float] = {}
+    mpg = bt_num(row, ["mp", "MP"])
     ppg = bt_num(row, ["pts", "PTS"])
     oreb = bt_num(row, ["oreb", "OREB"])
     dreb = bt_num(row, ["dreb", "DREB"])
     apg = bt_num(row, ["ast", "AST"])
     spg = bt_num(row, ["stl", "STL"])
     bpg = bt_num(row, ["blk", "BLK"])
+    if mpg is not None:
+        out["mpg"] = float(mpg)
     if ppg is not None:
         out["ppg"] = float(ppg)
     if oreb is not None and dreb is not None:
@@ -2653,6 +2656,8 @@ def _row_transfer_metrics(row: dict[str, str]) -> dict[str, float]:
 
 
 def _clip_transfer_metric(key: str, v: float) -> float:
+    if key in {"mpg"}:
+        return max(0.0, min(40.0, v))
     if key in {"ppg"}:
         return max(0.0, min(40.0, v))
     if key in {"rpg", "apg"}:
@@ -2668,16 +2673,47 @@ def _clip_transfer_metric(key: str, v: float) -> float:
     return v
 
 
+def _transfer_grade_from_percentile(pct: float | None) -> str:
+    if pct is None or not math.isfinite(pct):
+        return "N/A"
+    p = max(0.0, min(100.0, float(pct)))
+    if p >= 97:
+        return "A+"
+    if p >= 93:
+        return "A"
+    if p >= 89:
+        return "A-"
+    if p >= 82:
+        return "B+"
+    if p >= 72:
+        return "B"
+    if p >= 62:
+        return "B-"
+    if p >= 50:
+        return "C+"
+    if p >= 42:
+        return "C"
+    if p >= 34:
+        return "C-"
+    if p >= 25:
+        return "D+"
+    if p >= 16:
+        return "D"
+    if p >= 8:
+        return "D-"
+    return "F"
+
+
 def build_transfer_projection_html(target: PlayerGameStats, destination_conference: str, bt_rows: list[dict[str, str]]) -> str:
     if not bt_rows:
-        return '<div class="panel"><h3>Transfer Up Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
+        return '<div class="panel"><h3>Transfer Projection</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
     target_row = bt_find_target_row(bt_rows, target)
     if not target_row:
-        return '<div class="panel"><h3>Transfer Up Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+        return '<div class="panel"><h3>Transfer Projection</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
 
     dest_conf_raw = (destination_conference or "").strip()
     if not dest_conf_raw:
-        return '<div class="panel"><h3>Transfer Up Projection</h3><div class="shot-meta">Destination conference is required.</div></div>'
+        return '<div class="panel"><h3>Transfer Projection</h3><div class="shot-meta">Destination conference is required.</div></div>'
     dest_conf = _conference_key(dest_conf_raw)
 
     by_player_year: dict[str, dict[int, dict[str, str]]] = defaultdict(dict)
@@ -2726,7 +2762,7 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
     if len(examples) < 200:
         return f"""
       <div class="panel draft-proj-panel">
-        <h3>Transfer Up Projection</h3>
+        <h3>Transfer Projection</h3>
         <div class="draft-proj-main">{html.escape(dest_conf_raw)}</div>
         <div class="shot-meta">Not enough historical transfer-up samples to project.</div>
       </div>
@@ -2736,7 +2772,7 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
     if len(source) < 8:
         return f"""
       <div class="panel draft-proj-panel">
-        <h3>Transfer Up Projection</h3>
+        <h3>Transfer Projection</h3>
         <div class="draft-proj-main">{html.escape(dest_conf_raw)}</div>
         <div class="shot-meta">Not enough source stats for this player to project.</div>
       </div>
@@ -2747,9 +2783,9 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
     pool = same_dest if len(same_dest) >= 35 else examples
 
     feat_keys = [
-        "ppg", "rpg", "apg", "spg", "bpg", "fg_pct", "tp_pct", "ft_pct",
+        "mpg", "ppg", "rpg", "apg", "spg", "bpg", "fg_pct", "tp_pct", "ft_pct",
         "bpm", "usg", "ts_per", "rim_pct", "ast_per", "ast_tov",
-        "stl_per", "blk_per", "orb_per", "drb_per",
+        "stl_per", "blk_per", "orb_per", "drb_per", "rapm", "net_pts", "onoff_net_rating",
     ]
     scales: dict[str, float] = {}
     for k in feat_keys:
@@ -2790,16 +2826,16 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
     if not weighted_examples:
         return f"""
       <div class="panel draft-proj-panel">
-        <h3>Transfer Up Projection</h3>
+        <h3>Transfer Projection</h3>
         <div class="draft-proj-main">{html.escape(dest_conf_raw)}</div>
         <div class="shot-meta">No similar transfer-up comps found for projection.</div>
       </div>
 """
 
     out_keys = [
-        "ppg", "rpg", "apg", "spg", "bpg", "fg_pct", "tp_pct", "ft_pct",
+        "mpg", "ppg", "rpg", "apg", "spg", "bpg", "fg_pct", "tp_pct", "ft_pct",
         "bpm", "usg", "ts_per", "rim_pct", "ast_per", "ast_tov",
-        "stl_per", "blk_per", "orb_per", "drb_per",
+        "stl_per", "blk_per", "orb_per", "drb_per", "rapm", "net_pts", "onoff_net_rating",
     ]
     predicted: dict[str, float] = {}
     for k in out_keys:
@@ -2822,11 +2858,26 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
     if not predicted:
         return f"""
       <div class="panel draft-proj-panel">
-        <h3>Transfer Up Projection</h3>
+        <h3>Transfer Projection</h3>
         <div class="draft-proj-main">{html.escape(dest_conf_raw)}</div>
         <div class="shot-meta">Projection failed due to missing comparable stat fields.</div>
       </div>
 """
+
+    impact_keys = ["bpm", "rapm", "net_pts", "onoff_net_rating"]
+    pred_impact = [predicted[k] for k in impact_keys if k in predicted and math.isfinite(predicted[k])]
+    impact_pct: float | None = None
+    if pred_impact:
+        pred_impact_score = sum(pred_impact) / len(pred_impact)
+        grade_pool = same_dest if len(same_dest) >= 20 else examples
+        cohort_scores: list[float] = []
+        for e in grade_pool:
+            vals = [e["dst"][k] for k in impact_keys if k in e["dst"] and math.isfinite(float(e["dst"][k]))]
+            if vals:
+                cohort_scores.append(sum(float(v) for v in vals) / len(vals))
+        if cohort_scores:
+            impact_pct = percentile(pred_impact_score, cohort_scores)
+    transfer_grade = _transfer_grade_from_percentile(impact_pct)
 
     def row_html(label: str, key: str, digits: int = 1) -> str:
         if key not in predicted:
@@ -2845,33 +2896,42 @@ def build_transfer_projection_html(target: PlayerGameStats, destination_conferen
             row_html("FT%", "ft_pct", 1),
         ]
     )
-    adv_rows = "".join(
-        [
-            row_html("BPM", "bpm", 1),
-            row_html("USG%", "usg", 1),
-            row_html("TS%", "ts_per", 1),
-            row_html("Rim%", "rim_pct", 1),
-            row_html("AST%", "ast_per", 1),
-            row_html("A/TO", "ast_tov", 2),
-            row_html("STL%", "stl_per", 1),
-            row_html("BLK%", "blk_per", 1),
-            row_html("OREB%", "orb_per", 1),
-            row_html("DREB%", "drb_per", 1),
-        ]
-    )
-
+    cur_year = norm_season(target.season)
+    impact_specs = [
+        ("BPM", "bpm", 1),
+        ("RAPM", "rapm", 1),
+        ("Net Pts", "net_pts", 1),
+        ("On/Off NetR", "onoff_net_rating", 1),
+    ]
+    impact_rows_plain = '<div class="transfer-impact-row transfer-impact-head"><span>Stat</span><span>Proj</span><span>%ile</span></div>'
+    for label, key, digits in impact_specs:
+        if key in predicted and math.isfinite(predicted[key]):
+            v = float(predicted[key])
+            cohort_vals = []
+            for r in bt_rows:
+                if norm_season(bt_get(r, ["year"])) != cur_year:
+                    continue
+                cv = bt_metric_value(r, key)
+                if cv is None or not math.isfinite(cv):
+                    continue
+                cohort_vals.append(float(cv))
+            pct = percentile(v, cohort_vals) if cohort_vals else None
+            pct_txt = f"{ordinal(int(round(pct)))}" if pct is not None and math.isfinite(pct) else "-"
+            impact_rows_plain += f'<div class="transfer-impact-row"><span>{html.escape(label)}</span><span>{v:.{digits}f}</span><span>{pct_txt}</span></div>'
+        else:
+            impact_rows_plain += f'<div class="transfer-impact-row"><span>{html.escape(label)}</span><span>-</span><span>-</span></div>'
     return f"""
       <div class="panel draft-proj-panel">
-        <h3>Transfer Up Projection</h3>
-        <div class="draft-proj-main">{html.escape(dest_conf_raw)}</div>
+        <h3>Transfer Projection</h3>
+        <div class="draft-proj-main">{html.escape(dest_conf_raw)} Transfer Grade: {transfer_grade}</div>
         <div class="draft-proj-sub">Projected next-season statline vs transfer-up historical comps ({len(weighted_examples)} comps weighted)</div>
         <div class="draft-proj-sub" style="font-weight:700;margin-top:6px;">Per Game</div>
-        <div class="draft-odds-grid">
+        <div class="draft-odds-grid transfer-two-col">
           {per_game_rows}
         </div>
-        <div class="draft-proj-sub" style="font-weight:700;margin-top:6px;">Advanced</div>
-        <div class="draft-odds-grid">
-          {adv_rows}
+        <div class="draft-proj-sub" style="font-weight:700;margin-top:8px;">Impact Projections</div>
+        <div class="transfer-impact-list">
+          {impact_rows_plain}
         </div>
       </div>
 """
@@ -4230,6 +4290,10 @@ body {{
   flex: 1 1 auto;
   align-content: start;
 }}
+.transfer-two-col {{
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}}
 .draft-odd-row {{
   display: grid;
   grid-template-columns: 1fr auto;
@@ -4240,6 +4304,35 @@ body {{
   border-radius: 6px;
   padding: 4px 6px;
   background: var(--panel-alt);
+}}
+.transfer-two-col .draft-odd-row {{
+  font-size: 10px;
+  padding: 3px 5px;
+}}
+.transfer-impact-list {{
+  margin-top: 2px;
+  display: grid;
+  gap: 2px;
+  max-height: 64px;
+  overflow: hidden;
+}}
+.transfer-impact-row {{
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.05;
+}}
+.transfer-impact-row span:nth-child(2),
+.transfer-impact-row span:nth-child(3) {{
+  color: var(--text);
+  font-weight: 700;
+  text-align: right;
+}}
+.transfer-impact-head span {{
+  color: var(--muted) !important;
+  font-weight: 600 !important;
 }}
 .draft-odd-k {{
   color: var(--muted);
