@@ -117,7 +117,12 @@ def build_year_cache(
         done_players = 0
         for team_idx, team_name in enumerate(team_names, start=1):
             team_players = teams[team_name]
-            for target in team_players:
+            print(
+                f"[cache] {ys}: starting team ({team_idx}/{total_teams}) {team_name} "
+                f"players={len(team_players)}",
+                flush=True,
+            )
+            for team_player_idx, target in enumerate(team_players, start=1):
                 bt_percentiles_html = bpc.build_bt_percentile_html(target, bt_rows, adv_rows, [])
                 grade_boxes_html = bpc.build_grade_boxes_html(target, bt_rows)
                 self_creation_html = bpc.build_self_creation_html(target, bt_rows, bt_playerstat_rows, [], pbp_games_map={})
@@ -159,11 +164,20 @@ def build_year_cache(
                     (ck, json.dumps(payload, ensure_ascii=True)),
                 )
                 done_players += 1
+                if team_player_idx % 5 == 0 or team_player_idx == len(team_players):
+                    elapsed = time.perf_counter() - t0
+                    print(
+                        f"[cache] {ys}: team ({team_idx}/{total_teams}) {team_name} "
+                        f"player {team_player_idx}/{len(team_players)} total={done_players}/{len(players)} "
+                        f"elapsed={elapsed:.1f}s",
+                        flush=True,
+                    )
 
             elapsed = time.perf_counter() - t0
             print(
                 f"[cache] {ys}: team ({team_idx}/{total_teams}) {team_name} "
-                f"players={len(team_players)} total={done_players}/{len(players)} elapsed={elapsed:.1f}s"
+                f"players={len(team_players)} total={done_players}/{len(players)} elapsed={elapsed:.1f}s",
+                flush=True,
             )
 
     conn.close()
