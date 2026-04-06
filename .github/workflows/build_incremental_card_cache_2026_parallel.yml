@@ -1,0 +1,278 @@
+name: Build Parallel Cache (Raw -> Percentiles)
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Single year to build (e.g. 2019, 2020, 2026)"
+        required: true
+        default: "2026"
+      min_games:
+        description: "Min games threshold for percentile context"
+        required: true
+        default: "5"
+      checkpoint_every:
+        description: "Checkpoint every N players in percentile stage"
+        required: true
+        default: "10"
+  workflow_run:
+    workflows: ["Refresh 2026 Bart + Enriched (Daily 4AM ET)"]
+    types: [completed]
+
+env:
+  YEAR: ${{ github.event.inputs.year || '2026' }}
+  MIN_GAMES: ${{ github.event.inputs.min_games || '5' }}
+  CHECKPOINT_EVERY: ${{ github.event.inputs.checkpoint_every || '10' }}
+
+jobs:
+  raw-chunk-build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk:
+          - { tag: "chunk001_037", team_start: 1, team_end: 37 }
+          - { tag: "chunk038_074", team_start: 38, team_end: 74 }
+          - { tag: "chunk075_111", team_start: 75, team_end: 111 }
+          - { tag: "chunk112_148", team_start: 112, team_end: 148 }
+          - { tag: "chunk149_185", team_start: 149, team_end: 185 }
+          - { tag: "chunk186_222", team_start: 186, team_end: 222 }
+          - { tag: "chunk223_259", team_start: 223, team_end: 259 }
+          - { tag: "chunk260_296", team_start: 260, team_end: 296 }
+          - { tag: "chunk297_333", team_start: 297, team_end: 333 }
+          - { tag: "chunk334_365", team_start: 334, team_end: 365 }
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Build raw chunk inputs
+        run: |
+          python3 player_cards_pipeline/scripts/build_year_cache_raw_chunk.py \
+            --project-root "." \
+            --year "${{ env.YEAR }}" \
+            --team-start "${{ matrix.chunk.team_start }}" \
+            --team-end "${{ matrix.chunk.team_end }}" \
+            --chunk-tag "${{ matrix.chunk.tag }}"
+
+      - name: Upload raw chunk artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: "raw-${{ env.YEAR }}-${{ matrix.chunk.tag }}"
+          path: |
+            player_cards_pipeline/data/cache/raw_chunks/${{ env.YEAR }}_${{ matrix.chunk.tag }}_players.jsonl
+            player_cards_pipeline/data/cache/raw_chunks/${{ env.YEAR }}_${{ matrix.chunk.tag }}_hashes.json
+          if-no-files-found: error
+
+  merge-raw:
+    runs-on: ubuntu-latest
+    needs: raw-chunk-build
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download raw chunk artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: raw-${{ env.YEAR }}-*
+          path: /tmp/raw_chunks
+          merge-multiple: true
+
+      - name: Stage raw chunk files
+        run: |
+          mkdir -p player_cards_pipeline/data/cache/raw_chunks
+          cp /tmp/raw_chunks/${{ env.YEAR }}_*_players.jsonl player_cards_pipeline/data/cache/raw_chunks/ || true
+          cp /tmp/raw_chunks/${{ env.YEAR }}_*_hashes.json player_cards_pipeline/data/cache/raw_chunks/ || true
+
+      - name: Merge raw chunks
+        run: |
+          python3 player_cards_pipeline/scripts/merge_year_cache_raw_chunks.py \
+            --project-root "." \
+            --year "${{ env.YEAR }}" \
+            --chunk-tags "chunk001_037,chunk038_074,chunk075_111,chunk112_148,chunk149_185,chunk186_222,chunk223_259,chunk260_296,chunk297_333,chunk334_365"
+
+      - name: Split merged player list into 10 buckets
+        run: |
+          python3 - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          year = "${{ env.YEAR }}"
+          root = Path("player_cards_pipeline/data/cache/raw_chunks")
+          src = root / f"{year}_merged_players.jsonl"
+          out_dir = root / "buckets"
+          out_dir.mkdir(parents=True, exist_ok=True)
+          files = [ (out_dir / f"bucket_{i:02d}.jsonl").open("w", encoding="utf-8") for i in range(10) ]
+          try:
+              for line in src.read_text(encoding="utf-8").splitlines():
+                  t = line.strip()
+                  if not t:
+                      continue
+                  row = json.loads(t)
+                  key = f"{str(row.get('player','')).strip().lower()}|{str(row.get('team','')).strip().lower()}|{str(row.get('season','')).strip()}"
+                  b = int(hashlib.md5(key.encode("utf-8")).hexdigest(), 16) % 10
+                  files[b].write(json.dumps(row, ensure_ascii=True) + "\n")
+          finally:
+              for f in files:
+                  f.close()
+          print("bucket files written")
+          PY
+
+      - name: Upload merged raw + buckets
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-${{ env.YEAR }}-merged
+          path: |
+            player_cards_pipeline/data/cache/raw_chunks/${{ env.YEAR }}_merged_hashes.json
+            player_cards_pipeline/data/cache/raw_chunks/buckets/bucket_*.jsonl
+          if-no-files-found: error
+
+  percentile-build:
+    runs-on: ubuntu-latest
+    needs: merge-raw
+    strategy:
+      fail-fast: false
+      matrix:
+        bucket: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"]
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Download merged raw artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: raw-${{ env.YEAR }}-merged
+          path: /tmp/raw_merged
+
+      - name: Stage bucket + hash files
+        run: |
+          mkdir -p player_cards_pipeline/data/cache/raw_chunks/buckets
+          HASH_SRC="$(find /tmp/raw_merged -type f -name '${{ env.YEAR }}_merged_hashes.json' | head -n 1)"
+          BUCKET_SRC="$(find /tmp/raw_merged -type f -name "bucket_${{ matrix.bucket }}.jsonl" | head -n 1)"
+          test -n "$HASH_SRC" || (echo "Missing ${{ env.YEAR }}_merged_hashes.json in downloaded artifact" && exit 1)
+          test -n "$BUCKET_SRC" || (echo "Missing bucket_${{ matrix.bucket }}.jsonl in downloaded artifact" && exit 1)
+          cp "$HASH_SRC" player_cards_pipeline/data/cache/raw_chunks/${{ env.YEAR }}_merged_hashes.json
+          cp "$BUCKET_SRC" "player_cards_pipeline/data/cache/raw_chunks/buckets/bucket_${{ matrix.bucket }}.jsonl"
+
+      - name: Build percentile cache bucket
+        run: |
+          python3 player_cards_pipeline/scripts/build_year_cache_incremental.py \
+            --project-root "." \
+            --years "${{ env.YEAR }}" \
+            --min-games "${{ env.MIN_GAMES }}" \
+            --players-jsonl "player_cards_pipeline/data/cache/raw_chunks/buckets/bucket_${{ matrix.bucket }}.jsonl" \
+            --precomputed-hashes "player_cards_pipeline/data/cache/raw_chunks/${{ env.YEAR }}_merged_hashes.json" \
+            --chunk-tag "final${{ matrix.bucket }}" \
+            --checkpoint-every "${{ env.CHECKPOINT_EVERY }}" \
+            --skip-stale-delete
+
+      - name: Upload percentile chunk artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: "pct-${{ env.YEAR }}-final${{ matrix.bucket }}"
+          path: |
+            player_cards_pipeline/data/cache/card_sections/${{ env.YEAR }}_final${{ matrix.bucket }}.sqlite
+            player_cards_pipeline/data/cache/card_sections_manifest/${{ env.YEAR }}_final${{ matrix.bucket }}.json
+          if-no-files-found: error
+
+  merge-and-push:
+    runs-on: ubuntu-latest
+    needs: percentile-build
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download percentile chunk artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pct-${{ env.YEAR }}-final*
+          path: /tmp/pct_chunks
+          merge-multiple: true
+
+      - name: Stage percentile chunk files
+        run: |
+          mkdir -p player_cards_pipeline/data/cache/card_sections
+          mkdir -p player_cards_pipeline/data/cache/card_sections_manifest
+          cp /tmp/pct_chunks/${{ env.YEAR }}_final*.sqlite player_cards_pipeline/data/cache/card_sections/ || true
+          cp /tmp/pct_chunks/${{ env.YEAR }}_final*.json player_cards_pipeline/data/cache/card_sections_manifest/ || true
+
+      - name: Merge percentile chunks into final cache
+        run: |
+          python3 player_cards_pipeline/scripts/merge_year_cache_chunks.py \
+            --project-root "." \
+            --year "${{ env.YEAR }}" \
+            --chunk-tags "final00,final01,final02,final03,final04,final05,final06,final07,final08,final09" \
+            --min-games "${{ env.MIN_GAMES }}"
+
+      - name: Rebuild static card payload JSONs (2026 incremental)
+        if: ${{ env.YEAR == '2026' }}
+        run: |
+          python3 player_cards_pipeline/scripts/build_static_card_payloads.py \
+            --project-root "." \
+            --years "${{ env.YEAR }}" \
+            --min-games "${{ env.MIN_GAMES }}" \
+            --incremental
+
+      - name: Commit and push merged outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add player_cards_pipeline/data/cache/card_sections/${{ env.YEAR }}.sqlite || true
+          git add player_cards_pipeline/data/cache/card_sections_manifest/${{ env.YEAR }}.json || true
+          git add player_cards_pipeline/public/cards/2026/ || true
+          if git diff --cached --quiet; then
+            echo "No merged cache changes to commit"
+            exit 0
+          fi
+          git commit -m "Build ${{ env.YEAR }} cache (parallel raw + percentile stages)"
+          git push origin main

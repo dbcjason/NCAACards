@@ -1,0 +1,21 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+# Large local-only datasets not needed by the Railway precompute worker.
+cbbd_seasons/
+cbbd_seasons_chunked/
+cbbd_seasons_chunked_smoke/
+cbbd_seasons_chunked_v2/
+
+# Local caches and generated outputs.
+player_cards_pipeline/output/
+player_cards_pipeline/public/cards/
+player_cards_pipeline/data/cache/
+player_cards_pipeline/data/.cache/
+

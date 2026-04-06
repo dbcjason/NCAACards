@@ -1,0 +1,71 @@
+name: Build Incremental Card Cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      single_year:
+        description: "Optional single year override (e.g. 2019)"
+        required: false
+        default: ""
+      years:
+        description: "Years to refresh (e.g. 2026 or 2019-2025)"
+        required: true
+        default: "2026"
+      min_games:
+        description: "Min games threshold for percentile context"
+        required: true
+        default: "5"
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Build incremental cache
+        run: |
+          YEARS_INPUT="${{ github.event.inputs.years }}"
+          SINGLE_YEAR="${{ github.event.inputs.single_year }}"
+          if [ -n "$SINGLE_YEAR" ]; then
+            YEARS_INPUT="$SINGLE_YEAR"
+          fi
+          echo "Refreshing years: $YEARS_INPUT"
+          python3 player_cards_pipeline/scripts/build_year_cache_incremental.py \
+            --project-root "." \
+            --years "$YEARS_INPUT" \
+            --min-games "${{ github.event.inputs.min_games }}"
+
+      - name: Commit and push cache updates
+        run: |
+          YEARS_INPUT="${{ github.event.inputs.years }}"
+          SINGLE_YEAR="${{ github.event.inputs.single_year }}"
+          if [ -n "$SINGLE_YEAR" ]; then
+            YEARS_INPUT="$SINGLE_YEAR"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add player_cards_pipeline/data/cache/card_sections/ || true
+          git add player_cards_pipeline/data/cache/card_sections_manifest/ || true
+          if git diff --cached --quiet; then
+            echo "No cache changes to commit"
+            exit 0
+          fi
+          git commit -m "Refresh incremental card cache for years: ${YEARS_INPUT}"
+          git push origin main

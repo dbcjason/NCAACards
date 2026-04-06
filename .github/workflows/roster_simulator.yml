@@ -1,0 +1,219 @@
+name: Roster Simulator (Men)
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season year (e.g., 2026)"
+        required: true
+        default: "2026"
+        type: string
+      base_team:
+        description: "Base roster team (default UCLA)"
+        required: true
+        default: "UCLA"
+        type: string
+      destination_conference:
+        description: "Destination conference for added players"
+        required: false
+        default: "Big 12"
+        type: string
+      interaction_model:
+        description: "Enable interaction-adjusted roster simulation"
+        required: false
+        default: true
+        type: boolean
+      exclude_players:
+        description: "Optional: comma/newline separated player names to remove"
+        required: false
+        default: ""
+        type: string
+      add_players:
+        description: "Optional lines: Player|Team|Minutes|DestinationConference"
+        required: false
+        default: ""
+        type: string
+      output_filename:
+        description: "Output HTML file name (optional)"
+        required: false
+        default: ""
+        type: string
+      commit_to_repo:
+        description: "Commit generated report back to repo"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout (sparse)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            .github/workflows
+            cbb_player_cards_v1
+            player_cards_pipeline/scripts
+            player_cards_pipeline/data/bt
+            player_cards_pipeline/output
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python3 -m pip install --upgrade pip
+
+      - name: Build roster CSV from inputs
+        id: mkroster
+        run: |
+          python3 - <<'PY'
+          import csv
+          import importlib.util
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          bt_path = root / 'player_cards_pipeline' / 'data' / 'bt' / 'bt_advstats_2010_2026.csv'
+          season = '${{ github.event.inputs.season }}'.strip()
+          base_team = '${{ github.event.inputs.base_team }}'.strip()
+          default_dest = '${{ github.event.inputs.destination_conference }}'.strip()
+          excludes_raw = '${{ github.event.inputs.exclude_players }}'
+          add_raw = '${{ github.event.inputs.add_players }}'
+
+          mod_path = root / 'cbb_player_cards_v1' / 'build_player_card.py'
+          spec = importlib.util.spec_from_file_location('card_builder_roster_gha', mod_path)
+          mod = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = mod
+          spec.loader.exec_module(mod)
+
+          if not season.isdigit():
+            raise SystemExit('season must be numeric')
+
+          excludes = set()
+          for tok in re.split(r'[\n,]+', excludes_raw):
+            t = tok.strip()
+            if t:
+              excludes.add(mod.norm_player_name(t))
+
+          rows = []
+          with bt_path.open('r', encoding='utf-8-sig', newline='') as f:
+            reader = csv.DictReader(f)
+            for r in reader:
+              y = mod.norm_season(mod.bt_get(r, ['year']))
+              if y != season:
+                continue
+              team = (mod.bt_get(r, ['team']) or '').strip()
+              if mod.norm_team(team) != mod.norm_team(base_team):
+                continue
+              name = (mod.bt_get(r, ['player_name']) or '').strip()
+              if not name:
+                continue
+              if mod.norm_player_name(name) in excludes:
+                continue
+              m = mod._row_transfer_metrics(r)
+              mpg = float(m.get('mpg') or 20.0)
+              rows.append({
+                'player': name,
+                'team': team,
+                'season': int(season),
+                'minutes': round(max(0.0, mpg), 1),
+                'destination_conference': '',
+              })
+
+          for line in add_raw.splitlines():
+            t = line.strip()
+            if not t:
+              continue
+            parts = [p.strip() for p in t.split('|')]
+            if len(parts) < 2:
+              continue
+            player = parts[0]
+            team = parts[1]
+            minutes = 18.0
+            if len(parts) >= 3 and parts[2]:
+              try:
+                minutes = float(parts[2])
+              except Exception:
+                minutes = 18.0
+            dest = default_dest
+            if len(parts) >= 4 and parts[3]:
+              dest = parts[3]
+            rows.append({
+              'player': player,
+              'team': team,
+              'season': int(season),
+              'minutes': round(max(0.0, minutes), 1),
+              'destination_conference': dest,
+            })
+
+          if not rows:
+            raise SystemExit('No roster rows produced. Check season/team or exclude list.')
+
+          tmp = Path(os.environ['RUNNER_TEMP']) / 'roster_sim_input.csv'
+          with tmp.open('w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=['player', 'team', 'season', 'minutes', 'destination_conference'])
+            w.writeheader()
+            w.writerows(rows)
+
+          out_name = '${{ github.event.inputs.output_filename }}'.strip()
+          if not out_name:
+            safe_team = ''.join(ch.lower() if ch.isalnum() else '_' for ch in base_team).strip('_')
+            out_name = f'roster_sim_{safe_team}_{season}.html'
+
+          out_path = root / 'player_cards_pipeline' / 'output' / 'roster_simulator' / out_name
+          out_path.parent.mkdir(parents=True, exist_ok=True)
+
+          env = Path(os.environ['GITHUB_ENV'])
+          with env.open('a', encoding='utf-8') as f:
+            f.write(f'ROSTER_CSV={tmp}\n')
+            f.write(f'OUT_HTML={out_path}\n')
+            f.write(f'SEASON={season}\n')
+          print(f'roster_csv={tmp}')
+          print(f'out_html={out_path}')
+          print(f'rows={len(rows)}')
+          PY
+
+      - name: Run roster simulator
+        run: |
+          IM_FLAG=""
+          if [ "${{ github.event.inputs.interaction_model }}" = "true" ]; then
+            IM_FLAG="--interaction-model"
+          fi
+          python3 player_cards_pipeline/scripts/roster_simulator.py \
+            --project-root . \
+            --season "$SEASON" \
+            --base-team "${{ github.event.inputs.base_team }}" \
+            --roster-csv "$ROSTER_CSV" \
+            --out-html "$OUT_HTML" \
+            $IM_FLAG
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: roster-sim-${{ github.event.inputs.base_team }}-${{ github.event.inputs.season }}
+          path: ${{ env.OUT_HTML }}
+
+      - name: Commit report to repo
+        if: ${{ github.event.inputs.commit_to_repo == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$OUT_HTML"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Roster simulator: ${{ github.event.inputs.base_team }} (${{ github.event.inputs.season }})"
+          git pull --rebase origin main
+          git push origin main

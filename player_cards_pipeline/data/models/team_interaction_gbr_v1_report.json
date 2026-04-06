@@ -1,0 +1,142 @@
+{
+  "model_path": "/home/runner/work/NCAACards/NCAACards/player_cards_pipeline/data/models/team_interaction_gbr_v1.pkl",
+  "rows_total": 5285,
+  "rows_train": 4561,
+  "rows_holdout": 724,
+  "holdout_seasons": [
+    2024,
+    2025
+  ],
+  "metrics": {
+    "train": {
+      "off_rating": {
+        "rmse": 1.7258041356343303,
+        "r2": 0.9597423904282705
+      },
+      "def_rating": {
+        "rmse": 0.6276122967193722,
+        "r2": 0.9914621584707024
+      },
+      "net_rating": {
+        "rmse": 1.827795555919537,
+        "r2": 0.9809703372437737
+      }
+    },
+    "test": {
+      "off_rating": {
+        "rmse": 3.8626172091139424,
+        "r2": 0.804570336642849
+      },
+      "def_rating": {
+        "rmse": 2.2229554075846654,
+        "r2": 0.8866990844062457
+      },
+      "net_rating": {
+        "rmse": 4.0433564484963656,
+        "r2": 0.9120332348008744
+      }
+    }
+  },
+  "sample_holdout_rows": [
+    {
+      "season": 2024,
+      "team": "Abilene Christian"
+    },
+    {
+      "season": 2024,
+      "team": "Air Force"
+    },
+    {
+      "season": 2024,
+      "team": "Akron"
+    },
+    {
+      "season": 2024,
+      "team": "Alabama"
+    },
+    {
+      "season": 2024,
+      "team": "Alabama A&M"
+    },
+    {
+      "season": 2024,
+      "team": "Alabama St."
+    },
+    {
+      "season": 2024,
+      "team": "Albany"
+    },
+    {
+      "season": 2024,
+      "team": "Alcorn St."
+    },
+    {
+      "season": 2024,
+      "team": "American"
+    },
+    {
+      "season": 2024,
+      "team": "Appalachian St."
+    },
+    {
+      "season": 2024,
+      "team": "Arizona"
+    },
+    {
+      "season": 2024,
+      "team": "Arizona St."
+    },
+    {
+      "season": 2024,
+      "team": "Arkansas"
+    },
+    {
+      "season": 2024,
+      "team": "Arkansas Pine Bluff"
+    },
+    {
+      "season": 2024,
+      "team": "Arkansas St."
+    },
+    {
+      "season": 2024,
+      "team": "Army"
+    },
+    {
+      "season": 2024,
+      "team": "Auburn"
+    },
+    {
+      "season": 2024,
+      "team": "Austin Peay"
+    },
+    {
+      "season": 2024,
+      "team": "BYU"
+    },
+    {
+      "season": 2024,
+      "team": "Ball St."
+    },
+    {
+      "season": 2024,
+      "team": "Baylor"
+    },
+    {
+      "season": 2024,
+      "team": "Bellarmine"
+    },
+    {
+      "season": 2024,
+      "team": "Belmont"
+    },
+    {
+      "season": 2024,
+      "team": "Bethune Cookman"
+    },
+    {
+      "season": 2024,
+      "team": "Binghamton"
+    }
+  ]
+}

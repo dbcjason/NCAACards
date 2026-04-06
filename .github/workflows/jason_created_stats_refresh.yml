@@ -1,0 +1,102 @@
+name: Jason Created Stats Refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      seasons:
+        description: "Seasons to process (e.g. 2026 or 2019-2026)"
+        required: true
+        default: "2019-2026"
+      min_games:
+        description: "Minimum GP"
+        required: true
+        default: "5"
+      min_min_per:
+        description: "Minimum Min%"
+        required: true
+        default: "5"
+  schedule:
+    - cron: "20 12 * * *" # Daily after data refresh window
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-jason-stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build/refresh 2026 statistical height
+        env:
+          INPUT_SEASONS: ${{ inputs.seasons || '2026' }}
+        run: |
+          if [ -f player_cards_pipeline/scripts/train_height_profile_model.py ]; then
+            YEARS=$(python3 -c 'import os; raw=os.environ.get("INPUT_SEASONS","2026"); years=set(); [years.update(range(int(p.split("-",1)[0]), int(p.split("-",1)[1])+1)) if "-" in p else years.add(int(p)) for p in [x.strip() for x in raw.split(",") if x.strip()]]; print(" ".join(str(y) for y in sorted(years)))')
+            for y in $YEARS; do
+              echo "[height-big] building $y"
+              python3 player_cards_pipeline/scripts/train_height_profile_model.py \
+                --project-root . \
+                --score-season "$y" \
+                --feature-set big \
+                --out-score-csv "player_cards_pipeline/output/height_profile_big_only_scores_${y}.csv"
+            done
+          else
+            echo "train_height_profile_model.py not found in repo; skipping height refresh."
+          fi
+
+      - name: Build Jason Created Stats CSV
+        env:
+          INPUT_SEASONS: ${{ inputs.seasons || '2026' }}
+          INPUT_MIN_GAMES: ${{ inputs.min_games || '5' }}
+          INPUT_MIN_MIN_PER: ${{ inputs.min_min_per || '5' }}
+        run: |
+          python3 player_cards_pipeline/scripts/build_jason_created_stats.py \
+            --project-root . \
+            --gender Men \
+            --seasons "${INPUT_SEASONS}" \
+            --min-games "${INPUT_MIN_GAMES}" \
+            --min-min-per "${INPUT_MIN_MIN_PER}" \
+            --out-csv "player_cards_pipeline/output/jason_created_stats.csv"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jason-created-stats-${{ inputs.seasons || '2026' }}
+          path: |
+            player_cards_pipeline/output/jason_created_stats.csv
+            player_cards_pipeline/output/height_profile_scores_*.csv
+            player_cards_pipeline/output/height_profile_scores_big_*.csv
+            player_cards_pipeline/output/height_profile_big_only_scores_*.csv
+          if-no-files-found: error
+
+      - name: Commit and push outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f player_cards_pipeline/output/jason_created_stats.csv || true
+          git add -f player_cards_pipeline/output/height_profile_scores_*.csv || true
+          git add -f player_cards_pipeline/output/height_profile_scores_big_*.csv || true
+          git add -f player_cards_pipeline/output/height_profile_big_only_scores_*.csv || true
+          if git diff --cached --quiet; then
+            echo "No Jason stats changes to commit"
+            exit 0
+          fi
+          git commit -m "Refresh Jason Created Stats"
+          for i in 1 2 3; do
+            if git push origin main; then
+              echo "Push succeeded"
+              exit 0
+            fi
+            echo "Push rejected; rebasing attempt ${i}..."
+            git pull --rebase origin main || true
+          done
+          echo "Failed to push after retries"
+          exit 1

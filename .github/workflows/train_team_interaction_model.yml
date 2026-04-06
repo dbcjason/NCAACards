@@ -1,0 +1,85 @@
+name: Train Team Interaction Model (Men)
+
+on:
+  workflow_dispatch:
+    inputs:
+      min_season:
+        description: "First season in training set"
+        required: true
+        default: "2011"
+        type: string
+      max_season:
+        description: "Last season in training set"
+        required: true
+        default: "2025"
+        type: string
+      holdout_seasons:
+        description: "Comma-separated holdout seasons"
+        required: true
+        default: "2024,2025"
+        type: string
+      commit_to_repo:
+        description: "Commit model/report to repo"
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install numpy scikit-learn
+
+      - name: Train interaction model
+        run: |
+          python3 player_cards_pipeline/scripts/train_team_interaction_model.py \
+            --project-root "." \
+            --min-season "${{ github.event.inputs.min_season }}" \
+            --max-season "${{ github.event.inputs.max_season }}" \
+            --holdout-seasons "${{ github.event.inputs.holdout_seasons }}"
+          python3 player_cards_pipeline/scripts/train_team_interaction_ridge_json.py \
+            --project-root "." \
+            --min-season "${{ github.event.inputs.min_season }}" \
+            --max-season "${{ github.event.inputs.max_season }}"
+
+      - name: Upload model artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: team-interaction-model-men
+          path: |
+            player_cards_pipeline/data/models/team_interaction_gbr_v1.pkl
+            player_cards_pipeline/data/models/team_interaction_gbr_v1_report.json
+            player_cards_pipeline/data/models/team_interaction_ridge_v1.json
+
+      - name: Commit model/report to repo
+        if: ${{ github.event.inputs.commit_to_repo == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add player_cards_pipeline/data/models/team_interaction_gbr_v1.pkl
+          git add player_cards_pipeline/data/models/team_interaction_gbr_v1_report.json
+          git add player_cards_pipeline/data/models/team_interaction_ridge_v1.json
+          if git diff --cached --quiet; then
+            echo "No model changes to commit"
+            exit 0
+          fi
+          git commit -m "Train team interaction model (men)"
+          git fetch origin main
+          git pull --rebase origin main
+          git push origin main

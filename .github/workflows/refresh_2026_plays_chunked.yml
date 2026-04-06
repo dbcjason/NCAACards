@@ -1,0 +1,83 @@
+name: Refresh 2026 Plays (Chunked)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs daily at 10:30 UTC (around early-morning ET). Adjust as needed.
+    - cron: '30 10 * * *'
+
+concurrency:
+  group: refresh-2026-plays-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh-plays:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pandas
+
+      - name: Build 2026 team list for plays pull
+        run: |
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+          src = Path("player_cards_pipeline/data/bt/bt_advstats_2026.csv")
+          out = Path("player_cards_pipeline/data/manual/plays_2026_teams.csv")
+          teams = set()
+          if src.exists():
+              with src.open("r", encoding="utf-8-sig", newline="") as f:
+                  rd = csv.DictReader(f)
+                  for r in rd:
+                      t = (r.get("team") or "").strip()
+                      if t:
+                          teams.add(t)
+          out.parent.mkdir(parents=True, exist_ok=True)
+          with out.open("w", encoding="utf-8", newline="") as f:
+              wr = csv.writer(f)
+              wr.writerow(["team"])
+              for t in sorted(teams):
+                  wr.writerow([t])
+          print(f"wrote {out} teams={len(teams)}")
+          PY
+
+      - name: Pull 2026 plays (chunked, all teams, merge)
+        run: |
+          python3 player_cards_pipeline/scripts/pull_2026_plays_every_other_day.py \
+            --project-root "." \
+            --teams-csv "player_cards_pipeline/data/manual/plays_2026_teams.csv" \
+            --team-col "team" \
+            --chunk-size 30 \
+            --max-csv-mb 95 \
+            --max-requests 3000 \
+            --sleep-sec 0.15
+
+      - name: Commit and push updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add player_cards_pipeline/data/manual/plays_by_year/ || true
+          git add cbbd_seasons/2025-2026/tables/ || true
+          git add player_cards_pipeline/data/manual/plays_2026_teams.csv || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Refresh 2026 chunked plays datasets"
+          git pull --rebase origin main
+          git push origin main || (git pull --rebase origin main && git push origin main)
