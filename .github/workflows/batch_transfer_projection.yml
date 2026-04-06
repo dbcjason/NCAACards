@@ -343,11 +343,9 @@ jobs:
             echo "No merged transfer projection changes to commit"
             exit 0
           fi
-          base_commit=$(git rev-parse HEAD)
           git commit -m "Refresh transfer projection cache (${INPUT_SEASON})"
           git stash push -u -m "transfer-projection-pre-push" >/dev/null 2>&1 || true
           for attempt in 1 2 3; do
-            git reset --hard "$base_commit"
             git fetch origin main
             if ! git merge --no-edit origin/main; then
               git merge --abort >/dev/null 2>&1 || true
