@@ -255,11 +255,9 @@ jobs:
             echo "No section cache changes to commit"
             exit 0
           fi
-          base_commit=$(git rev-parse HEAD)
           git commit -m "Refresh section cache (${INPUT_SECTION})"
           git stash push -u -m "section-cache-pre-push" >/dev/null 2>&1 || true
           for attempt in 1 2 3; do
-            git reset --hard "$base_commit"
             git fetch origin main
             if ! git merge --no-edit origin/main; then
               git merge --abort >/dev/null 2>&1 || true
