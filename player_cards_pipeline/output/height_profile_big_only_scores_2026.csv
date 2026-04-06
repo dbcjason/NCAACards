@@ -9,7 +9,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Steele Venters,Gonzaga,70941,6-7,"6'7""",79.0,76.34,"6'4""",-2.66,plays_shorter,76.34,"6'4""",-2.66,plays_shorter
 2026,Micah Thomas,Northwestern St.,70961,6-0,"6'0""",72.0,74.09,"6'2""",2.09,plays_taller,74.09,"6'2""",2.09,plays_taller
 2026,Rashaun Agee,Texas A&M,71003,6-7,"6'7""",79.0,81.95,"6'10""",2.95,plays_taller,81.95,"6'10""",2.95,plays_taller
-2026,Tyler Cochran,Rhode Island,71025,6-2,"6'2""",74.0,77.65,"6'6""",3.65,plays_taller,77.65,"6'6""",3.65,plays_taller
+2026,Tyler Cochran,Rhode Island,71025,6-2,"6'2""",74.0,77.64,"6'6""",3.64,plays_taller,77.64,"6'6""",3.64,plays_taller
 2026,Curt Lewis,Southern Miss,71299,6-5,"6'5""",77.0,75.56,"6'4""",-1.44,plays_shorter,75.56,"6'4""",-1.44,plays_shorter
 2026,Chase Johnston,High Point,71441,6-3,"6'3""",75.0,75.15,"6'3""",0.15,plays_at_height,75.15,"6'3""",0.15,plays_at_height
 2026,Devan Cambridge,UCF,71448,6-6,"6'6""",78.0,79.75,"6'8""",1.75,plays_taller,79.75,"6'8""",1.75,plays_taller
@@ -18,7 +18,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Matt Van Komen,Marshall,71578,7-4,"7'4""",88.0,85.89,"7'2""",-2.11,plays_shorter,85.89,"7'2""",-2.11,plays_shorter
 2026,Jordan Brinson,Cal St. Northridge,71663,6-2,"6'2""",74.0,74.83,"6'3""",0.83,plays_taller,74.83,"6'3""",0.83,plays_taller
 2026,Hosana Kitenge,UC Santa Barbara,71791,6-8,"6'8""",80.0,79.53,"6'8""",-0.47,plays_at_height,79.53,"6'8""",-0.47,plays_at_height
-2026,Tariq Ingraham,Memphis,71940,6-9,"6'9""",81.0,78.56,"6'7""",-2.44,plays_shorter,78.56,"6'7""",-2.44,plays_shorter
+2026,Tariq Ingraham,Memphis,71940,6-9,"6'9""",81.0,78.55,"6'7""",-2.45,plays_shorter,78.55,"6'7""",-2.45,plays_shorter
 2026,Josh Ogundele,Hampton,72241,7-0,"7'0""",84.0,78.68,"6'7""",-5.32,plays_shorter,78.68,"6'7""",-5.32,plays_shorter
 2026,Jahari Long,George Mason,72254,6-5,"6'5""",77.0,75.46,"6'3""",-1.54,plays_shorter,75.46,"6'3""",-1.54,plays_shorter
 2026,Javon Cooley,Pepperdine,72291,6-5,"6'5""",77.0,77.34,"6'5""",0.34,plays_at_height,77.34,"6'5""",0.34,plays_at_height
@@ -28,9 +28,9 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Keishon Porter,Evansville,72323,6-5,"6'5""",77.0,76.24,"6'4""",-0.76,plays_shorter,76.24,"6'4""",-0.76,plays_shorter
 2026,Alec Oglesby,Middle Tennessee,72343,6-5,"6'5""",77.0,74.33,"6'2""",-2.67,plays_shorter,74.33,"6'2""",-2.67,plays_shorter
 2026,Tegra Izay,Southern Miss,72357,7-0,"7'0""",84.0,82.62,"6'11""",-1.38,plays_shorter,82.62,"6'11""",-1.38,plays_shorter
-2026,Latrell Wrightsell Jr.,Alabama,72358,6-3,"6'3""",75.0,74.88,"6'3""",-0.12,plays_at_height,74.88,"6'3""",-0.12,plays_at_height
+2026,Latrell Wrightsell Jr.,Alabama,72358,6-3,"6'3""",75.0,74.87,"6'3""",-0.13,plays_at_height,74.87,"6'3""",-0.13,plays_at_height
 2026,Isaiah Cottrell,Southern Utah,72399,6-11,"6'11""",83.0,79.66,"6'8""",-3.34,plays_shorter,79.66,"6'8""",-3.34,plays_shorter
-2026,Nijel Pack,Oklahoma,72421,5-10,"5'10""",70.0,74.98,"6'3""",4.98,plays_taller,74.98,"6'3""",4.98,plays_taller
+2026,Nijel Pack,Oklahoma,72421,5-10,"5'10""",70.0,74.96,"6'3""",4.96,plays_taller,74.96,"6'3""",4.96,plays_taller
 2026,Andre Henry,UC Irvine,72423,6-4,"6'4""",76.0,75.26,"6'3""",-0.74,plays_at_height,75.26,"6'3""",-0.74,plays_at_height
 2026,Josh Taylor,East Texas A&M,72433,6-8,"6'8""",80.0,79.22,"6'7""",-0.78,plays_shorter,79.22,"6'7""",-0.78,plays_shorter
 2026,Chad Baker-Mazara,USC,72450,6-7,"6'7""",79.0,78.44,"6'6""",-0.56,plays_at_height,78.44,"6'6""",-0.56,plays_at_height
@@ -55,10 +55,10 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Skylar Wicks,Saint Francis,72727,6-6,"6'6""",78.0,77.53,"6'6""",-0.47,plays_at_height,77.53,"6'6""",-0.47,plays_at_height
 2026,Kaden Metheny,Liberty,72734,5-11,"5'11""",71.0,74.42,"6'2""",3.42,plays_taller,74.42,"6'2""",3.42,plays_taller
 2026,Zion Bethea,Delaware St.,72737,6-3,"6'3""",75.0,75.44,"6'3""",0.44,plays_at_height,75.44,"6'3""",0.44,plays_at_height
-2026,David Green,Tulsa,72740,6-7,"6'7""",79.0,78.56,"6'7""",-0.44,plays_at_height,78.56,"6'7""",-0.44,plays_at_height
+2026,David Green,Tulsa,72740,6-7,"6'7""",79.0,78.59,"6'7""",-0.41,plays_at_height,78.59,"6'7""",-0.41,plays_at_height
 2026,Joey Madimba,Prairie View A&M,72748,6-5,"6'5""",77.0,78.44,"6'6""",1.44,plays_taller,78.44,"6'6""",1.44,plays_taller
 2026,Tramon Mark,Texas,72760,6-5,"6'5""",77.0,77.61,"6'6""",0.61,plays_at_height,77.61,"6'6""",0.61,plays_at_height
-2026,Jadon Jones,Oklahoma,72785,6-5,"6'5""",77.0,79.39,"6'7""",2.39,plays_taller,79.39,"6'7""",2.39,plays_taller
+2026,Jadon Jones,Oklahoma,72785,6-5,"6'5""",77.0,79.29,"6'7""",2.29,plays_taller,79.29,"6'7""",2.29,plays_taller
 2026,Joshua O'Garro,Cal St. Northridge,72786,6-6,"6'6""",78.0,79.68,"6'8""",1.68,plays_taller,79.68,"6'8""",1.68,plays_taller
 2026,Cam'Ron Fletcher,High Point,72799,6-7,"6'7""",79.0,81.19,"6'9""",2.19,plays_taller,81.19,"6'9""",2.19,plays_taller
 2026,Nate Heise,Iowa St.,72805,6-5,"6'5""",77.0,77.8,"6'6""",0.8,plays_taller,77.8,"6'6""",0.8,plays_taller
@@ -67,7 +67,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,William Jeffress,Louisiana Tech,72859,6-7,"6'7""",79.0,76.56,"6'5""",-2.44,plays_shorter,76.56,"6'5""",-2.44,plays_shorter
 2026,Myles Wilmoth,Canisius,72868,6-10,"6'10""",82.0,78.76,"6'7""",-3.24,plays_shorter,78.76,"6'7""",-3.24,plays_shorter
 2026,Kyndall Davis,Texas St.,72875,6-5,"6'5""",77.0,78.26,"6'6""",1.26,plays_taller,78.26,"6'6""",1.26,plays_taller
-2026,Brandon Noel,Ohio St.,72891,6-8,"6'8""",80.0,79.01,"6'7""",-0.99,plays_shorter,79.01,"6'7""",-0.99,plays_shorter
+2026,Brandon Noel,Ohio St.,72891,6-8,"6'8""",80.0,79.02,"6'7""",-0.98,plays_shorter,79.02,"6'7""",-0.98,plays_shorter
 2026,Alex Huibregtse,Bradley,72893,6-3,"6'3""",75.0,75.34,"6'3""",0.34,plays_at_height,75.34,"6'3""",0.34,plays_at_height
 2026,Xavier Lipscomb,Mount St. Mary's,72907,6-2,"6'2""",74.0,76.03,"6'4""",2.03,plays_taller,76.03,"6'4""",2.03,plays_taller
 2026,Isaiah Wilson,Winthrop,72911,6-1,"6'1""",73.0,74.7,"6'3""",1.7,plays_taller,74.7,"6'3""",1.7,plays_taller
@@ -135,7 +135,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Dallas Howell,North Alabama,74150,6-7,"6'7""",79.0,77.18,"6'5""",-1.82,plays_shorter,77.18,"6'5""",-1.82,plays_shorter
 2026,Ty Harper,Oral Roberts,74169,6-3,"6'3""",75.0,76.36,"6'4""",1.36,plays_taller,76.36,"6'4""",1.36,plays_taller
 2026,Reese Dixon-Waters,San Diego St.,74185,6-6,"6'6""",78.0,76.51,"6'5""",-1.49,plays_shorter,76.51,"6'5""",-1.49,plays_shorter
-2026,James Graham,Alabama A&M,74189,6-7,"6'7""",79.0,77.73,"6'6""",-1.27,plays_shorter,77.73,"6'6""",-1.27,plays_shorter
+2026,James Graham,Alabama A&M,74189,6-7,"6'7""",79.0,77.74,"6'6""",-1.26,plays_shorter,77.74,"6'6""",-1.26,plays_shorter
 2026,Meechie Johnson,South Carolina,74192,6-2,"6'2""",74.0,76.69,"6'5""",2.69,plays_taller,76.69,"6'5""",2.69,plays_taller
 2026,Franck Kepnang,Washington,74203,6-11,"6'11""",83.0,82.59,"6'11""",-0.41,plays_at_height,82.59,"6'11""",-0.41,plays_at_height
 2026,Tre-Vaughn Minott,Portland St.,74206,6-10,"6'10""",82.0,83.66,"7'0""",1.66,plays_taller,83.66,"7'0""",1.66,plays_taller
@@ -145,12 +145,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Dola Adebayo,George Mason,74297,6-8,"6'8""",80.0,79.36,"6'7""",-0.64,plays_at_height,79.36,"6'7""",-0.64,plays_at_height
 2026,Frankie Collins,Vanderbilt,74298,6-2,"6'2""",74.0,78.04,"6'6""",4.04,plays_taller,78.04,"6'6""",4.04,plays_taller
 2026,Isaiah Barnes,Valparaiso,74300,6-7,"6'7""",79.0,76.2,"6'4""",-2.8,plays_shorter,76.2,"6'4""",-2.8,plays_shorter
-2026,Justice Ajogbor,Saint Joseph's,74315,6-10,"6'10""",82.0,82.64,"6'11""",0.64,plays_at_height,82.64,"6'11""",0.64,plays_at_height
-2026,Jordan Riley,East Carolina,74334,6-4,"6'4""",76.0,79.11,"6'7""",3.11,plays_taller,79.11,"6'7""",3.11,plays_taller
+2026,Justice Ajogbor,Saint Joseph's,74315,6-10,"6'10""",82.0,82.63,"6'11""",0.63,plays_at_height,82.63,"6'11""",0.63,plays_at_height
+2026,Jordan Riley,East Carolina,74334,6-4,"6'4""",76.0,79.1,"6'7""",3.1,plays_taller,79.1,"6'7""",3.1,plays_taller
 2026,Daeshun Ruffin,Jackson St.,74336,5-10,"5'10""",70.0,75.01,"6'3""",5.01,plays_taller,75.01,"6'3""",5.01,plays_taller
-2026,Grant Slatten,Tennessee Tech,74344,6-5,"6'5""",77.0,75.4,"6'3""",-1.6,plays_shorter,75.4,"6'3""",-1.6,plays_shorter
-2026,Chance Moore,West Virginia,74350,6-6,"6'6""",78.0,81.1,"6'9""",3.1,plays_taller,81.1,"6'9""",3.1,plays_taller
-2026,Honor Huff,West Virginia,74356,5-10,"5'10""",70.0,74.32,"6'2""",4.32,plays_taller,74.32,"6'2""",4.32,plays_taller
+2026,Grant Slatten,Tennessee Tech,74344,6-5,"6'5""",77.0,75.41,"6'3""",-1.59,plays_shorter,75.41,"6'3""",-1.59,plays_shorter
+2026,Chance Moore,West Virginia,74350,6-6,"6'6""",78.0,81.28,"6'9""",3.28,plays_taller,81.28,"6'9""",3.28,plays_taller
+2026,Honor Huff,West Virginia,74356,5-10,"5'10""",70.0,74.28,"6'2""",4.28,plays_taller,74.28,"6'2""",4.28,plays_taller
 2026,Brennan Watkins,Chattanooga,74357,5-11,"5'11""",71.0,74.85,"6'3""",3.85,plays_taller,74.85,"6'3""",3.85,plays_taller
 2026,Tasos Cook,Campbell,74369,6-2,"6'2""",74.0,75.64,"6'4""",1.64,plays_taller,75.64,"6'4""",1.64,plays_taller
 2026,Bryce Harris,Howard,74382,6-4,"6'4""",76.0,80.34,"6'8""",4.34,plays_taller,80.34,"6'8""",4.34,plays_taller
@@ -167,7 +167,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Ryan Cornish,USC,74439,6-5,"6'5""",77.0,74.85,"6'3""",-2.15,plays_shorter,74.85,"6'3""",-2.15,plays_shorter
 2026,Cade Haskins,William & Mary,74441,6-6,"6'6""",78.0,75.56,"6'4""",-2.44,plays_shorter,75.56,"6'4""",-2.44,plays_shorter
 2026,Makai Richards,Chattanooga,74453,6-10,"6'10""",82.0,78.88,"6'7""",-3.12,plays_shorter,78.88,"6'7""",-3.12,plays_shorter
-2026,Parsa Fallah,Oklahoma St.,74465,6-10,"6'10""",82.0,79.14,"6'7""",-2.86,plays_shorter,79.14,"6'7""",-2.86,plays_shorter
+2026,Parsa Fallah,Oklahoma St.,74465,6-10,"6'10""",82.0,79.15,"6'7""",-2.85,plays_shorter,79.15,"6'7""",-2.85,plays_shorter
 2026,Ariel Bland,Bethune Cookman,74475,6-7,"6'7""",79.0,81.77,"6'10""",2.77,plays_taller,81.77,"6'10""",2.77,plays_taller
 2026,Jaquan Scott,Arkansas Pine Bluff,74491,6-8,"6'8""",80.0,79.81,"6'8""",-0.19,plays_at_height,79.81,"6'8""",-0.19,plays_at_height
 2026,Tay Mosher,East Texas A&M,74492,6-7,"6'7""",79.0,75.19,"6'3""",-3.81,plays_shorter,75.19,"6'3""",-3.81,plays_shorter
@@ -201,7 +201,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Elijah Tucker,Longwood,74736,6-8,"6'8""",80.0,81.17,"6'9""",1.17,plays_taller,81.17,"6'9""",1.17,plays_taller
 2026,Lamin Sabally,Iona,74743,6-8,"6'8""",80.0,81.17,"6'9""",1.17,plays_taller,81.17,"6'9""",1.17,plays_taller
 2026,Jalen Warley,Gonzaga,74746,6-7,"6'7""",79.0,79.71,"6'8""",0.71,plays_at_height,79.71,"6'8""",0.71,plays_at_height
-2026,KeShawn Murphy,Auburn,74747,6-10,"6'10""",82.0,82.12,"6'10""",0.12,plays_at_height,82.12,"6'10""",0.12,plays_at_height
+2026,KeShawn Murphy,Auburn,74747,6-10,"6'10""",82.0,82.13,"6'10""",0.13,plays_at_height,82.13,"6'10""",0.13,plays_at_height
 2026,Alden Applewhite,Georgia Southern,74749,6-7,"6'7""",79.0,76.92,"6'5""",-2.08,plays_shorter,76.92,"6'5""",-2.08,plays_shorter
 2026,Josh Odunowo,UMBC,74752,6-6,"6'6""",78.0,79.23,"6'7""",1.23,plays_taller,79.23,"6'7""",1.23,plays_taller
 2026,Ismail Habib,Southern Indiana,74767,6-0,"6'0""",72.0,74.65,"6'3""",2.65,plays_taller,74.65,"6'3""",2.65,plays_taller
@@ -217,7 +217,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jao Ituka,Northern Illinois,74848,6-1,"6'1""",73.0,75.2,"6'3""",2.2,plays_taller,75.2,"6'3""",2.2,plays_taller
 2026,Joshua Beadle,Coastal Carolina,74864,6-3,"6'3""",75.0,76.65,"6'5""",1.65,plays_taller,76.65,"6'5""",1.65,plays_taller
 2026,C.J. Anthony,Iona,74866,6-0,"6'0""",72.0,75.18,"6'3""",3.18,plays_taller,75.18,"6'3""",3.18,plays_taller
-2026,Tuongthach Gatkek,Little Rock,74875,6-9,"6'9""",81.0,81.54,"6'10""",0.54,plays_at_height,81.54,"6'10""",0.54,plays_at_height
+2026,Tuongthach Gatkek,Little Rock,74875,6-9,"6'9""",81.0,81.55,"6'10""",0.55,plays_at_height,81.55,"6'10""",0.55,plays_at_height
 2026,Kezza Giffa,Mississippi,74886,6-1,"6'1""",73.0,75.94,"6'4""",2.94,plays_taller,75.94,"6'4""",2.94,plays_taller
 2026,Jordan Battle,Old Dominion,74890,6-2,"6'2""",74.0,76.4,"6'4""",2.4,plays_taller,76.4,"6'4""",2.4,plays_taller
 2026,Owen Dease,Valparaiso,74898,6-8,"6'8""",80.0,76.47,"6'4""",-3.53,plays_shorter,76.47,"6'4""",-3.53,plays_shorter
@@ -236,7 +236,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Allen Strothers,East Tennessee St.,74988,6-1,"6'1""",73.0,75.3,"6'3""",2.3,plays_taller,75.3,"6'3""",2.3,plays_taller
 2026,Kowacie Reeves Jr.,Georgia Tech,74990,6-6,"6'6""",78.0,77.43,"6'5""",-0.57,plays_at_height,77.43,"6'5""",-0.57,plays_at_height
 2026,Wes Peterson,Binghamton,74991,6-6,"6'6""",78.0,76.45,"6'4""",-1.55,plays_shorter,76.45,"6'4""",-1.55,plays_shorter
-2026,Anquan Hill,Sacred Heart,74995,6-9,"6'9""",81.0,78.95,"6'7""",-2.05,plays_shorter,78.95,"6'7""",-2.05,plays_shorter
+2026,Anquan Hill,Sacred Heart,74995,6-9,"6'9""",81.0,78.96,"6'7""",-2.04,plays_shorter,78.96,"6'7""",-2.04,plays_shorter
 2026,Tre Carroll,Xavier,74996,6-7,"6'7""",79.0,78.87,"6'7""",-0.13,plays_at_height,78.87,"6'7""",-0.13,plays_at_height
 2026,Ethan Butler,Charlotte,75005,6-7,"6'7""",79.0,77.53,"6'6""",-1.47,plays_shorter,77.53,"6'6""",-1.47,plays_shorter
 2026,Quincy Allen,Bryant,75013,6-8,"6'8""",80.0,79.45,"6'7""",-0.55,plays_at_height,79.45,"6'7""",-0.55,plays_at_height
@@ -269,7 +269,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Maximus Edwards,Duquesne,75171,6-5,"6'5""",77.0,76.26,"6'4""",-0.74,plays_at_height,76.26,"6'4""",-0.74,plays_at_height
 2026,Will Felton,North Carolina A&T,75182,6-8,"6'8""",80.0,79.59,"6'8""",-0.41,plays_at_height,79.59,"6'8""",-0.41,plays_at_height
 2026,Demari Williams,Houston Christian,75184,6-5,"6'5""",77.0,77.29,"6'5""",0.29,plays_at_height,77.29,"6'5""",0.29,plays_at_height
-2026,Isaiah Walker,Xavier,75195,6-5,"6'5""",77.0,77.02,"6'5""",0.02,plays_at_height,77.02,"6'5""",0.02,plays_at_height
+2026,Isaiah Walker,Xavier,75195,6-5,"6'5""",77.0,77.03,"6'5""",0.03,plays_at_height,77.03,"6'5""",0.03,plays_at_height
 2026,Kaleb Washington,Florida A&M,75199,6-8,"6'8""",80.0,78.03,"6'6""",-1.97,plays_shorter,78.03,"6'6""",-1.97,plays_shorter
 2026,Malachi Smith,Connecticut,75200,6-0,"6'0""",72.0,75.34,"6'3""",3.34,plays_taller,75.34,"6'3""",3.34,plays_taller
 2026,Michael Folarin,East Texas A&M,75231,6-10,"6'10""",82.0,79.9,"6'8""",-2.1,plays_shorter,79.9,"6'8""",-2.1,plays_shorter
@@ -306,9 +306,9 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Angelo Brizzi,Buffalo,75482,6-3,"6'3""",75.0,76.27,"6'4""",1.27,plays_taller,76.27,"6'4""",1.27,plays_taller
 2026,Sam Alamutu,Wright St.,75484,6-5,"6'5""",77.0,78.33,"6'6""",1.33,plays_taller,78.33,"6'6""",1.33,plays_taller
 2026,Michael Duax,Florida Gulf Coast,75487,6-6,"6'6""",78.0,79.47,"6'7""",1.47,plays_taller,79.47,"6'7""",1.47,plays_taller
-2026,Landon Wolf,Illinois St.,75488,6-5,"6'5""",77.0,78.5,"6'7""",1.5,plays_taller,78.5,"6'7""",1.5,plays_taller
+2026,Landon Wolf,Illinois St.,75488,6-5,"6'5""",77.0,78.5,"6'6""",1.5,plays_taller,78.5,"6'6""",1.5,plays_taller
 2026,Kooper Jacobi,Eastern Illinois,75509,6-6,"6'6""",78.0,77.85,"6'6""",-0.15,plays_at_height,77.85,"6'6""",-0.15,plays_at_height
-2026,Myles Rice,Maryland,75512,6-3,"6'3""",75.0,75.26,"6'3""",0.26,plays_at_height,75.26,"6'3""",0.26,plays_at_height
+2026,Myles Rice,Maryland,75512,6-3,"6'3""",75.0,75.25,"6'3""",0.25,plays_at_height,75.25,"6'3""",0.25,plays_at_height
 2026,Wyatt Fricks,Marshall,75522,6-9,"6'9""",81.0,81.43,"6'9""",0.43,plays_at_height,81.43,"6'9""",0.43,plays_at_height
 2026,Marcus Banks,Massachusetts,75525,6-3,"6'3""",75.0,75.77,"6'4""",0.77,plays_taller,75.77,"6'4""",0.77,plays_taller
 2026,Stephen Giwa,Rice,75532,6-9,"6'9""",81.0,82.41,"6'10""",1.41,plays_taller,82.41,"6'10""",1.41,plays_taller
@@ -346,7 +346,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Zaakir Williamson,Saint Peter's,75724,6-7,"6'7""",79.0,79.3,"6'7""",0.3,plays_at_height,79.3,"6'7""",0.3,plays_at_height
 2026,Devin Hines,North Florida,75751,6-4,"6'4""",76.0,76.41,"6'4""",0.41,plays_at_height,76.41,"6'4""",0.41,plays_at_height
 2026,Kaleb Brown,Robert Morris,75755,6-7,"6'7""",79.0,76.0,"6'4""",-3.0,plays_shorter,76.0,"6'4""",-3.0,plays_shorter
-2026,Trevon Brazile,Arkansas,75756,6-10,"6'10""",82.0,82.8,"6'11""",0.8,plays_taller,82.8,"6'11""",0.8,plays_taller
+2026,Trevon Brazile,Arkansas,75756,6-10,"6'10""",82.0,82.79,"6'11""",0.79,plays_taller,82.79,"6'11""",0.79,plays_taller
 2026,Anton Brookshire,Austin Peay,75759,6-2,"6'2""",74.0,74.73,"6'3""",0.73,plays_at_height,74.73,"6'3""",0.73,plays_at_height
 2026,Yaya Keita,Albany,75760,6-9,"6'9""",81.0,76.82,"6'5""",-4.18,plays_shorter,76.82,"6'5""",-4.18,plays_shorter
 2026,Makai Willis,Texas St.,75779,6-8,"6'8""",80.0,79.72,"6'8""",-0.28,plays_at_height,79.72,"6'8""",-0.28,plays_at_height
@@ -367,7 +367,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Austin Benigni,Navy,75888,5-10,"5'10""",70.0,75.13,"6'3""",5.13,plays_taller,75.13,"6'3""",5.13,plays_taller
 2026,Jayden Pierre,TCU,75892,6-0,"6'0""",72.0,76.05,"6'4""",4.05,plays_taller,76.05,"6'4""",4.05,plays_taller
 2026,Quante Berry,Memphis,75893,6-4,"6'4""",76.0,76.73,"6'5""",0.73,plays_at_height,76.73,"6'5""",0.73,plays_at_height
-2026,Ezra Ausar,USC,75895,6-9,"6'9""",81.0,81.67,"6'10""",0.67,plays_at_height,81.67,"6'10""",0.67,plays_at_height
+2026,Ezra Ausar,USC,75895,6-9,"6'9""",81.0,81.66,"6'10""",0.66,plays_at_height,81.66,"6'10""",0.66,plays_at_height
 2026,Valentino Pinedo,UNC Greensboro,75896,6-8,"6'8""",80.0,79.71,"6'8""",-0.29,plays_at_height,79.71,"6'8""",-0.29,plays_at_height
 2026,Kareem Rozier,Winthrop,75901,5-9,"5'9""",69.0,74.1,"6'2""",5.1,plays_taller,74.1,"6'2""",5.1,plays_taller
 2026,Evans Kipruto,UC Santa Barbara,75910,6-8,"6'8""",80.0,82.11,"6'10""",2.11,plays_taller,82.11,"6'10""",2.11,plays_taller
@@ -390,11 +390,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Denzel Aberdeen,Kentucky,75954,6-5,"6'5""",77.0,76.52,"6'5""",-0.48,plays_at_height,76.52,"6'5""",-0.48,plays_at_height
 2026,Aleks Szymczyk,Cal St. Northridge,75955,6-10,"6'10""",82.0,78.24,"6'6""",-3.76,plays_shorter,78.24,"6'6""",-3.76,plays_shorter
 2026,Michael Rogan,Fairfield,75956,6-7,"6'7""",79.0,76.01,"6'4""",-2.99,plays_shorter,76.01,"6'4""",-2.99,plays_shorter
-2026,Jo'el Emanuel,William & Mary,75957,6-6,"6'6""",78.0,78.73,"6'7""",0.73,plays_at_height,78.73,"6'7""",0.73,plays_at_height
+2026,Jo'el Emanuel,William & Mary,75957,6-6,"6'6""",78.0,78.74,"6'7""",0.74,plays_at_height,78.74,"6'7""",0.74,plays_at_height
 2026,Trevon Blassingame,Idaho,75962,6-4,"6'4""",76.0,76.76,"6'5""",0.76,plays_taller,76.76,"6'5""",0.76,plays_taller
 2026,Jayland Randall,New Mexico St.,75981,6-5,"6'5""",77.0,75.72,"6'4""",-1.28,plays_shorter,75.72,"6'4""",-1.28,plays_shorter
 2026,Vladimer Salaridze,Youngstown St.,75989,6-7,"6'7""",79.0,79.36,"6'7""",0.36,plays_at_height,79.36,"6'7""",0.36,plays_at_height
-2026,Kenyon Giles,Wichita St.,75999,5-10,"5'10""",70.0,74.4,"6'2""",4.4,plays_taller,74.4,"6'2""",4.4,plays_taller
+2026,Kenyon Giles,Wichita St.,75999,5-10,"5'10""",70.0,74.39,"6'2""",4.39,plays_taller,74.39,"6'2""",4.39,plays_taller
 2026,Luke Northweather,Missouri,76000,6-11,"6'11""",83.0,77.29,"6'5""",-5.71,plays_shorter,77.29,"6'5""",-5.71,plays_shorter
 2026,Quion Williams,Arkansas Pine Bluff,76001,6-5,"6'5""",77.0,79.03,"6'7""",2.03,plays_taller,79.03,"6'7""",2.03,plays_taller
 2026,Rory Stewart,Florida Gulf Coast,76002,6-8,"6'8""",80.0,74.49,"6'2""",-5.51,plays_shorter,74.49,"6'2""",-5.51,plays_shorter
@@ -414,11 +414,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Nate Brafford,Charleston Southern,76035,6-9,"6'9""",81.0,75.87,"6'4""",-5.13,plays_shorter,75.87,"6'4""",-5.13,plays_shorter
 2026,Edward Nnamoko,Winthrop,76036,6-10,"6'10""",82.0,79.46,"6'7""",-2.54,plays_shorter,79.46,"6'7""",-2.54,plays_shorter
 2026,Bendji Pierre,Mercer,76037,6-8,"6'8""",80.0,74.3,"6'2""",-5.7,plays_shorter,74.3,"6'2""",-5.7,plays_shorter
-2026,Daniel Rivera,UAB,76039,6-7,"6'7""",79.0,81.6,"6'10""",2.6,plays_taller,81.6,"6'10""",2.6,plays_taller
+2026,Daniel Rivera,UAB,76039,6-7,"6'7""",79.0,81.59,"6'10""",2.59,plays_taller,81.59,"6'10""",2.59,plays_taller
 2026,Jack Doumbia Jr.,Towson,76041,6-6,"6'6""",78.0,79.78,"6'8""",1.78,plays_taller,79.78,"6'8""",1.78,plays_taller
-2026,Keyshawn Hall,Auburn,76060,6-7,"6'7""",79.0,79.26,"6'7""",0.26,plays_at_height,79.26,"6'7""",0.26,plays_at_height
+2026,Keyshawn Hall,Auburn,76060,6-7,"6'7""",79.0,79.37,"6'7""",0.37,plays_at_height,79.37,"6'7""",0.37,plays_at_height
 2026,Jonathan Beagle,Richmond,76063,6-10,"6'10""",82.0,80.48,"6'8""",-1.52,plays_shorter,80.48,"6'8""",-1.52,plays_shorter
-2026,Romad Dean,Tulsa,76064,6-7,"6'7""",79.0,79.22,"6'7""",0.22,plays_at_height,79.22,"6'7""",0.22,plays_at_height
+2026,Romad Dean,Tulsa,76064,6-7,"6'7""",79.0,79.23,"6'7""",0.23,plays_at_height,79.23,"6'7""",0.23,plays_at_height
 2026,Josiah Davis,Cal St. Northridge,76069,6-3,"6'3""",75.0,77.19,"6'5""",2.19,plays_taller,77.19,"6'5""",2.19,plays_taller
 2026,Joshua Ola-Joseph,Loyola Chicago,76072,6-7,"6'7""",79.0,77.89,"6'6""",-1.11,plays_shorter,77.89,"6'6""",-1.11,plays_shorter
 2026,Cam Thrower,Penn,76074,6-3,"6'3""",75.0,74.91,"6'3""",-0.09,plays_at_height,74.91,"6'3""",-0.09,plays_at_height
@@ -438,7 +438,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,David Coit,Maryland,76119,5-11,"5'11""",71.0,74.58,"6'3""",3.58,plays_taller,74.58,"6'3""",3.58,plays_taller
 2026,DeJuan Campbell,California,76121,6-2,"6'2""",74.0,75.25,"6'3""",1.25,plays_taller,75.25,"6'3""",1.25,plays_taller
 2026,Will Johnston,Richmond,76124,6-3,"6'3""",75.0,74.48,"6'2""",-0.52,plays_at_height,74.48,"6'2""",-0.52,plays_at_height
-2026,Mohamed Wague,Oklahoma,76128,6-10,"6'10""",82.0,83.66,"7'0""",1.66,plays_taller,83.66,"7'0""",1.66,plays_taller
+2026,Mohamed Wague,Oklahoma,76128,6-10,"6'10""",82.0,83.71,"7'0""",1.71,plays_taller,83.71,"7'0""",1.71,plays_taller
 2026,Jestin Porter,Clemson,76129,6-1,"6'1""",73.0,74.95,"6'3""",1.95,plays_taller,74.95,"6'3""",1.95,plays_taller
 2026,Luca Colceag,Tennessee Martin,76132,6-8,"6'8""",80.0,78.3,"6'6""",-1.7,plays_shorter,78.3,"6'6""",-1.7,plays_shorter
 2026,Camden Heide,Texas,76133,6-7,"6'7""",79.0,76.73,"6'5""",-2.27,plays_shorter,76.73,"6'5""",-2.27,plays_shorter
@@ -465,7 +465,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Seth Hubbard,Milwaukee,76182,6-4,"6'4""",76.0,75.98,"6'4""",-0.02,plays_at_height,75.98,"6'4""",-0.02,plays_at_height
 2026,Max Burton,Western Michigan,76183,6-10,"6'10""",82.0,78.25,"6'6""",-3.75,plays_shorter,78.25,"6'6""",-3.75,plays_shorter
 2026,Jasteven Walker,Alabama St.,76185,6-10,"6'10""",82.0,78.32,"6'6""",-3.68,plays_shorter,78.32,"6'6""",-3.68,plays_shorter
-2026,Jermaine Ballisager Webb,Portland,76187,7-1,"7'1""",85.0,80.4,"6'8""",-4.6,plays_shorter,80.4,"6'8""",-4.6,plays_shorter
+2026,Jermaine Ballisager Webb,Portland,76187,7-1,"7'1""",85.0,80.39,"6'8""",-4.61,plays_shorter,80.39,"6'8""",-4.61,plays_shorter
 2026,Amani Lyles,Akron,76193,6-7,"6'7""",79.0,81.34,"6'9""",2.34,plays_taller,81.34,"6'9""",2.34,plays_taller
 2026,Braden Smith,Purdue,76196,6-0,"6'0""",72.0,75.82,"6'4""",3.82,plays_taller,75.82,"6'4""",3.82,plays_taller
 2026,Chris Morgan,Purdue Fort Wayne,76199,6-2,"6'2""",74.0,74.12,"6'2""",0.12,plays_at_height,74.12,"6'2""",0.12,plays_at_height
@@ -478,7 +478,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Derrian Ford,Temple,76219,6-3,"6'3""",75.0,76.13,"6'4""",1.13,plays_taller,76.13,"6'4""",1.13,plays_taller
 2026,Braden Housley,Utah Valley,76224,6-4,"6'4""",76.0,75.45,"6'3""",-0.55,plays_at_height,75.45,"6'3""",-0.55,plays_at_height
 2026,Barry Evans,VCU,76225,6-8,"6'8""",80.0,79.05,"6'7""",-0.95,plays_shorter,79.05,"6'7""",-0.95,plays_shorter
-2026,Jackson Fields,West Virginia,76226,6-8,"6'8""",80.0,79.57,"6'8""",-0.43,plays_at_height,79.57,"6'8""",-0.43,plays_at_height
+2026,Jackson Fields,West Virginia,76226,6-8,"6'8""",80.0,79.58,"6'8""",-0.42,plays_at_height,79.58,"6'8""",-0.42,plays_at_height
 2026,Percy Daniels,Tulane,76229,6-9,"6'9""",81.0,81.09,"6'9""",0.09,plays_at_height,81.09,"6'9""",0.09,plays_at_height
 2026,Jack Campion,SIU Edwardsville,76230,5-10,"5'10""",70.0,75.71,"6'4""",5.71,plays_taller,75.71,"6'4""",5.71,plays_taller
 2026,Jaden Henley,Grand Canyon,76235,6-7,"6'7""",79.0,79.41,"6'7""",0.41,plays_at_height,79.41,"6'7""",0.41,plays_at_height
@@ -539,13 +539,13 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Zae Blake,UT Rio Grande Valley,76379,6-1,"6'1""",73.0,75.63,"6'4""",2.63,plays_taller,75.63,"6'4""",2.63,plays_taller
 2026,Mark Mitchell,Missouri,76380,6-9,"6'9""",81.0,80.05,"6'8""",-0.95,plays_shorter,80.05,"6'8""",-0.95,plays_shorter
 2026,Trey Campbell,Northern Iowa,76385,6-4,"6'4""",76.0,76.78,"6'5""",0.78,plays_taller,76.78,"6'5""",0.78,plays_taller
-2026,Steven Clay,Southern Indiana,76389,6-4,"6'4""",76.0,75.65,"6'4""",-0.35,plays_at_height,75.65,"6'4""",-0.35,plays_at_height
+2026,Steven Clay,Southern Indiana,76389,6-4,"6'4""",76.0,75.66,"6'4""",-0.34,plays_at_height,75.66,"6'4""",-0.34,plays_at_height
 2026,Noah Ross,UNC Wilmington,76392,6-7,"6'7""",79.0,77.9,"6'6""",-1.1,plays_shorter,77.9,"6'6""",-1.1,plays_shorter
 2026,Nolan Hodge,UNC Wilmington,76393,6-7,"6'7""",79.0,77.24,"6'5""",-1.76,plays_shorter,77.24,"6'5""",-1.76,plays_shorter
-2026,Richie Saunders,BYU,76396,6-5,"6'5""",77.0,78.06,"6'6""",1.06,plays_taller,78.06,"6'6""",1.06,plays_taller
+2026,Richie Saunders,BYU,76396,6-5,"6'5""",77.0,78.07,"6'6""",1.07,plays_taller,78.07,"6'6""",1.07,plays_taller
 2026,Zach Davis,Memphis,76397,6-7,"6'7""",79.0,77.71,"6'6""",-1.29,plays_shorter,77.71,"6'6""",-1.29,plays_shorter
 2026,Daniel Hankins-Sanford,Massachusetts,76399,6-8,"6'8""",80.0,79.9,"6'8""",-0.1,plays_at_height,79.9,"6'8""",-0.1,plays_at_height
-2026,TJ Wainwright,Pacific,76409,6-3,"6'3""",75.0,74.9,"6'3""",-0.1,plays_at_height,74.9,"6'3""",-0.1,plays_at_height
+2026,TJ Wainwright,Pacific,76409,6-3,"6'3""",75.0,74.89,"6'3""",-0.11,plays_at_height,74.89,"6'3""",-0.11,plays_at_height
 2026,Jayden Brewer,Western Michigan,76410,6-6,"6'6""",78.0,80.19,"6'8""",2.19,plays_taller,80.19,"6'8""",2.19,plays_taller
 2026,Bryce Baker,Charleston,76411,6-5,"6'5""",77.0,75.79,"6'4""",-1.21,plays_shorter,75.79,"6'4""",-1.21,plays_shorter
 2026,Isaiah Gaines,Southeastern Louisiana,76417,6-8,"6'8""",80.0,80.95,"6'9""",0.95,plays_taller,80.95,"6'9""",0.95,plays_taller
@@ -553,7 +553,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Dre Bullock,Hawaii,76422,6-6,"6'6""",78.0,79.14,"6'7""",1.14,plays_taller,79.14,"6'7""",1.14,plays_taller
 2026,Kelechi Okworogwo,North Carolina Central,76425,6-6,"6'6""",78.0,80.72,"6'9""",2.72,plays_taller,80.72,"6'9""",2.72,plays_taller
 2026,Kobe MaGee,Florida St.,76426,6-6,"6'6""",78.0,75.69,"6'4""",-2.31,plays_shorter,75.69,"6'4""",-2.31,plays_shorter
-2026,Dillon Mitchell,St. John's,76429,6-8,"6'8""",80.0,82.01,"6'10""",2.01,plays_taller,82.01,"6'10""",2.01,plays_taller
+2026,Dillon Mitchell,St. John's,76429,6-8,"6'8""",80.0,82.0,"6'10""",2.0,plays_taller,82.0,"6'10""",2.0,plays_taller
 2026,Ross Candelino,Lipscomb,76431,6-5,"6'5""",77.0,77.58,"6'6""",0.58,plays_at_height,77.58,"6'6""",0.58,plays_at_height
 2026,LeJuan Watts,Texas Tech,76432,6-6,"6'6""",78.0,77.99,"6'6""",-0.01,plays_at_height,77.99,"6'6""",-0.01,plays_at_height
 2026,Lamar Washington,Georgia Tech,76436,6-4,"6'4""",76.0,76.31,"6'4""",0.31,plays_at_height,76.31,"6'4""",0.31,plays_at_height
@@ -576,7 +576,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Justin Thomas,Bowling Green,76491,6-7,"6'7""",79.0,76.77,"6'5""",-2.23,plays_shorter,76.77,"6'5""",-2.23,plays_shorter
 2026,Troy Hupstead,Texas Southern,76493,6-7,"6'7""",79.0,79.85,"6'8""",0.85,plays_taller,79.85,"6'8""",0.85,plays_taller
 2026,Aidan Shaw,Boston College,76495,6-9,"6'9""",81.0,82.2,"6'10""",1.2,plays_taller,82.2,"6'10""",1.2,plays_taller
-2026,Andrew Ball,Monmouth,76496,6-8,"6'8""",80.0,79.46,"6'7""",-0.54,plays_at_height,79.46,"6'7""",-0.54,plays_at_height
+2026,Andrew Ball,Monmouth,76496,6-8,"6'8""",80.0,79.47,"6'7""",-0.53,plays_at_height,79.47,"6'7""",-0.53,plays_at_height
 2026,TJ Johnson,VMI,76498,6-7,"6'7""",79.0,76.67,"6'5""",-2.33,plays_shorter,76.67,"6'5""",-2.33,plays_shorter
 2026,Daniel Egbuniwe,St. Bonaventure,76499,6-7,"6'7""",79.0,76.73,"6'5""",-2.27,plays_shorter,76.73,"6'5""",-2.27,plays_shorter
 2026,Dionjahe Thomas,Jackson St.,76504,6-8,"6'8""",80.0,79.3,"6'7""",-0.7,plays_at_height,79.3,"6'7""",-0.7,plays_at_height
@@ -587,7 +587,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Micah Handlogten,Florida,76525,7-1,"7'1""",85.0,84.02,"7'0""",-0.98,plays_shorter,84.02,"7'0""",-0.98,plays_shorter
 2026,Mak Manciel,Eastern Michigan,76531,6-4,"6'4""",76.0,75.74,"6'4""",-0.26,plays_at_height,75.74,"6'4""",-0.26,plays_at_height
 2026,Angel Montas Jr.,UMass Lowell,76539,6-6,"6'6""",78.0,77.53,"6'6""",-0.47,plays_at_height,77.53,"6'6""",-0.47,plays_at_height
-2026,Brenen Lorient,West Virginia,76540,6-9,"6'9""",81.0,80.91,"6'9""",-0.09,plays_at_height,80.91,"6'9""",-0.09,plays_at_height
+2026,Brenen Lorient,West Virginia,76540,6-9,"6'9""",81.0,81.0,"6'9""",-0.0,plays_at_height,81.0,"6'9""",-0.0,plays_at_height
 2026,Braeden Smith,Gonzaga,76545,6-0,"6'0""",72.0,75.91,"6'4""",3.91,plays_taller,75.91,"6'4""",3.91,plays_taller
 2026,Brady Cummins,Colgate,76546,6-6,"6'6""",78.0,74.6,"6'3""",-3.4,plays_shorter,74.6,"6'3""",-3.4,plays_shorter
 2026,Dylan Arnett,North Texas,76549,6-9,"6'9""",81.0,80.0,"6'8""",-1.0,plays_shorter,80.0,"6'8""",-1.0,plays_shorter
@@ -596,7 +596,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,RJ Smith,DePaul,76553,6-3,"6'3""",75.0,75.05,"6'3""",0.05,plays_at_height,75.05,"6'3""",0.05,plays_at_height
 2026,Logan Woods,Wright St.,76555,6-5,"6'5""",77.0,75.32,"6'3""",-1.68,plays_shorter,75.32,"6'3""",-1.68,plays_shorter
 2026,Stephon Payne III,Seton Hall,76558,6-9,"6'9""",81.0,83.47,"6'11""",2.47,plays_taller,83.47,"6'11""",2.47,plays_taller
-2026,Treysen Eaglestaff,West Virginia,76559,6-6,"6'6""",78.0,77.03,"6'5""",-0.97,plays_shorter,77.03,"6'5""",-0.97,plays_shorter
+2026,Treysen Eaglestaff,West Virginia,76559,6-6,"6'6""",78.0,76.96,"6'5""",-1.04,plays_shorter,76.96,"6'5""",-1.04,plays_shorter
 2026,Robert Lewis,Lindenwood,76560,6-9,"6'9""",81.0,79.07,"6'7""",-1.93,plays_shorter,79.07,"6'7""",-1.93,plays_shorter
 2026,Caden Powell,Baylor,76562,6-9,"6'9""",81.0,81.79,"6'10""",0.79,plays_taller,81.79,"6'10""",0.79,plays_taller
 2026,Gestin Liberis,Saint Francis,76564,6-9,"6'9""",81.0,79.15,"6'7""",-1.85,plays_shorter,79.15,"6'7""",-1.85,plays_shorter
@@ -615,7 +615,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kalen Garry,South Dakota St.,76606,6-3,"6'3""",75.0,76.81,"6'5""",1.81,plays_taller,76.81,"6'5""",1.81,plays_taller
 2026,Henri Veesaar,North Carolina,76607,7-0,"7'0""",84.0,82.88,"6'11""",-1.12,plays_shorter,82.88,"6'11""",-1.12,plays_shorter
 2026,A'lahn Sumler,Charleston Southern,76611,6-4,"6'4""",76.0,75.95,"6'4""",-0.05,plays_at_height,75.95,"6'4""",-0.05,plays_at_height
-2026,Felix Okpara,Tennessee,76612,6-11,"6'11""",83.0,83.97,"7'0""",0.97,plays_taller,83.97,"7'0""",0.97,plays_taller
+2026,Felix Okpara,Tennessee,76612,6-11,"6'11""",83.0,83.96,"7'0""",0.96,plays_taller,83.96,"7'0""",0.96,plays_taller
 2026,LJ Wells,Northern Kentucky,76615,6-8,"6'8""",80.0,80.5,"6'9""",0.5,plays_at_height,80.5,"6'9""",0.5,plays_at_height
 2026,Cody Pennebaker,Lamar,76616,6-5,"6'5""",77.0,77.88,"6'6""",0.88,plays_taller,77.88,"6'6""",0.88,plays_taller
 2026,Nate Calmese,Wake Forest,76617,6-2,"6'2""",74.0,75.57,"6'4""",1.57,plays_taller,75.57,"6'4""",1.57,plays_taller
@@ -641,8 +641,8 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Christian May,UNC Wilmington,76664,6-5,"6'5""",77.0,78.15,"6'6""",1.15,plays_taller,78.15,"6'6""",1.15,plays_taller
 2026,Dylan Williamson,Towson,76665,6-1,"6'1""",73.0,74.21,"6'2""",1.21,plays_taller,74.21,"6'2""",1.21,plays_taller
 2026,Kylan Blackmon,Charlotte,76667,6-3,"6'3""",75.0,75.09,"6'3""",0.09,plays_at_height,75.09,"6'3""",0.09,plays_at_height
-2026,Harlan Obioha,West Virginia,76668,7-0,"7'0""",84.0,80.51,"6'9""",-3.49,plays_shorter,80.51,"6'9""",-3.49,plays_shorter
-2026,Tyler Andrews,Bethune Cookman,76670,6-6,"6'6""",78.0,77.2,"6'5""",-0.8,plays_shorter,77.2,"6'5""",-0.8,plays_shorter
+2026,Harlan Obioha,West Virginia,76668,7-0,"7'0""",84.0,80.54,"6'9""",-3.46,plays_shorter,80.54,"6'9""",-3.46,plays_shorter
+2026,Tyler Andrews,Bethune Cookman,76670,6-6,"6'6""",78.0,77.19,"6'5""",-0.81,plays_shorter,77.19,"6'5""",-0.81,plays_shorter
 2026,Ernest Udeh Jr.,Miami FL,76673,6-11,"6'11""",83.0,85.16,"7'1""",2.16,plays_taller,85.16,"7'1""",2.16,plays_taller
 2026,Tafara Gapare,Villanova,76674,6-9,"6'9""",81.0,77.47,"6'5""",-3.53,plays_shorter,77.47,"6'5""",-3.53,plays_shorter
 2026,Jevin Muniz,Colorado St.,76676,6-6,"6'6""",78.0,77.11,"6'5""",-0.89,plays_shorter,77.11,"6'5""",-0.89,plays_shorter
@@ -679,7 +679,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,David Idada,Southeast Missouri St.,76757,7-0,"7'0""",84.0,80.14,"6'8""",-3.86,plays_shorter,80.14,"6'8""",-3.86,plays_shorter
 2026,Benny Gealer,Stanford,76758,6-1,"6'1""",73.0,75.11,"6'3""",2.11,plays_taller,75.11,"6'3""",2.11,plays_taller
 2026,Ryan Agarwal,Stanford,76759,6-6,"6'6""",78.0,76.55,"6'5""",-1.45,plays_shorter,76.55,"6'5""",-1.45,plays_shorter
-2026,Jalen Washington,Vanderbilt,76760,6-10,"6'10""",82.0,83.35,"6'11""",1.35,plays_taller,83.35,"6'11""",1.35,plays_taller
+2026,Jalen Washington,Vanderbilt,76760,6-10,"6'10""",82.0,83.34,"6'11""",1.34,plays_taller,83.34,"6'11""",1.34,plays_taller
 2026,Tyler Nickel,Vanderbilt,76761,6-7,"6'7""",79.0,77.01,"6'5""",-1.99,plays_shorter,77.01,"6'5""",-1.99,plays_shorter
 2026,Matus Hronsky,Portland,76768,6-8,"6'8""",80.0,76.53,"6'5""",-3.47,plays_shorter,76.53,"6'5""",-3.47,plays_shorter
 2026,Dominique Ford,San Diego,76770,6-5,"6'5""",77.0,75.22,"6'3""",-1.78,plays_shorter,75.22,"6'3""",-1.78,plays_shorter
@@ -708,7 +708,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Damarco Minor,Pittsburgh,76857,6-0,"6'0""",72.0,77.07,"6'5""",5.07,plays_taller,77.07,"6'5""",5.07,plays_taller
 2026,Marquel Sutton,LSU,76859,6-9,"6'9""",81.0,79.35,"6'7""",-1.65,plays_shorter,79.35,"6'7""",-1.65,plays_shorter
 2026,Lamar Wilkerson,Indiana,76860,6-6,"6'6""",78.0,76.88,"6'5""",-1.12,plays_shorter,76.88,"6'5""",-1.12,plays_shorter
-2026,Jackson Benigni,Binghamton,76867,6-1,"6'1""",73.0,74.89,"6'3""",1.89,plays_taller,74.89,"6'3""",1.89,plays_taller
+2026,Jackson Benigni,Binghamton,76867,6-1,"6'1""",73.0,74.9,"6'3""",1.9,plays_taller,74.9,"6'3""",1.9,plays_taller
 2026,Louis Hutchinson,Alabama A&M,76872,6-7,"6'7""",79.0,75.91,"6'4""",-3.09,plays_shorter,75.91,"6'4""",-3.09,plays_shorter
 2026,TJ Caldwell,Arkansas St.,76873,6-4,"6'4""",76.0,77.0,"6'5""",1.0,plays_taller,77.0,"6'5""",1.0,plays_taller
 2026,Malique Ewin,Arkansas,76875,6-10,"6'10""",82.0,83.66,"7'0""",1.66,plays_taller,83.66,"7'0""",1.66,plays_taller
@@ -756,13 +756,13 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Alphonzo Billups III,Longwood,76971,6-7,"6'7""",79.0,77.06,"6'5""",-1.94,plays_shorter,77.06,"6'5""",-1.94,plays_shorter
 2026,Shawn Jones Jr.,Mississippi St.,76973,6-6,"6'6""",78.0,78.26,"6'6""",0.26,plays_at_height,78.26,"6'6""",0.26,plays_at_height
 2026,Skyy Clark,UCLA,76976,6-3,"6'3""",75.0,75.34,"6'3""",0.34,plays_at_height,75.34,"6'3""",0.34,plays_at_height
-2026,Jayden Epps,Mississippi St.,76977,6-2,"6'2""",74.0,74.79,"6'3""",0.79,plays_taller,74.79,"6'3""",0.79,plays_taller
+2026,Jayden Epps,Mississippi St.,76977,6-2,"6'2""",74.0,74.78,"6'3""",0.78,plays_taller,74.78,"6'3""",0.78,plays_taller
 2026,Sencire Harris,Cincinnati,76978,6-4,"6'4""",76.0,77.82,"6'6""",1.82,plays_taller,77.82,"6'6""",1.82,plays_taller
 2026,Nigel Burris,Weber St.,76983,6-7,"6'7""",79.0,79.0,"6'7""",-0.0,plays_at_height,79.0,"6'7""",-0.0,plays_at_height
 2026,RaSheed Jones,Coastal Carolina,76988,6-6,"6'6""",78.0,75.82,"6'4""",-2.18,plays_shorter,75.82,"6'4""",-2.18,plays_shorter
 2026,Marcus Kell,Western Carolina,76991,6-8,"6'8""",80.0,76.99,"6'5""",-3.01,plays_shorter,76.99,"6'5""",-3.01,plays_shorter
 2026,Cole Farrell,Long Beach St.,77000,6-5,"6'5""",77.0,76.02,"6'4""",-0.98,plays_shorter,76.02,"6'4""",-0.98,plays_shorter
-2026,Fletcher Loyer,Purdue,77002,6-4,"6'4""",76.0,75.08,"6'3""",-0.92,plays_shorter,75.08,"6'3""",-0.92,plays_shorter
+2026,Fletcher Loyer,Purdue,77002,6-4,"6'4""",76.0,75.07,"6'3""",-0.93,plays_shorter,75.07,"6'3""",-0.93,plays_shorter
 2026,Cale Jacobsen,Nebraska,77003,6-4,"6'4""",76.0,77.48,"6'5""",1.48,plays_taller,77.48,"6'5""",1.48,plays_taller
 2026,Hayden Welling,Utah Valley,77005,6-9,"6'9""",81.0,78.47,"6'6""",-2.53,plays_shorter,78.47,"6'6""",-2.53,plays_shorter
 2026,Elijah Chol,UC Irvine,77013,7-0,"7'0""",84.0,79.28,"6'7""",-4.72,plays_shorter,79.28,"6'7""",-4.72,plays_shorter
@@ -804,7 +804,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Ryan Mabrey,Maine,77099,6-5,"6'5""",77.0,74.62,"6'3""",-2.38,plays_shorter,74.62,"6'3""",-2.38,plays_shorter
 2026,Tyler Bilodeau,UCLA,77100,6-9,"6'9""",81.0,78.06,"6'6""",-2.94,plays_shorter,78.06,"6'6""",-2.94,plays_shorter
 2026,Elijah Jamison,Norfolk St.,77102,6-3,"6'3""",75.0,75.09,"6'3""",0.09,plays_at_height,75.09,"6'3""",0.09,plays_at_height
-2026,Billy Smith,Chattanooga,77103,6-7,"6'7""",79.0,74.61,"6'3""",-4.39,plays_shorter,74.61,"6'3""",-4.39,plays_shorter
+2026,Billy Smith,Chattanooga,77103,6-7,"6'7""",79.0,74.62,"6'3""",-4.38,plays_shorter,74.62,"6'3""",-4.38,plays_shorter
 2026,Chandler Pigge,Harvard,77104,6-5,"6'5""",77.0,77.79,"6'6""",0.79,plays_taller,77.79,"6'6""",0.79,plays_taller
 2026,Chisom Okpara,Stanford,77105,6-8,"6'8""",80.0,77.67,"6'6""",-2.33,plays_shorter,77.67,"6'6""",-2.33,plays_shorter
 2026,Sadraque NgaNga,San Jose St.,77106,6-10,"6'10""",82.0,77.19,"6'5""",-4.81,plays_shorter,77.19,"6'5""",-4.81,plays_shorter
@@ -814,7 +814,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Elijah Jones,UTEP,77113,6-8,"6'8""",80.0,79.58,"6'8""",-0.42,plays_at_height,79.58,"6'8""",-0.42,plays_at_height
 2026,Dorian Finister,Louisiana,77116,6-5,"6'5""",77.0,77.54,"6'6""",0.54,plays_at_height,77.54,"6'6""",0.54,plays_at_height
 2026,Travis Roberts,Alcorn St.,77120,6-6,"6'6""",78.0,74.5,"6'3""",-3.5,plays_shorter,74.5,"6'3""",-3.5,plays_shorter
-2026,Demarion Watson,North Texas,77121,6-7,"6'7""",79.0,78.25,"6'6""",-0.75,plays_at_height,78.25,"6'6""",-0.75,plays_at_height
+2026,Demarion Watson,North Texas,77121,6-7,"6'7""",79.0,78.25,"6'6""",-0.75,plays_shorter,78.25,"6'6""",-0.75,plays_shorter
 2026,Tamin Lipsey,Iowa St.,77122,6-1,"6'1""",73.0,77.54,"6'6""",4.54,plays_taller,77.54,"6'6""",4.54,plays_taller
 2026,Eli King,North Dakota,77123,6-4,"6'4""",76.0,78.21,"6'6""",2.21,plays_taller,78.21,"6'6""",2.21,plays_taller
 2026,Simeon Cottle,Kennesaw St.,77125,6-2,"6'2""",74.0,75.86,"6'4""",1.86,plays_taller,75.86,"6'4""",1.86,plays_taller
@@ -834,7 +834,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Josh Fulton,Bucknell,77160,6-6,"6'6""",78.0,80.03,"6'8""",2.03,plays_taller,80.03,"6'8""",2.03,plays_taller
 2026,Dillon Hunter,Clemson,77161,6-4,"6'4""",76.0,76.94,"6'5""",0.94,plays_taller,76.94,"6'5""",0.94,plays_taller
 2026,Chauncey Wiggins,Florida St.,77164,6-10,"6'10""",82.0,77.61,"6'6""",-4.39,plays_shorter,77.61,"6'6""",-4.39,plays_shorter
-2026,Ruot Bijiek,Bucknell,77165,6-9,"6'9""",81.0,77.39,"6'5""",-3.61,plays_shorter,77.39,"6'5""",-3.61,plays_shorter
+2026,Ruot Bijiek,Bucknell,77165,6-9,"6'9""",81.0,77.4,"6'5""",-3.6,plays_shorter,77.4,"6'5""",-3.6,plays_shorter
 2026,Chauncey Gibson,Chicago St.,77166,6-7,"6'7""",79.0,75.44,"6'3""",-3.56,plays_shorter,75.44,"6'3""",-3.56,plays_shorter
 2026,Harry Rouhliadeff,Hawaii,77167,6-9,"6'9""",81.0,78.38,"6'6""",-2.62,plays_shorter,78.38,"6'6""",-2.62,plays_shorter
 2026,Goanar Biliew,Western Illinois,77173,6-8,"6'8""",80.0,76.75,"6'5""",-3.25,plays_shorter,76.75,"6'5""",-3.25,plays_shorter
@@ -875,7 +875,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Colin Smith,UC Santa Barbara,77264,6-8,"6'8""",80.0,77.47,"6'5""",-2.53,plays_shorter,77.47,"6'5""",-2.53,plays_shorter
 2026,Malik Messina-Moore,Xavier,77276,6-5,"6'5""",77.0,75.84,"6'4""",-1.16,plays_shorter,75.84,"6'4""",-1.16,plays_shorter
 2026,Zion Cruz,Rider,77281,6-5,"6'5""",77.0,74.4,"6'2""",-2.6,plays_shorter,74.4,"6'2""",-2.6,plays_shorter
-2026,Rowan Brumbaugh,Tulane,77283,6-4,"6'4""",76.0,76.24,"6'4""",0.24,plays_at_height,76.24,"6'4""",0.24,plays_at_height
+2026,Rowan Brumbaugh,Tulane,77283,6-4,"6'4""",76.0,76.23,"6'4""",0.23,plays_at_height,76.23,"6'4""",0.23,plays_at_height
 2026,Jalen Hampton,Arkansas St.,77287,6-7,"6'7""",79.0,80.95,"6'9""",1.95,plays_taller,80.95,"6'9""",1.95,plays_taller
 2026,Jalen Pitre,Tennessee St.,77288,6-8,"6'8""",80.0,80.59,"6'9""",0.59,plays_at_height,80.59,"6'9""",0.59,plays_at_height
 2026,Evan Mahaffey,Akron,77289,6-6,"6'6""",78.0,80.46,"6'8""",2.46,plays_taller,80.46,"6'8""",2.46,plays_taller
@@ -887,7 +887,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jlynn Counter,Charleston,77316,6-3,"6'3""",75.0,77.6,"6'6""",2.6,plays_taller,77.6,"6'6""",2.6,plays_taller
 2026,Will Shaver,Samford,77320,6-10,"6'10""",82.0,80.5,"6'8""",-1.5,plays_shorter,80.5,"6'8""",-1.5,plays_shorter
 2026,ND Okafor,Washington St.,77321,6-9,"6'9""",81.0,81.5,"6'9""",0.5,plays_at_height,81.5,"6'9""",0.5,plays_at_height
-2026,Masai Troutman,George Mason,77323,6-4,"6'4""",76.0,77.47,"6'5""",1.47,plays_taller,77.47,"6'5""",1.47,plays_taller
+2026,Masai Troutman,George Mason,77323,6-4,"6'4""",76.0,77.46,"6'5""",1.46,plays_taller,77.46,"6'5""",1.46,plays_taller
 2026,Landon Lewis,Brown,77324,6-7,"6'7""",79.0,79.82,"6'8""",0.82,plays_taller,79.82,"6'8""",0.82,plays_taller
 2026,Jamai Felt,Temple,77325,6-10,"6'10""",82.0,82.37,"6'10""",0.37,plays_at_height,82.37,"6'10""",0.37,plays_at_height
 2026,Anthony McComb III,Norfolk St.,77326,6-3,"6'3""",75.0,75.24,"6'3""",0.24,plays_at_height,75.24,"6'3""",0.24,plays_at_height
@@ -916,7 +916,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Trevan Leonhardt,Utah Valley,77420,6-4,"6'4""",76.0,78.28,"6'6""",2.28,plays_taller,78.28,"6'6""",2.28,plays_taller
 2026,Juanse Gorosito,San Diego,77421,6-0,"6'0""",72.0,74.84,"6'3""",2.84,plays_taller,74.84,"6'3""",2.84,plays_taller
 2026,Kamari Lands,Middle Tennessee,77422,6-8,"6'8""",80.0,76.71,"6'5""",-3.29,plays_shorter,76.71,"6'5""",-3.29,plays_shorter
-2026,Tae Davis,Oklahoma,77424,6-9,"6'9""",81.0,79.26,"6'7""",-1.74,plays_shorter,79.26,"6'7""",-1.74,plays_shorter
+2026,Tae Davis,Oklahoma,77424,6-9,"6'9""",81.0,79.32,"6'7""",-1.68,plays_shorter,79.32,"6'7""",-1.68,plays_shorter
 2026,Jaquan Sanders,Florida A&M,77427,6-4,"6'4""",76.0,75.02,"6'3""",-0.98,plays_shorter,75.02,"6'3""",-0.98,plays_shorter
 2026,Devin Ree,Jackson St.,77428,6-9,"6'9""",81.0,76.92,"6'5""",-4.08,plays_shorter,76.92,"6'5""",-4.08,plays_shorter
 2026,Maurice Odum,Arizona St.,77430,6-2,"6'2""",74.0,74.92,"6'3""",0.92,plays_taller,74.92,"6'3""",0.92,plays_taller
@@ -954,7 +954,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jaden Clayton,Pacific,77495,6-1,"6'1""",73.0,75.0,"6'3""",2.0,plays_taller,75.0,"6'3""",2.0,plays_taller
 2026,Miles Byrd,San Diego St.,77500,6-7,"6'7""",79.0,79.88,"6'8""",0.88,plays_taller,79.88,"6'8""",0.88,plays_taller
 2026,Elijah Saunders,Maryland,77501,6-8,"6'8""",80.0,76.9,"6'5""",-3.1,plays_shorter,76.9,"6'5""",-3.1,plays_shorter
-2026,Toby Onyekonwu,Stony Brook,77502,6-2,"6'2""",74.0,72.78,"6'1""",-1.22,plays_shorter,72.78,"6'1""",-1.22,plays_shorter
+2026,Toby Onyekonwu,Stony Brook,77502,6-2,"6'2""",74.0,72.79,"6'1""",-1.21,plays_shorter,72.79,"6'1""",-1.21,plays_shorter
 2026,Jared Frey,UMass Lowell,77506,6-6,"6'6""",78.0,75.11,"6'3""",-2.89,plays_shorter,75.11,"6'3""",-2.89,plays_shorter
 2026,Brody Rowbury,Idaho,77510,6-11,"6'11""",83.0,78.3,"6'6""",-4.7,plays_shorter,78.3,"6'6""",-4.7,plays_shorter
 2026,Jamarques Lawrence,Nebraska,77511,6-3,"6'3""",75.0,76.23,"6'4""",1.23,plays_taller,76.23,"6'4""",1.23,plays_taller
@@ -980,11 +980,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kellan Boylan,Lipscomb,77624,6-7,"6'7""",79.0,79.11,"6'7""",0.11,plays_at_height,79.11,"6'7""",0.11,plays_at_height
 2026,Zytarious Mortle,Texas Southern,77629,6-2,"6'2""",74.0,77.16,"6'5""",3.16,plays_taller,77.16,"6'5""",3.16,plays_taller
 2026,AK Okereke,Vanderbilt,77640,6-7,"6'7""",79.0,78.1,"6'6""",-0.9,plays_shorter,78.1,"6'6""",-0.9,plays_shorter
-2026,Sola Adebisi,The Citadel,77656,6-7,"6'7""",79.0,80.68,"6'9""",1.68,plays_taller,80.68,"6'9""",1.68,plays_taller
+2026,Sola Adebisi,The Citadel,77656,6-7,"6'7""",79.0,80.69,"6'9""",1.69,plays_taller,80.69,"6'9""",1.69,plays_taller
 2026,Ahmet Jonovic,Bradley,77661,7-1,"7'1""",85.0,81.48,"6'9""",-3.52,plays_shorter,81.48,"6'9""",-3.52,plays_shorter
 2026,Janko Bulajic,Lamar,77665,6-10,"6'10""",82.0,79.85,"6'8""",-2.15,plays_shorter,79.85,"6'8""",-2.15,plays_shorter
 2026,Ahmed Essahaty,Southeastern Louisiana,77667,6-3,"6'3""",75.0,75.69,"6'4""",0.69,plays_at_height,75.69,"6'4""",0.69,plays_at_height
-2026,Emmanuel Okorafor,Wichita St.,77669,6-10,"6'10""",82.0,82.39,"6'10""",0.39,plays_at_height,82.39,"6'10""",0.39,plays_at_height
+2026,Emmanuel Okorafor,Wichita St.,77669,6-10,"6'10""",82.0,82.38,"6'10""",0.38,plays_at_height,82.38,"6'10""",0.38,plays_at_height
 2026,Simeon Wilcher,Texas,77677,6-4,"6'4""",76.0,75.68,"6'4""",-0.32,plays_at_height,75.68,"6'4""",-0.32,plays_at_height
 2026,Cameron Grant,Stanford,77678,6-7,"6'7""",79.0,75.12,"6'3""",-3.88,plays_shorter,75.12,"6'3""",-3.88,plays_shorter
 2026,Kanaan Carlyle,Florida Atlantic,77679,6-3,"6'3""",75.0,75.34,"6'3""",0.34,plays_at_height,75.34,"6'3""",0.34,plays_at_height
@@ -1014,7 +1014,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Isaiah Manning,Sam Houston St.,77729,6-8,"6'8""",80.0,77.25,"6'5""",-2.75,plays_shorter,77.25,"6'5""",-2.75,plays_shorter
 2026,Jace Posey,TCU,77730,6-5,"6'5""",77.0,78.59,"6'7""",1.59,plays_taller,78.59,"6'7""",1.59,plays_taller
 2026,Bangot Dak,Colorado,77731,6-11,"6'11""",83.0,82.3,"6'10""",-0.7,plays_at_height,82.3,"6'10""",-0.7,plays_at_height
-2026,Devin Curtis,Southern Indiana,77732,6-11,"6'11""",83.0,79.93,"6'8""",-3.07,plays_shorter,79.93,"6'8""",-3.07,plays_shorter
+2026,Devin Curtis,Southern Indiana,77732,6-11,"6'11""",83.0,79.94,"6'8""",-3.06,plays_shorter,79.94,"6'8""",-3.06,plays_shorter
 2026,Rodney Brown Jr.,Loyola Marymount,77733,6-6,"6'6""",78.0,75.05,"6'3""",-2.95,plays_shorter,75.05,"6'3""",-2.95,plays_shorter
 2026,Augusto Cassia,Mississippi,77735,6-8,"6'8""",80.0,78.54,"6'7""",-1.46,plays_shorter,78.54,"6'7""",-1.46,plays_shorter
 2026,Boden Kapke,Boston College,77736,6-11,"6'11""",83.0,78.4,"6'6""",-4.6,plays_shorter,78.4,"6'6""",-4.6,plays_shorter
@@ -1055,7 +1055,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Marqueas Bell,Southeast Missouri St.,77809,6-3,"6'3""",75.0,78.79,"6'7""",3.79,plays_taller,78.79,"6'7""",3.79,plays_taller
 2026,Dontae Horne,Prairie View A&M,77810,6-4,"6'4""",76.0,77.15,"6'5""",1.15,plays_taller,77.15,"6'5""",1.15,plays_taller
 2026,Kwo Agwa,UT Rio Grande Valley,77815,6-6,"6'6""",78.0,79.71,"6'8""",1.71,plays_taller,79.71,"6'8""",1.71,plays_taller
-2026,Terrence Brown,Utah,77821,6-3,"6'3""",75.0,76.8,"6'5""",1.8,plays_taller,76.8,"6'5""",1.8,plays_taller
+2026,Terrence Brown,Utah,77821,6-3,"6'3""",75.0,76.81,"6'5""",1.81,plays_taller,76.81,"6'5""",1.81,plays_taller
 2026,Chuck Bailey III,Nevada,77823,6-4,"6'4""",76.0,76.53,"6'5""",0.53,plays_at_height,76.53,"6'5""",0.53,plays_at_height
 2026,Joshua Hughes,Evansville,77826,6-10,"6'10""",82.0,77.98,"6'6""",-4.02,plays_shorter,77.98,"6'6""",-4.02,plays_shorter
 2026,Corey Hadnot II,Purdue Fort Wayne,77833,6-3,"6'3""",75.0,77.4,"6'5""",2.4,plays_taller,77.4,"6'5""",2.4,plays_taller
@@ -1066,7 +1066,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Joel Armotrading,Nevada,77845,6-10,"6'10""",82.0,81.34,"6'9""",-0.66,plays_at_height,81.34,"6'9""",-0.66,plays_at_height
 2026,Jacob Meyer,UAB,77847,6-2,"6'2""",74.0,76.37,"6'4""",2.37,plays_taller,76.37,"6'4""",2.37,plays_taller
 2026,Adam Clark,Seton Hall,77849,5-10,"5'10""",70.0,75.48,"6'3""",5.48,plays_taller,75.48,"6'3""",5.48,plays_taller
-2026,Mason Jones,Ball St.,77853,6-7,"6'7""",79.0,76.82,"6'5""",-2.18,plays_shorter,76.82,"6'5""",-2.18,plays_shorter
+2026,Mason Jones,Ball St.,77853,6-7,"6'7""",79.0,76.83,"6'5""",-2.17,plays_shorter,76.83,"6'5""",-2.17,plays_shorter
 2026,Omar Adegbola,Northwestern St.,77856,6-4,"6'4""",76.0,75.09,"6'3""",-0.91,plays_shorter,75.09,"6'3""",-0.91,plays_shorter
 2026,Chrishawn Christmas,Stephen F. Austin,77863,6-5,"6'5""",77.0,79.1,"6'7""",2.1,plays_taller,79.1,"6'7""",2.1,plays_taller
 2026,Toyaz Solomon,UNC Asheville,77865,6-9,"6'9""",81.0,79.62,"6'8""",-1.38,plays_shorter,79.62,"6'8""",-1.38,plays_shorter
@@ -1078,13 +1078,13 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Blake Buchanan,Iowa St.,77881,6-10,"6'10""",82.0,83.51,"7'0""",1.51,plays_taller,83.51,"7'0""",1.51,plays_taller
 2026,Seth Joba,Idaho,77883,6-9,"6'9""",81.0,78.92,"6'7""",-2.08,plays_shorter,78.92,"6'7""",-2.08,plays_shorter
 2026,Noah Barnett,Vermont,77884,6-9,"6'9""",81.0,79.97,"6'8""",-1.03,plays_shorter,79.97,"6'8""",-1.03,plays_shorter
-2026,Owen Freeman,Creighton,77886,6-10,"6'10""",82.0,82.47,"6'10""",0.47,plays_at_height,82.47,"6'10""",0.47,plays_at_height
+2026,Owen Freeman,Creighton,77886,6-10,"6'10""",82.0,82.48,"6'10""",0.48,plays_at_height,82.48,"6'10""",0.48,plays_at_height
 2026,Jason Rivera-Torres,Monmouth,77889,6-7,"6'7""",79.0,79.64,"6'8""",0.64,plays_at_height,79.64,"6'8""",0.64,plays_at_height
 2026,"JaQualon ""JQ"" Roberts",Davidson,77890,6-8,"6'8""",80.0,79.8,"6'8""",-0.2,plays_at_height,79.8,"6'8""",-0.2,plays_at_height
 2026,DaJohn Craig,Coastal Carolina,77891,6-1,"6'1""",73.0,75.7,"6'4""",2.7,plays_taller,75.7,"6'4""",2.7,plays_taller
 2026,Jeremy Fears Jr.,Michigan St.,77892,6-2,"6'2""",74.0,76.3,"6'4""",2.3,plays_taller,76.3,"6'4""",2.3,plays_taller
 2026,Josh Lee,Denver,77897,6-3,"6'3""",75.0,75.47,"6'3""",0.47,plays_at_height,75.47,"6'3""",0.47,plays_at_height
-2026,Jasper Floyd,West Virginia,77900,6-3,"6'3""",75.0,76.53,"6'5""",1.53,plays_taller,76.53,"6'5""",1.53,plays_taller
+2026,Jasper Floyd,West Virginia,77900,6-3,"6'3""",75.0,76.34,"6'4""",1.34,plays_taller,76.34,"6'4""",1.34,plays_taller
 2026,Nakyel Shelton,Loyola Marymount,77901,6-3,"6'3""",75.0,75.38,"6'3""",0.38,plays_at_height,75.38,"6'3""",0.38,plays_at_height
 2026,Takai Simpkins,Oregon,77902,6-4,"6'4""",76.0,76.54,"6'5""",0.54,plays_at_height,76.54,"6'5""",0.54,plays_at_height
 2026,Jayden Ross,Connecticut,77905,6-7,"6'7""",79.0,79.07,"6'7""",0.07,plays_at_height,79.07,"6'7""",0.07,plays_at_height
@@ -1117,7 +1117,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Greg Gordon,LIU,77959,6-5,"6'5""",77.0,81.28,"6'9""",4.28,plays_taller,81.28,"6'9""",4.28,plays_taller
 2026,Augustinas Kiudulas,Colorado St.,77960,6-8,"6'8""",80.0,77.79,"6'6""",-2.21,plays_shorter,77.79,"6'6""",-2.21,plays_shorter
 2026,Julius Mims,New Mexico St.,77961,6-9,"6'9""",81.0,81.39,"6'9""",0.39,plays_at_height,81.39,"6'9""",0.39,plays_at_height
-2026,Tyler Mrus,BYU,77962,6-7,"6'7""",79.0,73.63,"6'2""",-5.37,plays_shorter,73.63,"6'2""",-5.37,plays_shorter
+2026,Tyler Mrus,BYU,77962,6-7,"6'7""",79.0,73.64,"6'2""",-5.36,plays_shorter,73.64,"6'2""",-5.36,plays_shorter
 2026,Quinn Denker,Northern Colorado,77963,6-3,"6'3""",75.0,76.26,"6'4""",1.26,plays_taller,76.26,"6'4""",1.26,plays_taller
 2026,Eli Rice,Penn St.,77967,6-8,"6'8""",80.0,74.58,"6'3""",-5.42,plays_shorter,74.58,"6'3""",-5.42,plays_shorter
 2026,Marcel Bryant,Prairie View A&M,77968,6-7,"6'7""",79.0,77.73,"6'6""",-1.27,plays_shorter,77.73,"6'6""",-1.27,plays_shorter
@@ -1144,7 +1144,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jordan Clayton,Northwestern,78022,6-2,"6'2""",74.0,75.47,"6'3""",1.47,plays_taller,75.47,"6'3""",1.47,plays_taller
 2026,Dez White,Oregon St.,78023,6-2,"6'2""",74.0,74.2,"6'2""",0.2,plays_at_height,74.2,"6'2""",0.2,plays_at_height
 2026,Blake Barkley,East Tennessee St.,78024,6-7,"6'7""",79.0,79.09,"6'7""",0.09,plays_at_height,79.09,"6'7""",0.09,plays_at_height
-2026,Dennis Evans,Grand Canyon,78026,7-1,"7'1""",85.0,84.79,"7'1""",-0.21,plays_at_height,84.79,"7'1""",-0.21,plays_at_height
+2026,Dennis Evans,Grand Canyon,78026,7-1,"7'1""",85.0,84.78,"7'1""",-0.22,plays_at_height,84.78,"7'1""",-0.22,plays_at_height
 2026,Curtis Williams Jr.,Tulane,78027,6-6,"6'6""",78.0,76.73,"6'5""",-1.27,plays_shorter,76.73,"6'5""",-1.27,plays_shorter
 2026,Ty-Laur Johnson,San Diego,78028,6-0,"6'0""",72.0,76.18,"6'4""",4.18,plays_taller,76.18,"6'4""",4.18,plays_taller
 2026,Joshua Ingram,Lehigh,78031,6-4,"6'4""",76.0,78.06,"6'6""",2.06,plays_taller,78.06,"6'6""",2.06,plays_taller
@@ -1162,7 +1162,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Solomon Callaghan,Wright St.,78069,6-2,"6'2""",74.0,74.36,"6'2""",0.36,plays_at_height,74.36,"6'2""",0.36,plays_at_height
 2026,Parker Gerrits,Washington St.,78070,6-1,"6'1""",73.0,76.12,"6'4""",3.12,plays_taller,76.12,"6'4""",3.12,plays_taller
 2026,Isaiah Watts,Maryland,78071,6-3,"6'3""",75.0,76.16,"6'4""",1.16,plays_taller,76.16,"6'4""",1.16,plays_taller
-2026,Myles Rigsby,Tulsa,78076,6-6,"6'6""",78.0,77.59,"6'6""",-0.41,plays_at_height,77.59,"6'6""",-0.41,plays_at_height
+2026,Myles Rigsby,Tulsa,78076,6-6,"6'6""",78.0,77.55,"6'6""",-0.45,plays_at_height,77.55,"6'6""",-0.45,plays_at_height
 2026,Victor Valdes,Troy,78077,6-7,"6'7""",79.0,77.04,"6'5""",-1.96,plays_shorter,77.04,"6'5""",-1.96,plays_shorter
 2026,Thomas Dowd,Troy,78078,6-8,"6'8""",80.0,80.54,"6'9""",0.54,plays_at_height,80.54,"6'9""",0.54,plays_at_height
 2026,Marcus Rigsby Jr.,UT Arlington,78079,6-3,"6'3""",75.0,76.46,"6'4""",1.46,plays_taller,76.46,"6'4""",1.46,plays_taller
@@ -1172,7 +1172,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jake Davis,Illinois,78089,6-6,"6'6""",78.0,75.96,"6'4""",-2.04,plays_shorter,75.96,"6'4""",-2.04,plays_shorter
 2026,Michael Nwoko,LSU,78090,6-10,"6'10""",82.0,82.57,"6'11""",0.57,plays_at_height,82.57,"6'11""",0.57,plays_at_height
 2026,David Thomas,Richmond,78091,6-2,"6'2""",74.0,74.18,"6'2""",0.18,plays_at_height,74.18,"6'2""",0.18,plays_at_height
-2026,Jerone Morton,Washington St.,78092,6-4,"6'4""",76.0,75.36,"6'3""",-0.64,plays_at_height,75.36,"6'3""",-0.64,plays_at_height
+2026,Jerone Morton,Washington St.,78092,6-4,"6'4""",76.0,75.35,"6'3""",-0.65,plays_at_height,75.35,"6'3""",-0.65,plays_at_height
 2026,Mikey Williams,Sacramento St.,78093,6-3,"6'3""",75.0,76.05,"6'4""",1.05,plays_taller,76.05,"6'4""",1.05,plays_taller
 2026,Anthony Benard,Canisius,78095,6-0,"6'0""",72.0,74.18,"6'2""",2.18,plays_taller,74.18,"6'2""",2.18,plays_taller
 2026,Ashton Hardaway,Memphis,78096,6-8,"6'8""",80.0,77.91,"6'6""",-2.09,plays_shorter,77.91,"6'6""",-2.09,plays_shorter
@@ -1191,7 +1191,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Eli DeLaurier,East Carolina,78120,6-10,"6'10""",82.0,75.9,"6'4""",-6.1,plays_shorter,75.9,"6'4""",-6.1,plays_shorter
 2026,Tan Yildizoglu,VMI,78121,6-4,"6'4""",76.0,74.86,"6'3""",-1.14,plays_shorter,74.86,"6'3""",-1.14,plays_shorter
 2026,Jerry Deng,N.C. State,78131,6-9,"6'9""",81.0,76.41,"6'4""",-4.59,plays_shorter,76.41,"6'4""",-4.59,plays_shorter
-2026,Chris Johnson,UCF,78133,6-5,"6'5""",77.0,76.28,"6'4""",-0.72,plays_at_height,76.28,"6'4""",-0.72,plays_at_height
+2026,Chris Johnson,UCF,78133,6-5,"6'5""",77.0,76.29,"6'4""",-0.71,plays_at_height,76.29,"6'4""",-0.71,plays_at_height
 2026,Devon Pryor,Oregon,78136,6-7,"6'7""",79.0,77.71,"6'6""",-1.29,plays_shorter,77.71,"6'6""",-1.29,plays_shorter
 2026,Alex Doyle,Stetson,78137,6-9,"6'9""",81.0,75.32,"6'3""",-5.68,plays_shorter,75.32,"6'3""",-5.68,plays_shorter
 2026,Jordan Ross,Georgia,78140,6-3,"6'3""",75.0,75.57,"6'4""",0.57,plays_at_height,75.57,"6'4""",0.57,plays_at_height
@@ -1227,11 +1227,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Braeden Shrewsberry,Notre Dame,78215,6-4,"6'4""",76.0,74.29,"6'2""",-1.71,plays_shorter,74.29,"6'2""",-1.71,plays_shorter
 2026,Carey Booth,Colorado St.,78216,6-10,"6'10""",82.0,81.57,"6'10""",-0.43,plays_at_height,81.57,"6'10""",-0.43,plays_at_height
 2026,Christian Jones,George Washington,78217,6-2,"6'2""",74.0,76.47,"6'4""",2.47,plays_taller,76.47,"6'4""",2.47,plays_taller
-2026,Markus Burton,Notre Dame,78218,6-0,"6'0""",72.0,75.35,"6'3""",3.35,plays_taller,75.35,"6'3""",3.35,plays_taller
+2026,Markus Burton,Notre Dame,78218,6-0,"6'0""",72.0,75.34,"6'3""",3.34,plays_taller,75.34,"6'3""",3.34,plays_taller
 2026,Logan Imes,Notre Dame,78219,6-4,"6'4""",76.0,76.08,"6'4""",0.08,plays_at_height,76.08,"6'4""",0.08,plays_at_height
-2026,Morris Ugusuk,West Virginia,78220,6-4,"6'4""",76.0,76.06,"6'4""",0.06,plays_at_height,76.06,"6'4""",0.06,plays_at_height
+2026,Morris Ugusuk,West Virginia,78220,6-4,"6'4""",76.0,76.03,"6'4""",0.03,plays_at_height,76.03,"6'4""",0.03,plays_at_height
 2026,Austin Herro,St. Thomas,78221,6-3,"6'3""",75.0,77.76,"6'6""",2.76,plays_taller,77.76,"6'6""",2.76,plays_taller
-2026,Arden Conyers,Charlotte,78222,6-7,"6'7""",79.0,75.79,"6'4""",-3.21,plays_shorter,75.79,"6'4""",-3.21,plays_shorter
+2026,Arden Conyers,Charlotte,78222,6-7,"6'7""",79.0,75.78,"6'4""",-3.22,plays_shorter,75.78,"6'4""",-3.22,plays_shorter
 2026,Jerrell Bellamy,Troy,78224,6-9,"6'9""",81.0,81.34,"6'9""",0.34,plays_at_height,81.34,"6'9""",0.34,plays_at_height
 2026,Lazar Djokovic,VCU,78226,6-10,"6'10""",82.0,80.88,"6'9""",-1.12,plays_shorter,80.88,"6'9""",-1.12,plays_shorter
 2026,Jonas Sirtautas,Loyola MD,78227,6-9,"6'9""",81.0,81.37,"6'9""",0.37,plays_at_height,81.37,"6'9""",0.37,plays_at_height
@@ -1270,7 +1270,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Pavle Stosic,Pepperdine,78306,6-9,"6'9""",81.0,78.16,"6'6""",-2.84,plays_shorter,78.16,"6'6""",-2.84,plays_shorter
 2026,Drew Carter,Oregon,78313,6-3,"6'3""",75.0,74.89,"6'3""",-0.11,plays_at_height,74.89,"6'3""",-0.11,plays_at_height
 2026,Dominique Daniels Jr.,Cal Baptist,78315,5-10,"5'10""",70.0,76.88,"6'5""",6.88,plays_taller,76.88,"6'5""",6.88,plays_taller
-2026,Cayden Vasko,Wofford,78316,6-6,"6'6""",78.0,76.46,"6'4""",-1.54,plays_shorter,76.46,"6'4""",-1.54,plays_shorter
+2026,Cayden Vasko,Wofford,78316,6-6,"6'6""",78.0,76.47,"6'4""",-1.53,plays_shorter,76.47,"6'4""",-1.53,plays_shorter
 2026,Jacob Bannarbie,UNLV,78317,6-9,"6'9""",81.0,80.31,"6'8""",-0.69,plays_at_height,80.31,"6'8""",-0.69,plays_at_height
 2026,Brooklyn Hicks,Montana,78319,6-3,"6'3""",75.0,77.04,"6'5""",2.04,plays_taller,77.04,"6'5""",2.04,plays_taller
 2026,Marqui Worthy,UC Riverside,78320,6-3,"6'3""",75.0,77.11,"6'5""",2.11,plays_taller,77.11,"6'5""",2.11,plays_taller
@@ -1287,12 +1287,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Drew Steffe,Southern Illinois,78346,6-5,"6'5""",77.0,75.91,"6'4""",-1.09,plays_shorter,75.91,"6'4""",-1.09,plays_shorter
 2026,Akira Jacobs,Fordham,78347,6-9,"6'9""",81.0,76.96,"6'5""",-4.04,plays_shorter,76.96,"6'5""",-4.04,plays_shorter
 2026,Eemeli Yalaho,Washington St.,78349,6-8,"6'8""",80.0,77.86,"6'6""",-2.14,plays_shorter,77.86,"6'6""",-2.14,plays_shorter
-2026,Spencer Elliott,Charlotte,78350,6-9,"6'9""",81.0,78.65,"6'7""",-2.35,plays_shorter,78.65,"6'7""",-2.35,plays_shorter
+2026,Spencer Elliott,Charlotte,78350,6-9,"6'9""",81.0,78.64,"6'7""",-2.36,plays_shorter,78.64,"6'7""",-2.36,plays_shorter
 2026,KJ Debrick,North Carolina A&T,78352,6-9,"6'9""",81.0,82.14,"6'10""",1.14,plays_taller,82.14,"6'10""",1.14,plays_taller
 2026,Elijah Jones,Longwood,78353,6-7,"6'7""",79.0,78.78,"6'7""",-0.22,plays_at_height,78.78,"6'7""",-0.22,plays_at_height
 2026,Kavion McClain,Monmouth,78357,5-10,"5'10""",70.0,74.5,"6'2""",4.5,plays_taller,74.5,"6'2""",4.5,plays_taller
 2026,Tre'Von Spillers,Wake Forest,78359,6-7,"6'7""",79.0,82.33,"6'10""",3.33,plays_taller,82.33,"6'10""",3.33,plays_taller
-2026,Addarin Scott,UMKC,78360,6-9,"6'9""",81.0,78.56,"6'7""",-2.44,plays_shorter,78.56,"6'7""",-2.44,plays_shorter
+2026,Addarin Scott,UMKC,78360,6-9,"6'9""",81.0,78.57,"6'7""",-2.43,plays_shorter,78.57,"6'7""",-2.43,plays_shorter
 2026,Randarius Jones,Grambling St.,78363,6-7,"6'7""",79.0,77.78,"6'6""",-1.22,plays_shorter,77.78,"6'6""",-1.22,plays_shorter
 2026,Evan Otten,Idaho St.,78365,6-11,"6'11""",83.0,83.32,"6'11""",0.32,plays_at_height,83.32,"6'11""",0.32,plays_at_height
 2026,Chase Walker,Illinois St.,78368,6-9,"6'9""",81.0,80.45,"6'8""",-0.55,plays_at_height,80.45,"6'8""",-0.55,plays_at_height
@@ -1315,7 +1315,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Sterling Young,Indiana St.,78425,6-1,"6'1""",73.0,74.09,"6'2""",1.09,plays_taller,74.09,"6'2""",1.09,plays_taller
 2026,Jon Sanders,Eastern Michigan,78431,6-2,"6'2""",74.0,74.44,"6'2""",0.44,plays_at_height,74.44,"6'2""",0.44,plays_at_height
 2026,Lase Olalere,Charleston Southern,78433,6-10,"6'10""",82.0,82.06,"6'10""",0.06,plays_at_height,82.06,"6'10""",0.06,plays_at_height
-2026,Trent Middleton Jr.,North Carolina A&T,78438,6-3,"6'3""",75.0,75.16,"6'3""",0.16,plays_at_height,75.16,"6'3""",0.16,plays_at_height
+2026,Trent Middleton Jr.,North Carolina A&T,78438,6-3,"6'3""",75.0,75.17,"6'3""",0.17,plays_at_height,75.17,"6'3""",0.17,plays_at_height
 2026,Keynan Davis,The Citadel,78443,6-5,"6'5""",77.0,76.03,"6'4""",-0.97,plays_shorter,76.03,"6'4""",-0.97,plays_shorter
 2026,Jizzle James,Cincinnati,78444,6-3,"6'3""",75.0,75.94,"6'4""",0.94,plays_taller,75.94,"6'4""",0.94,plays_taller
 2026,Rayvon Griffith,Kent St.,78445,6-7,"6'7""",79.0,77.53,"6'6""",-1.47,plays_shorter,77.53,"6'6""",-1.47,plays_shorter
@@ -1359,12 +1359,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Devon Ellis,Norfolk St.,78545,6-7,"6'7""",79.0,77.2,"6'5""",-1.8,plays_shorter,77.2,"6'5""",-1.8,plays_shorter
 2026,Tyler Mack,Alabama St.,78546,6-5,"6'5""",77.0,76.68,"6'5""",-0.32,plays_at_height,76.68,"6'5""",-0.32,plays_at_height
 2026,Egan Shields,Northern Colorado,78547,6-10,"6'10""",82.0,80.68,"6'9""",-1.32,plays_shorter,80.68,"6'9""",-1.32,plays_shorter
-2026,Jaylen Smith,East Tennessee St.,78548,5-11,"5'11""",71.0,75.93,"6'4""",4.93,plays_taller,75.93,"6'4""",4.93,plays_taller
+2026,Jaylen Smith,East Tennessee St.,78548,5-11,"5'11""",71.0,75.94,"6'4""",4.94,plays_taller,75.94,"6'4""",4.94,plays_taller
 2026,Mason Lee,North Florida,78550,6-7,"6'7""",79.0,77.3,"6'5""",-1.7,plays_shorter,77.3,"6'5""",-1.7,plays_shorter
-2026,Jasai Miles,Indiana,78552,6-6,"6'6""",78.0,78.1,"6'6""",0.1,plays_at_height,78.1,"6'6""",0.1,plays_at_height
+2026,Jasai Miles,Indiana,78552,6-6,"6'6""",78.0,78.09,"6'6""",0.09,plays_at_height,78.09,"6'6""",0.09,plays_at_height
 2026,Brandon McCreesh,Bucknell,78559,6-4,"6'4""",76.0,75.65,"6'4""",-0.35,plays_at_height,75.65,"6'4""",-0.35,plays_at_height
 2026,Patrick O'Brien,Bucknell,78562,6-8,"6'8""",80.0,78.03,"6'6""",-1.97,plays_shorter,78.03,"6'6""",-1.97,plays_shorter
-2026,Tylen Riley,Tulsa,78563,6-3,"6'3""",75.0,77.05,"6'5""",2.05,plays_taller,77.05,"6'5""",2.05,plays_taller
+2026,Tylen Riley,Tulsa,78563,6-3,"6'3""",75.0,77.11,"6'5""",2.11,plays_taller,77.11,"6'5""",2.11,plays_taller
 2026,Jonathan Griman,Cal Baptist,78564,6-11,"6'11""",83.0,81.12,"6'9""",-1.88,plays_shorter,81.12,"6'9""",-1.88,plays_shorter
 2026,Jermaine Coleman,St. Thomas,78570,6-7,"6'7""",79.0,76.61,"6'5""",-2.39,plays_shorter,76.61,"6'5""",-2.39,plays_shorter
 2026,Tyler Perkins,Villanova,78571,6-4,"6'4""",76.0,77.83,"6'6""",1.83,plays_taller,77.83,"6'6""",1.83,plays_taller
@@ -1416,7 +1416,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Matt Mayock,American,78668,6-7,"6'7""",79.0,77.31,"6'5""",-1.69,plays_shorter,77.31,"6'5""",-1.69,plays_shorter
 2026,Joey Chammaa,Arkansas St.,78669,5-11,"5'11""",71.0,76.74,"6'5""",5.74,plays_taller,76.74,"6'5""",5.74,plays_taller
 2026,Greg Jones,American,78671,6-6,"6'6""",78.0,76.22,"6'4""",-1.78,plays_shorter,76.22,"6'4""",-1.78,plays_shorter
-2026,Jimmy Oladokun Jr.,Rice,78674,6-9,"6'9""",81.0,80.42,"6'8""",-0.58,plays_at_height,80.42,"6'8""",-0.58,plays_at_height
+2026,Jimmy Oladokun Jr.,Rice,78674,6-9,"6'9""",81.0,80.41,"6'8""",-0.59,plays_at_height,80.41,"6'8""",-0.59,plays_at_height
 2026,Keyon Kensie Jr.,Portland St.,78675,6-8,"6'8""",80.0,79.56,"6'8""",-0.44,plays_at_height,79.56,"6'8""",-0.44,plays_at_height
 2026,Aden Holloway,Alabama,78677,6-1,"6'1""",73.0,74.79,"6'3""",1.79,plays_taller,74.79,"6'3""",1.79,plays_taller
 2026,Nikolaos Chitikoudis,Robert Morris,78678,6-6,"6'6""",78.0,81.08,"6'9""",3.08,plays_taller,81.08,"6'9""",3.08,plays_taller
@@ -1433,7 +1433,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kalifa Sakho,Houston,78703,6-11,"6'11""",83.0,82.14,"6'10""",-0.86,plays_shorter,82.14,"6'10""",-0.86,plays_shorter
 2026,Hamed Olayinka,FIU,78704,6-9,"6'9""",81.0,81.71,"6'10""",0.71,plays_at_height,81.71,"6'10""",0.71,plays_at_height
 2026,Michael McNair,Boston University,78705,6-5,"6'5""",77.0,77.05,"6'5""",0.05,plays_at_height,77.05,"6'5""",0.05,plays_at_height
-2026,David Simon,Vermont,78708,6-11,"6'11""",83.0,79.61,"6'8""",-3.39,plays_shorter,79.61,"6'8""",-3.39,plays_shorter
+2026,David Simon,Vermont,78708,6-11,"6'11""",83.0,79.62,"6'8""",-3.38,plays_shorter,79.62,"6'8""",-3.38,plays_shorter
 2026,David Douglas Jr.,Fresno St.,78709,6-5,"6'5""",77.0,75.5,"6'3""",-1.5,plays_shorter,75.5,"6'3""",-1.5,plays_shorter
 2026,Marcus Hall,Green Bay,78710,6-6,"6'6""",78.0,77.02,"6'5""",-0.98,plays_shorter,77.02,"6'5""",-0.98,plays_shorter
 2026,Andrew Phillips,Lafayette,78713,6-4,"6'4""",76.0,75.61,"6'4""",-0.39,plays_at_height,75.61,"6'4""",-0.39,plays_at_height
@@ -1459,11 +1459,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Abou Magassa,Wyoming,78764,6-7,"6'7""",79.0,80.51,"6'9""",1.51,plays_taller,80.51,"6'9""",1.51,plays_taller
 2026,Dasear Haskins,Saint Joseph's,78765,6-8,"6'8""",80.0,79.79,"6'8""",-0.21,plays_at_height,79.79,"6'8""",-0.21,plays_at_height
 2026,Cian Medley,Kent St.,78766,5-11,"5'11""",71.0,74.29,"6'2""",3.29,plays_taller,74.29,"6'2""",3.29,plays_taller
-2026,Xzayvier Brown,Oklahoma,78767,6-2,"6'2""",74.0,75.43,"6'3""",1.43,plays_taller,75.43,"6'3""",1.43,plays_taller
+2026,Xzayvier Brown,Oklahoma,78767,6-2,"6'2""",74.0,75.39,"6'3""",1.39,plays_taller,75.39,"6'3""",1.39,plays_taller
 2026,Anthony Finkley,Saint Joseph's,78768,6-6,"6'6""",78.0,76.49,"6'4""",-1.51,plays_shorter,76.49,"6'4""",-1.51,plays_shorter
 2026,Tsvet Sotirov,Georgia Southern,78769,6-9,"6'9""",81.0,76.18,"6'4""",-4.82,plays_shorter,76.18,"6'4""",-4.82,plays_shorter
 2026,Christian Hammond,Santa Clara,78770,6-4,"6'4""",76.0,75.09,"6'3""",-0.91,plays_shorter,75.09,"6'3""",-0.91,plays_shorter
-2026,Elmarko Jackson,Kansas,78772,6-3,"6'3""",75.0,76.3,"6'4""",1.3,plays_taller,76.3,"6'4""",1.3,plays_taller
+2026,Elmarko Jackson,Kansas,78772,6-3,"6'3""",75.0,76.31,"6'4""",1.31,plays_taller,76.31,"6'4""",1.31,plays_taller
 2026,Marqus Marion,Wake Forest,78774,6-8,"6'8""",80.0,79.49,"6'7""",-0.51,plays_at_height,79.49,"6'7""",-0.51,plays_at_height
 2026,Mike Williams III,Seton Hall,78775,6-3,"6'3""",75.0,76.57,"6'5""",1.57,plays_taller,76.57,"6'5""",1.57,plays_taller
 2026,Nikola Djapa,Colorado St.,78777,7-0,"7'0""",84.0,79.5,"6'8""",-4.5,plays_shorter,79.5,"6'8""",-4.5,plays_shorter
@@ -1539,7 +1539,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Anthony Robinson II,Missouri,78943,6-3,"6'3""",75.0,77.54,"6'6""",2.54,plays_taller,77.54,"6'6""",2.54,plays_taller
 2026,Jordan Butler,South Carolina,78944,7-0,"7'0""",84.0,79.8,"6'8""",-4.2,plays_shorter,79.8,"6'8""",-4.2,plays_shorter
 2026,Hayden Tibbits,St. Thomas,78946,5-11,"5'11""",71.0,75.07,"6'3""",4.07,plays_taller,75.07,"6'3""",4.07,plays_taller
-2026,Kevin Overton,Auburn,78947,6-5,"6'5""",77.0,76.48,"6'4""",-0.52,plays_at_height,76.48,"6'4""",-0.52,plays_at_height
+2026,Kevin Overton,Auburn,78947,6-5,"6'5""",77.0,76.51,"6'5""",-0.49,plays_at_height,76.51,"6'5""",-0.49,plays_at_height
 2026,Pryce Sandfort,Nebraska,78950,6-7,"6'7""",79.0,77.44,"6'5""",-1.56,plays_shorter,77.44,"6'5""",-1.56,plays_shorter
 2026,Mike Loughnane,Northeastern,78952,6-4,"6'4""",76.0,76.42,"6'4""",0.42,plays_at_height,76.42,"6'4""",0.42,plays_at_height
 2026,Rikus Schulte,Fordham,78953,6-9,"6'9""",81.0,80.88,"6'9""",-0.12,plays_at_height,80.88,"6'9""",-0.12,plays_at_height
@@ -1562,15 +1562,15 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Bowyn Beatty,La Salle,78981,7-0,"7'0""",84.0,77.06,"6'5""",-6.94,plays_shorter,77.06,"6'5""",-6.94,plays_shorter
 2026,Lukas Walls,Radford,78982,6-5,"6'5""",77.0,75.68,"6'4""",-1.32,plays_shorter,75.68,"6'4""",-1.32,plays_shorter
 2026,Josh Holloway,Texas A&M,78983,6-1,"6'1""",73.0,77.13,"6'5""",4.13,plays_taller,77.13,"6'5""",4.13,plays_taller
-2026,Ace Talbert,Gardner Webb,78984,6-0,"6'0""",72.0,73.96,"6'2""",1.96,plays_taller,73.96,"6'2""",1.96,plays_taller
+2026,Ace Talbert,Gardner Webb,78984,6-0,"6'0""",72.0,73.97,"6'2""",1.97,plays_taller,73.97,"6'2""",1.97,plays_taller
 2026,Riley Allenspach,George Mason,78985,6-11,"6'11""",83.0,79.81,"6'8""",-3.19,plays_shorter,79.81,"6'8""",-3.19,plays_shorter
-2026,Mookie Cook,San Francisco,78988,6-6,"6'6""",78.0,79.03,"6'7""",1.03,plays_taller,79.03,"6'7""",1.03,plays_taller
+2026,Mookie Cook,San Francisco,78988,6-6,"6'6""",78.0,79.02,"6'7""",1.02,plays_taller,79.02,"6'7""",1.02,plays_taller
 2026,Jackson Shelstad,Oregon,78990,6-1,"6'1""",73.0,75.8,"6'4""",2.8,plays_taller,75.8,"6'4""",2.8,plays_taller
 2026,Kwame Evans Jr.,Oregon,78991,6-10,"6'10""",82.0,81.26,"6'9""",-0.74,plays_at_height,81.26,"6'9""",-0.74,plays_at_height
 2026,Kendrick De Luna,Cal St. Fullerton,78993,6-10,"6'10""",82.0,78.89,"6'7""",-3.11,plays_shorter,78.89,"6'7""",-3.11,plays_shorter
 2026,Trey Green,Saint Louis,78996,6-0,"6'0""",72.0,75.07,"6'3""",3.07,plays_taller,75.07,"6'3""",3.07,plays_taller
 2026,Carson Schwieger,Queens,79000,6-8,"6'8""",80.0,76.06,"6'4""",-3.94,plays_shorter,76.06,"6'4""",-3.94,plays_shorter
-2026,Jacob Theodosiou,Loyola MD,79001,6-4,"6'4""",76.0,77.2,"6'5""",1.2,plays_taller,77.2,"6'5""",1.2,plays_taller
+2026,Jacob Theodosiou,Loyola MD,79001,6-4,"6'4""",76.0,77.21,"6'5""",1.21,plays_taller,77.21,"6'5""",1.21,plays_taller
 2026,Kael Combs,Iowa,79002,6-4,"6'4""",76.0,75.6,"6'4""",-0.4,plays_at_height,75.6,"6'4""",-0.4,plays_at_height
 2026,Cam Manyawu,Iowa,79003,6-9,"6'9""",81.0,82.19,"6'10""",1.19,plays_taller,82.19,"6'10""",1.19,plays_taller
 2026,Tristan Gross,Mercer,79004,6-6,"6'6""",78.0,75.37,"6'3""",-2.63,plays_shorter,75.37,"6'3""",-2.63,plays_shorter
@@ -1637,7 +1637,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Churchill Abass,New Orleans,79150,6-10,"6'10""",82.0,84.26,"7'0""",2.26,plays_taller,84.26,"7'0""",2.26,plays_taller
 2026,Ben Oosterbaan,St. Thomas,79154,6-6,"6'6""",78.0,77.87,"6'6""",-0.13,plays_at_height,77.87,"6'6""",-0.13,plays_at_height
 2026,Aidan Cammann,Stanford,79155,6-10,"6'10""",82.0,79.11,"6'7""",-2.89,plays_shorter,79.11,"6'7""",-2.89,plays_shorter
-2026,Andrej Stojakovic,Illinois,79156,6-7,"6'7""",79.0,78.29,"6'6""",-0.71,plays_at_height,78.29,"6'6""",-0.71,plays_at_height
+2026,Andrej Stojakovic,Illinois,79156,6-7,"6'7""",79.0,78.28,"6'6""",-0.72,plays_at_height,78.28,"6'6""",-0.72,plays_at_height
 2026,Carter Welling,Clemson,79159,6-10,"6'10""",82.0,81.64,"6'10""",-0.36,plays_at_height,81.64,"6'10""",-0.36,plays_at_height
 2026,Marcus Adams Jr.,Arizona St.,79160,6-8,"6'8""",80.0,77.33,"6'5""",-2.67,plays_shorter,77.33,"6'5""",-2.67,plays_shorter
 2026,Domas Kauzonas,UNC Greensboro,79164,6-10,"6'10""",82.0,77.83,"6'6""",-4.17,plays_shorter,77.83,"6'6""",-4.17,plays_shorter
@@ -1657,7 +1657,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Brandon Gardner,Sacramento St.,79192,6-8,"6'8""",80.0,77.67,"6'6""",-2.33,plays_shorter,77.67,"6'6""",-2.33,plays_shorter
 2026,Trevor Mullin,Yale,79193,6-0,"6'0""",72.0,75.49,"6'3""",3.49,plays_taller,75.49,"6'3""",3.49,plays_taller
 2026,Viljami Vartiainen,Weber St.,79196,6-6,"6'6""",78.0,75.1,"6'3""",-2.9,plays_shorter,75.1,"6'3""",-2.9,plays_shorter
-2026,Samson Aletan,Yale,79197,6-10,"6'10""",82.0,82.36,"6'10""",0.36,plays_at_height,82.36,"6'10""",0.36,plays_at_height
+2026,Samson Aletan,Yale,79197,6-10,"6'10""",82.0,82.37,"6'10""",0.37,plays_at_height,82.37,"6'10""",0.37,plays_at_height
 2026,Malcolm Wrisby-Jefferson,Brown,79199,6-4,"6'4""",76.0,76.33,"6'4""",0.33,plays_at_height,76.33,"6'4""",0.33,plays_at_height
 2026,Adrian Uchidiuno,Brown,79201,6-2,"6'2""",74.0,75.74,"6'4""",1.74,plays_taller,75.74,"6'4""",1.74,plays_taller
 2026,Luke Paragon,Brown,79202,6-4,"6'4""",76.0,75.08,"6'3""",-0.92,plays_shorter,75.08,"6'3""",-0.92,plays_shorter
@@ -1747,7 +1747,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Nasir Muhammad,Albany,79401,6-2,"6'2""",74.0,73.07,"6'1""",-0.93,plays_shorter,73.07,"6'1""",-0.93,plays_shorter
 2026,William Kermoury,Northeastern,79402,6-5,"6'5""",77.0,75.02,"6'3""",-1.98,plays_shorter,75.02,"6'3""",-1.98,plays_shorter
 2026,JB Frankel,Northeastern,79403,6-3,"6'3""",75.0,74.62,"6'3""",-0.38,plays_at_height,74.62,"6'3""",-0.38,plays_at_height
-2026,Scotty Middleton,Tulane,79407,6-6,"6'6""",78.0,77.09,"6'5""",-0.91,plays_shorter,77.09,"6'5""",-0.91,plays_shorter
+2026,Scotty Middleton,Tulane,79407,6-6,"6'6""",78.0,77.08,"6'5""",-0.92,plays_shorter,77.08,"6'5""",-0.92,plays_shorter
 2026,Taison Chatman,Ohio St.,79408,6-4,"6'4""",76.0,76.31,"6'4""",0.31,plays_at_height,76.31,"6'4""",0.31,plays_at_height
 2026,Devin Royal,Ohio St.,79409,6-6,"6'6""",78.0,78.74,"6'7""",0.74,plays_at_height,78.74,"6'7""",0.74,plays_at_height
 2026,Kolby Gilles,Air Force,79414,6-5,"6'5""",77.0,77.11,"6'5""",0.11,plays_at_height,77.11,"6'5""",0.11,plays_at_height
@@ -1759,7 +1759,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,JaVar Daniel,West Georgia,79462,6-10,"6'10""",82.0,82.26,"6'10""",0.26,plays_at_height,82.26,"6'10""",0.26,plays_at_height
 2026,Drew McKenna,Old Dominion,79474,6-7,"6'7""",79.0,77.76,"6'6""",-1.24,plays_shorter,77.76,"6'6""",-1.24,plays_shorter
 2026,Jacob Cofie,USC,126518,6-10,"6'10""",82.0,81.5,"6'9""",-0.5,plays_at_height,81.5,"6'9""",-0.5,plays_at_height
-2026,Jayden Fort,Georgetown,126519,6-9,"6'9""",81.0,80.64,"6'9""",-0.36,plays_at_height,80.64,"6'9""",-0.36,plays_at_height
+2026,Jayden Fort,Georgetown,126519,6-9,"6'9""",81.0,80.63,"6'9""",-0.37,plays_at_height,80.63,"6'9""",-0.37,plays_at_height
 2026,Max Langenfeld,Florida Atlantic,126520,6-6,"6'6""",78.0,75.36,"6'3""",-2.64,plays_shorter,75.36,"6'3""",-2.64,plays_shorter
 2026,Billy Richmond III,Arkansas,126521,6-6,"6'6""",78.0,80.09,"6'8""",2.09,plays_taller,80.09,"6'8""",2.09,plays_taller
 2026,Casmir Chavis,UT Arlington,126524,6-0,"6'0""",72.0,76.69,"6'5""",4.69,plays_taller,76.69,"6'5""",4.69,plays_taller
@@ -1771,7 +1771,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Michael Marcus Jr.,Appalachian St.,126536,6-9,"6'9""",81.0,78.67,"6'7""",-2.33,plays_shorter,78.67,"6'7""",-2.33,plays_shorter
 2026,Ace Buckner,Clemson,126538,6-2,"6'2""",74.0,77.59,"6'6""",3.59,plays_taller,77.59,"6'6""",3.59,plays_taller
 2026,Del Jones,Radford,126539,6-3,"6'3""",75.0,76.05,"6'4""",1.05,plays_taller,76.05,"6'4""",1.05,plays_taller
-2026,Ryan Williams,Northeastern,126541,6-4,"6'4""",76.0,74.65,"6'3""",-1.35,plays_shorter,74.65,"6'3""",-1.35,plays_shorter
+2026,Ryan Williams,Northeastern,126541,6-4,"6'4""",76.0,74.66,"6'3""",-1.34,plays_shorter,74.66,"6'3""",-1.34,plays_shorter
 2026,Joson Sanon,St. John's,126544,6-5,"6'5""",77.0,75.93,"6'4""",-1.07,plays_shorter,75.93,"6'4""",-1.07,plays_shorter
 2026,Jaylen Robinson,Richmond,126547,6-6,"6'6""",78.0,79.02,"6'7""",1.02,plays_taller,79.02,"6'7""",1.02,plays_taller
 2026,Kur Teng,Michigan St.,126556,6-4,"6'4""",76.0,75.02,"6'3""",-0.98,plays_shorter,75.02,"6'3""",-0.98,plays_shorter
@@ -1805,21 +1805,21 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Andrija Vukovic,Oklahoma St.,126630,6-11,"6'11""",83.0,79.45,"6'7""",-3.55,plays_shorter,79.45,"6'7""",-3.55,plays_shorter
 2026,Tyrone Riley IV,San Francisco,126632,6-6,"6'6""",78.0,77.89,"6'6""",-0.11,plays_at_height,77.89,"6'6""",-0.11,plays_at_height
 2026,James O'Donnell,Portland,126633,6-10,"6'10""",82.0,79.43,"6'7""",-2.57,plays_shorter,79.43,"6'7""",-2.57,plays_shorter
-2026,Zaxton King,Missouri St.,126635,6-3,"6'3""",75.0,74.68,"6'3""",-0.32,plays_at_height,74.68,"6'3""",-0.32,plays_at_height
+2026,Zaxton King,Missouri St.,126635,6-3,"6'3""",75.0,74.67,"6'3""",-0.33,plays_at_height,74.67,"6'3""",-0.33,plays_at_height
 2026,Makhai Valentine,Northern Illinois,126636,6-3,"6'3""",75.0,77.09,"6'5""",2.09,plays_taller,77.09,"6'5""",2.09,plays_taller
 2026,Josh Hill,Robert Morris,126640,6-11,"6'11""",83.0,78.74,"6'7""",-4.26,plays_shorter,78.74,"6'7""",-4.26,plays_shorter
 2026,Amir Lindsey,Albany,126642,5-11,"5'11""",71.0,74.52,"6'3""",3.52,plays_taller,74.52,"6'3""",3.52,plays_taller
 2026,Cooper Koch,Iowa,126644,6-8,"6'8""",80.0,76.61,"6'5""",-3.39,plays_shorter,76.61,"6'5""",-3.39,plays_shorter
 2026,Martin Somerville,Florida St.,126649,6-3,"6'3""",75.0,74.62,"6'3""",-0.38,plays_at_height,74.62,"6'3""",-0.38,plays_at_height
 2026,Britton Berrett,Utah Tech,126651,6-5,"6'5""",77.0,75.45,"6'3""",-1.55,plays_shorter,75.45,"6'3""",-1.55,plays_shorter
-2026,Tahaad Pettiford,Auburn,126654,6-1,"6'1""",73.0,76.59,"6'5""",3.59,plays_taller,76.59,"6'5""",3.59,plays_taller
+2026,Tahaad Pettiford,Auburn,126654,6-1,"6'1""",73.0,76.65,"6'5""",3.65,plays_taller,76.65,"6'5""",3.65,plays_taller
 2026,Aidan Richard,Holy Cross,126662,6-6,"6'6""",78.0,75.47,"6'3""",-2.53,plays_shorter,75.47,"6'3""",-2.53,plays_shorter
 2026,Max Pikaar,Southern Illinois,126667,7-0,"7'0""",84.0,79.54,"6'8""",-4.46,plays_shorter,79.54,"6'8""",-4.46,plays_shorter
 2026,Riley Fox,Yale,126673,6-6,"6'6""",78.0,75.65,"6'4""",-2.35,plays_shorter,75.65,"6'4""",-2.35,plays_shorter
 2026,Jaden Jackson,South Dakota St.,126674,6-0,"6'0""",72.0,75.32,"6'3""",3.32,plays_taller,75.32,"6'3""",3.32,plays_taller
 2026,Owen Larson,Drake,126675,6-1,"6'1""",73.0,75.11,"6'3""",2.11,plays_taller,75.11,"6'3""",2.11,plays_taller
 2026,Myles Corey,Rhode Island,126681,6-1,"6'1""",73.0,78.39,"6'6""",5.39,plays_taller,78.39,"6'6""",5.39,plays_taller
-2026,Dillon Battie,Wichita St.,126682,6-8,"6'8""",80.0,80.43,"6'8""",0.43,plays_at_height,80.43,"6'8""",0.43,plays_at_height
+2026,Dillon Battie,Wichita St.,126682,6-8,"6'8""",80.0,80.42,"6'8""",0.42,plays_at_height,80.42,"6'8""",0.42,plays_at_height
 2026,Aiden Tobiason,Temple,126683,6-5,"6'5""",77.0,77.61,"6'6""",0.61,plays_at_height,77.61,"6'6""",0.61,plays_at_height
 2026,Holden Pierre-Louis,Cleveland St.,126684,6-8,"6'8""",80.0,79.42,"6'7""",-0.58,plays_at_height,79.42,"6'7""",-0.58,plays_at_height
 2026,Luke Davis,East Carolina,126687,6-8,"6'8""",80.0,79.15,"6'7""",-0.85,plays_shorter,79.15,"6'7""",-0.85,plays_shorter
@@ -1861,8 +1861,8 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kyle Pulliam,William & Mary,126763,6-4,"6'4""",76.0,77.66,"6'6""",1.66,plays_taller,77.66,"6'6""",1.66,plays_taller
 2026,Jordan Pyke,Incarnate Word,126765,6-7,"6'7""",79.0,78.4,"6'6""",-0.6,plays_at_height,78.4,"6'6""",-0.6,plays_at_height
 2026,Peter Kramer,Lehigh,126768,6-5,"6'5""",77.0,75.03,"6'3""",-1.97,plays_shorter,75.03,"6'3""",-1.97,plays_shorter
-2026,Hank Alvey,Lehigh,126769,6-9,"6'9""",81.0,81.63,"6'10""",0.63,plays_at_height,81.63,"6'10""",0.63,plays_at_height
-2026,Edouard Benoit,Lehigh,126770,6-8,"6'8""",80.0,77.03,"6'5""",-2.97,plays_shorter,77.03,"6'5""",-2.97,plays_shorter
+2026,Hank Alvey,Lehigh,126769,6-9,"6'9""",81.0,81.64,"6'10""",0.64,plays_at_height,81.64,"6'10""",0.64,plays_at_height
+2026,Edouard Benoit,Lehigh,126770,6-8,"6'8""",80.0,77.04,"6'5""",-2.96,plays_shorter,77.04,"6'5""",-2.96,plays_shorter
 2026,Alfredo Addesa,Lehigh,126771,6-10,"6'10""",82.0,77.35,"6'5""",-4.65,plays_shorter,77.35,"6'5""",-4.65,plays_shorter
 2026,David Castillo,Kansas St.,126779,6-1,"6'1""",73.0,75.25,"6'3""",2.25,plays_taller,75.25,"6'3""",2.25,plays_taller
 2026,Jayden Williams,Bucknell,126780,5-10,"5'10""",70.0,74.47,"6'2""",4.47,plays_taller,74.47,"6'2""",4.47,plays_taller
@@ -1964,7 +1964,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Alexis Marmolejos,Pacific,127023,6-2,"6'2""",74.0,75.66,"6'4""",1.66,plays_taller,75.66,"6'4""",1.66,plays_taller
 2026,AJ Barnes,Southern,127026,6-6,"6'6""",78.0,78.32,"6'6""",0.32,plays_at_height,78.32,"6'6""",0.32,plays_at_height
 2026,Joe Manning,Southern,127027,6-2,"6'2""",74.0,73.86,"6'2""",-0.14,plays_at_height,73.86,"6'2""",-0.14,plays_at_height
-2026,Oleksandr Kobzystyi,Oregon,127033,6-8,"6'8""",80.0,76.84,"6'5""",-3.16,plays_shorter,76.84,"6'5""",-3.16,plays_shorter
+2026,Oleksandr Kobzystyi,Oregon,127033,6-8,"6'8""",80.0,76.83,"6'5""",-3.17,plays_shorter,76.83,"6'5""",-3.17,plays_shorter
 2026,Aaron Hunkin-Claytor,Hawaii,127034,6-2,"6'2""",74.0,75.34,"6'3""",1.34,plays_taller,75.34,"6'3""",1.34,plays_taller
 2026,Christian Richardson,Nebraska Omaha,127037,7-1,"7'1""",85.0,80.55,"6'9""",-4.45,plays_shorter,80.55,"6'9""",-4.45,plays_shorter
 2026,Nordin Kapic,South Carolina,127042,6-8,"6'8""",80.0,75.95,"6'4""",-4.05,plays_shorter,75.95,"6'4""",-4.05,plays_shorter
@@ -1984,7 +1984,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Mike Price,Cal St. Bakersfield,127078,6-3,"6'3""",75.0,74.28,"6'2""",-0.72,plays_at_height,74.28,"6'2""",-0.72,plays_at_height
 2026,"Ryan Jackson, Jr.",William & Mary,127079,6-6,"6'6""",78.0,78.13,"6'6""",0.13,plays_at_height,78.13,"6'6""",0.13,plays_at_height
 2026,Isaiah Mbeng,East Carolina,127080,6-1,"6'1""",73.0,74.54,"6'3""",1.54,plays_taller,74.54,"6'3""",1.54,plays_taller
-2026,Ma'Kye Taylor,Albany,127084,6-8,"6'8""",80.0,77.42,"6'5""",-2.58,plays_shorter,77.42,"6'5""",-2.58,plays_shorter
+2026,Ma'Kye Taylor,Albany,127084,6-8,"6'8""",80.0,77.43,"6'5""",-2.57,plays_shorter,77.43,"6'5""",-2.57,plays_shorter
 2026,Corey Thomas,Bradley,127087,6-9,"6'9""",81.0,79.49,"6'7""",-1.51,plays_shorter,79.49,"6'7""",-1.51,plays_shorter
 2026,Jaquan Johnson,Bradley,127089,5-9,"5'9""",69.0,76.23,"6'4""",7.23,plays_taller,76.23,"6'4""",7.23,plays_taller
 2026,Carmelo Pacheco,UCF,127090,6-5,"6'5""",77.0,74.19,"6'2""",-2.81,plays_shorter,74.19,"6'2""",-2.81,plays_shorter
@@ -1995,7 +1995,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Bishop Boswell,Tennessee,127110,6-4,"6'4""",76.0,76.94,"6'5""",0.94,plays_taller,76.94,"6'5""",0.94,plays_taller
 2026,Aiden Sherrell,Alabama,127111,6-10,"6'10""",82.0,82.67,"6'11""",0.67,plays_at_height,82.67,"6'11""",0.67,plays_at_height
 2026,Naas Cunningham,UNLV,127112,6-7,"6'7""",79.0,75.52,"6'4""",-3.48,plays_shorter,75.52,"6'4""",-3.48,plays_shorter
-2026,Derrion Reid,Oklahoma,127113,6-8,"6'8""",80.0,78.88,"6'7""",-1.12,plays_shorter,78.88,"6'7""",-1.12,plays_shorter
+2026,Derrion Reid,Oklahoma,127113,6-8,"6'8""",80.0,78.82,"6'7""",-1.18,plays_shorter,78.82,"6'7""",-1.18,plays_shorter
 2026,Jonah Hinton,Rhode Island,127117,6-3,"6'3""",75.0,74.51,"6'3""",-0.49,plays_at_height,74.51,"6'3""",-0.49,plays_at_height
 2026,Stefan Cicic,Pepperdine,127118,7-0,"7'0""",84.0,80.33,"6'8""",-3.67,plays_shorter,80.33,"6'8""",-3.67,plays_shorter
 2026,KJ Greene,Tulane,127119,6-3,"6'3""",75.0,74.83,"6'3""",-0.17,plays_at_height,74.83,"6'3""",-0.17,plays_at_height
@@ -2012,7 +2012,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Miles Goodman,UT Arlington,127158,6-11,"6'11""",83.0,78.55,"6'7""",-4.45,plays_shorter,78.55,"6'7""",-4.45,plays_shorter
 2026,Dominick Stewart,Penn St.,127159,6-5,"6'5""",77.0,75.27,"6'3""",-1.73,plays_shorter,75.27,"6'3""",-1.73,plays_shorter
 2026,Jake Lemelman,Mercyhurst,127164,6-2,"6'2""",74.0,74.23,"6'2""",0.23,plays_at_height,74.23,"6'2""",0.23,plays_at_height
-2026,Qadir Martin,Mercyhurst,127165,6-5,"6'5""",77.0,81.79,"6'10""",4.79,plays_taller,81.79,"6'10""",4.79,plays_taller
+2026,Qadir Martin,Mercyhurst,127165,6-5,"6'5""",77.0,81.8,"6'10""",4.8,plays_taller,81.8,"6'10""",4.8,plays_taller
 2026,Deshaun Jackson Jr.,Mercyhurst,127166,6-2,"6'2""",74.0,76.84,"6'5""",2.84,plays_taller,76.84,"6'5""",2.84,plays_taller
 2026,Brayden Crump,East Tennessee St.,127167,6-8,"6'8""",80.0,79.01,"6'7""",-0.99,plays_shorter,79.01,"6'7""",-0.99,plays_shorter
 2026,Renars Sondors,Louisiana Monroe,127168,6-9,"6'9""",81.0,76.45,"6'4""",-4.55,plays_shorter,76.45,"6'4""",-4.55,plays_shorter
@@ -2042,20 +2042,20 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Eric Mahaffey,Akron,127213,6-4,"6'4""",76.0,80.46,"6'8""",4.46,plays_taller,80.46,"6'8""",4.46,plays_taller
 2026,Sharron Young,Akron,127216,6-0,"6'0""",72.0,75.86,"6'4""",3.86,plays_taller,75.86,"6'4""",3.86,plays_taller
 2026,Ben Tweedy,Colgate,127222,6-4,"6'4""",76.0,74.92,"6'3""",-1.08,plays_shorter,74.92,"6'3""",-1.08,plays_shorter
-2026,Bernie Blunt,Mercyhurst,127223,5-11,"5'11""",71.0,74.91,"6'3""",3.91,plays_taller,74.91,"6'3""",3.91,plays_taller
+2026,Bernie Blunt,Mercyhurst,127223,5-11,"5'11""",71.0,74.92,"6'3""",3.92,plays_taller,74.92,"6'3""",3.92,plays_taller
 2026,Elijah Lewis,Marist,127226,6-5,"6'5""",77.0,77.53,"6'6""",0.53,plays_at_height,77.53,"6'6""",0.53,plays_at_height
 2026,Afan Trnka,Tennessee Martin,127228,6-2,"6'2""",74.0,76.24,"6'4""",2.24,plays_taller,76.24,"6'4""",2.24,plays_taller
 2026,Tarence Guinyard,Duquesne,127229,6-2,"6'2""",74.0,76.33,"6'4""",2.33,plays_taller,76.33,"6'4""",2.33,plays_taller
 2026,Sheldon Williams,Texas A&M Corpus Chris,127231,6-8,"6'8""",80.0,79.64,"6'8""",-0.36,plays_at_height,79.64,"6'8""",-0.36,plays_at_height
-2026,Jeremiah Johnson,Campbell,127232,6-4,"6'4""",76.0,76.62,"6'5""",0.62,plays_at_height,76.62,"6'5""",0.62,plays_at_height
+2026,Jeremiah Johnson,Campbell,127232,6-4,"6'4""",76.0,76.63,"6'5""",0.63,plays_at_height,76.63,"6'5""",0.63,plays_at_height
 2026,Layne Taylor,Murray St.,127233,5-11,"5'11""",71.0,75.05,"6'3""",4.05,plays_taller,75.05,"6'3""",4.05,plays_taller
 2026,Labaron Philon,Alabama,127235,6-4,"6'4""",76.0,76.94,"6'5""",0.94,plays_taller,76.94,"6'5""",0.94,plays_taller
 2026,Julian Clarke,UNC Asheville,127240,6-1,"6'1""",73.0,75.17,"6'3""",2.17,plays_taller,75.17,"6'3""",2.17,plays_taller
 2026,C.J. O'Hara,Green Bay,127243,6-4,"6'4""",76.0,78.62,"6'7""",2.62,plays_taller,78.62,"6'7""",2.62,plays_taller
 2026,Tyler Thompson,Montana,127244,6-6,"6'6""",78.0,75.54,"6'4""",-2.46,plays_shorter,75.54,"6'4""",-2.46,plays_shorter
-2026,Dayton Forsythe,Oklahoma,127246,6-2,"6'2""",74.0,74.47,"6'2""",0.47,plays_at_height,74.47,"6'2""",0.47,plays_at_height
-2026,Jeff Nwankwo,Oklahoma,127247,6-6,"6'6""",78.0,76.94,"6'5""",-1.06,plays_shorter,76.94,"6'5""",-1.06,plays_shorter
-2026,Kuol Atak,Oklahoma,127248,6-9,"6'9""",81.0,77.46,"6'5""",-3.54,plays_shorter,77.46,"6'5""",-3.54,plays_shorter
+2026,Dayton Forsythe,Oklahoma,127246,6-2,"6'2""",74.0,74.45,"6'2""",0.45,plays_at_height,74.45,"6'2""",0.45,plays_at_height
+2026,Jeff Nwankwo,Oklahoma,127247,6-6,"6'6""",78.0,76.91,"6'5""",-1.09,plays_shorter,76.91,"6'5""",-1.09,plays_shorter
+2026,Kuol Atak,Oklahoma,127248,6-9,"6'9""",81.0,77.43,"6'5""",-3.57,plays_shorter,77.43,"6'5""",-3.57,plays_shorter
 2026,Kolten Griffin,West Georgia,127249,6-6,"6'6""",78.0,76.01,"6'4""",-1.99,plays_shorter,76.01,"6'4""",-1.99,plays_shorter
 2026,Mekhi Turner,Tennessee Tech,127251,6-8,"6'8""",80.0,80.95,"6'9""",0.95,plays_taller,80.95,"6'9""",0.95,plays_taller
 2026,Ramone Seals,Kennesaw St.,127252,6-6,"6'6""",78.0,78.39,"6'6""",0.39,plays_at_height,78.39,"6'6""",0.39,plays_at_height
@@ -2099,7 +2099,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,C.J. Cox,Purdue,127353,6-3,"6'3""",75.0,75.91,"6'4""",0.91,plays_taller,75.91,"6'4""",0.91,plays_taller
 2026,Julius Thedford,Memphis,127354,6-4,"6'4""",76.0,78.67,"6'7""",2.67,plays_taller,78.67,"6'7""",2.67,plays_taller
 2026,Kade Unseld,Western Kentucky,127355,6-5,"6'5""",77.0,75.17,"6'3""",-1.83,plays_shorter,75.17,"6'3""",-1.83,plays_shorter
-2026,Cal Liston,VMI,127356,6-5,"6'5""",77.0,75.04,"6'3""",-1.96,plays_shorter,75.04,"6'3""",-1.96,plays_shorter
+2026,Cal Liston,VMI,127356,6-5,"6'5""",77.0,75.05,"6'3""",-1.95,plays_shorter,75.05,"6'3""",-1.95,plays_shorter
 2026,Linus Holmstrom,VMI,127357,6-3,"6'3""",75.0,74.18,"6'2""",-0.82,plays_shorter,74.18,"6'2""",-0.82,plays_shorter
 2026,Caleb Embeya,Towson,127359,6-9,"6'9""",81.0,80.6,"6'9""",-0.4,plays_at_height,80.6,"6'9""",-0.4,plays_at_height
 2026,Eoin Dillon,Belmont,127360,6-9,"6'9""",81.0,77.42,"6'5""",-3.58,plays_shorter,77.42,"6'5""",-3.58,plays_shorter
@@ -2113,7 +2113,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,AJ Levine,Penn,127379,6-0,"6'0""",72.0,76.96,"6'5""",4.96,plays_taller,76.96,"6'5""",4.96,plays_taller
 2026,Julius Halaifonua,Georgetown,127381,7-0,"7'0""",84.0,81.05,"6'9""",-2.95,plays_shorter,81.05,"6'9""",-2.95,plays_shorter
 2026,Corbin Zentner,Cornell,127386,5-10,"5'10""",70.0,74.33,"6'2""",4.33,plays_taller,74.33,"6'2""",4.33,plays_taller
-2026,Jerald Colonel,Stephen F. Austin,127387,6-9,"6'9""",81.0,83.96,"7'0""",2.96,plays_taller,83.96,"7'0""",2.96,plays_taller
+2026,Jerald Colonel,Stephen F. Austin,127387,6-9,"6'9""",81.0,83.95,"7'0""",2.95,plays_taller,83.95,"7'0""",2.95,plays_taller
 2026,Landyn Jumawan,Northwestern St.,127388,6-4,"6'4""",76.0,73.87,"6'2""",-2.13,plays_shorter,73.87,"6'2""",-2.13,plays_shorter
 2026,James Thomas,Mercyhurst,127392,6-6,"6'6""",78.0,77.42,"6'5""",-0.58,plays_at_height,77.42,"6'5""",-0.58,plays_at_height
 2026,Jaden Steppe,Montana St.,127393,6-8,"6'8""",80.0,78.21,"6'6""",-1.79,plays_shorter,78.21,"6'6""",-1.79,plays_shorter
@@ -2165,13 +2165,13 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Malcolm Christie,Oregon St.,127540,6-5,"6'5""",77.0,73.03,"6'1""",-3.97,plays_shorter,73.03,"6'1""",-3.97,plays_shorter
 2026,Warren Marshall IV,Oakland,127541,6-5,"6'5""",77.0,78.77,"6'7""",1.77,plays_taller,78.77,"6'7""",1.77,plays_taller
 2026,Blaize Sagna,Southeast Missouri St.,127543,6-3,"6'3""",75.0,75.88,"6'4""",0.88,plays_taller,75.88,"6'4""",0.88,plays_taller
-2026,Austin Maurer,Seattle,127545,7-0,"7'0""",84.0,81.62,"6'10""",-2.38,plays_shorter,81.62,"6'10""",-2.38,plays_shorter
+2026,Austin Maurer,Seattle,127545,7-0,"7'0""",84.0,81.61,"6'10""",-2.39,plays_shorter,81.61,"6'10""",-2.39,plays_shorter
 2026,Styles Phipps,Pepperdine,127546,6-2,"6'2""",74.0,77.62,"6'6""",3.62,plays_taller,77.62,"6'6""",3.62,plays_taller
 2026,Michael Osei-Bonsu,Missouri St.,127551,6-4,"6'4""",76.0,80.64,"6'9""",4.64,plays_taller,80.64,"6'9""",4.64,plays_taller
 2026,Lewis Walker,North Carolina A&T,127552,6-6,"6'6""",78.0,76.96,"6'5""",-1.04,plays_shorter,76.96,"6'5""",-1.04,plays_shorter
 2026,Joseph Thomas,Little Rock,127553,6-3,"6'3""",75.0,73.13,"6'1""",-1.87,plays_shorter,73.13,"6'1""",-1.87,plays_shorter
 2026,Nate Guerengomba,Quinnipiac,127554,6-5,"6'5""",77.0,76.71,"6'5""",-0.29,plays_at_height,76.71,"6'5""",-0.29,plays_at_height
-2026,Luka Damjanac,Massachusetts,127555,6-10,"6'10""",82.0,77.99,"6'6""",-4.01,plays_shorter,77.99,"6'6""",-4.01,plays_shorter
+2026,Luka Damjanac,Massachusetts,127555,6-10,"6'10""",82.0,78.0,"6'6""",-4.0,plays_shorter,78.0,"6'6""",-4.0,plays_shorter
 2026,Isaiah Lewis,Long Beach St.,127556,6-3,"6'3""",75.0,74.63,"6'3""",-0.37,plays_at_height,74.63,"6'3""",-0.37,plays_at_height
 2026,Caleb Pennyfeather,Little Rock,127558,6-9,"6'9""",81.0,79.06,"6'7""",-1.94,plays_shorter,79.06,"6'7""",-1.94,plays_shorter
 2026,Amadou Doumbia,North Carolina A&T,127560,6-11,"6'11""",83.0,82.28,"6'10""",-0.72,plays_at_height,82.28,"6'10""",-0.72,plays_at_height
@@ -2207,7 +2207,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Isaac Celiscar,Yale,127643,6-6,"6'6""",78.0,78.83,"6'7""",0.83,plays_taller,78.83,"6'7""",0.83,plays_taller
 2026,BJ Kolly,UC Riverside,127644,6-10,"6'10""",82.0,80.18,"6'8""",-1.82,plays_shorter,80.18,"6'8""",-1.82,plays_shorter
 2026,Elijah Thomas,Eastern Washington,127645,6-6,"6'6""",78.0,77.13,"6'5""",-0.87,plays_shorter,77.13,"6'5""",-0.87,plays_shorter
-2026,L.J. Cason,Michigan,127649,6-2,"6'2""",74.0,76.62,"6'5""",2.62,plays_taller,76.62,"6'5""",2.62,plays_taller
+2026,L.J. Cason,Michigan,127649,6-2,"6'2""",74.0,76.61,"6'5""",2.61,plays_taller,76.61,"6'5""",2.61,plays_taller
 2026,Jeremiah Jenkins,Brown,127656,6-0,"6'0""",72.0,75.36,"6'3""",3.36,plays_taller,75.36,"6'3""",3.36,plays_taller
 2026,David Rochester,Brown,127657,6-8,"6'8""",80.0,76.33,"6'4""",-3.67,plays_shorter,76.33,"6'4""",-3.67,plays_shorter
 2026,Wyatt DeGraaf,Brown,127658,6-10,"6'10""",82.0,80.2,"6'8""",-1.8,plays_shorter,80.2,"6'8""",-1.8,plays_shorter
@@ -2230,11 +2230,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Cameron McNamee,Dartmouth,127692,6-6,"6'6""",78.0,76.15,"6'4""",-1.85,plays_shorter,76.15,"6'4""",-1.85,plays_shorter
 2026,Daniel Jacobsen,Purdue,127694,7-4,"7'4""",88.0,84.67,"7'1""",-3.33,plays_shorter,84.67,"7'1""",-3.33,plays_shorter
 2026,JaJuan Nicholls,Tennessee Tech,127698,6-8,"6'8""",80.0,81.23,"6'9""",1.23,plays_taller,81.23,"6'9""",1.23,plays_taller
-2026,Christian Anderson,Texas Tech,127700,6-3,"6'3""",75.0,76.72,"6'5""",1.72,plays_taller,76.72,"6'5""",1.72,plays_taller
+2026,Christian Anderson,Texas Tech,127700,6-3,"6'3""",75.0,76.73,"6'5""",1.73,plays_taller,76.73,"6'5""",1.73,plays_taller
 2026,Tyler Spratt,Detroit Mercy,127703,6-5,"6'5""",77.0,76.75,"6'5""",-0.25,plays_at_height,76.75,"6'5""",-0.25,plays_at_height
 2026,Kaden Stuckey,VMI,127704,6-8,"6'8""",80.0,79.72,"6'8""",-0.28,plays_at_height,79.72,"6'8""",-0.28,plays_at_height
 2026,Dan Gherezgher,Northern Kentucky,127705,6-4,"6'4""",76.0,75.5,"6'4""",-0.5,plays_at_height,75.5,"6'4""",-0.5,plays_at_height
-2026,Ian Smikle,Tulsa,127706,6-10,"6'10""",82.0,79.09,"6'7""",-2.91,plays_shorter,79.09,"6'7""",-2.91,plays_shorter
+2026,Ian Smikle,Tulsa,127706,6-10,"6'10""",82.0,79.24,"6'7""",-2.76,plays_shorter,79.24,"6'7""",-2.76,plays_shorter
 2026,Brett Decker Jr.,Liberty,127708,6-3,"6'3""",75.0,75.45,"6'3""",0.45,plays_at_height,75.45,"6'3""",0.45,plays_at_height
 2026,Owen Aquino,High Point,127709,6-8,"6'8""",80.0,81.06,"6'9""",1.06,plays_taller,81.06,"6'9""",1.06,plays_taller
 2026,Macon Emory,Delaware,127710,6-8,"6'8""",80.0,78.37,"6'6""",-1.63,plays_shorter,78.37,"6'6""",-1.63,plays_shorter
@@ -2253,7 +2253,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Daniel Johnson,Hampton,127746,6-5,"6'5""",77.0,77.9,"6'6""",0.9,plays_taller,77.9,"6'6""",0.9,plays_taller
 2026,Alex Chaikin,UC San Diego,127749,6-4,"6'4""",76.0,74.58,"6'3""",-1.42,plays_shorter,74.58,"6'3""",-1.42,plays_shorter
 2026,Jaden Johnson,La Salle,127754,6-2,"6'2""",74.0,74.46,"6'2""",0.46,plays_at_height,74.46,"6'2""",0.46,plays_at_height
-2026,Nyle Ralph-Beyer,Sacred Heart,127758,6-4,"6'4""",76.0,76.01,"6'4""",0.01,plays_at_height,76.01,"6'4""",0.01,plays_at_height
+2026,Nyle Ralph-Beyer,Sacred Heart,127758,6-4,"6'4""",76.0,76.02,"6'4""",0.02,plays_at_height,76.02,"6'4""",0.02,plays_at_height
 2026,Juwan Maxey,Ball St.,127759,6-0,"6'0""",72.0,74.31,"6'2""",2.31,plays_taller,74.31,"6'2""",2.31,plays_taller
 2026,Cris Carroll,Youngstown St.,127760,6-6,"6'6""",78.0,77.59,"6'6""",-0.41,plays_at_height,77.59,"6'6""",-0.41,plays_at_height
 2026,TJ Burch,Wright St.,127764,6-1,"6'1""",73.0,77.15,"6'5""",4.15,plays_taller,77.15,"6'5""",4.15,plays_taller
@@ -2276,7 +2276,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jalen Lee,Southern Utah,127795,6-7,"6'7""",79.0,74.28,"6'2""",-4.72,plays_shorter,74.28,"6'2""",-4.72,plays_shorter
 2026,Jeremiah Davis,Montana St.,127801,6-4,"6'4""",76.0,75.91,"6'4""",-0.09,plays_at_height,75.91,"6'4""",-0.09,plays_at_height
 2026,Trap Johnson,UC San Diego,127803,6-6,"6'6""",78.0,75.45,"6'3""",-2.55,plays_shorter,75.45,"6'3""",-2.55,plays_shorter
-2026,Tyler Behrend,Tulsa,127804,6-10,"6'10""",82.0,79.73,"6'8""",-2.27,plays_shorter,79.73,"6'8""",-2.27,plays_shorter
+2026,Tyler Behrend,Tulsa,127804,6-10,"6'10""",82.0,79.74,"6'8""",-2.26,plays_shorter,79.74,"6'8""",-2.26,plays_shorter
 2026,Taj DeGourville,San Diego St.,127809,6-5,"6'5""",77.0,75.78,"6'4""",-1.22,plays_shorter,75.78,"6'4""",-1.22,plays_shorter
 2026,Pharaoh Compton,San Diego St.,127810,6-8,"6'8""",80.0,83.34,"6'11""",3.34,plays_taller,83.34,"6'11""",3.34,plays_taller
 2026,Mark Drone,Texas St.,127811,6-0,"6'0""",72.0,76.13,"6'4""",4.13,plays_taller,76.13,"6'4""",4.13,plays_taller
@@ -2290,7 +2290,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Malcolm Thomas,Dayton,127825,6-8,"6'8""",80.0,81.1,"6'9""",1.1,plays_taller,81.1,"6'9""",1.1,plays_taller
 2026,Jayden Johnson,South Carolina St.,127826,6-1,"6'1""",73.0,75.06,"6'3""",2.06,plays_taller,75.06,"6'3""",2.06,plays_taller
 2026,Jamal Miles,South Carolina St.,127828,6-4,"6'4""",76.0,76.44,"6'4""",0.44,plays_at_height,76.44,"6'4""",0.44,plays_at_height
-2026,D'Shay Knights Wright,South Carolina St.,127829,6-9,"6'9""",81.0,76.69,"6'5""",-4.31,plays_shorter,76.69,"6'5""",-4.31,plays_shorter
+2026,D'Shay Knights Wright,South Carolina St.,127829,6-9,"6'9""",81.0,76.7,"6'5""",-4.3,plays_shorter,76.7,"6'5""",-4.3,plays_shorter
 2026,Joshua Dent,Saint Mary's,127831,6-3,"6'3""",75.0,75.25,"6'3""",0.25,plays_at_height,75.25,"6'3""",0.25,plays_at_height
 2026,Mikey Lewis,Saint Mary's,127832,6-3,"6'3""",75.0,75.72,"6'4""",0.72,plays_at_height,75.72,"6'4""",0.72,plays_at_height
 2026,Max Weisbrod,Northern Iowa,127833,6-4,"6'4""",76.0,74.93,"6'3""",-1.07,plays_shorter,74.93,"6'3""",-1.07,plays_shorter
@@ -2311,7 +2311,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kai Burdick,Southern Utah,127869,7-0,"7'0""",84.0,79.49,"6'7""",-4.51,plays_shorter,79.49,"6'7""",-4.51,plays_shorter
 2026,Babatunde Durodola,Temple,127870,6-8,"6'8""",80.0,78.08,"6'6""",-1.92,plays_shorter,78.08,"6'6""",-1.92,plays_shorter
 2026,Damarion Dennis,Wyoming,127873,6-1,"6'1""",73.0,77.4,"6'5""",4.4,plays_taller,77.4,"6'5""",4.4,plays_taller
-2026,Isaac Williams,Baylor,127874,6-1,"6'1""",73.0,76.77,"6'5""",3.77,plays_taller,76.77,"6'5""",3.77,plays_taller
+2026,Isaac Williams,Baylor,127874,6-1,"6'1""",73.0,76.78,"6'5""",3.78,plays_taller,76.78,"6'5""",3.78,plays_taller
 2026,Austin Rapp,Wisconsin,127877,6-10,"6'10""",82.0,78.14,"6'6""",-3.86,plays_shorter,78.14,"6'6""",-3.86,plays_shorter
 2026,Todd Jones Jr.,Louisiana,127878,6-9,"6'9""",81.0,82.11,"6'10""",1.11,plays_taller,82.11,"6'10""",1.11,plays_taller
 2026,Mikah Ballew,Portland,127879,6-5,"6'5""",77.0,74.95,"6'3""",-2.05,plays_shorter,74.95,"6'3""",-2.05,plays_shorter
@@ -2427,7 +2427,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Devin Haid,South Florida,128148,6-5,"6'5""",77.0,77.02,"6'5""",0.02,plays_at_height,77.02,"6'5""",0.02,plays_at_height
 2026,Khani Rooths,Louisville,128149,6-10,"6'10""",82.0,80.45,"6'8""",-1.55,plays_shorter,80.45,"6'8""",-1.55,plays_shorter
 2026,Christian Henry,Fordham,128151,6-3,"6'3""",75.0,75.5,"6'3""",0.5,plays_at_height,75.5,"6'3""",0.5,plays_at_height
-2026,Miles Barnstable,Tulsa,128156,6-2,"6'2""",74.0,77.56,"6'6""",3.56,plays_taller,77.56,"6'6""",3.56,plays_taller
+2026,Miles Barnstable,Tulsa,128156,6-2,"6'2""",74.0,77.6,"6'6""",3.6,plays_taller,77.6,"6'6""",3.6,plays_taller
 2026,Justice Shoats,Siena,128157,5-11,"5'11""",71.0,75.01,"6'3""",4.01,plays_taller,75.01,"6'3""",4.01,plays_taller
 2026,Ismael Diouf,Northern Iowa,128158,6-9,"6'9""",81.0,77.71,"6'6""",-3.29,plays_shorter,77.71,"6'6""",-3.29,plays_shorter
 2026,Jack Stanton,Princeton,128160,6-2,"6'2""",74.0,75.11,"6'3""",1.11,plays_taller,75.11,"6'3""",1.11,plays_taller
@@ -2451,7 +2451,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jo Valrie,SIU Edwardsville,128195,6-5,"6'5""",77.0,76.85,"6'5""",-0.15,plays_at_height,76.85,"6'5""",-0.15,plays_at_height
 2026,Nassim Mashhour,Oakland,128196,6-4,"6'4""",76.0,75.05,"6'3""",-0.95,plays_shorter,75.05,"6'3""",-0.95,plays_shorter
 2026,Myles Thompson,SIU Edwardsville,128199,6-7,"6'7""",79.0,76.62,"6'5""",-2.38,plays_shorter,76.62,"6'5""",-2.38,plays_shorter
-2026,Kyle Jorgensen,Colorado St.,128202,6-9,"6'9""",81.0,78.29,"6'6""",-2.71,plays_shorter,78.29,"6'6""",-2.71,plays_shorter
+2026,Kyle Jorgensen,Colorado St.,128202,6-9,"6'9""",81.0,78.28,"6'6""",-2.72,plays_shorter,78.28,"6'6""",-2.72,plays_shorter
 2026,Keitenn Bristow,Alabama,128203,6-10,"6'10""",82.0,80.17,"6'8""",-1.83,plays_shorter,80.17,"6'8""",-1.83,plays_shorter
 2026,Jordan Mizell,Tarleton St.,128205,6-1,"6'1""",73.0,76.0,"6'4""",3.0,plays_taller,76.0,"6'4""",3.0,plays_taller
 2026,Tyler McKinley,Cincinnati,128211,6-9,"6'9""",81.0,78.29,"6'6""",-2.71,plays_shorter,78.29,"6'6""",-2.71,plays_shorter
@@ -2536,11 +2536,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jaden Zimmerman,Quinnipiac,128378,6-5,"6'5""",77.0,76.1,"6'4""",-0.9,plays_shorter,76.1,"6'4""",-0.9,plays_shorter
 2026,Ariik Mawien,Northern Colorado,128382,6-4,"6'4""",76.0,78.33,"6'6""",2.33,plays_taller,78.33,"6'6""",2.33,plays_taller
 2026,Amar Amkou,Florida Atlantic,128384,6-7,"6'7""",79.0,77.72,"6'6""",-1.28,plays_shorter,77.72,"6'6""",-1.28,plays_shorter
-2026,Matas Vokietaitis,Texas,128385,7-0,"7'0""",84.0,83.08,"6'11""",-0.92,plays_shorter,83.08,"6'11""",-0.92,plays_shorter
+2026,Matas Vokietaitis,Texas,128385,7-0,"7'0""",84.0,83.07,"6'11""",-0.93,plays_shorter,83.07,"6'11""",-0.93,plays_shorter
 2026,Théo Pierre-Justin,DePaul,128388,6-10,"6'10""",82.0,76.86,"6'5""",-5.14,plays_shorter,76.86,"6'5""",-5.14,plays_shorter
 2026,Andrija Bukumirović,Tennessee Martin,128391,6-7,"6'7""",79.0,80.17,"6'8""",1.17,plays_taller,80.17,"6'8""",1.17,plays_taller
 2026,Rubén Prey,St. John's,128394,6-10,"6'10""",82.0,80.45,"6'8""",-1.55,plays_shorter,80.45,"6'8""",-1.55,plays_shorter
-2026,Daylon Dickerson,UMBC,128400,6-6,"6'6""",78.0,79.14,"6'7""",1.14,plays_taller,79.14,"6'7""",1.14,plays_taller
+2026,Daylon Dickerson,UMBC,128400,6-6,"6'6""",78.0,79.15,"6'7""",1.15,plays_taller,79.15,"6'7""",1.15,plays_taller
 2026,Shelton Williams-Dryden,West Georgia,128405,6-6,"6'6""",78.0,78.35,"6'6""",0.35,plays_at_height,78.35,"6'6""",0.35,plays_at_height
 2026,Jayden Williams,Incarnate Word,128409,6-9,"6'9""",81.0,81.4,"6'9""",0.4,plays_at_height,81.4,"6'9""",0.4,plays_at_height
 2026,Marko Ljubicic,Manhattan,128411,6-10,"6'10""",82.0,75.84,"6'4""",-6.16,plays_shorter,75.84,"6'4""",-6.16,plays_shorter
@@ -2576,30 +2576,30 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Austin Goode,Cal Poly,133686,6-7,"6'7""",79.0,76.91,"6'5""",-2.09,plays_shorter,76.91,"6'5""",-2.09,plays_shorter
 2026,Zac Foster,Clemson,133689,6-4,"6'4""",76.0,76.89,"6'5""",0.89,plays_taller,76.89,"6'5""",0.89,plays_taller
 2026,Ezra McKenna,Buffalo,133691,6-8,"6'8""",80.0,77.77,"6'6""",-2.23,plays_shorter,77.77,"6'6""",-2.23,plays_shorter
-2026,Darrel Yepdo,UMass Lowell,133692,6-0,"6'0""",72.0,74.4,"6'2""",2.4,plays_taller,74.4,"6'2""",2.4,plays_taller
+2026,Darrel Yepdo,UMass Lowell,133692,6-0,"6'0""",72.0,74.41,"6'2""",2.41,plays_taller,74.41,"6'2""",2.41,plays_taller
 2026,JJ Massaquoi,UMass Lowell,133693,6-6,"6'6""",78.0,76.98,"6'5""",-1.02,plays_shorter,76.98,"6'5""",-1.02,plays_shorter
 2026,Jadin Booth,Samford,133696,6-2,"6'2""",74.0,75.11,"6'3""",1.11,plays_taller,75.11,"6'3""",1.11,plays_taller
-2026,Corey Dunning,Prairie View A&M,133697,6-9,"6'9""",81.0,79.57,"6'8""",-1.43,plays_shorter,79.57,"6'8""",-1.43,plays_shorter
+2026,Corey Dunning,Prairie View A&M,133697,6-9,"6'9""",81.0,79.58,"6'8""",-1.42,plays_shorter,79.58,"6'8""",-1.42,plays_shorter
 2026,Ty Owens,Tennessee Tech,133698,6-0,"6'0""",72.0,75.61,"6'4""",3.61,plays_taller,75.61,"6'4""",3.61,plays_taller
 2026,Lance Williams,Prairie View A&M,133699,6-1,"6'1""",73.0,74.96,"6'3""",1.96,plays_taller,74.96,"6'3""",1.96,plays_taller
 2026,Jon Carroll,Morehead St.,133700,6-7,"6'7""",79.0,80.87,"6'9""",1.87,plays_taller,80.87,"6'9""",1.87,plays_taller
 2026,Jah'Kim Payne,Tennessee Tech,133701,6-6,"6'6""",78.0,74.89,"6'3""",-3.11,plays_shorter,74.89,"6'3""",-3.11,plays_shorter
 2026,Rocco Awad,NJIT,133703,6-1,"6'1""",73.0,75.48,"6'3""",2.48,plays_taller,75.48,"6'3""",2.48,plays_taller
 2026,Issac Williamson,UNLV,133706,6-0,"6'0""",72.0,74.6,"6'3""",2.6,plays_taller,74.6,"6'3""",2.6,plays_taller
-2026,Tyrin Jones,UNLV,133708,6-9,"6'9""",81.0,83.32,"6'11""",2.32,plays_taller,83.32,"6'11""",2.32,plays_taller
+2026,Tyrin Jones,UNLV,133708,6-9,"6'9""",81.0,83.31,"6'11""",2.31,plays_taller,83.31,"6'11""",2.31,plays_taller
 2026,Rhyjon Blackwell,Marist,133709,6-0,"6'0""",72.0,75.46,"6'3""",3.46,plays_taller,75.46,"6'3""",3.46,plays_taller
-2026,Eli Greenberg,Le Moyne,133710,6-4,"6'4""",76.0,75.38,"6'3""",-0.62,plays_at_height,75.38,"6'3""",-0.62,plays_at_height
+2026,Eli Greenberg,Le Moyne,133710,6-4,"6'4""",76.0,75.39,"6'3""",-0.61,plays_at_height,75.39,"6'3""",-0.61,plays_at_height
 2026,Gustav Winther,Northern Illinois,133711,6-10,"6'10""",82.0,79.71,"6'8""",-2.29,plays_shorter,79.71,"6'8""",-2.29,plays_shorter
 2026,Samuel Hincapie,Le Moyne,133712,6-5,"6'5""",77.0,76.19,"6'4""",-0.81,plays_shorter,76.19,"6'4""",-0.81,plays_shorter
 2026,Dylan Ducommun,Northern Illinois,133714,6-4,"6'4""",76.0,75.26,"6'3""",-0.74,plays_at_height,75.26,"6'3""",-0.74,plays_at_height
 2026,Akai Fleming,Georgia Tech,133716,6-4,"6'4""",76.0,76.84,"6'5""",0.84,plays_taller,76.84,"6'5""",0.84,plays_taller
 2026,Sebastien Emenalo,Loyola MD,133717,6-6,"6'6""",78.0,77.78,"6'6""",-0.22,plays_at_height,77.78,"6'6""",-0.22,plays_at_height
-2026,Carter Berg-McLean,Loyola MD,133718,6-4,"6'4""",76.0,76.04,"6'4""",0.04,plays_at_height,76.04,"6'4""",0.04,plays_at_height
+2026,Carter Berg-McLean,Loyola MD,133718,6-4,"6'4""",76.0,76.05,"6'4""",0.05,plays_at_height,76.05,"6'4""",0.05,plays_at_height
 2026,Everett Barnes,Loyola MD,133719,6-9,"6'9""",81.0,76.59,"6'5""",-4.41,plays_shorter,76.59,"6'5""",-4.41,plays_shorter
 2026,Cole Kirouac,Georgia Tech,133720,7-0,"7'0""",84.0,79.18,"6'7""",-4.82,plays_shorter,79.18,"6'7""",-4.82,plays_shorter
 2026,Cameron Wallace,Little Rock,133721,6-8,"6'8""",80.0,79.9,"6'8""",-0.1,plays_at_height,79.9,"6'8""",-0.1,plays_at_height
 2026,Declan Wucherpfennig,Fairfield,133723,6-7,"6'7""",79.0,80.02,"6'8""",1.02,plays_taller,80.02,"6'8""",1.02,plays_taller
-2026,Eternity Eguagie,Rice,133726,6-6,"6'6""",78.0,77.11,"6'5""",-0.89,plays_shorter,77.11,"6'5""",-0.89,plays_shorter
+2026,Eternity Eguagie,Rice,133726,6-6,"6'6""",78.0,77.1,"6'5""",-0.9,plays_shorter,77.1,"6'5""",-0.9,plays_shorter
 2026,Alex Mirhosseini,Arkansas Pine Bluff,133727,5-10,"5'10""",70.0,74.27,"6'2""",4.27,plays_taller,74.27,"6'2""",4.27,plays_taller
 2026,Cassius Brooks,UTEP,133728,6-0,"6'0""",72.0,75.52,"6'4""",3.52,plays_taller,75.52,"6'4""",3.52,plays_taller
 2026,Nazareth Fisher,Eastern Illinois,133733,6-10,"6'10""",82.0,79.84,"6'8""",-2.16,plays_shorter,79.84,"6'8""",-2.16,plays_shorter
@@ -2687,7 +2687,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Dayjaun Anderson,UAB,133867,6-2,"6'2""",74.0,75.51,"6'4""",1.51,plays_taller,75.51,"6'4""",1.51,plays_taller
 2026,Panagiotis Pagonis,New Orleans,133868,6-9,"6'9""",81.0,75.93,"6'4""",-5.07,plays_shorter,75.93,"6'4""",-5.07,plays_shorter
 2026,Jordan Watford,Queens,133872,6-5,"6'5""",77.0,77.43,"6'5""",0.43,plays_at_height,77.43,"6'5""",0.43,plays_at_height
-2026,Shaun Wysocki,Denver,133874,6-6,"6'6""",78.0,77.5,"6'6""",-0.5,plays_at_height,77.5,"6'6""",-0.5,plays_at_height
+2026,Shaun Wysocki,Denver,133874,6-6,"6'6""",78.0,77.5,"6'5""",-0.5,plays_at_height,77.5,"6'5""",-0.5,plays_at_height
 2026,Carson Johnson,Denver,133876,6-0,"6'0""",72.0,73.68,"6'2""",1.68,plays_taller,73.68,"6'2""",1.68,plays_taller
 2026,Dallas Washington,Long Beach St.,133877,6-10,"6'10""",82.0,76.68,"6'5""",-5.32,plays_shorter,76.68,"6'5""",-5.32,plays_shorter
 2026,Gavin Sykes,Long Beach St.,133878,6-4,"6'4""",76.0,75.86,"6'4""",-0.14,plays_at_height,75.86,"6'4""",-0.14,plays_at_height
@@ -2697,7 +2697,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kingston Flemings,Houston,133884,6-4,"6'4""",76.0,77.86,"6'6""",1.86,plays_taller,77.86,"6'6""",1.86,plays_taller
 2026,Teshaun Steele,New Haven,133888,6-7,"6'7""",79.0,79.56,"6'8""",0.56,plays_at_height,79.56,"6'8""",0.56,plays_at_height
 2026,Malchiah Marable,Central Arkansas,133889,6-9,"6'9""",81.0,80.39,"6'8""",-0.61,plays_at_height,80.39,"6'8""",-0.61,plays_at_height
-2026,Andre Pasha,New Haven,133890,6-9,"6'9""",81.0,76.53,"6'5""",-4.47,plays_shorter,76.53,"6'5""",-4.47,plays_shorter
+2026,Andre Pasha,New Haven,133890,6-9,"6'9""",81.0,76.54,"6'5""",-4.46,plays_shorter,76.54,"6'5""",-4.46,plays_shorter
 2026,Esteban Mann,Incarnate Word,133891,6-7,"6'7""",79.0,76.74,"6'5""",-2.26,plays_shorter,76.74,"6'5""",-2.26,plays_shorter
 2026,Sader Servilus,Valparaiso,133892,6-4,"6'4""",76.0,79.72,"6'8""",3.72,plays_taller,79.72,"6'8""",3.72,plays_taller
 2026,Carter Hopoi,Valparaiso,133894,6-11,"6'11""",83.0,79.88,"6'8""",-3.12,plays_shorter,79.88,"6'8""",-3.12,plays_shorter
@@ -2711,16 +2711,16 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Noah Pagotto,East Texas A&M,133904,6-7,"6'7""",79.0,78.8,"6'7""",-0.2,plays_at_height,78.8,"6'7""",-0.2,plays_at_height
 2026,Aginaldo Neto,Boise St.,133905,6-3,"6'3""",75.0,75.71,"6'4""",0.71,plays_at_height,75.71,"6'4""",0.71,plays_at_height
 2026,Jaden Kempson,Albany,133906,6-3,"6'3""",75.0,76.85,"6'5""",1.85,plays_taller,76.85,"6'5""",1.85,plays_taller
-2026,Kyle Jones,Buffalo,133910,6-5,"6'5""",77.0,78.59,"6'7""",1.59,plays_taller,78.59,"6'7""",1.59,plays_taller
+2026,Kyle Jones,Buffalo,133910,6-5,"6'5""",77.0,78.6,"6'7""",1.6,plays_taller,78.6,"6'7""",1.6,plays_taller
 2026,Albert Vargas,Robert Morris,133913,5-10,"5'10""",70.0,74.57,"6'3""",4.57,plays_taller,74.57,"6'3""",4.57,plays_taller
 2026,Simon Majok,Memphis,133914,7-1,"7'1""",85.0,79.36,"6'7""",-5.64,plays_shorter,79.36,"6'7""",-5.64,plays_shorter
 2026,Eugene Alvin,Morgan St.,133915,6-7,"6'7""",79.0,77.88,"6'6""",-1.12,plays_shorter,77.88,"6'6""",-1.12,plays_shorter
 2026,Cam Polak,Youngstown St.,133916,6-2,"6'2""",74.0,74.58,"6'3""",0.58,plays_at_height,74.58,"6'3""",0.58,plays_at_height
 2026,Isaiah Williams,Portland St.,133917,6-7,"6'7""",79.0,77.45,"6'5""",-1.55,plays_shorter,77.45,"6'5""",-1.55,plays_shorter
 2026,Sharod Barnes,Western Michigan,133919,6-2,"6'2""",74.0,76.61,"6'5""",2.61,plays_taller,76.61,"6'5""",2.61,plays_taller
-2026,Marcos Gonzales,The Citadel,133921,6-3,"6'3""",75.0,76.44,"6'4""",1.44,plays_taller,76.44,"6'4""",1.44,plays_taller
+2026,Marcos Gonzales,The Citadel,133921,6-3,"6'3""",75.0,76.45,"6'4""",1.45,plays_taller,76.45,"6'4""",1.45,plays_taller
 2026,Alex Kazanecki,Delaware,133922,6-6,"6'6""",78.0,74.33,"6'2""",-3.67,plays_shorter,74.33,"6'2""",-3.67,plays_shorter
-2026,Noah Otshudi,Marshall,133923,6-2,"6'2""",74.0,76.09,"6'4""",2.09,plays_taller,76.09,"6'4""",2.09,plays_taller
+2026,Noah Otshudi,Marshall,133923,6-2,"6'2""",74.0,76.1,"6'4""",2.1,plays_taller,76.1,"6'4""",2.1,plays_taller
 2026,Bryce Slay,Marshall,133924,6-6,"6'6""",78.0,74.71,"6'3""",-3.29,plays_shorter,74.71,"6'3""",-3.29,plays_shorter
 2026,Caleb Hollenbeck,Marshall,133925,6-4,"6'4""",76.0,72.4,"6'0""",-3.6,plays_shorter,72.4,"6'0""",-3.6,plays_shorter
 2026,Shamarrie Hugie,Marshall,133926,6-6,"6'6""",78.0,77.3,"6'5""",-0.7,plays_at_height,77.3,"6'5""",-0.7,plays_at_height
@@ -2731,7 +2731,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Edwin Suarez Jr.,Weber St.,133934,6-6,"6'6""",78.0,80.16,"6'8""",2.16,plays_taller,80.16,"6'8""",2.16,plays_taller
 2026,Grant Polk,South Carolina,133935,6-6,"6'6""",78.0,76.21,"6'4""",-1.79,plays_shorter,76.21,"6'4""",-1.79,plays_shorter
 2026,Cole Middleton,Lipscomb,133937,6-6,"6'6""",78.0,77.26,"6'5""",-0.74,plays_at_height,77.26,"6'5""",-0.74,plays_at_height
-2026,Javante Edwards,Canisius,133940,6-1,"6'1""",73.0,74.16,"6'2""",1.16,plays_taller,74.16,"6'2""",1.16,plays_taller
+2026,Javante Edwards,Canisius,133940,6-1,"6'1""",73.0,74.17,"6'2""",1.17,plays_taller,74.17,"6'2""",1.17,plays_taller
 2026,Edwin Daniel,La Salle,133944,6-9,"6'9""",81.0,81.58,"6'10""",0.58,plays_at_height,81.58,"6'10""",0.58,plays_at_height
 2026,Isaac Garrett,Oakland,133945,6-8,"6'8""",80.0,80.59,"6'9""",0.59,plays_at_height,80.59,"6'9""",0.59,plays_at_height
 2026,Dame Sarr,Duke,133946,6-8,"6'8""",80.0,78.53,"6'7""",-1.47,plays_shorter,78.53,"6'7""",-1.47,plays_shorter
@@ -2750,7 +2750,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,NaVuan Peterson,Gardner Webb,133974,6-6,"6'6""",78.0,75.81,"6'4""",-2.19,plays_shorter,75.81,"6'4""",-2.19,plays_shorter
 2026,Jalen Harper,Rhode Island,133981,6-3,"6'3""",75.0,75.83,"6'4""",0.83,plays_taller,75.83,"6'4""",0.83,plays_taller
 2026,Jaden Baker,Wagner,133983,6-2,"6'2""",74.0,75.65,"6'4""",1.65,plays_taller,75.65,"6'4""",1.65,plays_taller
-2026,Truman Claytor IV,Little Rock,133986,6-6,"6'6""",78.0,75.56,"6'4""",-2.44,plays_shorter,75.56,"6'4""",-2.44,plays_shorter
+2026,Truman Claytor IV,Little Rock,133986,6-6,"6'6""",78.0,75.57,"6'4""",-2.43,plays_shorter,75.57,"6'4""",-2.43,plays_shorter
 2026,Tracy Steele Jr.,Little Rock,133987,6-3,"6'3""",75.0,74.43,"6'2""",-0.57,plays_at_height,74.43,"6'2""",-0.57,plays_at_height
 2026,Anthony Enoh,Georgia St.,133988,6-7,"6'7""",79.0,78.86,"6'7""",-0.14,plays_at_height,78.86,"6'7""",-0.14,plays_at_height
 2026,Ayouba Berthe,Georgia St.,133989,6-5,"6'5""",77.0,74.24,"6'2""",-2.76,plays_shorter,74.24,"6'2""",-2.76,plays_shorter
@@ -2764,7 +2764,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Shelton Henderson,Miami FL,134009,6-6,"6'6""",78.0,80.14,"6'8""",2.14,plays_taller,80.14,"6'8""",2.14,plays_taller
 2026,"Will James, Jr.",Toledo,134011,6-4,"6'4""",76.0,77.21,"6'5""",1.21,plays_taller,77.21,"6'5""",1.21,plays_taller
 2026,Amir Jenkins,West Virginia,134012,6-2,"6'2""",74.0,75.54,"6'4""",1.54,plays_taller,75.54,"6'4""",1.54,plays_taller
-2026,DJ Thomas,West Virginia,134013,6-7,"6'7""",79.0,77.68,"6'6""",-1.32,plays_shorter,77.68,"6'6""",-1.32,plays_shorter
+2026,DJ Thomas,West Virginia,134013,6-7,"6'7""",79.0,77.7,"6'6""",-1.3,plays_shorter,77.7,"6'6""",-1.3,plays_shorter
 2026,Emmett Adair,Loyola MD,134015,6-9,"6'9""",81.0,77.65,"6'6""",-3.35,plays_shorter,77.65,"6'6""",-3.35,plays_shorter
 2026,Myles Mayfield,UNC Asheville,134018,6-9,"6'9""",81.0,78.96,"6'7""",-2.04,plays_shorter,78.96,"6'7""",-2.04,plays_shorter
 2026,Brian Hawthorne,South Alabama,134020,6-2,"6'2""",74.0,74.9,"6'3""",0.9,plays_taller,74.9,"6'3""",0.9,plays_taller
@@ -2802,10 +2802,10 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Ethan Greenberg,Air Force,134084,6-4,"6'4""",76.0,74.47,"6'2""",-1.53,plays_shorter,74.47,"6'2""",-1.53,plays_shorter
 2026,Riley Dering,Air Force,134086,6-9,"6'9""",81.0,79.5,"6'7""",-1.5,plays_shorter,79.5,"6'7""",-1.5,plays_shorter
 2026,Jordan Frison,Chattanooga,134087,6-0,"6'0""",72.0,75.2,"6'3""",3.2,plays_taller,75.2,"6'3""",3.2,plays_taller
-2026,Ade Popoola,Tulsa,134088,6-5,"6'5""",77.0,76.48,"6'4""",-0.52,plays_at_height,76.48,"6'4""",-0.52,plays_at_height
-2026,Jaylen Lawal,Tulsa,134089,6-3,"6'3""",75.0,76.51,"6'5""",1.51,plays_taller,76.51,"6'5""",1.51,plays_taller
+2026,Ade Popoola,Tulsa,134088,6-5,"6'5""",77.0,76.5,"6'4""",-0.5,plays_at_height,76.5,"6'4""",-0.5,plays_at_height
+2026,Jaylen Lawal,Tulsa,134089,6-3,"6'3""",75.0,76.49,"6'4""",1.49,plays_taller,76.49,"6'4""",1.49,plays_taller
 2026,CJ Hall,SIU Edwardsville,134091,6-2,"6'2""",74.0,74.39,"6'2""",0.39,plays_at_height,74.39,"6'2""",0.39,plays_at_height
-2026,Mason Porter-Brown,LIU,134097,6-6,"6'6""",78.0,78.08,"6'6""",0.08,plays_at_height,78.08,"6'6""",0.08,plays_at_height
+2026,Mason Porter-Brown,LIU,134097,6-6,"6'6""",78.0,78.09,"6'6""",0.09,plays_at_height,78.09,"6'6""",0.09,plays_at_height
 2026,Fabian Flores,DePaul,134098,7-2,"7'2""",86.0,82.0,"6'10""",-4.0,plays_shorter,82.0,"6'10""",-4.0,plays_shorter
 2026,Tyler Smith,USC Upstate,134101,6-0,"6'0""",72.0,74.83,"6'3""",2.83,plays_taller,74.83,"6'3""",2.83,plays_taller
 2026,Truman Byrne,Central Arkansas,134105,6-10,"6'10""",82.0,77.12,"6'5""",-4.88,plays_shorter,77.12,"6'5""",-4.88,plays_shorter
@@ -2866,8 +2866,8 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jah'Likai King,UMBC,134199,6-2,"6'2""",74.0,75.07,"6'3""",1.07,plays_taller,75.07,"6'3""",1.07,plays_taller
 2026,King-Njhsanni Wilhite,Lamar,134200,6-1,"6'1""",73.0,73.63,"6'2""",0.63,plays_at_height,73.63,"6'2""",0.63,plays_at_height
 2026,Eian Lowe,Lamar,134203,5-10,"5'10""",70.0,74.73,"6'3""",4.73,plays_taller,74.73,"6'3""",4.73,plays_taller
-2026,Tibor Mirtic,Penn St.,134207,6-9,"6'9""",81.0,77.86,"6'6""",-3.14,plays_shorter,77.86,"6'6""",-3.14,plays_shorter
-2026,Patton Pinkins,Mississippi,134209,6-5,"6'5""",77.0,75.12,"6'3""",-1.88,plays_shorter,75.12,"6'3""",-1.88,plays_shorter
+2026,Tibor Mirtic,Penn St.,134207,6-9,"6'9""",81.0,77.85,"6'6""",-3.15,plays_shorter,77.85,"6'6""",-3.15,plays_shorter
+2026,Patton Pinkins,Mississippi,134209,6-5,"6'5""",77.0,75.11,"6'3""",-1.89,plays_shorter,75.11,"6'3""",-1.89,plays_shorter
 2026,Augustine Ekwe,New Mexico St.,134210,6-9,"6'9""",81.0,80.72,"6'9""",-0.28,plays_at_height,80.72,"6'9""",-0.28,plays_at_height
 2026,Vince Buzelis,South Dakota,134213,6-4,"6'4""",76.0,78.45,"6'6""",2.45,plays_taller,78.45,"6'6""",2.45,plays_taller
 2026,Sam Hughes,Boston University,134214,6-6,"6'6""",78.0,75.53,"6'4""",-2.47,plays_shorter,75.53,"6'4""",-2.47,plays_shorter
@@ -2909,14 +2909,14 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kayden Mingo,Penn St.,134280,6-3,"6'3""",75.0,77.07,"6'5""",2.07,plays_taller,77.07,"6'5""",2.07,plays_taller
 2026,Ivan Juric,Penn St.,134281,7-0,"7'0""",84.0,79.23,"6'7""",-4.77,plays_shorter,79.23,"6'7""",-4.77,plays_shorter
 2026,Jesse Mcintosh,South Dakota,134283,6-7,"6'7""",79.0,76.39,"6'4""",-2.61,plays_shorter,76.39,"6'4""",-2.61,plays_shorter
-2026,Mussa Mzein,Mississippi Valley St.,134285,6-10,"6'10""",82.0,76.44,"6'4""",-5.56,plays_shorter,76.44,"6'4""",-5.56,plays_shorter
+2026,Mussa Mzein,Mississippi Valley St.,134285,6-10,"6'10""",82.0,76.45,"6'4""",-5.55,plays_shorter,76.45,"6'4""",-5.55,plays_shorter
 2026,Vladimir Khryapa,Tennessee Martin,134288,6-8,"6'8""",80.0,78.9,"6'7""",-1.1,plays_shorter,78.9,"6'7""",-1.1,plays_shorter
 2026,Matas Deniusas,Tennessee Martin,134289,6-9,"6'9""",81.0,78.57,"6'7""",-2.43,plays_shorter,78.57,"6'7""",-2.43,plays_shorter
-2026,Damien King,Tennessee Martin,134290,6-4,"6'4""",76.0,78.23,"6'6""",2.23,plays_taller,78.23,"6'6""",2.23,plays_taller
+2026,Damien King,Tennessee Martin,134290,6-4,"6'4""",76.0,78.24,"6'6""",2.24,plays_taller,78.24,"6'6""",2.24,plays_taller
 2026,Ryan Richardson,Binghamton,134292,6-5,"6'5""",77.0,74.21,"6'2""",-2.79,plays_shorter,74.21,"6'2""",-2.79,plays_shorter
 2026,Olavi Suutela,Oregon St.,134293,6-10,"6'10""",82.0,77.47,"6'5""",-4.53,plays_shorter,77.47,"6'5""",-4.53,plays_shorter
 2026,Matija Samar,Oregon St.,134294,6-6,"6'6""",78.0,74.58,"6'3""",-3.42,plays_shorter,74.58,"6'3""",-3.42,plays_shorter
-2026,Elyjah Freeman,Auburn,134298,6-8,"6'8""",80.0,79.75,"6'8""",-0.25,plays_at_height,79.75,"6'8""",-0.25,plays_at_height
+2026,Elyjah Freeman,Auburn,134298,6-8,"6'8""",80.0,79.91,"6'8""",-0.09,plays_at_height,79.91,"6'8""",-0.09,plays_at_height
 2026,John St. Germain III,Holy Cross,134299,6-1,"6'1""",73.0,74.47,"6'2""",1.47,plays_taller,74.47,"6'2""",1.47,plays_taller
 2026,Trevon Payton,Arkansas Pine Bluff,134300,6-5,"6'5""",77.0,76.18,"6'4""",-0.82,plays_shorter,76.18,"6'4""",-0.82,plays_shorter
 2026,Chandler Jackson,Milwaukee,134301,6-6,"6'6""",78.0,77.19,"6'5""",-0.81,plays_shorter,77.19,"6'5""",-0.81,plays_shorter
@@ -2930,7 +2930,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,King Grace,Mississippi St.,134323,6-5,"6'5""",77.0,76.81,"6'5""",-0.19,plays_at_height,76.81,"6'5""",-0.19,plays_at_height
 2026,Jacobe Whitted,Tennessee Tech,134324,6-7,"6'7""",79.0,77.18,"6'5""",-1.82,plays_shorter,77.18,"6'5""",-1.82,plays_shorter
 2026,Michael Cooper,Wagner,134325,6-6,"6'6""",78.0,77.45,"6'5""",-0.55,plays_at_height,77.45,"6'5""",-0.55,plays_at_height
-2026,Bryan Akanmu,Wagner,134330,6-6,"6'6""",78.0,76.36,"6'4""",-1.64,plays_shorter,76.36,"6'4""",-1.64,plays_shorter
+2026,Bryan Akanmu,Wagner,134330,6-6,"6'6""",78.0,76.37,"6'4""",-1.63,plays_shorter,76.37,"6'4""",-1.63,plays_shorter
 2026,Carlos Coronado Jr.,Northern Illinois,134332,6-3,"6'3""",75.0,74.27,"6'2""",-0.73,plays_at_height,74.27,"6'2""",-0.73,plays_at_height
 2026,Francis Okwuosah,Western Illinois,134334,6-6,"6'6""",78.0,75.71,"6'4""",-2.29,plays_shorter,75.71,"6'4""",-2.29,plays_shorter
 2026,Makai Kvamme,Western Illinois,134335,6-2,"6'2""",74.0,75.86,"6'4""",1.86,plays_taller,75.86,"6'4""",1.86,plays_taller
@@ -2941,7 +2941,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Brady Swartz,Western Michigan,134342,6-7,"6'7""",79.0,77.18,"6'5""",-1.82,plays_shorter,77.18,"6'5""",-1.82,plays_shorter
 2026,Carson Vis,Western Michigan,134343,6-3,"6'3""",75.0,76.66,"6'5""",1.66,plays_taller,76.66,"6'5""",1.66,plays_taller
 2026,Davion Hannah,Alabama,134346,6-6,"6'6""",78.0,76.91,"6'5""",-1.09,plays_shorter,76.91,"6'5""",-1.09,plays_shorter
-2026,Josiah Parker,Florida Atlantic,134347,6-7,"6'7""",79.0,79.48,"6'7""",0.48,plays_at_height,79.48,"6'7""",0.48,plays_at_height
+2026,Josiah Parker,Florida Atlantic,134347,6-7,"6'7""",79.0,79.47,"6'7""",0.47,plays_at_height,79.47,"6'7""",0.47,plays_at_height
 2026,Amari Allen,Alabama,134348,6-7,"6'7""",79.0,79.08,"6'7""",0.08,plays_at_height,79.08,"6'7""",0.08,plays_at_height
 2026,Yohann Sissoko,Florida Atlantic,134349,6-5,"6'5""",77.0,75.86,"6'4""",-1.14,plays_shorter,75.86,"6'4""",-1.14,plays_shorter
 2026,London Jemison,Alabama,134350,6-8,"6'8""",80.0,78.4,"6'6""",-1.6,plays_shorter,78.4,"6'6""",-1.6,plays_shorter
@@ -2971,9 +2971,9 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Evan Sterck,Jacksonville,134392,6-1,"6'1""",73.0,74.6,"6'3""",1.6,plays_taller,74.6,"6'3""",1.6,plays_taller
 2026,Adria Rodriguez,Washington St.,134393,6-4,"6'4""",76.0,77.95,"6'6""",1.95,plays_taller,77.95,"6'6""",1.95,plays_taller
 2026,Ace Glass lll,Washington St.,134394,6-3,"6'3""",75.0,75.11,"6'3""",0.11,plays_at_height,75.11,"6'3""",0.11,plays_at_height
-2026,Miles Amos,Seattle,134397,6-2,"6'2""",74.0,76.31,"6'4""",2.31,plays_taller,76.31,"6'4""",2.31,plays_taller
-2026,Dre Kindell,Wichita St.,134401,5-11,"5'11""",71.0,76.5,"6'5""",5.5,plays_taller,76.5,"6'5""",5.5,plays_taller
-2026,Hudson Greer,Creighton,134404,6-7,"6'7""",79.0,77.28,"6'5""",-1.72,plays_shorter,77.28,"6'5""",-1.72,plays_shorter
+2026,Miles Amos,Seattle,134397,6-2,"6'2""",74.0,76.3,"6'4""",2.3,plays_taller,76.3,"6'4""",2.3,plays_taller
+2026,Dre Kindell,Wichita St.,134401,5-11,"5'11""",71.0,76.5,"6'4""",5.5,plays_taller,76.5,"6'4""",5.5,plays_taller
+2026,Hudson Greer,Creighton,134404,6-7,"6'7""",79.0,77.29,"6'5""",-1.71,plays_shorter,77.29,"6'5""",-1.71,plays_shorter
 2026,Kerem Konan,Creighton,134405,6-9,"6'9""",81.0,79.99,"6'8""",-1.01,plays_shorter,79.99,"6'8""",-1.01,plays_shorter
 2026,Cam McDowell,Tarleton St.,134407,6-5,"6'5""",77.0,77.18,"6'5""",0.18,plays_at_height,77.18,"6'5""",0.18,plays_at_height
 2026,Ethane Bourgade,Bryant,134409,6-9,"6'9""",81.0,76.66,"6'5""",-4.34,plays_shorter,76.66,"6'5""",-4.34,plays_shorter
@@ -2985,14 +2985,14 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Andrew Osasuyi,St. Bonaventure,134425,6-9,"6'9""",81.0,84.74,"7'1""",3.74,plays_taller,84.74,"7'1""",3.74,plays_taller
 2026,Jalen Carruth,Alabama A&M,134426,6-7,"6'7""",79.0,76.23,"6'4""",-2.77,plays_shorter,76.23,"6'4""",-2.77,plays_shorter
 2026,Gabe Kincy,Alabama A&M,134428,6-7,"6'7""",79.0,76.66,"6'5""",-2.34,plays_shorter,76.66,"6'5""",-2.34,plays_shorter
-2026,Sebastian Williams-Adams,Auburn,134430,6-8,"6'8""",80.0,79.22,"6'7""",-0.78,plays_shorter,79.22,"6'7""",-0.78,plays_shorter
+2026,Sebastian Williams-Adams,Auburn,134430,6-8,"6'8""",80.0,79.24,"6'7""",-0.76,plays_shorter,79.24,"6'7""",-0.76,plays_shorter
 2026,Luke Haertle,South Dakota St.,134431,6-3,"6'3""",75.0,76.41,"6'4""",1.41,plays_taller,76.41,"6'4""",1.41,plays_taller
 2026,Jaxson Whitaker,Central Michigan,134435,6-4,"6'4""",76.0,74.09,"6'2""",-1.91,plays_shorter,74.09,"6'2""",-1.91,plays_shorter
 2026,EJ Walker,South Carolina,134437,6-7,"6'7""",79.0,77.78,"6'6""",-1.22,plays_shorter,77.78,"6'6""",-1.22,plays_shorter
 2026,Jalen Griffith,Western Michigan,134438,5-10,"5'10""",70.0,73.54,"6'2""",3.54,plays_taller,73.54,"6'2""",3.54,plays_taller
 2026,DJ Dudley,Louisiana Tech,134439,6-4,"6'4""",76.0,76.18,"6'4""",0.18,plays_at_height,76.18,"6'4""",0.18,plays_at_height
 2026,Sherman Weatherspoon IV,Utah Valley,134442,6-3,"6'3""",75.0,75.13,"6'3""",0.13,plays_at_height,75.13,"6'3""",0.13,plays_at_height
-2026,Brendan Rigsbee,Wofford,134447,6-3,"6'3""",75.0,75.88,"6'4""",0.88,plays_taller,75.88,"6'4""",0.88,plays_taller
+2026,Brendan Rigsbee,Wofford,134447,6-3,"6'3""",75.0,75.89,"6'4""",0.89,plays_taller,75.89,"6'4""",0.89,plays_taller
 2026,Joshua Lewis,Louisiana,134449,6-7,"6'7""",79.0,77.42,"6'5""",-1.58,plays_shorter,77.42,"6'5""",-1.58,plays_shorter
 2026,Milan Mejia,Louisiana,134450,6-2,"6'2""",74.0,73.87,"6'2""",-0.13,plays_at_height,73.87,"6'2""",-0.13,plays_at_height
 2026,Jalen Ricks,UT Rio Grande Valley,134452,6-7,"6'7""",79.0,76.0,"6'4""",-3.0,plays_shorter,76.0,"6'4""",-3.0,plays_shorter
@@ -3003,7 +3003,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Isaiah Johnson,Colorado,134460,6-1,"6'1""",73.0,75.78,"6'4""",2.78,plays_taller,75.78,"6'4""",2.78,plays_taller
 2026,Kameron Tinsley,IU Indy,134461,6-6,"6'6""",78.0,76.43,"6'4""",-1.57,plays_shorter,76.43,"6'4""",-1.57,plays_shorter
 2026,Spencer Ahrens,Boise St.,134462,6-10,"6'10""",82.0,78.74,"6'7""",-3.26,plays_shorter,78.74,"6'7""",-3.26,plays_shorter
-2026,Aleksej Kostić,BYU,134464,6-4,"6'4""",76.0,73.41,"6'1""",-2.59,plays_shorter,73.41,"6'1""",-2.59,plays_shorter
+2026,Aleksej Kostić,BYU,134464,6-4,"6'4""",76.0,73.42,"6'1""",-2.58,plays_shorter,73.42,"6'1""",-2.58,plays_shorter
 2026,AJ Dybantsa,BYU,134465,6-9,"6'9""",81.0,80.14,"6'8""",-0.86,plays_shorter,80.14,"6'8""",-0.86,plays_shorter
 2026,Ahmad Johnson,Arkansas Pine Bluff,134467,6-4,"6'4""",76.0,73.92,"6'2""",-2.08,plays_shorter,73.92,"6'2""",-2.08,plays_shorter
 2026,Jackson Rasmussen,Idaho,134468,6-7,"6'7""",79.0,77.51,"6'6""",-1.49,plays_shorter,77.51,"6'6""",-1.49,plays_shorter
@@ -3040,7 +3040,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Hampton Sanders,Columbia,134520,6-0,"6'0""",72.0,74.83,"6'3""",2.83,plays_taller,74.83,"6'3""",2.83,plays_taller
 2026,Jalen Tot,Appalachian St.,134521,6-0,"6'0""",72.0,73.84,"6'2""",1.84,plays_taller,73.84,"6'2""",1.84,plays_taller
 2026,Mateo Esmeraldo,Lipscomb,134522,6-0,"6'0""",72.0,75.55,"6'4""",3.55,plays_taller,75.55,"6'4""",3.55,plays_taller
-2026,Shemani Fuller,Rider,134525,6-9,"6'9""",81.0,80.67,"6'9""",-0.33,plays_at_height,80.67,"6'9""",-0.33,plays_at_height
+2026,Shemani Fuller,Rider,134525,6-9,"6'9""",81.0,80.68,"6'9""",-0.32,plays_at_height,80.68,"6'9""",-0.32,plays_at_height
 2026,Gus Etchison,Idaho St.,134526,5-11,"5'11""",71.0,75.98,"6'4""",4.98,plays_taller,75.98,"6'4""",4.98,plays_taller
 2026,Ali Assran,Cal Poly,134529,6-9,"6'9""",81.0,80.19,"6'8""",-0.81,plays_shorter,80.19,"6'8""",-0.81,plays_shorter
 2026,Jake Davis,Cal Poly,134530,6-4,"6'4""",76.0,76.69,"6'5""",0.69,plays_at_height,76.69,"6'5""",0.69,plays_at_height
@@ -3095,7 +3095,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,EJ Mosley,Purdue Fort Wayne,134614,6-0,"6'0""",72.0,74.19,"6'2""",2.19,plays_taller,74.19,"6'2""",2.19,plays_taller
 2026,Dwayne Aristode,Arizona,134616,6-8,"6'8""",80.0,76.68,"6'5""",-3.32,plays_shorter,76.68,"6'5""",-3.32,plays_shorter
 2026,Riek Riek,Gardner Webb,134617,6-9,"6'9""",81.0,76.7,"6'5""",-4.3,plays_shorter,76.7,"6'5""",-4.3,plays_shorter
-2026,Jacob Wassler,Bellarmine,134621,6-11,"6'11""",83.0,78.44,"6'6""",-4.56,plays_shorter,78.44,"6'6""",-4.56,plays_shorter
+2026,Jacob Wassler,Bellarmine,134621,6-11,"6'11""",83.0,78.45,"6'6""",-4.55,plays_shorter,78.45,"6'6""",-4.55,plays_shorter
 2026,Sam Donald,Bellarmine,134624,6-8,"6'8""",80.0,76.86,"6'5""",-3.14,plays_shorter,76.86,"6'5""",-3.14,plays_shorter
 2026,Tomas Valentiny,Stony Brook,134626,6-6,"6'6""",78.0,77.5,"6'6""",-0.5,plays_at_height,77.5,"6'6""",-0.5,plays_at_height
 2026,Andrej Shoshkikj,Stony Brook,134627,6-2,"6'2""",74.0,75.32,"6'3""",1.32,plays_taller,75.32,"6'3""",1.32,plays_taller
@@ -3104,15 +3104,15 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Amon Dörries,Bucknell,134636,6-11,"6'11""",83.0,78.33,"6'6""",-4.67,plays_shorter,78.33,"6'6""",-4.67,plays_shorter
 2026,Trevin Jirak,Iowa,134637,6-11,"6'11""",83.0,77.82,"6'6""",-5.18,plays_shorter,77.82,"6'6""",-5.18,plays_shorter
 2026,Will Harper III,Richmond,134638,6-4,"6'4""",76.0,75.93,"6'4""",-0.07,plays_at_height,75.93,"6'4""",-0.07,plays_at_height
-2026,Tate Sage,Iowa,134641,6-7,"6'7""",79.0,77.92,"6'6""",-1.08,plays_shorter,77.92,"6'6""",-1.08,plays_shorter
+2026,Tate Sage,Iowa,134641,6-7,"6'7""",79.0,77.91,"6'6""",-1.09,plays_shorter,77.91,"6'6""",-1.09,plays_shorter
 2026,Michael Collins,Louisiana,134643,6-1,"6'1""",73.0,74.55,"6'3""",1.55,plays_taller,74.55,"6'3""",1.55,plays_taller
 2026,Raevon Thomas,Jackson St.,134644,6-9,"6'9""",81.0,78.47,"6'6""",-2.53,plays_shorter,78.47,"6'6""",-2.53,plays_shorter
 2026,Mujahiid Burton,North Carolina A&T,134646,6-5,"6'5""",77.0,73.82,"6'2""",-3.18,plays_shorter,73.82,"6'2""",-3.18,plays_shorter
 2026,Dwayne Pierce,North Carolina A&T,134648,6-5,"6'5""",77.0,74.03,"6'2""",-2.97,plays_shorter,74.03,"6'2""",-2.97,plays_shorter
 2026,Brooklyn Vick,North Carolina A&T,134649,6-2,"6'2""",74.0,76.09,"6'4""",2.09,plays_taller,76.09,"6'4""",2.09,plays_taller
 2026,Nigel James Jr.,Marquette,134650,6-0,"6'0""",72.0,77.78,"6'6""",5.78,plays_taller,77.78,"6'6""",5.78,plays_taller
-2026,Chol Machot,Charleston,134654,7-0,"7'0""",84.0,85.54,"7'2""",1.54,plays_taller,85.54,"7'2""",1.54,plays_taller
-2026,Jaden Haire,Texas A&M Corpus Chris,134657,6-7,"6'7""",79.0,77.81,"6'6""",-1.19,plays_shorter,77.81,"6'6""",-1.19,plays_shorter
+2026,Chol Machot,Charleston,134654,7-0,"7'0""",84.0,85.55,"7'2""",1.55,plays_taller,85.55,"7'2""",1.55,plays_taller
+2026,Jaden Haire,Texas A&M Corpus Chris,134657,6-7,"6'7""",79.0,77.8,"6'6""",-1.2,plays_shorter,77.8,"6'6""",-1.2,plays_shorter
 2026,Corentin Efono,SIU Edwardsville,134658,6-4,"6'4""",76.0,76.32,"6'4""",0.32,plays_at_height,76.32,"6'4""",0.32,plays_at_height
 2026,Victory Onuetu,Hofstra,134662,6-10,"6'10""",82.0,83.51,"7'0""",1.51,plays_taller,83.51,"7'0""",1.51,plays_taller
 2026,Xavier Spencer,UMass Lowell,134666,6-1,"6'1""",73.0,76.32,"6'4""",3.32,plays_taller,76.32,"6'4""",3.32,plays_taller
@@ -3134,7 +3134,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Shon Abaev,Cincinnati,134691,6-8,"6'8""",80.0,77.99,"6'6""",-2.01,plays_shorter,77.99,"6'6""",-2.01,plays_shorter
 2026,Ja'Juan Carr,Elon,134692,6-2,"6'2""",74.0,76.2,"6'4""",2.2,plays_taller,76.2,"6'4""",2.2,plays_taller
 2026,Quron Elliott,Manhattan,134694,6-2,"6'2""",74.0,74.69,"6'3""",0.69,plays_at_height,74.69,"6'3""",0.69,plays_at_height
-2026,Torrin Andrews,Coppin St.,134697,6-4,"6'4""",76.0,74.33,"6'2""",-1.67,plays_shorter,74.33,"6'2""",-1.67,plays_shorter
+2026,Torrin Andrews,Coppin St.,134697,6-4,"6'4""",76.0,74.34,"6'2""",-1.66,plays_shorter,74.34,"6'2""",-1.66,plays_shorter
 2026,Kylan Howze,Louisiana Tech,134702,6-10,"6'10""",82.0,79.7,"6'8""",-2.3,plays_shorter,79.7,"6'8""",-2.3,plays_shorter
 2026,Ethan Simmon,Stony Brook,134704,6-5,"6'5""",77.0,75.08,"6'3""",-1.92,plays_shorter,75.08,"6'3""",-1.92,plays_shorter
 2026,Brett White,Oakland,134706,6-6,"6'6""",78.0,75.91,"6'4""",-2.09,plays_shorter,75.91,"6'4""",-2.09,plays_shorter
@@ -3178,10 +3178,10 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Jaden Vance,UC San Diego,134781,6-6,"6'6""",78.0,77.76,"6'6""",-0.24,plays_at_height,77.76,"6'6""",-0.24,plays_at_height
 2026,Filip Petkovski,Tennessee Martin,134783,6-5,"6'5""",77.0,75.33,"6'3""",-1.67,plays_shorter,75.33,"6'3""",-1.67,plays_shorter
 2026,Hudson Mayes,UC San Diego,134784,6-5,"6'5""",77.0,79.09,"6'7""",2.09,plays_taller,79.09,"6'7""",2.09,plays_taller
-2026,Sananda Fru,Louisville,134791,6-11,"6'11""",83.0,84.92,"7'1""",1.92,plays_taller,84.92,"7'1""",1.92,plays_taller
+2026,Sananda Fru,Louisville,134791,6-11,"6'11""",83.0,84.91,"7'1""",1.91,plays_taller,84.91,"7'1""",1.91,plays_taller
 2026,Buddy Hammer Jr.,North Texas,134792,6-7,"6'7""",79.0,80.31,"6'8""",1.31,plays_taller,80.31,"6'8""",1.31,plays_taller
 2026,Nyk Lewis,VCU,134793,6-1,"6'1""",73.0,76.84,"6'5""",3.84,plays_taller,76.84,"6'5""",3.84,plays_taller
-2026,Dorian Hayes,UTSA,134794,6-5,"6'5""",77.0,73.24,"6'1""",-3.76,plays_shorter,73.24,"6'1""",-3.76,plays_shorter
+2026,Dorian Hayes,UTSA,134794,6-5,"6'5""",77.0,73.23,"6'1""",-3.77,plays_shorter,73.23,"6'1""",-3.77,plays_shorter
 2026,Brent Moss,UTSA,134795,6-6,"6'6""",78.0,76.6,"6'5""",-1.4,plays_shorter,76.6,"6'5""",-1.4,plays_shorter
 2026,Kaidon Rayfield,UTSA,134796,6-8,"6'8""",80.0,78.62,"6'7""",-1.38,plays_shorter,78.62,"6'7""",-1.38,plays_shorter
 2026,Matheo Coffi,UTSA,134797,6-8,"6'8""",80.0,79.01,"6'7""",-0.99,plays_shorter,79.01,"6'7""",-0.99,plays_shorter
@@ -3200,11 +3200,11 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Adrien Stevens,Marquette,134837,6-4,"6'4""",76.0,76.31,"6'4""",0.31,plays_at_height,76.31,"6'4""",0.31,plays_at_height
 2026,Danny Carbuccia,Massachusetts,134840,5-11,"5'11""",71.0,74.49,"6'2""",3.49,plays_taller,74.49,"6'2""",3.49,plays_taller
 2026,Dimitri Clerc,Massachusetts,134841,6-10,"6'10""",82.0,80.72,"6'9""",-1.28,plays_shorter,80.72,"6'9""",-1.28,plays_shorter
-2026,Mark Lavrenov,Sacramento St.,134844,6-8,"6'8""",80.0,78.67,"6'7""",-1.33,plays_shorter,78.67,"6'7""",-1.33,plays_shorter
+2026,Mark Lavrenov,Sacramento St.,134844,6-8,"6'8""",80.0,78.66,"6'7""",-1.34,plays_shorter,78.66,"6'7""",-1.34,plays_shorter
 2026,Derek Dixon,North Carolina,134845,6-5,"6'5""",77.0,74.18,"6'2""",-2.82,plays_shorter,74.18,"6'2""",-2.82,plays_shorter
 2026,Douglas Langford,San Jose St.,134853,6-7,"6'7""",79.0,79.21,"6'7""",0.21,plays_at_height,79.21,"6'7""",0.21,plays_at_height
 2026,Japhet Moupadele,San Jose St.,134854,6-8,"6'8""",80.0,77.28,"6'5""",-2.72,plays_shorter,77.28,"6'5""",-2.72,plays_shorter
-2026,Tyler Koenig,Coppin St.,134855,6-9,"6'9""",81.0,79.07,"6'7""",-1.93,plays_shorter,79.07,"6'7""",-1.93,plays_shorter
+2026,Tyler Koenig,Coppin St.,134855,6-9,"6'9""",81.0,79.08,"6'7""",-1.92,plays_shorter,79.08,"6'7""",-1.92,plays_shorter
 2026,Gabriel Ferreira,Radford,134856,6-10,"6'10""",82.0,79.11,"6'7""",-2.89,plays_shorter,79.11,"6'7""",-2.89,plays_shorter
 2026,Frederik Erichsen,Radford,134857,6-9,"6'9""",81.0,78.0,"6'6""",-3.0,plays_shorter,78.0,"6'6""",-3.0,plays_shorter
 2026,Tijan Saine Jr.,Weber St.,134860,5-10,"5'10""",70.0,74.78,"6'3""",4.78,plays_taller,74.78,"6'3""",4.78,plays_taller
@@ -3221,7 +3221,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,London Maiden,Detroit Mercy,134876,6-8,"6'8""",80.0,78.13,"6'6""",-1.87,plays_shorter,78.13,"6'6""",-1.87,plays_shorter
 2026,Najai Hines,Seton Hall,134877,6-10,"6'10""",82.0,85.88,"7'2""",3.88,plays_taller,85.88,"7'2""",3.88,plays_taller
 2026,Jayden Taylor,Delaware,134879,6-8,"6'8""",80.0,78.74,"6'7""",-1.26,plays_shorter,78.74,"6'7""",-1.26,plays_shorter
-2026,Antonio Chandler,Siena,134880,6-6,"6'6""",78.0,80.85,"6'9""",2.85,plays_taller,80.85,"6'9""",2.85,plays_taller
+2026,Antonio Chandler,Siena,134880,6-6,"6'6""",78.0,80.86,"6'9""",2.86,plays_taller,80.86,"6'9""",2.86,plays_taller
 2026,Uriah Tenette,New Mexico,134882,5-10,"5'10""",70.0,76.83,"6'5""",6.83,plays_taller,76.83,"6'5""",6.83,plays_taller
 2026,Leroy Blyden Jr.,Toledo,134883,6-1,"6'1""",73.0,76.52,"6'5""",3.52,plays_taller,76.52,"6'5""",3.52,plays_taller
 2026,Ramel Bethea,Green Bay,134885,6-9,"6'9""",81.0,82.82,"6'11""",1.82,plays_taller,82.82,"6'11""",1.82,plays_taller
@@ -3260,7 +3260,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Antwan Wilson,Rider,134937,6-5,"6'5""",77.0,76.4,"6'4""",-0.6,plays_at_height,76.4,"6'4""",-0.6,plays_at_height
 2026,David Jevtic,Fairleigh Dickinson,134946,6-8,"6'8""",80.0,76.78,"6'5""",-3.22,plays_shorter,76.78,"6'5""",-3.22,plays_shorter
 2026,Ras Elijah Godbolt,Fairleigh Dickinson,134947,6-0,"6'0""",72.0,73.31,"6'1""",1.31,plays_taller,73.31,"6'1""",1.31,plays_taller
-2026,Jaquan Womack,Towson,134948,6-6,"6'6""",78.0,78.25,"6'6""",0.25,plays_at_height,78.25,"6'6""",0.25,plays_at_height
+2026,Jaquan Womack,Towson,134948,6-6,"6'6""",78.0,78.26,"6'6""",0.26,plays_at_height,78.26,"6'6""",0.26,plays_at_height
 2026,Trey McKenney,Michigan,134950,6-4,"6'4""",76.0,76.37,"6'4""",0.37,plays_at_height,76.37,"6'4""",0.37,plays_at_height
 2026,Anthony Smith lll,North Dakota,134952,6-1,"6'1""",73.0,75.28,"6'3""",2.28,plays_taller,75.28,"6'3""",2.28,plays_taller
 2026,Marley Curtis,North Dakota,134953,6-8,"6'8""",80.0,76.51,"6'5""",-3.49,plays_shorter,76.51,"6'5""",-3.49,plays_shorter
@@ -3364,7 +3364,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Zyree Collins,Austin Peay,135153,6-0,"6'0""",72.0,75.78,"6'4""",3.78,plays_taller,75.78,"6'4""",3.78,plays_taller
 2026,Francis Folefac,Siena,135155,6-7,"6'7""",79.0,80.1,"6'8""",1.1,plays_taller,80.1,"6'8""",1.1,plays_taller
 2026,Uzziah Buntyn,South Dakota,135157,6-1,"6'1""",73.0,75.17,"6'3""",2.17,plays_taller,75.17,"6'3""",2.17,plays_taller
-2026,Cam Miles,Florida St.,135159,6-2,"6'2""",74.0,75.51,"6'4""",1.51,plays_taller,75.51,"6'4""",1.51,plays_taller
+2026,Cam Miles,Florida St.,135159,6-2,"6'2""",74.0,75.5,"6'4""",1.5,plays_taller,75.5,"6'4""",1.5,plays_taller
 2026,Eddie Cooke III,Robert Morris,135163,6-5,"6'5""",77.0,79.03,"6'7""",2.03,plays_taller,79.03,"6'7""",2.03,plays_taller
 2026,Marcus Whitlock,Middle Tennessee,135164,6-2,"6'2""",74.0,76.57,"6'5""",2.57,plays_taller,76.57,"6'5""",2.57,plays_taller
 2026,Josiah Shackelford,Bowling Green,135165,6-4,"6'4""",76.0,76.91,"6'5""",0.91,plays_taller,76.91,"6'5""",0.91,plays_taller
@@ -3415,17 +3415,17 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Aleksas Bieliauskas,Wisconsin,135260,6-10,"6'10""",82.0,79.0,"6'7""",-3.0,plays_shorter,79.0,"6'7""",-3.0,plays_shorter
 2026,Landon Seaman,Cal St. Fullerton,135262,6-8,"6'8""",80.0,77.54,"6'6""",-2.46,plays_shorter,77.54,"6'6""",-2.46,plays_shorter
 2026,Sergej Macura,Mississippi St.,135264,6-9,"6'9""",81.0,79.19,"6'7""",-1.81,plays_shorter,79.19,"6'7""",-1.81,plays_shorter
-2026,Simeon German,The Citadel,135265,6-10,"6'10""",82.0,79.74,"6'8""",-2.26,plays_shorter,79.74,"6'8""",-2.26,plays_shorter
+2026,Simeon German,The Citadel,135265,6-10,"6'10""",82.0,79.75,"6'8""",-2.25,plays_shorter,79.75,"6'8""",-2.25,plays_shorter
 2026,Dylan Veillette,Merrimack,135266,6-7,"6'7""",79.0,80.07,"6'8""",1.07,plays_taller,80.07,"6'8""",1.07,plays_taller
 2026,DaMaryon Fishburn,Cornell,135267,6-5,"6'5""",77.0,77.15,"6'5""",0.15,plays_at_height,77.15,"6'5""",0.15,plays_at_height
 2026,Ayomi Odetoyinbo,Colgate,135270,6-10,"6'10""",82.0,82.31,"6'10""",0.31,plays_at_height,82.31,"6'10""",0.31,plays_at_height
 2026,Jai’chaunn Hayes,Arkansas Pine Bluff,135271,6-7,"6'7""",79.0,73.85,"6'2""",-5.15,plays_shorter,73.85,"6'2""",-5.15,plays_shorter
 2026,Kashie Natt,Sam Houston St.,135272,6-3,"6'3""",75.0,80.37,"6'8""",5.37,plays_taller,80.37,"6'8""",5.37,plays_taller
 2026,Chase Dawson,Morehead St.,135273,6-0,"6'0""",72.0,73.66,"6'2""",1.66,plays_taller,73.66,"6'2""",1.66,plays_taller
-2026,King Ijeoma,Canisius,135274,6-8,"6'8""",80.0,79.18,"6'7""",-0.82,plays_shorter,79.18,"6'7""",-0.82,plays_shorter
+2026,King Ijeoma,Canisius,135274,6-8,"6'8""",80.0,79.19,"6'7""",-0.81,plays_shorter,79.19,"6'7""",-0.81,plays_shorter
 2026,Elijah Parker,Central Connecticut,135275,6-3,"6'3""",75.0,75.55,"6'4""",0.55,plays_at_height,75.55,"6'4""",0.55,plays_at_height
-2026,Daniel Etiosa James,Central Connecticut,135276,6-8,"6'8""",80.0,78.45,"6'6""",-1.55,plays_shorter,78.45,"6'6""",-1.55,plays_shorter
-2026,Ashton Reynolds,Central Connecticut,135278,6-4,"6'4""",76.0,78.37,"6'6""",2.37,plays_taller,78.37,"6'6""",2.37,plays_taller
+2026,Daniel Etiosa James,Central Connecticut,135276,6-8,"6'8""",80.0,78.46,"6'6""",-1.54,plays_shorter,78.46,"6'6""",-1.54,plays_shorter
+2026,Ashton Reynolds,Central Connecticut,135278,6-4,"6'4""",76.0,78.38,"6'6""",2.38,plays_taller,78.38,"6'6""",2.38,plays_taller
 2026,Quinton Perkins II,Mercer,135282,6-1,"6'1""",73.0,74.51,"6'3""",1.51,plays_taller,74.51,"6'3""",1.51,plays_taller
 2026,Adrean Newton,Norfolk St.,135284,6-0,"6'0""",72.0,74.79,"6'3""",2.79,plays_taller,74.79,"6'3""",2.79,plays_taller
 2026,Musa Sagnia,N.C. State,135292,6-10,"6'10""",82.0,80.18,"6'8""",-1.82,plays_shorter,80.18,"6'8""",-1.82,plays_shorter
@@ -3444,12 +3444,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Ethan Duncan,Lipscomb,135309,6-0,"6'0""",72.0,74.66,"6'3""",2.66,plays_taller,74.66,"6'3""",2.66,plays_taller
 2026,Ernest Shelton,Merrimack,135312,6-5,"6'5""",77.0,76.01,"6'4""",-0.99,plays_shorter,76.01,"6'4""",-0.99,plays_shorter
 2026,AJ Rohosy,Stanford,135313,6-9,"6'9""",81.0,80.07,"6'8""",-0.93,plays_shorter,80.07,"6'8""",-0.93,plays_shorter
-2026,Evan Chatman,UAB,135314,6-8,"6'8""",80.0,80.5,"6'8""",0.5,plays_at_height,80.5,"6'8""",0.5,plays_at_height
+2026,Evan Chatman,UAB,135314,6-8,"6'8""",80.0,80.49,"6'8""",0.49,plays_at_height,80.49,"6'8""",0.49,plays_at_height
 2026,Ari Gooch,UAB,135315,6-2,"6'2""",74.0,77.01,"6'5""",3.01,plays_taller,77.01,"6'5""",3.01,plays_taller
 2026,EJ Horton,North Texas,135316,6-3,"6'3""",75.0,77.76,"6'6""",2.76,plays_taller,77.76,"6'6""",2.76,plays_taller
 2026,Makhi Leach,Bowling Green,135318,6-2,"6'2""",74.0,76.1,"6'4""",2.1,plays_taller,76.1,"6'4""",2.1,plays_taller
 2026,Gage Lattimore,North Carolina Central,135319,6-2,"6'2""",74.0,75.85,"6'4""",1.85,plays_taller,75.85,"6'4""",1.85,plays_taller
-2026,Chandler Bing,Vanderbilt,135320,6-5,"6'5""",77.0,77.59,"6'6""",0.59,plays_at_height,77.59,"6'6""",0.59,plays_at_height
+2026,Chandler Bing,Vanderbilt,135320,6-5,"6'5""",77.0,77.58,"6'6""",0.58,plays_at_height,77.58,"6'6""",0.58,plays_at_height
 2026,Zane Nelson,Denver,135321,6-4,"6'4""",76.0,75.26,"6'3""",-0.74,plays_at_height,75.26,"6'3""",-0.74,plays_at_height
 2026,Vangelis Zougris,Louisville,135324,6-8,"6'8""",80.0,80.18,"6'8""",0.18,plays_at_height,80.18,"6'8""",0.18,plays_at_height
 2026,Jamarion Davis-Fleming,Mississippi St.,135325,6-10,"6'10""",82.0,82.32,"6'10""",0.32,plays_at_height,82.32,"6'10""",0.32,plays_at_height
@@ -3465,15 +3465,15 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Kenyon Aguino,Montana,135346,6-7,"6'7""",79.0,78.16,"6'6""",-0.84,plays_shorter,78.16,"6'6""",-0.84,plays_shorter
 2026,Amir Taylor,Kennesaw St.,135347,6-9,"6'9""",81.0,78.68,"6'7""",-2.32,plays_shorter,78.68,"6'7""",-2.32,plays_shorter
 2026,Myles Parker,Marist,135353,6-8,"6'8""",80.0,77.81,"6'6""",-2.19,plays_shorter,77.81,"6'6""",-2.19,plays_shorter
-2026,Filip Jovic,Auburn,135354,6-8,"6'8""",80.0,80.76,"6'9""",0.76,plays_taller,80.76,"6'9""",0.76,plays_taller
-2026,Kaden Magwood,Auburn,135356,6-2,"6'2""",74.0,75.09,"6'3""",1.09,plays_taller,75.09,"6'3""",1.09,plays_taller
+2026,Filip Jovic,Auburn,135354,6-8,"6'8""",80.0,80.74,"6'9""",0.74,plays_at_height,80.74,"6'9""",0.74,plays_at_height
+2026,Kaden Magwood,Auburn,135356,6-2,"6'2""",74.0,75.12,"6'3""",1.12,plays_taller,75.12,"6'3""",1.12,plays_taller
 2026,Keziah Ekissi,Oregon St.,135358,6-3,"6'3""",75.0,75.13,"6'3""",0.13,plays_at_height,75.13,"6'3""",0.13,plays_at_height
 2026,Emmanuel Kanga,George Mason,135362,6-9,"6'9""",81.0,83.3,"6'11""",2.3,plays_taller,83.3,"6'11""",2.3,plays_taller
 2026,Devin Booker,George Mason,135363,6-4,"6'4""",76.0,75.89,"6'4""",-0.11,plays_at_height,75.89,"6'4""",-0.11,plays_at_height
 2026,Jalen Haynes,Southern Illinois,135366,6-4,"6'4""",76.0,77.46,"6'5""",1.46,plays_taller,77.46,"6'5""",1.46,plays_taller
 2026,Bashir N'Galang,Maine,135370,6-3,"6'3""",75.0,76.59,"6'5""",1.59,plays_taller,76.59,"6'5""",1.59,plays_taller
 2026,Christian Brown,James Madison,135372,6-8,"6'8""",80.0,83.15,"6'11""",3.15,plays_taller,83.15,"6'11""",3.15,plays_taller
-2026,Jalen Reece,LSU,135378,6-0,"6'0""",72.0,74.47,"6'2""",2.47,plays_taller,74.47,"6'2""",2.47,plays_taller
+2026,Jalen Reece,LSU,135378,6-0,"6'0""",72.0,74.46,"6'2""",2.46,plays_taller,74.46,"6'2""",2.46,plays_taller
 2026,Jack Smiley,Belmont,135381,6-2,"6'2""",74.0,75.75,"6'4""",1.75,plays_taller,75.75,"6'4""",1.75,plays_taller
 2026,Cameron Johnson,Mercyhurst,135382,6-5,"6'5""",77.0,76.47,"6'4""",-0.53,plays_at_height,76.47,"6'4""",-0.53,plays_at_height
 2026,Zy Wright,Abilene Christian,135383,6-5,"6'5""",77.0,76.84,"6'5""",-0.16,plays_at_height,76.84,"6'5""",-0.16,plays_at_height
@@ -3481,12 +3481,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Malachi Moreno,Kentucky,135386,7-0,"7'0""",84.0,83.84,"7'0""",-0.16,plays_at_height,83.84,"7'0""",-0.16,plays_at_height
 2026,Andrija Jelavic,Kentucky,135388,6-11,"6'11""",83.0,79.7,"6'8""",-3.3,plays_shorter,79.7,"6'8""",-3.3,plays_shorter
 2026,Jasper Johnson,Kentucky,135389,6-5,"6'5""",77.0,75.54,"6'4""",-1.46,plays_shorter,75.54,"6'4""",-1.46,plays_shorter
-2026,Gavin Hightower,South Florida,135390,6-1,"6'1""",73.0,76.49,"6'4""",3.49,plays_taller,76.49,"6'4""",3.49,plays_taller
-2026,Adriel Nyorha,South Florida,135392,6-5,"6'5""",77.0,76.01,"6'4""",-0.99,plays_shorter,76.01,"6'4""",-0.99,plays_shorter
+2026,Gavin Hightower,South Florida,135390,6-1,"6'1""",73.0,76.48,"6'4""",3.48,plays_taller,76.48,"6'4""",3.48,plays_taller
+2026,Adriel Nyorha,South Florida,135392,6-5,"6'5""",77.0,76.0,"6'4""",-1.0,plays_shorter,76.0,"6'4""",-1.0,plays_shorter
 2026,Jalen StClair,Delaware St.,135393,5-11,"5'11""",71.0,74.48,"6'2""",3.48,plays_taller,74.48,"6'2""",3.48,plays_taller
 2026,Judson Bjornstad,Samford,135395,6-8,"6'8""",80.0,77.06,"6'5""",-2.94,plays_shorter,77.06,"6'5""",-2.94,plays_shorter
 2026,Jalin Holland,Colorado,135397,6-5,"6'5""",77.0,77.64,"6'6""",0.64,plays_at_height,77.64,"6'6""",0.64,plays_at_height
-2026,Josiah Sanders,Colorado,135399,6-5,"6'5""",77.0,77.17,"6'5""",0.17,plays_at_height,77.17,"6'5""",0.17,plays_at_height
+2026,Josiah Sanders,Colorado,135399,6-5,"6'5""",77.0,77.18,"6'5""",0.18,plays_at_height,77.18,"6'5""",0.18,plays_at_height
 2026,Dane Christensen,UT Rio Grande Valley,135400,6-7,"6'7""",79.0,76.67,"6'5""",-2.33,plays_shorter,76.67,"6'5""",-2.33,plays_shorter
 2026,Julien Gomez,UT Rio Grande Valley,135402,6-2,"6'2""",74.0,76.11,"6'4""",2.11,plays_taller,76.11,"6'4""",2.11,plays_taller
 2026,Braylon Mullins,Connecticut,135403,6-6,"6'6""",78.0,76.96,"6'5""",-1.04,plays_shorter,76.96,"6'5""",-1.04,plays_shorter
@@ -3498,7 +3498,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Adlan Elamin,Utah St.,135415,6-9,"6'9""",81.0,78.96,"6'7""",-2.04,plays_shorter,78.96,"6'7""",-2.04,plays_shorter
 2026,Ian Platteeuw,Davidson,135417,7-0,"7'0""",84.0,79.53,"6'8""",-4.47,plays_shorter,79.53,"6'8""",-4.47,plays_shorter
 2026,Devin Brown,Davidson,135419,6-6,"6'6""",78.0,77.35,"6'5""",-0.65,plays_at_height,77.35,"6'5""",-0.65,plays_at_height
-2026,Dorion Staples,Maryland Eastern Shore,135420,6-8,"6'8""",80.0,76.07,"6'4""",-3.93,plays_shorter,76.07,"6'4""",-3.93,plays_shorter
+2026,Dorion Staples,Maryland Eastern Shore,135420,6-8,"6'8""",80.0,76.08,"6'4""",-3.92,plays_shorter,76.08,"6'4""",-3.92,plays_shorter
 2026,Luka Vudragovic,Pepperdine,135424,6-6,"6'6""",78.0,75.14,"6'3""",-2.86,plays_shorter,75.14,"6'3""",-2.86,plays_shorter
 2026,J.R. Leonard,Stetson,135425,6-4,"6'4""",76.0,74.5,"6'2""",-1.5,plays_shorter,74.5,"6'2""",-1.5,plays_shorter
 2026,Jake Johnson,Stetson,135426,6-5,"6'5""",77.0,75.31,"6'3""",-1.69,plays_shorter,75.31,"6'3""",-1.69,plays_shorter
@@ -3526,7 +3526,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Bahsil Laster,UT Arlington,135464,6-4,"6'4""",76.0,77.32,"6'5""",1.32,plays_taller,77.32,"6'5""",1.32,plays_taller
 2026,Xavier Edmonds,TCU,135465,6-8,"6'8""",80.0,82.04,"6'10""",2.04,plays_taller,82.04,"6'10""",2.04,plays_taller
 2026,TJ Robinson,Saint Peter's,135466,6-4,"6'4""",76.0,75.98,"6'4""",-0.02,plays_at_height,75.98,"6'4""",-0.02,plays_at_height
-2026,Jahki Gupton,Saint Peter's,135467,6-7,"6'7""",79.0,79.46,"6'7""",0.46,plays_at_height,79.46,"6'7""",0.46,plays_at_height
+2026,Jahki Gupton,Saint Peter's,135467,6-7,"6'7""",79.0,79.47,"6'7""",0.47,plays_at_height,79.47,"6'7""",0.47,plays_at_height
 2026,Bol Agu,Saint Peter's,135468,6-8,"6'8""",80.0,77.76,"6'6""",-2.24,plays_shorter,77.76,"6'6""",-2.24,plays_shorter
 2026,Brayden Shorter,Murray St.,135472,6-5,"6'5""",77.0,76.23,"6'4""",-0.77,plays_shorter,76.23,"6'4""",-0.77,plays_shorter
 2026,Martins Kilups,Oral Roberts,135473,6-4,"6'4""",76.0,76.2,"6'4""",0.2,plays_at_height,76.2,"6'4""",0.2,plays_at_height
@@ -3535,7 +3535,7 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Matt Dann,Sam Houston St.,135478,7-0,"7'0""",84.0,81.27,"6'9""",-2.73,plays_shorter,81.27,"6'9""",-2.73,plays_shorter
 2026,Alex McCray,East Texas A&M,135479,6-1,"6'1""",73.0,76.25,"6'4""",3.25,plays_taller,76.25,"6'4""",3.25,plays_taller
 2026,Bryson Calamese,Alcorn St.,135481,6-0,"6'0""",72.0,74.44,"6'2""",2.44,plays_taller,74.44,"6'2""",2.44,plays_taller
-2026,Mike Jones,Alcorn St.,135482,6-6,"6'6""",78.0,79.41,"6'7""",1.41,plays_taller,79.41,"6'7""",1.41,plays_taller
+2026,Mike Jones,Alcorn St.,135482,6-6,"6'6""",78.0,79.42,"6'7""",1.42,plays_taller,79.42,"6'7""",1.42,plays_taller
 2026,Kevin Anthony,Lindenwood,135487,6-10,"6'10""",82.0,78.29,"6'6""",-3.71,plays_shorter,78.29,"6'6""",-3.71,plays_shorter
 2026,Nelson Lamizana,Coppin St.,135488,6-9,"6'9""",81.0,77.26,"6'5""",-3.74,plays_shorter,77.26,"6'5""",-3.74,plays_shorter
 2026,Jamari Piercy,Coppin St.,135489,6-5,"6'5""",77.0,77.31,"6'5""",0.31,plays_at_height,77.31,"6'5""",0.31,plays_at_height
@@ -3594,19 +3594,19 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Karmello Branch,UMKC,135596,6-4,"6'4""",76.0,75.11,"6'3""",-0.89,plays_shorter,75.11,"6'3""",-0.89,plays_shorter
 2026,Trey Booker-Lowery,UMKC,135597,6-7,"6'7""",79.0,76.57,"6'5""",-2.43,plays_shorter,76.57,"6'5""",-2.43,plays_shorter
 2026,Kobe Butler,Jackson St.,135598,6-7,"6'7""",79.0,77.06,"6'5""",-1.94,plays_shorter,77.06,"6'5""",-1.94,plays_shorter
-2026,Micah Tucker,Georgia St.,135599,6-3,"6'3""",75.0,75.33,"6'3""",0.33,plays_at_height,75.33,"6'3""",0.33,plays_at_height
+2026,Micah Tucker,Georgia St.,135599,6-3,"6'3""",75.0,75.34,"6'3""",0.34,plays_at_height,75.34,"6'3""",0.34,plays_at_height
 2026,Austin Williford,Saint Joseph's,135600,6-4,"6'4""",76.0,77.33,"6'5""",1.33,plays_taller,77.33,"6'5""",1.33,plays_taller
-2026,Jalen Haralson,Notre Dame,135601,6-7,"6'7""",79.0,78.54,"6'7""",-0.46,plays_at_height,78.54,"6'7""",-0.46,plays_at_height
+2026,Jalen Haralson,Notre Dame,135601,6-7,"6'7""",79.0,78.53,"6'7""",-0.47,plays_at_height,78.53,"6'7""",-0.47,plays_at_height
 2026,Brady Koehler,Notre Dame,135602,6-10,"6'10""",82.0,79.85,"6'8""",-2.15,plays_shorter,79.85,"6'8""",-2.15,plays_shorter
 2026,Luke Williams,Charleston Southern,135611,6-0,"6'0""",72.0,74.56,"6'3""",2.56,plays_taller,74.56,"6'3""",2.56,plays_taller
 2026,Elijah Davis,Morgan St.,135612,6-1,"6'1""",73.0,74.96,"6'3""",1.96,plays_taller,74.96,"6'3""",1.96,plays_taller
 2026,Cam Carroll,Rice,135613,6-2,"6'2""",74.0,75.73,"6'4""",1.73,plays_taller,75.73,"6'4""",1.73,plays_taller
 2026,Jake Hall,New Mexico,135616,6-4,"6'4""",76.0,75.18,"6'3""",-0.82,plays_shorter,75.18,"6'3""",-0.82,plays_shorter
-2026,Kennedy Okpara,Lipscomb,135617,6-8,"6'8""",80.0,78.44,"6'6""",-1.56,plays_shorter,78.44,"6'6""",-1.56,plays_shorter
+2026,Kennedy Okpara,Lipscomb,135617,6-8,"6'8""",80.0,78.45,"6'6""",-1.55,plays_shorter,78.45,"6'6""",-1.55,plays_shorter
 2026,Ruben Dominguez,Texas A&M,135622,6-6,"6'6""",78.0,75.0,"6'3""",-3.0,plays_shorter,75.0,"6'3""",-3.0,plays_shorter
 2026,Jabrion Spikes,Tennessee St.,135626,6-2,"6'2""",74.0,75.4,"6'3""",1.4,plays_taller,75.4,"6'3""",1.4,plays_taller
 2026,Michael Simcoe,UC Santa Barbara,135627,6-8,"6'8""",80.0,78.27,"6'6""",-1.73,plays_shorter,78.27,"6'6""",-1.73,plays_shorter
-2026,Yaak Yaak,Oregon St.,135628,6-11,"6'11""",83.0,78.82,"6'7""",-4.18,plays_shorter,78.82,"6'7""",-4.18,plays_shorter
+2026,Yaak Yaak,Oregon St.,135628,6-11,"6'11""",83.0,78.81,"6'7""",-4.19,plays_shorter,78.81,"6'7""",-4.19,plays_shorter
 2026,Isaac Taveras,Southern Miss,135629,6-5,"6'5""",77.0,79.6,"6'8""",2.6,plays_taller,79.6,"6'8""",2.6,plays_taller
 2026,Ty Tabales,Bryant,135630,6-2,"6'2""",74.0,73.93,"6'2""",-0.07,plays_at_height,73.93,"6'2""",-0.07,plays_at_height
 2026,Gio Sanford,Bryant,135631,6-4,"6'4""",76.0,75.82,"6'4""",-0.18,plays_at_height,75.82,"6'4""",-0.18,plays_at_height
@@ -3618,12 +3618,12 @@ season,player_name,team,pid,listed_height_raw,listed_height,listed_height_inches
 2026,Rayniel Wright,South Carolina St.,137636,6-1,"6'1""",73.0,75.08,"6'3""",2.08,plays_taller,75.08,"6'3""",2.08,plays_taller
 2026,"Owen Bronston, Jr.",South Carolina St.,137646,6-6,"6'6""",78.0,75.17,"6'3""",-2.83,plays_shorter,75.17,"6'3""",-2.83,plays_shorter
 2026,Antonio Baker,Florida A&M,137659,6-3,"6'3""",75.0,77.02,"6'5""",2.02,plays_taller,77.02,"6'5""",2.02,plays_taller
-2026,Darius Acuff Jr.,Arkansas,137661,6-3,"6'3""",75.0,76.41,"6'4""",1.41,plays_taller,76.41,"6'4""",1.41,plays_taller
+2026,Darius Acuff Jr.,Arkansas,137661,6-3,"6'3""",75.0,76.4,"6'4""",1.4,plays_taller,76.4,"6'4""",1.4,plays_taller
 2026,Brycen Blaine,Charleston Southern,143654,6-5,"6'5""",77.0,76.6,"6'5""",-0.4,plays_at_height,76.6,"6'5""",-0.4,plays_at_height
 2026,Bo Barber,Gardner Webb,143655,5-10,"5'10""",70.0,74.64,"6'3""",4.64,plays_taller,74.64,"6'3""",4.64,plays_taller
 2026,Nikola Dzepina,Washington,143658,6-10,"6'10""",82.0,78.66,"6'7""",-3.34,plays_shorter,78.66,"6'7""",-3.34,plays_shorter
 2026,Abdullah Ahmed,BYU,143662,6-3,"6'3""",75.0,81.53,"6'10""",6.53,plays_taller,81.53,"6'10""",6.53,plays_taller
-2026,Kirill Elatontsev,Oklahoma,143667,6-11,"6'11""",83.0,79.01,"6'7""",-3.99,plays_shorter,79.01,"6'7""",-3.99,plays_shorter
+2026,Kirill Elatontsev,Oklahoma,143667,6-11,"6'11""",83.0,78.98,"6'7""",-4.02,plays_shorter,78.98,"6'7""",-4.02,plays_shorter
 2026,James Nnaji,Baylor,143669,7-0,"7'0""",84.0,81.44,"6'9""",-2.56,plays_shorter,81.44,"6'9""",-2.56,plays_shorter
 2026,Demitri Gardner,East Carolina,143670,6-4,"6'4""",76.0,74.7,"6'3""",-1.3,plays_shorter,74.7,"6'3""",-1.3,plays_shorter
 2026,Silas Bennion,South Dakota,143673,6-1,"6'1""",73.0,74.45,"6'2""",1.45,plays_taller,74.45,"6'2""",1.45,plays_taller
