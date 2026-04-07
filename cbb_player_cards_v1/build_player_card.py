@@ -3183,22 +3183,33 @@ def _transfer_projection_data_path(season: str | int) -> Path:
     )
 
 
+def _transfer_projection_data_paths(season: str | int) -> list[Path]:
+    base = _transfer_projection_data_path(season)
+    if base.exists():
+        return [base]
+    part_paths = sorted(base.parent.glob(f"{norm_season(season)}_part*.json"))
+    return part_paths
+
+
 def _get_transfer_projection_data(season: str | int) -> dict[str, Any]:
     season_key = int(norm_season(season) or "0" or 0)
     cached = _TRANSFER_PROJECTION_DATA_CACHE.get(season_key)
     if cached is not None:
         return cached
-    path = _transfer_projection_data_path(season)
-    if not path.exists():
+    paths = _transfer_projection_data_paths(season)
+    if not paths:
         _TRANSFER_PROJECTION_DATA_CACHE[season_key] = {}
         return {}
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        payload = {}
-    rows = payload.get("rows") if isinstance(payload, dict) else []
+
     lookup: dict[str, Any] = {}
-    if isinstance(rows, list):
+    for path in paths:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        rows = payload.get("rows") if isinstance(payload, dict) else []
+        if not isinstance(rows, list):
+            continue
         for row in rows:
             if not isinstance(row, dict):
                 continue
@@ -5413,7 +5424,12 @@ def main() -> None:
     ap.add_argument("--advgames-csv", default="", help="Optional per-game labeled advgames CSV for BPM trend.")
     ap.add_argument("--pbp-metrics-csv", default="", help="Optional player metrics CSV derived from ncaahoopR pbp logs.")
     ap.add_argument("--rsci-csv", default="", help="Optional RSCI rankings CSV path.")
-    ap.add_argument("--transfer-up", action="store_true", help="Render Transfer Up Projection instead of draft projection.")
+    ap.add_argument(
+        "--transfer-up",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Render Transfer Up Projection instead of draft projection (default: enabled). Use --no-transfer-up for draft projection.",
+    )
     ap.add_argument("--destination-conference", default="", help="Destination conference for Transfer Up projection.")
     ap.add_argument("--bt-playerstat-json", default="", help="Optional Bart playerstat JSON file path or URL.")
     ap.add_argument(
