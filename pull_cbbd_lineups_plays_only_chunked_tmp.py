@@ -24,7 +24,10 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-import pandas as pd
+try:
+    import pandas as pd
+except Exception:  # noqa: BLE001
+    pd = None
 
 
 BASE_URL = "https://api.collegebasketballdata.com"
@@ -201,28 +204,94 @@ def write_csv(rows: list[dict[str, Any]], path: Path, max_bytes: int = 0) -> Non
 
 
 def merge_csv_files(inputs: list[Path], output: Path, max_bytes: int = 0) -> int:
-    frames = []
+    # Stream merge to avoid high memory and long pandas concat times.
+    valid_inputs: list[Path] = []
     for p in inputs:
         if not p.exists() or p.stat().st_size == 0:
             continue
-        try:
-            frames.append(pd.read_csv(p, low_memory=False))
-        except Exception:
+        if p.resolve() == output.resolve():
             continue
-    if not frames:
+        valid_inputs.append(p)
+    if not valid_inputs:
         output.write_text("", encoding="utf-8")
         return 0
-    merged = pd.concat(frames, ignore_index=True)
-    write_csv(merged.to_dict(orient="records"), output, max_bytes=max_bytes)
-    return int(len(merged))
+
+    header_set: set[str] = set()
+    for p in valid_inputs:
+        try:
+            with p.open(newline="", encoding="utf-8") as f:
+                reader = csv.reader(f)
+                hdr = next(reader, None)
+                if hdr:
+                    header_set.update([h for h in hdr if h is not None and str(h).strip() != ""])
+        except Exception:
+            continue
+    if not header_set:
+        output.write_text("", encoding="utf-8")
+        return 0
+
+    keys = sorted(header_set)
+    ensure_dir(output.parent)
+    _clear_existing_csv_parts(output)
+
+    header_buf = io.StringIO()
+    header_writer = csv.DictWriter(header_buf, fieldnames=keys)
+    header_writer.writeheader()
+    header_text = header_buf.getvalue()
+    header_bytes = len(header_text.encode("utf-8"))
+
+    part_idx = 1
+    rows_in_part = 0
+    bytes_in_part = 0
+    part_path = _csv_part_path(output, part_idx)
+    f_out = part_path.open("w", newline="", encoding="utf-8")
+    row_buf = io.StringIO()
+    row_writer = csv.DictWriter(row_buf, fieldnames=keys)
+    f_out.write(header_text)
+    bytes_in_part = header_bytes
+    total_rows = 0
+
+    try:
+        for p in valid_inputs:
+            try:
+                with p.open(newline="", encoding="utf-8") as f_in:
+                    reader = csv.DictReader(f_in)
+                    for row in reader:
+                        row_buf.seek(0)
+                        row_buf.truncate(0)
+                        row_writer.writerow({k: row.get(k) for k in keys})
+                        row_text = row_buf.getvalue()
+                        row_bytes = len(row_text.encode("utf-8"))
+                        if max_bytes > 0 and rows_in_part > 0 and (bytes_in_part + row_bytes) > max_bytes:
+                            f_out.close()
+                            part_idx += 1
+                            rows_in_part = 0
+                            part_path = _csv_part_path(output, part_idx)
+                            f_out = part_path.open("w", newline="", encoding="utf-8")
+                            f_out.write(header_text)
+                            bytes_in_part = header_bytes
+                        f_out.write(row_text)
+                        rows_in_part += 1
+                        bytes_in_part += row_bytes
+                        total_rows += 1
+            except Exception:
+                continue
+    finally:
+        f_out.close()
+
+    return total_rows
 
 
 def is_numeric_series(s: pd.Series) -> bool:
+    if pd is None:
+        raise RuntimeError("pandas is required for player_shooting aggregation features.")
     coerced = pd.to_numeric(s, errors="coerce")
     return coerced.notna().any()
 
 
 def aggregate_player_shooting_fullseason(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if pd is None:
+        raise RuntimeError("pandas is required for player_shooting aggregation features.")
     if not rows:
         return []
     df = pd.DataFrame(rows).copy()
@@ -421,6 +490,24 @@ def save_raw(base: Path, dataset: str, label: str, payload: Any) -> None:
     safe = re.sub(r"[^A-Za-z0-9_.-]+", "_", label)
     with (d / f"{safe}.json").open("w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=True)
+
+
+def safe_label(label: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", label)
+
+
+def load_latest_raw_payload(base: Path, dataset: str, label_prefix: str) -> Any | None:
+    d = base / "raw" / dataset
+    if not d.exists():
+        return None
+    safe_prefix = safe_label(label_prefix)
+    files = sorted(d.glob(f"{safe_prefix}_*.json"))
+    for p in reversed(files):
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    return None
 
 
 def read_requested_teams(csv_path: Path, team_col: str) -> list[str]:
@@ -713,6 +800,85 @@ def main() -> None:
     def manifest_path(stem: str, ext: str = "csv") -> Path:
         return out / "manifest" / f"{stem}{chunk_suffix}.{ext}"
 
+    # Fast path: merge existing chunk files without any API/team discovery calls.
+    if args.merge_only:
+        summary: dict[str, Any] = {
+            "year": args.year,
+            "season_label": season_label(args.year),
+            "merge_only": True,
+            "chunk_tag": args.chunk_tag,
+            "season_types": ["regular", "postseason"] if args.season_type == "both" else [args.season_type],
+            "datasets": args.datasets,
+            "include_player_shooting": bool(args.include_player_shooting),
+            "started_utc": utc_now(),
+            "dataset_rows": {},
+        }
+        season_types_merge = summary["season_types"]
+        for st in season_types_merge:
+            if use_lineups:
+                files = sorted((out / "tables").glob(f"lineups_{st}_*.csv"))
+                nrows = merge_csv_files(files, out / "tables" / f"lineups_{st}.csv", max_bytes=max_csv_bytes)
+                summary["dataset_rows"][f"lineups_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
+            if use_plays:
+                files = sorted((out / "tables").glob(f"plays_{st}_*.csv"))
+                nrows = merge_csv_files(files, out / "tables" / f"plays_{st}.csv", max_bytes=max_csv_bytes)
+                summary["dataset_rows"][f"plays_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
+                files = sorted((out / "tables").glob(f"plays_{st}_unknown_game_map_*.csv"))
+                nrows = merge_csv_files(
+                    files,
+                    out / "tables" / f"plays_{st}_unknown_game_map.csv",
+                    max_bytes=max_csv_bytes,
+                )
+                summary["dataset_rows"][f"plays_{st}_unknown_game_map_merged"] = {"rows": nrows, "chunks": len(files)}
+            if args.include_player_shooting:
+                files = sorted((out / "tables").glob(f"player_shooting_{st}_*.csv"))
+                nrows = merge_csv_files(
+                    files,
+                    out / "tables" / f"player_shooting_{st}.csv",
+                    max_bytes=max_csv_bytes,
+                )
+                summary["dataset_rows"][f"player_shooting_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
+
+        if args.season_type == "both":
+            if use_lineups:
+                nrows = merge_csv_files(
+                    [out / "tables" / "lineups_regular.csv", out / "tables" / "lineups_postseason.csv"],
+                    out / "tables" / "lineups_fullseason.csv",
+                    max_bytes=max_csv_bytes,
+                )
+                summary["dataset_rows"]["lineups_fullseason_merged"] = {"rows": nrows}
+            if use_plays:
+                nrows = merge_csv_files(
+                    [out / "tables" / "plays_regular.csv", out / "tables" / "plays_postseason.csv"],
+                    out / "tables" / "plays_fullseason.csv",
+                    max_bytes=max_csv_bytes,
+                )
+                summary["dataset_rows"]["plays_fullseason_merged"] = {"rows": nrows}
+            if args.include_player_shooting:
+                nrows = merge_csv_files(
+                    [out / "tables" / "player_shooting_regular.csv", out / "tables" / "player_shooting_postseason.csv"],
+                    out / "tables" / "player_shooting_fullseason_raw.csv",
+                    max_bytes=max_csv_bytes,
+                )
+                summary["dataset_rows"]["player_shooting_fullseason_raw_merged"] = {"rows": nrows}
+                full_raw_path = out / "tables" / "player_shooting_fullseason_raw.csv"
+                if full_raw_path.exists() and full_raw_path.stat().st_size > 0:
+                    full_raw = pd.read_csv(full_raw_path, low_memory=False).to_dict(orient="records")
+                    write_csv(
+                        aggregate_player_shooting_fullseason(full_raw),
+                        out / "tables" / "player_shooting_fullseason.csv",
+                        max_bytes=max_csv_bytes,
+                    )
+
+        summary["request_count"] = 0
+        summary["cache_hits"] = 0
+        summary["finished_utc"] = utc_now()
+        with manifest_path("run_summary", "json").open("w", encoding="utf-8") as f:
+            json.dump(summary, f, ensure_ascii=True, indent=2)
+        log(f"[run] saved={out}")
+        log("[run] merge_only=true requests=0")
+        return
+
     client = Client(
         api_key=api_key,
         sleep_sec=args.sleep_sec,
@@ -849,7 +1015,13 @@ def main() -> None:
                         lineups.extend(l_post)
 
                     if use_plays:
-                        p_full = get_plays_for_team_fullseason(client, out, team_name, args.year)
+                        p_full: list[dict[str, Any]] = []
+                        if args.season_type == "both":
+                            cached_payload = load_latest_raw_payload(out, "plays_fullseason_raw", team_name)
+                            if cached_payload is not None:
+                                p_full = to_records(cached_payload)
+                        if not p_full:
+                            p_full = get_plays_for_team_fullseason(client, out, team_name, args.year)
                         _, p_post, p_unknown = split_plays_by_game_ids(p_full, set(), post_ids)
                         for r in p_post:
                             r["__team_id"] = team_id
