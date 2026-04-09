@@ -140,7 +140,7 @@ jobs:
             --team-start "${{ matrix.shard.team_start }}" \
             --team-end "${{ matrix.shard.team_end }}" \
             --chunk-tag "${{ matrix.shard.chunk_tag }}" \
-            --max-csv-mb 95.0 \
+            --max-csv-mb 45.0 \
             --max-requests 3000 \
             --sleep-sec 0.08
 
@@ -193,7 +193,12 @@ jobs:
             --datasets plays \
             --merge-only \
             --merge-chunks \
-            --max-csv-mb 95.0
+            --max-csv-mb 45.0
+
+      - name: Remove merge-only chunk intermediates
+        run: |
+          find cbbd_seasons/2025-2026/tables -type f -name '*chunk*' -delete || true
+          ls -lah cbbd_seasons/2025-2026/tables | head -n 200
 
       - name: Commit and push merged outputs
         run: |
@@ -207,8 +212,16 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh 2026 plays datasets (parallel all bootstrap)"
-          git pull --rebase origin main
-          git push origin main || (git pull --rebase origin main && git push origin main)
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin main; then
+              exit 0
+            fi
+            echo "Push attempt ${i} failed; retrying after short backoff..."
+            sleep $((i * 5))
+          done
+          echo "Failed to push after retries."
+          exit 1
 
   daily-append-and-push:
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'all') }}
@@ -248,5 +261,13 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh 2026 plays datasets (daily append)"
-          git pull --rebase origin main
-          git push origin main || (git pull --rebase origin main && git push origin main)
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin main; then
+              exit 0
+            fi
+            echo "Push attempt ${i} failed; retrying after short backoff..."
+            sleep $((i * 5))
+          done
+          echo "Failed to push after retries."
+          exit 1
