@@ -9,7 +9,7 @@
   ],
   "datasets": "plays",
   "include_player_shooting": false,
-  "started_utc": "2026-04-09T07:03:27.022634+00:00",
+  "started_utc": "2026-04-09T13:33:34.063250+00:00",
   "dataset_rows": {
     "plays_regular_merged": {
       "rows": 5438689,
@@ -28,10 +28,10 @@
       "chunks": 85
     },
     "plays_fullseason_merged": {
-      "rows": 141548
+      "rows": 5507567
     }
   },
   "request_count": 0,
   "cache_hits": 0,
-  "finished_utc": "2026-04-09T07:10:19.393395+00:00"
+  "finished_utc": "2026-04-09T13:43:48.465113+00:00"
 }
