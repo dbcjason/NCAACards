@@ -28,13 +28,17 @@ on:
         required: true
         default: "readwrite"
       max_requests:
-        description: "Safety cap for API requests"
+        description: "Safety cap for API requests per shard"
         required: true
-        default: "15000"
+        default: "5000"
       max_csv_mb:
         description: "Split threshold per CSV file in MB (0 disables splitting)"
         required: true
         default: "95"
+      shard_count:
+        description: "How many parallel shard jobs to run"
+        required: true
+        default: "8"
 
 permissions:
   contents: write
@@ -44,8 +48,107 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  pull-all-lineups:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.build-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ensure teams CSV exists
+        run: |
+          if [ -f "${{ inputs.teams_csv }}" ]; then
+            echo "teams_csv exists: ${{ inputs.teams_csv }}"
+            exit 0
+          fi
+          echo "teams_csv missing, generating from bt_advstats_2026.csv -> ${{ inputs.teams_csv }}"
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          src = Path("player_cards_pipeline/data/bt/bt_advstats_2026.csv")
+          out = Path("${{ inputs.teams_csv }}")
+          teams = set()
+          if src.exists():
+              with src.open("r", encoding="utf-8-sig", newline="") as f:
+                  rd = csv.DictReader(f)
+                  for r in rd:
+                      t = (r.get("team") or "").strip()
+                      if t:
+                          teams.add(t)
+          out.parent.mkdir(parents=True, exist_ok=True)
+          with out.open("w", encoding="utf-8", newline="") as f:
+              wr = csv.writer(f)
+              wr.writerow(["team"])
+              for t in sorted(teams):
+                  wr.writerow([t])
+          print(f"wrote {out} teams={len(teams)}")
+          PY
+
+      - name: Build shard matrix
+        id: build-matrix
+        run: |
+          python3 - <<'PY'
+          import csv
+          import json
+          import math
+          import os
+          from pathlib import Path
+
+          teams_csv = Path("${{ inputs.teams_csv }}")
+          team_col = "${{ inputs.team_col }}"
+          shard_count = max(1, int("${{ inputs.shard_count }}"))
+
+          if not teams_csv.exists():
+              raise SystemExit(f"Missing teams CSV: {teams_csv}")
+
+          with teams_csv.open("r", encoding="utf-8-sig", newline="") as f:
+              rd = csv.DictReader(f)
+              teams = [str((r.get(team_col) or "")).strip() for r in rd]
+          teams = [t for t in teams if t]
+          total = len(teams)
+          if total == 0:
+              raise SystemExit(f"No teams found in {teams_csv} column={team_col}")
+
+          actual_shards = min(shard_count, total)
+          size = math.ceil(total / actual_shards)
+          rows = []
+          start = 1
+          for idx in range(actual_shards):
+              end = min(total, start + size - 1)
+              tag = f"shard{idx+1:02d}_{start}_{end}"
+              rows.append(
+                  {
+                      "shard_index": idx + 1,
+                      "team_start": start,
+                      "team_end": end,
+                      "chunk_tag": tag,
+                  }
+              )
+              start = end + 1
+              if start > total:
+                  break
+
+          matrix = {"include": rows}
+          print(f"teams={total} requested_shards={shard_count} actual_shards={len(rows)}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write("matrix=" + json.dumps(matrix) + "\n")
+          PY
+
+  pull-shards:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -67,8 +170,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/cbbd_http_cache
-          key: ${{ runner.os }}-cbbd-lineups-http-${{ inputs.year }}-${{ inputs.season_type }}-v1
+          key: ${{ runner.os }}-cbbd-lineups-http-${{ inputs.year }}-${{ inputs.season_type }}-${{ matrix.chunk_tag }}-v1
           restore-keys: |
+            ${{ runner.os }}-cbbd-lineups-http-${{ inputs.year }}-${{ inputs.season_type }}-
             ${{ runner.os }}-cbbd-lineups-http-${{ inputs.year }}-
 
       - name: Ensure teams CSV exists
@@ -101,7 +205,7 @@ jobs:
           print(f"wrote {out} teams={len(teams)}")
           PY
 
-      - name: Pull all lineup data from CBBD
+      - name: Pull lineup shard
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
         run: |
@@ -116,6 +220,105 @@ jobs:
             --cache-dir "/tmp/cbbd_http_cache" \
             --max-requests "${{ inputs.max_requests }}" \
             --max-csv-mb "${{ inputs.max_csv_mb }}" \
+            --team-start "${{ matrix.team_start }}" \
+            --team-end "${{ matrix.team_end }}" \
+            --chunk-tag "${{ matrix.chunk_tag }}"
+
+      - name: Package shard outputs
+        run: |
+          y=${{ inputs.year }}
+          season="$((y-1))-$y"
+          root="${{ inputs.out_root }}/$season"
+          mkdir -p /tmp/lineup-shard-upload
+          cp -a "$root/tables" /tmp/lineup-shard-upload/tables
+          cp -a "$root/manifest" /tmp/lineup-shard-upload/manifest
+
+      - name: Upload shard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lineup-shard-${{ matrix.chunk_tag }}
+          path: /tmp/lineup-shard-upload
+          if-no-files-found: error
+
+  merge-export-commit:
+    needs: pull-shards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Download shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/lineup-shards
+          pattern: lineup-shard-*
+          merge-multiple: true
+
+      - name: Move shard files into season folder
+        run: |
+          y=${{ inputs.year }}
+          season="$((y-1))-$y"
+          root="${{ inputs.out_root }}/$season"
+          mkdir -p "$root/tables" "$root/manifest"
+          cp -a /tmp/lineup-shards/tables/. "$root/tables/" || true
+          cp -a /tmp/lineup-shards/manifest/. "$root/manifest/" || true
+
+      - name: Ensure teams CSV exists
+        run: |
+          if [ -f "${{ inputs.teams_csv }}" ]; then
+            echo "teams_csv exists: ${{ inputs.teams_csv }}"
+            exit 0
+          fi
+          echo "teams_csv missing, generating from bt_advstats_2026.csv -> ${{ inputs.teams_csv }}"
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          src = Path("player_cards_pipeline/data/bt/bt_advstats_2026.csv")
+          out = Path("${{ inputs.teams_csv }}")
+          teams = set()
+          if src.exists():
+              with src.open("r", encoding="utf-8-sig", newline="") as f:
+                  rd = csv.DictReader(f)
+                  for r in rd:
+                      t = (r.get("team") or "").strip()
+                      if t:
+                          teams.add(t)
+          out.parent.mkdir(parents=True, exist_ok=True)
+          with out.open("w", encoding="utf-8", newline="") as f:
+              wr = csv.writer(f)
+              wr.writerow(["team"])
+              for t in sorted(teams):
+                  wr.writerow([t])
+          print(f"wrote {out} teams={len(teams)}")
+          PY
+
+      - name: Merge shard CSV chunks
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python pull_cbbd_lineups_plays_only_chunked_tmp.py \
+            --year "${{ inputs.year }}" \
+            --season-type "${{ inputs.season_type }}" \
+            --datasets "lineups" \
+            --teams-csv "${{ inputs.teams_csv }}" \
+            --team-col "${{ inputs.team_col }}" \
+            --out-root "${{ inputs.out_root }}" \
+            --cache-mode "none" \
+            --max-csv-mb "${{ inputs.max_csv_mb }}" \
+            --merge-only \
             --merge-chunks
 
       - name: Export lineup JSON + NDJSON for rimfluence
@@ -132,7 +335,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No output changes to commit."
           else
-            git commit -m "Pull lineup JSON outputs for ${{ inputs.year }} (${{ inputs.season_type }})"
+            git commit -m "Pull lineup JSON outputs (parallel shards) for ${{ inputs.year }} (${{ inputs.season_type }})"
             git pull --rebase origin main
             git push
           fi
