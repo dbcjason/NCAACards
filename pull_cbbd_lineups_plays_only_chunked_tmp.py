@@ -800,6 +800,12 @@ def main() -> None:
     def manifest_path(stem: str, ext: str = "csv") -> Path:
         return out / "manifest" / f"{stem}{chunk_suffix}.{ext}"
 
+    def _collect_split_files(stem: str) -> list[Path]:
+        tables = out / "tables"
+        files = sorted(tables.glob(f"{stem}_chunk*.csv"))
+        files.extend(sorted(tables.glob(f"{stem}_part*.csv")))
+        return files
+
     # Fast path: merge existing chunk files without any API/team discovery calls.
     if args.merge_only:
         summary: dict[str, Any] = {
@@ -820,10 +826,10 @@ def main() -> None:
                 nrows = merge_csv_files(files, out / "tables" / f"lineups_{st}.csv", max_bytes=max_csv_bytes)
                 summary["dataset_rows"][f"lineups_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
             if use_plays:
-                files = sorted((out / "tables").glob(f"plays_{st}_*.csv"))
+                files = _collect_split_files(f"plays_{st}")
                 nrows = merge_csv_files(files, out / "tables" / f"plays_{st}.csv", max_bytes=max_csv_bytes)
                 summary["dataset_rows"][f"plays_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
-                files = sorted((out / "tables").glob(f"plays_{st}_unknown_game_map_*.csv"))
+                files = _collect_split_files(f"plays_{st}_unknown_game_map")
                 nrows = merge_csv_files(
                     files,
                     out / "tables" / f"plays_{st}_unknown_game_map.csv",
@@ -1098,12 +1104,12 @@ def main() -> None:
                 nrows = merge_csv_files(files, out / "tables" / f"lineups_{st}.csv", max_bytes=max_csv_bytes)
                 summary["dataset_rows"][f"lineups_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
             if use_plays:
-                files = sorted((out / "tables").glob(f"plays_{st}_*.csv"))
+                files = _collect_split_files(f"plays_{st}")
                 if not chunk_suffix:
                     files.append(out / "tables" / f"plays_{st}.csv")
                 nrows = merge_csv_files(files, out / "tables" / f"plays_{st}.csv", max_bytes=max_csv_bytes)
                 summary["dataset_rows"][f"plays_{st}_merged"] = {"rows": nrows, "chunks": len(files)}
-                files = sorted((out / "tables").glob(f"plays_{st}_unknown_game_map_*.csv"))
+                files = _collect_split_files(f"plays_{st}_unknown_game_map")
                 if not chunk_suffix:
                     files.append(out / "tables" / f"plays_{st}_unknown_game_map.csv")
                 nrows = merge_csv_files(

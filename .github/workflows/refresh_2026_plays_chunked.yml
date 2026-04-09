@@ -179,6 +179,15 @@ jobs:
           path: /tmp/plays_chunks
           merge-multiple: true
 
+      - name: Clear existing plays tables before staging shard outputs
+        run: |
+          mkdir -p cbbd_seasons/2025-2026/tables
+          find cbbd_seasons/2025-2026/tables -maxdepth 1 -type f \( \
+            -name 'plays_*.csv' -o \
+            -name 'lineups_*.csv' -o \
+            -name 'player_shooting_*.csv' \
+          \) -delete || true
+
       - name: Stage chunk files
         run: |
           mkdir -p cbbd_seasons/2025-2026/tables
@@ -202,6 +211,7 @@ jobs:
 
       - name: Commit and push merged outputs
         run: |
+          set +e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f cbbd_seasons/2025-2026/tables/ || true
@@ -213,8 +223,16 @@ jobs:
           fi
           git commit -m "Refresh 2026 plays datasets (parallel all bootstrap)"
           for i in 1 2 3 4 5; do
-            git pull --rebase origin main
-            if git push origin main; then
+            git fetch origin main
+            git rebase origin/main
+            if [ $? -ne 0 ]; then
+              git rebase --abort || true
+              echo "Rebase failed on attempt ${i}; retrying..."
+              sleep $((i * 5))
+              continue
+            fi
+            git push origin main
+            if [ $? -eq 0 ]; then
               exit 0
             fi
             echo "Push attempt ${i} failed; retrying after short backoff..."
