@@ -1,0 +1,37 @@
+{
+  "year": 2026,
+  "season_label": "2025-2026",
+  "merge_only": true,
+  "chunk_tag": "",
+  "season_types": [
+    "regular",
+    "postseason"
+  ],
+  "datasets": "plays",
+  "include_player_shooting": false,
+  "started_utc": "2026-04-09T07:03:27.022634+00:00",
+  "dataset_rows": {
+    "plays_regular_merged": {
+      "rows": 5438689,
+      "chunks": 85
+    },
+    "plays_regular_unknown_game_map_merged": {
+      "rows": 93028,
+      "chunks": 13
+    },
+    "plays_postseason_merged": {
+      "rows": 68878,
+      "chunks": 13
+    },
+    "plays_postseason_unknown_game_map_merged": {
+      "rows": 5438612,
+      "chunks": 85
+    },
+    "plays_fullseason_merged": {
+      "rows": 141548
+    }
+  },
+  "request_count": 0,
+  "cache_hits": 0,
+  "finished_utc": "2026-04-09T07:10:19.393395+00:00"
+}
