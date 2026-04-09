@@ -806,6 +806,12 @@ def main() -> None:
         files.extend(sorted(tables.glob(f"{stem}_part*.csv")))
         return files
 
+    def _collect_canonical_with_parts(stem: str) -> list[Path]:
+        tables = out / "tables"
+        files = [tables / f"{stem}.csv"]
+        files.extend(sorted(tables.glob(f"{stem}_part*.csv")))
+        return files
+
     # Fast path: merge existing chunk files without any API/team discovery calls.
     if args.merge_only:
         summary: dict[str, Any] = {
@@ -848,21 +854,24 @@ def main() -> None:
         if args.season_type == "both":
             if use_lineups:
                 nrows = merge_csv_files(
-                    [out / "tables" / "lineups_regular.csv", out / "tables" / "lineups_postseason.csv"],
+                    _collect_canonical_with_parts("lineups_regular")
+                    + _collect_canonical_with_parts("lineups_postseason"),
                     out / "tables" / "lineups_fullseason.csv",
                     max_bytes=max_csv_bytes,
                 )
                 summary["dataset_rows"]["lineups_fullseason_merged"] = {"rows": nrows}
             if use_plays:
                 nrows = merge_csv_files(
-                    [out / "tables" / "plays_regular.csv", out / "tables" / "plays_postseason.csv"],
+                    _collect_canonical_with_parts("plays_regular")
+                    + _collect_canonical_with_parts("plays_postseason"),
                     out / "tables" / "plays_fullseason.csv",
                     max_bytes=max_csv_bytes,
                 )
                 summary["dataset_rows"]["plays_fullseason_merged"] = {"rows": nrows}
             if args.include_player_shooting:
                 nrows = merge_csv_files(
-                    [out / "tables" / "player_shooting_regular.csv", out / "tables" / "player_shooting_postseason.csv"],
+                    _collect_canonical_with_parts("player_shooting_regular")
+                    + _collect_canonical_with_parts("player_shooting_postseason"),
                     out / "tables" / "player_shooting_fullseason_raw.csv",
                     max_bytes=max_csv_bytes,
                 )
@@ -1132,21 +1141,24 @@ def main() -> None:
         if args.season_type == "both":
             if use_lineups:
                 nrows = merge_csv_files(
-                    [out / "tables" / "lineups_regular.csv", out / "tables" / "lineups_postseason.csv"],
+                    _collect_canonical_with_parts("lineups_regular")
+                    + _collect_canonical_with_parts("lineups_postseason"),
                     out / "tables" / "lineups_fullseason.csv",
                     max_bytes=max_csv_bytes,
                 )
                 summary["dataset_rows"]["lineups_fullseason_merged"] = {"rows": nrows}
             if use_plays:
                 nrows = merge_csv_files(
-                    [out / "tables" / "plays_regular.csv", out / "tables" / "plays_postseason.csv"],
+                    _collect_canonical_with_parts("plays_regular")
+                    + _collect_canonical_with_parts("plays_postseason"),
                     out / "tables" / "plays_fullseason.csv",
                     max_bytes=max_csv_bytes,
                 )
                 summary["dataset_rows"]["plays_fullseason_merged"] = {"rows": nrows}
             if args.include_player_shooting:
                 nrows = merge_csv_files(
-                    [out / "tables" / "player_shooting_regular.csv", out / "tables" / "player_shooting_postseason.csv"],
+                    _collect_canonical_with_parts("player_shooting_regular")
+                    + _collect_canonical_with_parts("player_shooting_postseason"),
                     out / "tables" / "player_shooting_fullseason_raw.csv",
                     max_bytes=max_csv_bytes,
                 )
