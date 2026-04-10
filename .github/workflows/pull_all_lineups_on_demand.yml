@@ -229,9 +229,20 @@ jobs:
           y=${{ inputs.year }}
           season="$((y-1))-$y"
           root="${{ inputs.out_root }}/$season"
-          mkdir -p /tmp/lineup-shard-upload
-          cp -a "$root/tables" /tmp/lineup-shard-upload/tables
-          cp -a "$root/manifest" /tmp/lineup-shard-upload/manifest
+          tag="${{ matrix.chunk_tag }}"
+          mkdir -p /tmp/lineup-shard-upload/tables /tmp/lineup-shard-upload/manifest
+          shopt -s nullglob
+          for f in "$root/tables"/*_"$tag".csv; do
+            cp -a "$f" /tmp/lineup-shard-upload/tables/
+          done
+          for f in "$root/manifest"/*_"$tag".csv "$root/manifest"/*_"$tag".json; do
+            cp -a "$f" /tmp/lineup-shard-upload/manifest/
+          done
+          shopt -u nullglob
+          if [ -z "$(ls -A /tmp/lineup-shard-upload/tables 2>/dev/null)" ]; then
+            echo "No shard table files found for tag=$tag"
+            exit 1
+          fi
 
       - name: Upload shard artifact
         uses: actions/upload-artifact@v4
