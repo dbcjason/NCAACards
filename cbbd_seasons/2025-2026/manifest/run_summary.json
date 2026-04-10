@@ -7,31 +7,23 @@
     "regular",
     "postseason"
   ],
-  "datasets": "plays",
+  "datasets": "lineups",
   "include_player_shooting": false,
-  "started_utc": "2026-04-09T13:33:34.063250+00:00",
+  "started_utc": "2026-04-10T01:45:41.193074+00:00",
   "dataset_rows": {
-    "plays_regular_merged": {
-      "rows": 5438689,
-      "chunks": 85
+    "lineups_regular_merged": {
+      "rows": 81119,
+      "chunks": 10
     },
-    "plays_regular_unknown_game_map_merged": {
-      "rows": 93028,
-      "chunks": 13
+    "lineups_postseason_merged": {
+      "rows": 56600,
+      "chunks": 10
     },
-    "plays_postseason_merged": {
-      "rows": 68878,
-      "chunks": 13
-    },
-    "plays_postseason_unknown_game_map_merged": {
-      "rows": 5438612,
-      "chunks": 85
-    },
-    "plays_fullseason_merged": {
-      "rows": 5507567
+    "lineups_fullseason_merged": {
+      "rows": 137719
     }
   },
   "request_count": 0,
   "cache_hits": 0,
-  "finished_utc": "2026-04-09T13:43:48.465113+00:00"
+  "finished_utc": "2026-04-10T01:45:50.048074+00:00"
 }
