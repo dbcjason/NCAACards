@@ -1,0 +1,93 @@
+name: Pull Arizona Full Season Lineups (One-Time)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pull-arizona:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Pull Arizona lineups (regular + postseason)
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python pull_cbbd_lineups_plays_only_chunked_tmp.py \
+            --year 2026 \
+            --season-type both \
+            --datasets lineups \
+            --teams-csv player_cards_pipeline/data/manual/arizona_only_2026.csv \
+            --team-col team \
+            --out-root cbbd_seasons \
+            --cache-mode readwrite \
+            --cache-dir /tmp/cbbd_http_cache \
+            --max-requests 20000 \
+            --max-csv-mb 95
+
+      - name: Compute Koa Peat offensive possessions
+        run: |
+          python3 - <<'PY'
+          import csv
+          import glob
+          from pathlib import Path
+
+          files = sorted(glob.glob('cbbd_seasons/2025-2026/tables/lineups_*.csv'))
+          if not files:
+            raise SystemExit('No lineup tables found under cbbd_seasons/2025-2026/tables')
+
+          koa_off = 0.0
+          team_off = 0.0
+          rows = 0
+          used = []
+          for fp in files:
+            used.append(fp)
+            with open(fp, 'r', encoding='utf-8-sig', newline='') as f:
+              rd = csv.DictReader(f)
+              for r in rd:
+                if (r.get('team_name') or '').strip() != 'Arizona':
+                  continue
+                off = float(r.get('off_poss') or 0)
+                team_off += off
+                players = [(r.get(f'player_stats[{i}].key') or '').strip() for i in range(5)]
+                if 'Koa Peat' in players:
+                  koa_off += off
+                rows += 1
+
+          out = Path('cbbd_seasons/2025-2026/arizona_possession_summary.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(__import__('json').dumps({
+            'team': 'Arizona',
+            'season': 2026,
+            'lineup_rows': rows,
+            'team_off_possessions_sum': team_off,
+            'koa_peat_off_possessions_sum': koa_off,
+            'files_used': used,
+          }, indent=2), encoding='utf-8')
+
+          print(f'Koa Peat OFF possessions sum: {koa_off}')
+          print(f'Arizona OFF possessions sum: {team_off}')
+          print(f'Rows: {rows}')
+          PY
+
+      - name: Upload summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: arizona-possession-summary
+          path: cbbd_seasons/2025-2026/arizona_possession_summary.json
