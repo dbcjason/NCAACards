@@ -174,6 +174,7 @@ jobs:
             --season "$YEAR" \
             --bt-csv "$BT_CSV" \
             --bt-playerstat-url-template "$BT_PLAYERSTAT_URL_TEMPLATE" \
+            --no-transfer-up \
             --card-cache-db "$CARD_CACHE_DB" \
             --out-html "$OUT_HTML")
 
