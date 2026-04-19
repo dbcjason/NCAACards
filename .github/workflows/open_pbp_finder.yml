@@ -1,0 +1,107 @@
+name: Open PBP Finder (Temporary URL)
+
+on:
+  workflow_dispatch:
+    inputs:
+      rebuild_db:
+        description: "Rebuild SQLite DB before launch"
+        required: false
+        default: true
+        type: boolean
+      keep_alive_minutes:
+        description: "How long to keep the finder open"
+        required: false
+        default: "120"
+        type: choice
+        options:
+          - "30"
+          - "60"
+          - "120"
+          - "240"
+          - "360"
+
+jobs:
+  open-finder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 370
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install cloudflared
+        run: |
+          curl -L -sS https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/cloudflared
+          cloudflared --version
+
+      - name: Build DB (optional)
+        if: ${{ github.event.inputs.rebuild_db == 'true' }}
+        run: |
+          python3 tools/pbp_finder_local/build_pbp_db.py \
+            --source-dir "cbbd_seasons/2025-2026/tables" \
+            --out-db "tools/pbp_finder_local/pbp_2026_men.sqlite"
+
+      - name: Ensure DB exists
+        run: |
+          test -f tools/pbp_finder_local/pbp_2026_men.sqlite || {
+            echo "Missing DB. Re-run workflow with rebuild_db=true."
+            exit 1
+          }
+
+      - name: Start finder server
+        run: |
+          nohup python3 tools/pbp_finder_local/server.py > /tmp/pbp_finder_server.log 2>&1 &
+          for i in {1..40}; do
+            if curl -sS http://127.0.0.1:8765/api/health >/dev/null; then
+              echo "Finder server is up."
+              break
+            fi
+            sleep 1
+          done
+          curl -sS http://127.0.0.1:8765/api/health
+
+      - name: Start public tunnel
+        id: tunnel
+        run: |
+          nohup cloudflared tunnel --url http://127.0.0.1:8765 --no-autoupdate > /tmp/cloudflared.log 2>&1 &
+          URL=""
+          for i in {1..60}; do
+            URL=$(grep -Eo 'https://[-a-z0-9]+\.trycloudflare\.com' /tmp/cloudflared.log | head -n 1 || true)
+            if [ -n "$URL" ]; then
+              break
+            fi
+            sleep 1
+          done
+          if [ -z "$URL" ]; then
+            echo "Could not obtain tunnel URL."
+            echo "cloudflared logs:"
+            cat /tmp/cloudflared.log || true
+            exit 1
+          fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          {
+            echo "## PBP Finder URL"
+            echo ""
+            echo "Open: $URL"
+            echo ""
+            echo "- This is a temporary public link for this workflow run."
+            echo "- The link expires when the job ends."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep session alive
+        run: |
+          MINUTES="${{ github.event.inputs.keep_alive_minutes }}"
+          echo "Finder URL: ${{ steps.tunnel.outputs.url }}"
+          echo "Keeping workflow alive for ${MINUTES} minutes..."
+          sleep "$((MINUTES * 60))"
