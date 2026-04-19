@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play-by-Play Finder (Men 2026, Local)</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #06080f; color: #e6e6e6; }
+    .wrap { max-width: 1600px; margin: 16px auto; padding: 0 16px; }
+    h1 { margin: 0 0 10px; font-size: 28px; }
+    .sub { color: #9aa0af; margin-bottom: 14px; }
+    .panel { border: 1px solid #2a2d35; background: #11131a; border-radius: 10px; padding: 12px; }
+    .filters { display: grid; grid-template-columns: repeat(6,minmax(180px,1fr)); gap: 10px; align-items: end; }
+    .field label { display:block; font-size:12px; color:#9aa0af; margin-bottom:4px; }
+    .field input, .field select { width:100%; box-sizing:border-box; height:38px; background:#1a1d26; border:1px solid #343845; color:#f0f0f0; border-radius:6px; padding:0 10px; }
+    .btn { height:38px; border-radius:6px; border:1px solid #383d4b; background:#ff4d4f; color:white; font-weight:700; cursor:pointer; }
+    .btn.secondary { background:#222631; }
+    .controls { display:flex; gap:8px; margin-top:10px; }
+    .meta { margin: 10px 0; color:#c2c5ce; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { border-bottom:1px solid #262a34; padding:8px 7px; text-align:left; vertical-align:top; }
+    th { position: sticky; top: 0; background:#141923; z-index:1; }
+    .results { max-height: 72vh; overflow:auto; border:1px solid #242833; border-radius:8px; }
+    .muted { color:#959baa; }
+    .row { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Play-by-Play Database (Men 2026, Local)</h1>
+    <div class="sub">Search player events with shot context, assist logic, game date, score, clock, and period.</div>
+
+    <div class="panel">
+      <div class="filters">
+        <div class="field">
+          <label>Player</label>
+          <input id="player" list="playerOptions" placeholder="Search player" />
+          <datalist id="playerOptions"></datalist>
+        </div>
+
+        <div class="field">
+          <label>Event</label>
+          <select id="event">
+            <option value="Field goal attempt">Field goal attempt</option>
+            <option value="Field goal miss">Field goal miss</option>
+            <option value="Field goal make">Field goal make</option>
+            <option value="Assist">Assist</option>
+            <option value="Offensive rebound">Offensive rebound</option>
+            <option value="Defensive rebound">Defensive rebound</option>
+            <option value="Steal">Steal</option>
+            <option value="Block">Block</option>
+            <option value="Turnover">Turnover</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Shot location</label>
+          <select id="shot_location">
+            <option value="">All</option>
+            <option value="Rim">Rim</option>
+            <option value="Dunk">Dunk</option>
+            <option value="Mid Range">Mid Range</option>
+            <option value="Three">Three</option>
+          </select>
+        </div>
+
+        <div class="field" id="assistedWrap">
+          <label>Assisted?</label>
+          <select id="assisted">
+            <option value="">All</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="field" id="assistedByWrap" style="display:none;">
+          <label>Assisted By</label>
+          <input id="assisted_by" list="assistByOptions" placeholder="Search teammate" />
+          <datalist id="assistByOptions"></datalist>
+        </div>
+
+        <div class="field">
+          <label>Rows per page</label>
+          <select id="page_size">
+            <option>100</option>
+            <option>200</option>
+            <option>300</option>
+            <option>500</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="run">Run Query</button>
+        <button class="btn secondary" id="clear">Clear</button>
+      </div>
+
+      <div class="row">
+        <div class="meta" id="meta">Ready.</div>
+        <div>
+          <button class="btn secondary" id="prev">Prev</button>
+          <button class="btn secondary" id="next">Next</button>
+        </div>
+      </div>
+
+      <div class="results">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Teams</th><th>Score</th><th>Time</th><th>Quarter/Period</th><th>Player</th><th>Event</th><th>Shot</th><th>Assisted</th><th>Assisted By</th><th>Recipient</th><th>Play Text</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+let page = 1;
+let total = 0;
+
+const el = (id) => document.getElementById(id);
+
+function isFgEvent(v) {
+  return v === 'Field goal attempt' || v === 'Field goal miss' || v === 'Field goal make';
+}
+
+async function loadPlayers() {
+  const q = el('player').value.trim();
+  const event = el('event').value;
+  const r = await fetch(`/api/players?q=${encodeURIComponent(q)}&event=${encodeURIComponent(event)}`);
+  const data = await r.json();
+  const dl = el('playerOptions');
+  dl.innerHTML = '';
+  (data.players || []).forEach((name) => {
+    const o = document.createElement('option');
+    o.value = name;
+    dl.appendChild(o);
+  });
+}
+
+async function loadAssistBy() {
+  const player = el('player').value.trim();
+  const event = el('event').value;
+  const assisted = el('assisted').value;
+  const r = await fetch(`/api/assist-options?player=${encodeURIComponent(player)}&event=${encodeURIComponent(event)}&assisted=${encodeURIComponent(assisted)}`);
+  const data = await r.json();
+  const dl = el('assistByOptions');
+  dl.innerHTML = '';
+  (data.assist_by || []).forEach((name) => {
+    const o = document.createElement('option');
+    o.value = name;
+    dl.appendChild(o);
+  });
+}
+
+function syncAssistVisibility() {
+  const event = el('event').value;
+  const assisted = el('assisted').value;
+
+  const fg = isFgEvent(event);
+  el('assistedWrap').style.display = fg ? '' : 'none';
+
+  const showAssistBy = (fg && assisted === 'Yes') || event === 'Assist';
+  el('assistedByWrap').style.display = showAssistBy ? '' : 'none';
+
+  if (event === 'Assist') {
+    el('assisted').value = 'Yes';
+    el('shot_location').value = '';
+  }
+  if (!showAssistBy) {
+    el('assisted_by').value = '';
+  }
+}
+
+function rowHtml(r) {
+  return `<tr>
+    <td>${r.date || ''}</td>
+    <td>${r.matchup || ''}</td>
+    <td>${r.score || ''}</td>
+    <td>${r.clock || ''}</td>
+    <td>${r.quarter || ''}</td>
+    <td>${r.player || ''}</td>
+    <td>${r.event || ''}</td>
+    <td>${r.shot_location || ''}</td>
+    <td>${r.assisted || ''}</td>
+    <td>${r.assisted_by || ''}</td>
+    <td>${r.recipient || ''}</td>
+    <td class="muted">${(r.play_text || '').replaceAll('<','&lt;')}</td>
+  </tr>`;
+}
+
+async function runQuery() {
+  const params = new URLSearchParams({
+    page: String(page),
+    page_size: el('page_size').value,
+    player: el('player').value.trim(),
+    event: el('event').value,
+    shot_location: el('shot_location').value,
+    assisted: el('assisted').value,
+    assisted_by: el('assisted_by').value.trim(),
+  });
+
+  const r = await fetch(`/api/search?${params.toString()}`);
+  const data = await r.json();
+  total = data.total || 0;
+
+  const tbody = el('tbody');
+  tbody.innerHTML = (data.rows || []).map(rowHtml).join('');
+
+  const start = (data.page - 1) * data.page_size + (total ? 1 : 0);
+  const end = Math.min(total, data.page * data.page_size);
+  el('meta').textContent = `${total.toLocaleString()} matches | showing ${start.toLocaleString()}-${end.toLocaleString()} | page ${data.page}`;
+}
+
+function clearFilters() {
+  el('player').value = '';
+  el('event').value = 'Field goal attempt';
+  el('shot_location').value = '';
+  el('assisted').value = '';
+  el('assisted_by').value = '';
+  page = 1;
+  syncAssistVisibility();
+}
+
+el('event').addEventListener('change', async () => {
+  page = 1;
+  syncAssistVisibility();
+  await loadPlayers();
+  await loadAssistBy();
+});
+el('assisted').addEventListener('change', async () => {
+  page = 1;
+  syncAssistVisibility();
+  await loadAssistBy();
+});
+el('player').addEventListener('input', async () => {
+  await loadPlayers();
+  await loadAssistBy();
+});
+el('run').addEventListener('click', () => { page = 1; runQuery(); });
+el('clear').addEventListener('click', async () => { clearFilters(); await loadPlayers(); await runQuery(); });
+el('prev').addEventListener('click', () => { if (page > 1) { page -= 1; runQuery(); } });
+el('next').addEventListener('click', () => { const pageSize = Number(el('page_size').value); if (page * pageSize < total) { page += 1; runQuery(); } });
+
+(async function boot(){
+  syncAssistVisibility();
+  await loadPlayers();
+  await runQuery();
+})();
+</script>
+</body>
+</html>
