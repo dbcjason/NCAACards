@@ -41,6 +41,7 @@ jobs:
           sparse-checkout: |
             .github/workflows
             player_cards_pipeline/scripts
+            player_cards_pipeline/templates
             player_cards_pipeline/output
             player_cards_pipeline/data/bt
             player_cards_pipeline/data/manual/enriched_players/by_script_season
