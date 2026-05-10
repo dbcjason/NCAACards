@@ -56,21 +56,32 @@ def norm_team(s: str) -> str:
 
 def canonical_pos(pos_raw: str) -> str:
     s = (pos_raw or "").upper().replace("S-", "")
-    if "PG" in s:
-        return "PG"
-    if "SG" in s:
-        return "SG"
-    if "WG" in s or "CG" in s or s == "G":
-        return "SG"
-    if "SF" in s or "WF" in s:
-        return "SF"
-    if s == "F":
-        return "SF"
-    if "PF" in s:
-        return "PF"
+    if "PG" in s or "SG" in s or "WG" in s or "CG" in s or s == "G":
+        return "G"
+    if "SF" in s or "PF" in s or "WF" in s or s == "F":
+        return "F"
     if "C" in s:
         return "C"
-    return "SF"
+    return "F"
+
+
+def group_from_pos_freqs(row: dict[str, Any]) -> str:
+    pf = row.get("posFreqs") or {}
+    if isinstance(pf, dict) and pf:
+        vals = {
+            "pg": float(pf.get("pg") or 0.0),
+            "sg": float(pf.get("sg") or 0.0),
+            "sf": float(pf.get("sf") or 0.0),
+            "pf": float(pf.get("pf") or 0.0),
+            "c": float(pf.get("c") or 0.0),
+        }
+        top = max(vals.items(), key=lambda kv: kv[1])[0]
+        if top in {"pg", "sg"}:
+            return "G"
+        if top in {"sf", "pf"}:
+            return "F"
+        return "C"
+    return canonical_pos(row.get("posClass") or row.get("position") or "")
 
 
 def has_exact_shot_coords(row: dict[str, Any]) -> bool:
@@ -342,13 +353,13 @@ def build(args: argparse.Namespace) -> str:
     if not target:
         raise SystemExit(f"Could not find enriched row for player={args.player} team={args.team}")
     players_all = load_enriched_all_players_2019_2026()
-    pos = canonical_pos(target.get("posClass") or target.get("position") or "")
+    pos = group_from_pos_freqs(target)
     key_name = " ".join(x.strip() for x in (target.get("key") or "").split(",")[::-1]).strip()
     team = target.get("team") or args.team or ""
     same = [
         p
         for p in players_all
-        if canonical_pos(p.get("posClass") or p.get("position") or "") == pos
+        if group_from_pos_freqs(p) == pos
         and has_exact_shot_coords(p)
     ]
     drafted_year_keys, drafted_name_team_keys = load_drafted_keys()
