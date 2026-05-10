@@ -122,30 +122,52 @@ def add_stat(m: dict[str, dict[str, float]], key: str, pts: float, att: float) -
     row["att"] += float(att)
 
 
-def load_enriched_2026() -> list[dict[str, Any]]:
-    by_script = ROOT / "player_cards_pipeline/data/manual/enriched_players/by_script_season/players_all_Men_scriptSeason_2026_fromJsonYear_2025.json"
-    by_json = ROOT / "player_cards_pipeline/data/manual/enriched_players/by_json_year/players_all_Men_2025_combined.json"
-    rows: list[dict[str, Any]] = []
-    if by_script.exists():
-        d = json.loads(by_script.read_text(encoding="utf-8"))
-        rows.extend(d.get("players") or [])
-    if by_json.exists():
-        d = json.loads(by_json.read_text(encoding="utf-8"))
-        rows.extend(d.get("players") or [])
+def _rows_from_json_file(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    d = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(d, dict):
+        return list(d.get("players") or [])
+    if isinstance(d, list):
+        return list(d)
+    return []
+
+
+def load_enriched_for_season(season: int) -> list[dict[str, Any]]:
+    json_year = season - 1
+    by_script = (
+        ROOT
+        / "player_cards_pipeline/data/manual/enriched_players/by_script_season"
+        / f"players_all_Men_scriptSeason_{season}_fromJsonYear_{json_year}.json"
+    )
+    by_json = (
+        ROOT
+        / "player_cards_pipeline/data/manual/enriched_players/by_json_year"
+        / f"players_all_Men_{json_year}_combined.json"
+    )
+    rows = _rows_from_json_file(by_script)
+    if not rows:
+        rows = _rows_from_json_file(by_json)
     return rows
 
 
-def load_drafted_keys() -> tuple[set[str], set[str], set[str]]:
+def load_enriched_all_players_2019_2026() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for season in range(2019, 2027):
+        rows.extend(load_enriched_for_season(season))
+    return rows
+
+
+def load_drafted_keys() -> tuple[set[str], set[str]]:
     candidates = [
         ROOT / "player_cards_pipeline/data/manual/rsci/drafted_players.csv",
         Path("/Users/henryhalverson/Downloads/Master Doc - drafted players.csv"),
     ]
-    by_year_name_team: set[str] = set()
     by_name_team: set[str] = set()
-    by_name: set[str] = set()
+    by_year_name_team: set[str] = set()
     drafted_csv = next((p for p in candidates if p.exists()), None)
     if drafted_csv is None:
-        return by_year_name_team, by_name_team, by_name
+        return by_year_name_team, by_name_team
     with drafted_csv.open("r", encoding="utf-8-sig", newline="") as f:
         rd = csv.DictReader(f)
         for r in rd:
@@ -153,12 +175,11 @@ def load_drafted_keys() -> tuple[set[str], set[str], set[str]]:
             name = norm_name(r.get("Player") or "")
             team = norm_team(r.get("Team") or "")
             if name:
-                by_name.add(name)
                 if team:
                     by_name_team.add(f"{name}|{team}")
                 if year:
                     by_year_name_team.add(f"{year}|{name}|{team}")
-    return by_year_name_team, by_name_team, by_name
+    return by_year_name_team, by_name_team
 
 
 def find_target(players: list[dict[str, Any]], player: str, team: str) -> dict[str, Any] | None:
@@ -315,28 +336,35 @@ def parse_bt_row(player: str, team: str) -> dict[str, str] | None:
 
 
 def build(args: argparse.Namespace) -> str:
-    players = load_enriched_2026()
-    target = find_target(players, args.player, args.team or "")
+    season_i = int(args.season)
+    season_players = load_enriched_for_season(season_i)
+    target = find_target(season_players, args.player, args.team or "")
     if not target:
         raise SystemExit(f"Could not find enriched row for player={args.player} team={args.team}")
+    players_all = load_enriched_all_players_2019_2026()
     pos = canonical_pos(target.get("posClass") or target.get("position") or "")
     key_name = " ".join(x.strip() for x in (target.get("key") or "").split(",")[::-1]).strip()
     team = target.get("team") or args.team or ""
     same = [
         p
-        for p in players
+        for p in players_all
         if canonical_pos(p.get("posClass") or p.get("position") or "") == pos
         and has_exact_shot_coords(p)
     ]
-    drafted_year_keys, drafted_name_team_keys, drafted_name_keys = load_drafted_keys()
+    drafted_year_keys, drafted_name_team_keys = load_drafted_keys()
     drafted = []
     for p in same:
         name = " ".join(x.strip() for x in (p.get("key") or "").split(",")[::-1]).strip()
         nn = norm_name(name)
         nt = norm_team(p.get("team") or "")
-        token_y = f"{args.season}|{nn}|{nt}"
+        yv = p.get("year")
+        if isinstance(yv, dict):
+            yr = str(yv.get("value") or "").strip()
+        else:
+            yr = str(yv or "").strip()
+        token_y = f"{yr}|{nn}|{nt}" if yr else ""
         token_nt = f"{nn}|{nt}"
-        if token_y in drafted_year_keys or token_nt in drafted_name_team_keys or nn in drafted_name_keys:
+        if (token_y and token_y in drafted_year_keys) or token_nt in drafted_name_team_keys:
             drafted.append(p)
     # Keep drafted cohort strictly to players identified as drafted; do not
     # backfill with all-position players when the drafted cohort is empty.
