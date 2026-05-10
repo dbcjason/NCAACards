@@ -60,16 +60,16 @@ def canonical_pos(pos_raw: str) -> str:
         return "PG"
     if "SG" in s:
         return "SG"
+    if "WG" in s or "CG" in s or s == "G":
+        return "SG"
     if "SF" in s or "WF" in s:
+        return "SF"
+    if s == "F":
         return "SF"
     if "PF" in s:
         return "PF"
     if "C" in s:
         return "C"
-    if "WG" in s or "CG" in s or s == "G":
-        return "SG"
-    if s == "F":
-        return "SF"
     return "SF"
 
 
