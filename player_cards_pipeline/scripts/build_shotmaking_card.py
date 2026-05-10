@@ -355,7 +355,14 @@ def _norm_season_key(v: str) -> str:
     if not s:
         return ""
     if "/" in s:
-        return s.split("/")[0].strip()
+        left, right = s.split("/", 1)
+        left = left.strip()
+        right = right.strip()
+        if left.isdigit() and right.isdigit():
+            if len(right) == 2:
+                return f"{left[:2]}{right}"
+            return right
+        return left
     m = re.search(r"(20\d{2})", s)
     return m.group(1) if m else s
 
@@ -394,10 +401,12 @@ def min_pct_ok(row: dict[str, Any], min_pct_cut: float = 20.0) -> bool:
     name = norm_name(" ".join(x.strip() for x in (row.get("key") or "").split(",")[::-1]).strip())
     team = norm_team(row.get("team") or "")
     if not season or not name or not team:
-        return False
+        return True
     min_map = load_bt_min_pct_cache()
     v = min_map.get((season, name, team))
-    return (v is not None) and (v >= min_pct_cut)
+    if v is None:
+        return True
+    return v >= min_pct_cut
 
 
 def build(args: argparse.Namespace) -> str:
