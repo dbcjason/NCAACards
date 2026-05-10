@@ -1,0 +1,112 @@
+name: Build Shotmaking Profile Card
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Season year (e.g. 2026)"
+        required: true
+        type: string
+      player:
+        description: "Player name (exact preferred)"
+        required: true
+        type: string
+      team:
+        description: "Team name (optional, helps disambiguate)"
+        required: false
+        type: string
+      output_filename:
+        description: "Output HTML file name (optional)"
+        required: false
+        default: ""
+        type: string
+      commit_to_repo:
+        description: "Commit generated shotmaking card back to repo"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build-shotmaking-profile-card:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout (sparse)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            .github/workflows
+            player_cards_pipeline/scripts
+            player_cards_pipeline/output
+            player_cards_pipeline/data/bt
+            player_cards_pipeline/data/manual/enriched_players/by_script_season
+            player_cards_pipeline/data/manual/enriched_players/by_json_year
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve output path
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path('.').resolve()
+          year = '${{ github.event.inputs.year }}'.strip()
+          player = '${{ github.event.inputs.player }}'.strip()
+          out_name = '${{ github.event.inputs.output_filename }}'.strip()
+          if not out_name:
+              safe_player = ''.join(ch.lower() if ch.isalnum() else '_' for ch in player).strip('_')
+              out_name = f"shotmaking_profile_{safe_player}_{year}.html"
+          out_path = root / 'player_cards_pipeline' / 'output' / out_name
+          out_path.parent.mkdir(parents=True, exist_ok=True)
+          with Path('${{ github.env }}').open('a', encoding='utf-8') as f:
+              f.write(f"OUT_HTML={out_path}\n")
+          PY
+
+      - name: Build shotmaking profile card
+        run: |
+          CMD=(python3 player_cards_pipeline/scripts/build_shotmaking_card.py \
+            --season "${{ github.event.inputs.year }}" \
+            --player "${{ github.event.inputs.player }}" \
+            --out-html "$OUT_HTML")
+          if [ -n "${{ github.event.inputs.team }}" ]; then
+            CMD+=(--team "${{ github.event.inputs.team }}")
+          fi
+          echo "Running: ${CMD[*]}"
+          "${CMD[@]}"
+
+      - name: Upload card artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shotmaking-profile-card-${{ github.event.inputs.player }}-${{ github.event.inputs.year }}
+          path: ${{ env.OUT_HTML }}
+
+      - name: Commit output to repo
+        if: ${{ github.event.inputs.commit_to_repo == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main || true
+          git add --sparse -f "$OUT_HTML"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Build shotmaking profile card: ${{ github.event.inputs.player }} (${{ github.event.inputs.year }})"
+          for attempt in 1 2 3; do
+            if git push origin main; then
+              exit 0
+            fi
+            echo "Push rejected, rebasing attempt ${attempt}..."
+            git pull --rebase --autostash origin main || {
+              git rebase --abort || true
+              sleep 2
+            }
+          done
+          echo "Failed to push after 3 attempts"
+          exit 1
