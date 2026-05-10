@@ -117,22 +117,30 @@ def load_enriched_2026() -> list[dict[str, Any]]:
     return rows
 
 
-def load_drafted_keys() -> set[str]:
+def load_drafted_keys() -> tuple[set[str], set[str], set[str]]:
     candidates = [
         ROOT / "player_cards_pipeline/data/manual/rsci/drafted_players.csv",
         Path("/Users/henryhalverson/Downloads/Master Doc - drafted players.csv"),
     ]
-    out: set[str] = set()
+    by_year_name_team: set[str] = set()
+    by_name_team: set[str] = set()
+    by_name: set[str] = set()
     drafted_csv = next((p for p in candidates if p.exists()), None)
     if drafted_csv is None:
-        return out
+        return by_year_name_team, by_name_team, by_name
     with drafted_csv.open("r", encoding="utf-8-sig", newline="") as f:
         rd = csv.DictReader(f)
         for r in rd:
-            out.add(
-                f"{(r.get('Year') or '').strip()}|{norm_name(r.get('Player') or '')}|{norm_team(r.get('Team') or '')}"
-            )
-    return out
+            year = (r.get("Year") or "").strip()
+            name = norm_name(r.get("Player") or "")
+            team = norm_team(r.get("Team") or "")
+            if name:
+                by_name.add(name)
+                if team:
+                    by_name_team.add(f"{name}|{team}")
+                if year:
+                    by_year_name_team.add(f"{year}|{name}|{team}")
+    return by_year_name_team, by_name_team, by_name
 
 
 def find_target(players: list[dict[str, Any]], player: str, team: str) -> dict[str, Any] | None:
@@ -297,12 +305,15 @@ def build(args: argparse.Namespace) -> str:
     key_name = " ".join(x.strip() for x in (target.get("key") or "").split(",")[::-1]).strip()
     team = target.get("team") or args.team or ""
     same = [p for p in players if canonical_pos(p.get("posClass") or p.get("position") or "") == pos and ((p.get("shotInfo") or {}).get("data") or {}).get("info")]
-    drafted_keys = load_drafted_keys()
+    drafted_year_keys, drafted_name_team_keys, drafted_name_keys = load_drafted_keys()
     drafted = []
     for p in same:
         name = " ".join(x.strip() for x in (p.get("key") or "").split(",")[::-1]).strip()
-        token = f"{args.season}|{norm_name(name)}|{norm_team(p.get('team') or '')}"
-        if token in drafted_keys:
+        nn = norm_name(name)
+        nt = norm_team(p.get("team") or "")
+        token_y = f"{args.season}|{nn}|{nt}"
+        token_nt = f"{nn}|{nt}"
+        if token_y in drafted_year_keys or token_nt in drafted_name_team_keys or nn in drafted_name_keys:
             drafted.append(p)
     if not drafted:
         drafted = list(same)
