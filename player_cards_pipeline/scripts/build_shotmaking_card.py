@@ -118,14 +118,20 @@ def load_enriched_2026() -> list[dict[str, Any]]:
 
 
 def load_drafted_keys() -> set[str]:
-    drafted_csv = Path("/Users/henryhalverson/Downloads/Master Doc - drafted players.csv")
-    if not drafted_csv.exists():
-        return set()
+    candidates = [
+        ROOT / "player_cards_pipeline/data/manual/rsci/drafted_players.csv",
+        Path("/Users/henryhalverson/Downloads/Master Doc - drafted players.csv"),
+    ]
     out: set[str] = set()
+    drafted_csv = next((p for p in candidates if p.exists()), None)
+    if drafted_csv is None:
+        return out
     with drafted_csv.open("r", encoding="utf-8-sig", newline="") as f:
         rd = csv.DictReader(f)
         for r in rd:
-            out.add(f"{(r.get('Year') or '').strip()}|{norm_name(r.get('Player') or '')}|{norm_team(r.get('Team') or '')}")
+            out.add(
+                f"{(r.get('Year') or '').strip()}|{norm_name(r.get('Player') or '')}|{norm_team(r.get('Team') or '')}"
+            )
     return out
 
 
@@ -221,6 +227,55 @@ def expected_region(target: dict[str, Any], by_bin: dict[str, dict[str, float]],
     return out
 
 
+def diet_from_row(row: dict[str, Any]) -> dict[str, float]:
+    counts = {"rim": 0.0, "mid": 0.0, "three": 0.0}
+    info = (((row.get("shotInfo") or {}).get("data") or {}).get("info")) or []
+    for rec in info:
+        if not isinstance(rec, list) or len(rec) < 4:
+            continue
+        x, y, att = float(rec[0]), float(rec[1]), float(rec[3])
+        if att <= 0:
+            continue
+        counts[region(x, y)] += att
+    total = max(1e-9, counts["rim"] + counts["mid"] + counts["three"])
+    return {k: (counts[k] / total * 100.0) for k in ("rim", "mid", "three")}
+
+
+def diet_from_rows(rows: list[dict[str, Any]]) -> dict[str, float]:
+    counts = {"rim": 0.0, "mid": 0.0, "three": 0.0}
+    for row in rows:
+        info = (((row.get("shotInfo") or {}).get("data") or {}).get("info")) or []
+        for rec in info:
+            if not isinstance(rec, list) or len(rec) < 4:
+                continue
+            x, y, att = float(rec[0]), float(rec[1]), float(rec[3])
+            if att <= 0:
+                continue
+            counts[region(x, y)] += att
+    total = max(1e-9, counts["rim"] + counts["mid"] + counts["three"])
+    return {k: (counts[k] / total * 100.0) for k in ("rim", "mid", "three")}
+
+
+def build_diet_block_html(title: str, diet: dict[str, float]) -> str:
+    rim = diet.get("rim", 0.0)
+    mid = diet.get("mid", 0.0)
+    three = diet.get("three", 0.0)
+    return f"""
+            <div>
+              <div class="diet-row-title"><span>{title}</span></div>
+              <div class="shotdiet-bar">
+                <span class="shotdiet-seg shotdiet-rim" style="width:{rim:.1f}%"></span>
+                <span class="shotdiet-seg shotdiet-nonrim" style="width:{mid:.1f}%"></span>
+                <span class="shotdiet-seg shotdiet-three" style="width:{three:.1f}%"></span>
+              </div>
+              <div class="shotdiet-key">
+                <span><i class="shotdiet-dot shotdiet-rim"></i>Rim {rim:.1f}%</span>
+                <span><i class="shotdiet-dot shotdiet-nonrim"></i>Non-Rim 2 {mid:.1f}%</span>
+                <span><i class="shotdiet-dot shotdiet-three"></i>3PA {three:.1f}%</span>
+              </div>
+            </div>"""
+
+
 def parse_bt_row(player: str, team: str) -> dict[str, str] | None:
     bt = ROOT / "player_cards_pipeline/data/bt/bt_advstats_2026.csv"
     with bt.open("r", encoding="utf-8-sig", newline="") as f:
@@ -249,6 +304,8 @@ def build(args: argparse.Namespace) -> str:
         token = f"{args.season}|{norm_name(name)}|{norm_team(p.get('team') or '')}"
         if token in drafted_keys:
             drafted.append(p)
+    if not drafted:
+        drafted = list(same)
     same_wo_target = [p for p in same if not (norm_name(" ".join(x.strip() for x in (p.get("key") or "").split(",")[::-1])) == norm_name(key_name) and norm_team(p.get("team") or "") == norm_team(team))]
     all_bin, all_region = build_rates(same_wo_target)
     dr_bin, dr_region = build_rates(drafted)
@@ -381,6 +438,18 @@ def build(args: argparse.Namespace) -> str:
         note,
         html,
     )
+
+    player_diet = diet_from_row(target)
+    drafted_diet = diet_from_rows(drafted) if drafted else diet_from_rows(same)
+    all_diet = diet_from_rows(same_wo_target if same_wo_target else same)
+    diet_stack_html = (
+        '<div class="diet-stack">'
+        + build_diet_block_html(key_name, player_diet)
+        + build_diet_block_html(f"Drafted {pos} Avg", drafted_diet)
+        + build_diet_block_html(f"All {pos} Avg", all_diet)
+        + "\n          </div>"
+    )
+    html = re.sub(r'<div class="diet-stack">[\s\S]*?</div>\s*</section>', f"{diet_stack_html}\n          </section>", html, count=1)
     return html
 
 
