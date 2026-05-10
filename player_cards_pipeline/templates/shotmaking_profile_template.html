@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shotmaking Profile Mockup</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #000;
+      --panel: #151515;
+      --panel-2: #202020;
+      --line: #3b3b3b;
+      --court: #f3f3f3;
+      --text: #f5f5f5;
+      --muted: #d0d0d0;
+      --green: #22c55e;
+      --green-soft: #9de7b7;
+      --red: #ef4444;
+      --track: #2a2a2a;
+      --gold: #f2c14e;
+      --blue: #6ab7ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 18px auto;
+      padding: 16px;
+    }
+
+    .card {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      padding: 16px;
+    }
+
+    .title-row {
+      position: relative;
+      min-height: 76px;
+      padding-right: 170px;
+    }
+
+    .top-grade {
+      position: absolute;
+      top: 0;
+      left: 85%;
+      transform: translateX(-50%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      width: 136px;
+      height: 70px;
+      padding: 8px;
+      text-align: center;
+      display: grid;
+      align-content: center;
+    }
+
+    .top-grade .k {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .top-grade .v {
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-top: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 0.96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      color: var(--muted);
+      margin-top: 7px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 386px max-content 390px;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: start;
+    }
+
+    .left-stack,
+    .right-stack {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .panel h2,
+    .panel h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .shot-meta {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .chart-stage {
+      min-height: 0;
+      height: auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      overflow: visible;
+    }
+
+    .shot-chart-svg {
+      width: 355px;
+      height: 250px;
+      margin: 0 auto;
+    }
+
+    .shot-panel {
+      width: 386px;
+      padding: 8px;
+    }
+
+    .shot-panel h2 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .basic-strip {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(92px, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .basic-chip {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      padding: 8px;
+      text-align: center;
+    }
+
+    .basic-chip .k {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .basic-chip .v {
+      color: var(--text);
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-top: 4px;
+    }
+
+    .basic-chip .p {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    .bar-group {
+      display: grid;
+      gap: 12px;
+      width: max-content;
+    }
+
+    .bench-panel {
+      width: max-content;
+      flex: 0 0 auto;
+    }
+
+    .group-title {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      margin-bottom: 4px;
+    }
+
+    .group-title h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .bar-key {
+      display: flex;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+      margin-top: 6px;
+      margin-left: 0;
+      width: max-content;
+    }
+
+    .key-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+
+    .zone-block {
+      padding: 2px 0 4px;
+      width: max-content;
+    }
+
+    .zone-head {
+      display: grid;
+      grid-template-columns: 44px 190px 48px;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .zone-head .zone-title {
+      grid-column: 1 / 3;
+      white-space: nowrap;
+    }
+
+    .zone-head .unit {
+      grid-column: 3;
+      text-align: right;
+    }
+
+    .metric-note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.3;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 44px 190px 48px;
+      gap: 6px;
+      align-items: center;
+      min-height: 20px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .metric-val,
+    .metric-delta {
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .zone-block .metric-val {
+      grid-column: 1;
+    }
+
+    .zone-block .metric-row {
+      grid-template-columns: 44px 190px 48px;
+    }
+
+    .metric-delta.good { color: var(--green-soft); }
+    .metric-delta.bad { color: var(--red); }
+
+    .bar-wrap {
+      position: relative;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--track);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green-soft), var(--green));
+    }
+
+    .bar-fill.bad {
+      background: linear-gradient(90deg, #f7a3a3, var(--red));
+    }
+
+    .bar-fill.drafted {
+      background: var(--blue);
+    }
+
+    .bar-fill.avg {
+      background: #f5f5f5;
+    }
+
+    .pct-badge {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #111;
+      border: 1px solid var(--line);
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .diet-stack {
+      display: grid;
+      gap: 9px;
+    }
+
+    .diet-row-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .shotdiet-bar {
+      width: 100%;
+      height: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--track);
+      border: 1px solid var(--line);
+      display: flex;
+    }
+
+    .shotdiet-seg {
+      height: 100%;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .shotdiet-rim { background: var(--green); }
+    .shotdiet-nonrim { background: var(--red); }
+    .shotdiet-three { background: #60a5fa; }
+
+    .shotdiet-key {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .shotdiet-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .self-row {
+      display: grid;
+      grid-template-columns: 108px 52px 146px 28px;
+      gap: 8px;
+      align-items: center;
+      min-height: 42px;
+    }
+
+    .self-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .self-row .metric-label {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.12;
+    }
+
+    .self-row .metric-val {
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+      text-align: left;
+    }
+
+    .self-row .bar-wrap {
+      height: 18px;
+    }
+
+    .self-row .metric-delta {
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .diet-panel,
+    .self-panel {
+      width: 390px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .profile-grid,
+      .section-grid,
+      .basic-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-stage {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="card">
+      <div class="title-row">
+        <div>
+          <h1>Cameron Boozer</h1>
+          <div class="sub">Duke | 2026 | Position: PF | Age: 18.9 | Height: 6'9" | Statistical Height: 6'9", +0.00 in | RSCI: 2nd</div>
+        </div>
+        <div class="top-grade">
+          <div class="k">Shotmaking Grade</div>
+          <div class="v">92</div>
+        </div>
+      </div>
+
+      <section class="panel" style="margin-top:14px;">
+        <h2>Basic Shooting Stats</h2>
+        <div class="basic-strip">
+          <div class="basic-chip"><div class="k">PPG</div><div class="v">22.5</div><div class="p">100th %tile</div></div>
+          <div class="basic-chip"><div class="k">TS%</div><div class="v">65.3</div><div class="p">93rd %tile</div></div>
+          <div class="basic-chip"><div class="k">Usage</div><div class="v">31.2</div><div class="p">98th %tile</div></div>
+          <div class="basic-chip"><div class="k">Rim%</div><div class="v">64.5</div><div class="p">72nd %tile</div></div>
+          <div class="basic-chip"><div class="k">Mid%</div><div class="v">42.3</div><div class="p">70th %tile</div></div>
+          <div class="basic-chip"><div class="k">2P%</div><div class="v">61.5</div><div class="p">86th %tile</div></div>
+          <div class="basic-chip"><div class="k">3P%</div><div class="v">39.1</div><div class="p">86th %tile</div></div>
+          <div class="basic-chip"><div class="k">FT%</div><div class="v">78.9</div><div class="p">76th %tile</div></div>
+        </div>
+      </section>
+
+      <div class="profile-grid">
+        <section class="panel shot-panel">
+            <h2>Shot Chart</h2>
+            <div class="shot-meta">Attempts: 522 | Made: 318 | FG%: 60.9%</div>
+            <div class="shot-meta">Points per Shot Over Expectation: +15.1% (92nd Percentile)</div>
+            <div class="chart-stage">
+              <svg id="shotChart" class="shot-chart-svg" viewBox="0 0 760 540" width="355" height="250" aria-label="Shot chart"></svg>
+            </div>
+          </section>
+
+        <section class="panel bench-panel">
+          <div class="group-title">
+            <h3>PPS by Shot Type</h3>
+          </div>
+          <div class="bar-group" id="ppsBars"></div>
+          <div class="bar-key">
+            <span><i class="key-dot" style="background:var(--green)"></i>Cameron Boozer</span>
+            <span><i class="key-dot" style="background:var(--blue)"></i>Drafted PFs</span>
+            <span><i class="key-dot" style="background:#f5f5f5"></i>All PFs</span>
+          </div>
+          <div class="metric-note" id="ppsNote"></div>
+        </section>
+
+        <div class="right-stack">
+          <section class="panel diet-panel">
+            <h2>Shot Diet</h2>
+          <div class="diet-stack">
+            <div>
+              <div class="diet-row-title"><span>Cameron Boozer</span></div>
+              <div class="shotdiet-bar">
+                <span class="shotdiet-seg shotdiet-rim" style="width:51.3%"></span>
+                <span class="shotdiet-seg shotdiet-nonrim" style="width:22.4%"></span>
+                <span class="shotdiet-seg shotdiet-three" style="width:26.2%"></span>
+              </div>
+              <div class="shotdiet-key">
+                <span><i class="shotdiet-dot shotdiet-rim"></i>Rim 51.3%</span>
+                <span><i class="shotdiet-dot shotdiet-nonrim"></i>Non-Rim 2 22.4%</span>
+                <span><i class="shotdiet-dot shotdiet-three"></i>3PA 26.2%</span>
+              </div>
+            </div>
+            <div>
+              <div class="diet-row-title"><span>Drafted PF Avg</span></div>
+              <div class="shotdiet-bar">
+                <span class="shotdiet-seg shotdiet-rim" style="width:36.6%"></span>
+                <span class="shotdiet-seg shotdiet-nonrim" style="width:35.7%"></span>
+                <span class="shotdiet-seg shotdiet-three" style="width:27.7%"></span>
+              </div>
+              <div class="shotdiet-key">
+                <span><i class="shotdiet-dot shotdiet-rim"></i>Rim 36.6%</span>
+                <span><i class="shotdiet-dot shotdiet-nonrim"></i>Non-Rim 2 35.7%</span>
+                <span><i class="shotdiet-dot shotdiet-three"></i>3PA 27.7%</span>
+              </div>
+            </div>
+            <div>
+              <div class="diet-row-title"><span>All PF Avg</span></div>
+              <div class="shotdiet-bar">
+                <span class="shotdiet-seg shotdiet-rim" style="width:36.6%"></span>
+                <span class="shotdiet-seg shotdiet-nonrim" style="width:31.9%"></span>
+                <span class="shotdiet-seg shotdiet-three" style="width:31.5%"></span>
+              </div>
+              <div class="shotdiet-key">
+                <span><i class="shotdiet-dot shotdiet-rim"></i>Rim 36.6%</span>
+                <span><i class="shotdiet-dot shotdiet-nonrim"></i>Non-Rim 2 31.9%</span>
+                <span><i class="shotdiet-dot shotdiet-three"></i>3PA 31.5%</span>
+              </div>
+            </div>
+          </div>
+          </section>
+
+          <section class="panel self-panel">
+            <h2>Self Creation</h2>
+            <div class="self-group" id="selfBars"></div>
+          </section>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+  <script>
+    const shotBins = [[2.2498,1.7813,108,80],[2.5368,-1.0625,88,56],[4.0012,3.2879,36,33],[0.5225,0.1563,54,32],[1.8692,3.8846,26,26],[2.9508,-3,20,24],[1.253,-2.5435,30,23],[4.3505,1.0263,28,19],[5.1386,-1.4643,12,14],[7.0754,0.2308,12,13],[23.8714,-7,9,7],[0.2371,2.1429,12,7],[24.9457,-0.3571,9,7],[24.5429,2,12,7],[20.38,-13.5,9,6],[5.9667,2.4167,6,6],[25.3933,6.0833,3,6],[23.8267,-4.1667,9,6],[22.072,-11.5,3,5],[22.636,-8.8,6,5],[9.476,-0.7,6,5],[22.072,10.3,12,5],[26.584,1,9,5],[18.312,15.9,6,5],[21.32,12.4,3,5],[7.925,-2.125,2,4],[3.695,-5.5,4,4],[4.635,-22.625,6,4],[25.785,-4.75,9,4],[9.7267,-22,6,3],[9.7267,-3.5,4,3],[2.52,-22.5,3,3],[9.1,2.3333,2,3],[4.0867,5,6,3],[6.5933,4.6667,2,3],[23.8267,4.8333,0,3],[20.38,13.5,0,3],[1.58,-4.75,0,2],[16.15,-19.25,0,2],[4.87,-4.25,0,2],[15.21,-18.5,3,2],[0.64,-23.75,0,2],[-1.24,-22.75,3,2],[22.26,-13.75,0,2],[18.03,-17.5,3,2],[20.85,-15.5,0,2],[2.05,11,0,2],[11.45,3.75,0,2],[6.75,9.25,4,2],[3.46,8.75,4,2],[23.2,8,3,2],[24.61,9,0,2],[26.96,-0.5,3,2],[24.61,-2,0,2],[25.55,4,0,2],[15.68,16.75,0,2],[14.74,19,3,2],[10.04,21.5,6,2],[20.38,15.75,3,2],[23.2,14.5,3,2],[-1.24,1,0,1],[12.86,-20,0,1],[8.16,-21.5,3,1],[8.16,-4.5,0,1],[17.56,-7,0,1],[20.38,-11,0,1],[18.5,-9,0,1],[13.8,-8,2,1],[12.86,-2,0,1],[14.74,-3,0,1],[6.28,-11,2,1],[2.52,-13.5,0,1],[12.86,-10.5,0,1],[0.64,-22,3,1],[24.14,-11.5,3,1],[17.56,-16,0,1],[9.1,5,0,1],[12.86,1,2,1],[7.22,23,0,1],[0.64,19,0,1],[7.22,22,0,1],[2.52,21.5,0,1],[0.64,22.5,0,1],[27.9,0.5,3,1],[32.6,1.5,0,1],[15.68,4.5,0,1],[26.96,-3,3,1],[24.14,17,3,1],[23.2,11.5,0,1]];
+
+    const zones = [
+      { key: "overall", label: "Overall", pps: 1.215, all: 1.122, drafted: 1.186, ppsPct: 67, draftedPpsPct: 61, pts100: 30.25, all100: 27.95, drafted100: 29.53, ptsPct: 66, draftedPtsPct: 61 },
+      { key: "rim", label: "Rim", pps: 1.366, all: 1.291, drafted: 1.339, ppsPct: 62, draftedPpsPct: 57, pts100: 17.46, all100: 16.50, drafted100: 17.12, ptsPct: 62, draftedPtsPct: 58 },
+      { key: "mid", label: "Mid-range", pps: 0.906, all: 0.889, drafted: 0.952, ppsPct: 54, draftedPpsPct: 64, pts100: 5.06, all100: 4.96, drafted100: 5.31, ptsPct: 54, draftedPtsPct: 64 },
+      { key: "three", label: "Three", pps: 1.182, all: 0.993, drafted: 1.085, ppsPct: 88, draftedPpsPct: 69, pts100: 7.73, all100: 6.49, drafted100: 7.09, ptsPct: 88, draftedPtsPct: 68 }
+    ];
+
+    const selfCreation = [
+      { label: "UAsst'd Dunks/100", value: 0.75, pct: 97 },
+      { label: "UAsst'd Rim FGM/100", value: 5.74, pct: 98 },
+      { label: "UAsst'd Mid FGM/100", value: 0.94, pct: 66 },
+      { label: "UAsst'd 3PM/100", value: 0.56, pct: 81 },
+      { label: "Unassisted Pts/100", value: 15.06, pct: 96 }
+    ];
+
+    function seeded(seed) {
+      let x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    }
+
+    function svgEl(tag, attrs) {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [k, v] of Object.entries(attrs || {})) node.setAttribute(k, v);
+      return node;
+    }
+
+    function renderCourt() {
+      const svg = document.getElementById("shotChart");
+      svg.innerHTML = "";
+      const line = "var(--court)";
+      const g = svgEl("g", { transform: "translate(20 34)" });
+      svg.appendChild(g);
+
+      const width = 720;
+      const height = 470;
+      const margin = 24;
+      const courtLen = 940;
+      const courtWid = 500;
+      const halfLen = 470;
+      const mapX = fullY => margin + Math.max(0, Math.min(courtWid, fullY)) * (width - 2 * margin) / courtWid;
+      const mapY = fullX => {
+        const x2 = Math.max(0, Math.min(courtLen, fullX));
+        return margin + Math.min(x2, courtLen - x2) * (height - 2 * margin) / halfLen;
+      };
+      const pt = (fullX, fullY) => [mapX(fullY), mapY(fullX)];
+      const add = node => g.appendChild(node);
+
+      const [ox1, oy1] = pt(0, 0);
+      const [ox2, oy2] = pt(halfLen, courtWid);
+      const [lx1, ly1] = pt(0, 190);
+      const [lx2, ly2] = pt(190, 310);
+      const [hx, hy] = pt(40, 250);
+      const [bb1x, bb1y] = pt(32.5, 220);
+      const [bb2x, bb2y] = pt(32.5, 280);
+      const [ftcx, ftcy] = pt(190, 250);
+      const restrictedR = 40;
+      const ftR = 60;
+      const threeR = 221.46;
+      const cornerMin = 30;
+      const cornerMax = 470;
+      const threeJoinX = 40 + Math.sqrt(Math.max(0, threeR * threeR - (250 - cornerMin) ** 2));
+      const arcPoints = [];
+      for (let i = 0; i <= 90; i++) {
+        const yy = cornerMin + (cornerMax - cornerMin) * (i / 90);
+        const xx = 40 + Math.sqrt(Math.max(0, threeR * threeR - (yy - 250) ** 2));
+        arcPoints.push(pt(xx, yy).map(v => v.toFixed(1)).join(","));
+      }
+      const pxPerY = (width - 2 * margin) / courtWid;
+      const pxPerX = (height - 2 * margin) / halfLen;
+
+      add(svgEl("rect", { x: ox1, y: oy1, width: ox2 - ox1, height: oy2 - oy1, fill: "#000", stroke: line, "stroke-width": 3 }));
+      add(svgEl("rect", { x: lx1, y: ly1, width: lx2 - lx1, height: ly2 - ly1, fill: "none", stroke: line, "stroke-width": 3 }));
+      add(svgEl("line", { x1: bb1x, y1: bb1y, x2: bb2x, y2: bb2y, stroke: line, "stroke-width": 3 }));
+      add(svgEl("ellipse", { cx: hx, cy: hy, rx: 7, ry: 7, fill: "none", stroke: line, "stroke-width": 3 }));
+      add(svgEl("path", { d: `M ${mapX(250 - restrictedR)} ${hy} A ${restrictedR * pxPerY} ${restrictedR * pxPerX} 0 0 1 ${mapX(250 + restrictedR)} ${hy}`, fill: "none", stroke: line, "stroke-width": 3 }));
+      add(svgEl("ellipse", { cx: ftcx, cy: ftcy, rx: ftR * pxPerY, ry: ftR * pxPerX, fill: "none", stroke: line, "stroke-width": 3 }));
+      add(svgEl("line", { x1: pt(0, cornerMin)[0], y1: pt(0, cornerMin)[1], x2: pt(threeJoinX, cornerMin)[0], y2: pt(threeJoinX, cornerMin)[1], stroke: line, "stroke-width": 3 }));
+      add(svgEl("line", { x1: pt(0, cornerMax)[0], y1: pt(0, cornerMax)[1], x2: pt(threeJoinX, cornerMax)[0], y2: pt(threeJoinX, cornerMax)[1], stroke: line, "stroke-width": 3 }));
+      add(svgEl("polyline", { points: arcPoints.join(" "), fill: "none", stroke: line, "stroke-width": 3 }));
+      add(svgEl("line", { x1: ox1, y1: oy2, x2: ox2, y2: oy2, stroke: line, "stroke-width": 3 }));
+
+      let seed = 1;
+      const missDots = [];
+      const makeDots = [];
+      for (const [xFt, yFt, pts, att] of shotBins) {
+        const range = Math.hypot(xFt, yFt) >= 22 ? "three" : "two";
+        const value = range === "three" ? 3 : 2;
+        const makes = Math.max(0, Math.min(att, Math.round(pts / value)));
+        for (let i = 0; i < att; i++) {
+          const jitterX = (seeded(seed++) - 0.5) * 11;
+          const jitterY = (seeded(seed++) - 0.5) * 11;
+          const fullX = (xFt + 4) * 10;
+          const fullY = (yFt + 25) * 10;
+          const cx = mapX(fullY) + jitterX;
+          const cy = mapY(fullX) + jitterY;
+          const dot = svgEl("circle", {
+            cx, cy, r: 8.2,
+            fill: i < makes ? "var(--green)" : "var(--red)",
+            opacity: 0.8
+          });
+          if (i < makes) makeDots.push(dot);
+          else missDots.push(dot);
+        }
+      }
+      missDots.forEach(add);
+      makeDots.forEach(add);
+    }
+
+    function metricRow(label, value, pct, fillClass, diff, digits) {
+      const row = document.createElement("div");
+      row.className = "metric-row";
+      const diffText = diff == null ? "" : `${diff >= 0 ? "+" : ""}${diff.toFixed(digits)}`;
+      row.innerHTML = `
+        <div class="metric-val">${value.toFixed(digits)}</div>
+        <div class="bar-wrap">
+          <div class="bar-fill ${fillClass}" style="width:${Math.max(2, Math.min(100, pct))}%"></div>
+          <span class="pct-badge" style="left:${Math.max(4, Math.min(96, pct))}%">${Math.round(pct)}</span>
+        </div>
+        <div class="metric-delta ${diff == null || diff >= 0 ? "good" : "bad"}">${diffText}</div>
+      `;
+      return row;
+    }
+
+    function zoneBlock(z, mode) {
+      const isPps = mode === "pps";
+      const player = isPps ? z.pps : z.pts100;
+      const all = isPps ? z.all : z.all100;
+      const drafted = isPps ? z.drafted : z.drafted100;
+      const digits = isPps ? 3 : 2;
+      const playerPct = isPps ? z.ppsPct : z.ptsPct;
+      const draftedPct = isPps ? z.draftedPpsPct : z.draftedPtsPct;
+      const block = document.createElement("div");
+      block.className = "zone-block";
+      block.innerHTML = `<div class="zone-head"><span class="zone-title">${z.label}</span><span class="unit">${isPps ? "PPS" : "Points/100"}</span></div>`;
+      block.appendChild(metricRow("", player, playerPct, "", null, digits));
+      block.appendChild(metricRow("", drafted, draftedPct, "drafted", player - drafted, digits));
+      block.appendChild(metricRow("", all, 50, "avg", player - all, digits));
+      return block;
+    }
+
+    function selfRow(item) {
+      const row = document.createElement("div");
+      row.className = "self-row";
+      row.innerHTML = `
+        <div class="metric-label">${item.label}</div>
+        <div class="metric-val">${item.value.toFixed(2)}</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" style="width:${item.pct}%"></div>
+        </div>
+        <div class="metric-delta good">${item.pct}</div>
+      `;
+      return row;
+    }
+
+    function renderBars() {
+      const ppsHost = document.getElementById("ppsBars");
+      zones.forEach(z => {
+        ppsHost.appendChild(zoneBlock(z, "pps"));
+      });
+      const selfHost = document.getElementById("selfBars");
+      selfCreation.forEach(item => selfHost.appendChild(selfRow(item)));
+      const ppsNote = document.getElementById("ppsNote");
+      if (ppsNote) {
+        ppsNote.textContent = "Expected outputs are based on how the average PF and average drafted PF would expect to perform if given Cameron Boozer's exact shot diet.";
+      }
+    }
+
+    renderCourt();
+    renderBars();
+  </script>
+</body>
+</html>
