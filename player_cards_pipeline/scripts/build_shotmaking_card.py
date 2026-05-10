@@ -12,6 +12,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_TEMPLATE = ROOT / "player_cards_pipeline/templates/shotmaking_profile_template.html"
+BT_ADV_ALL = ROOT / "player_cards_pipeline/data/bt/bt_advstats_2010_2026.csv"
 FALLBACK_TEMPLATE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Shotmaking Profile</title>
@@ -346,6 +347,59 @@ def parse_bt_row(player: str, team: str) -> dict[str, str] | None:
     return None
 
 
+_BT_MIN_PCT_CACHE: dict[tuple[str, str, str], float] | None = None
+
+
+def _norm_season_key(v: str) -> str:
+    s = str(v or "").strip()
+    if not s:
+        return ""
+    if "/" in s:
+        return s.split("/")[0].strip()
+    m = re.search(r"(20\d{2})", s)
+    return m.group(1) if m else s
+
+
+def load_bt_min_pct_cache() -> dict[tuple[str, str, str], float]:
+    global _BT_MIN_PCT_CACHE
+    if _BT_MIN_PCT_CACHE is not None:
+        return _BT_MIN_PCT_CACHE
+    out: dict[tuple[str, str, str], float] = {}
+    if not BT_ADV_ALL.exists():
+        _BT_MIN_PCT_CACHE = out
+        return out
+    with BT_ADV_ALL.open("r", encoding="utf-8-sig", newline="") as f:
+        rd = csv.DictReader(f)
+        for r in rd:
+            season = _norm_season_key(r.get("season", ""))
+            name = norm_name(r.get("player_name", ""))
+            team = norm_team(r.get("team", ""))
+            if not season or not name or not team:
+                continue
+            try:
+                min_pct = float(r.get("Min%", "") or 0.0)
+            except Exception:
+                continue
+            out[(season, name, team)] = min_pct
+    _BT_MIN_PCT_CACHE = out
+    return out
+
+
+def min_pct_ok(row: dict[str, Any], min_pct_cut: float = 20.0) -> bool:
+    yv = row.get("year")
+    if isinstance(yv, dict):
+        season = _norm_season_key(str(yv.get("value") or ""))
+    else:
+        season = _norm_season_key(str(yv or ""))
+    name = norm_name(" ".join(x.strip() for x in (row.get("key") or "").split(",")[::-1]).strip())
+    team = norm_team(row.get("team") or "")
+    if not season or not name or not team:
+        return False
+    min_map = load_bt_min_pct_cache()
+    v = min_map.get((season, name, team))
+    return (v is not None) and (v >= min_pct_cut)
+
+
 def build(args: argparse.Namespace) -> str:
     season_i = int(args.season)
     season_players = load_enriched_for_season(season_i)
@@ -361,6 +415,7 @@ def build(args: argparse.Namespace) -> str:
         for p in players_all
         if group_from_pos_freqs(p) == pos
         and has_exact_shot_coords(p)
+        and min_pct_ok(p, 20.0)
     ]
     drafted_year_keys, drafted_name_team_keys = load_drafted_keys()
     drafted = []
