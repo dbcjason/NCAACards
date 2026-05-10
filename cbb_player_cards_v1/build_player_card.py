@@ -4399,9 +4399,9 @@ def _load_height_score_delta_maps(season: str) -> tuple[dict[str, float], dict[s
     by_pid: dict[str, float] = {}
     output_dir = Path(__file__).resolve().parents[1] / "player_cards_pipeline" / "output"
     candidates = [
+        output_dir / f"height_profile_scores_big_{s}.csv",
         output_dir / f"height_profile_big_only_scores_{s}.csv",
         output_dir / "height_profile_big_only_scores_2019_2025.csv",
-        output_dir / f"height_profile_scores_big_{s}.csv",
     ]
     try:
         for p in candidates:
