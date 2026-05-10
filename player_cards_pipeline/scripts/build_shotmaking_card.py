@@ -73,6 +73,24 @@ def canonical_pos(pos_raw: str) -> str:
     return "SF"
 
 
+def has_exact_shot_coords(row: dict[str, Any]) -> bool:
+    info = (((row.get("shotInfo") or {}).get("data") or {}).get("info")) or []
+    if not isinstance(info, list) or not info:
+        return False
+    for rec in info:
+        if not isinstance(rec, list) or len(rec) < 4:
+            continue
+        try:
+            x = float(rec[0])
+            y = float(rec[1])
+            att = float(rec[3])
+        except Exception:
+            continue
+        if math.isfinite(x) and math.isfinite(y) and math.isfinite(att) and att > 0:
+            return True
+    return False
+
+
 def region(x: float, y: float) -> str:
     d = math.hypot(float(x), float(y))
     if d <= 4.5:
@@ -304,7 +322,12 @@ def build(args: argparse.Namespace) -> str:
     pos = canonical_pos(target.get("posClass") or target.get("position") or "")
     key_name = " ".join(x.strip() for x in (target.get("key") or "").split(",")[::-1]).strip()
     team = target.get("team") or args.team or ""
-    same = [p for p in players if canonical_pos(p.get("posClass") or p.get("position") or "") == pos and ((p.get("shotInfo") or {}).get("data") or {}).get("info")]
+    same = [
+        p
+        for p in players
+        if canonical_pos(p.get("posClass") or p.get("position") or "") == pos
+        and has_exact_shot_coords(p)
+    ]
     drafted_year_keys, drafted_name_team_keys, drafted_name_keys = load_drafted_keys()
     drafted = []
     for p in same:
@@ -315,8 +338,8 @@ def build(args: argparse.Namespace) -> str:
         token_nt = f"{nn}|{nt}"
         if token_y in drafted_year_keys or token_nt in drafted_name_team_keys or nn in drafted_name_keys:
             drafted.append(p)
-    if not drafted:
-        drafted = list(same)
+    # Keep drafted cohort strictly to players identified as drafted; do not
+    # backfill with all-position players when the drafted cohort is empty.
     same_wo_target = [p for p in same if not (norm_name(" ".join(x.strip() for x in (p.get("key") or "").split(",")[::-1])) == norm_name(key_name) and norm_team(p.get("team") or "") == norm_team(team))]
     all_bin, all_region = build_rates(same_wo_target)
     dr_bin, dr_region = build_rates(drafted)
