@@ -358,6 +358,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--sleep-sec", type=float, default=0.05)
     ap.add_argument("--max-requests", type=int, default=1000)
     ap.add_argument("--cache-dir", default="")
+    ap.add_argument(
+        "--enable-team-fallback",
+        action="store_true",
+        help="If set, scan /games by team when range query returns no records. Disabled by default to avoid high API usage.",
+    )
     return ap.parse_args()
 
 
@@ -379,9 +384,11 @@ def main() -> None:
 
     games = fetch_games(client, season, args.start_date, args.end_date)
     used_fallback = False
-    if not games:
+    if not games and args.enable_team_fallback:
         used_fallback = True
         games = fetch_games_by_team_fallback(client, season, args.start_date, args.end_date, local_teams)
+    elif not games:
+        log("[targets] no games returned by range query; team fallback disabled (default).")
 
     raw_team_names: set[str] = set()
     for game in games:
