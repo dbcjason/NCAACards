@@ -71,7 +71,8 @@ jobs:
             player_cards_pipeline/data/manual/pbp_metrics \
             player_cards_pipeline/data/manual/plays_by_year \
             cbbd_seasons/2024-2025/tables \
-            cbbd_seasons/2025-2026/tables
+            cbbd_seasons/2025-2026/tables \
+            cbbd_seasons/2026-2027/tables
 
       - name: Setup Python
         uses: actions/setup-python@v5

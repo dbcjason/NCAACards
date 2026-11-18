@@ -1,5 +1,5 @@
 {
-  "bt_advstats_csv": "data/bt/bt_advstats_2010_2026.csv",
+  "bt_advstats_csv": "data/bt/bt_advstats_2010_2027.csv",
   "pbp_metrics_csv_by_year": {
     "2010": "data/manual/pbp_metrics/2010/pbp_player_metrics_2010.csv",
     "2011": "data/manual/pbp_metrics/2011/pbp_player_metrics_2011.csv",
@@ -17,7 +17,8 @@
     "2023": "data/manual/pbp_metrics/2023/pbp_player_metrics_2023.csv",
     "2024": "data/manual/pbp_metrics/2024/pbp_player_metrics_2024.csv",
     "2025": "data/manual/pbp_metrics/2025/pbp_player_metrics_2025.csv",
-    "2026": "data/manual/pbp_metrics/2026/pbp_player_metrics_2026.csv"
+    "2026": "data/manual/pbp_metrics/2026/pbp_player_metrics_2026.csv",
+    "2027": "data/manual/pbp_metrics/2027/pbp_player_metrics_2027.csv"
   },
   "plays_csv_by_year": {
     "2010": "data/manual/plays_by_year/2010/plays_2010.csv.gz",
@@ -36,7 +37,8 @@
     "2023": "data/manual/plays_by_year/2023/plays_2023.csv.gz",
     "2024": "data/manual/plays_by_year/2024/plays_2024.csv.gz",
     "2025": "data/manual/plays_by_year/2025/plays_2025.csv.gz",
-    "2026": "../cbbd_seasons/2025-2026/tables/plays_regular.csv"
+    "2026": "../cbbd_seasons/2025-2026/tables/plays_regular.csv",
+    "2027": "../cbbd_seasons/2026-2027/tables/plays_regular.csv"
   },
   "bio_csv": "data/manual/bio/trank_data_5.csv",
   "advgames_csv_by_year": {
@@ -56,7 +58,8 @@
     "2023": "data/bt/advgames_labeled/2023_all_advgames_labeled.csv",
     "2024": "data/bt/advgames_labeled/2024_all_advgames_labeled.csv",
     "2025": "data/bt/advgames_labeled/2025_all_advgames_labeled.csv",
-    "2026": "data/bt/advgames_labeled/2026_all_advgames_labeled.csv"
+    "2026": "data/bt/advgames_labeled/2026_all_advgames_labeled.csv",
+    "2027": "data/bt/advgames_labeled/2027_all_advgames_labeled.csv"
   },
   "bt_playerstat_url_template": "https://barttorvik.com/{year}_pbp_playerstat_array.json"
 }

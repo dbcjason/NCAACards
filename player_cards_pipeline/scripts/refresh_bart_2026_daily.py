@@ -107,48 +107,48 @@ def write_csv(path: Path, header: list[str], rows: list[dict[str, str]]) -> None
             w.writerow({k: row.get(k, "") for k in header})
 
 
-def refresh_advstats_2026(bt_dir: Path) -> None:
-    url = "https://barttorvik.com/getadvstats.php?year=2026&csv=1"
+def refresh_advstats(bt_dir: Path, year: int, history_start: int = 2010) -> None:
+    url = f"https://barttorvik.com/getadvstats.php?year={year}&csv=1"
     txt = fetch_text(url)
     parsed = [r for r in csv.reader(txt.splitlines()) if r]
     if not parsed:
-        raise RuntimeError("Empty advstats response for 2026")
+        raise RuntimeError(f"Empty advstats response for {year}")
 
     # getadvstats.php returns data rows only (no header row).
     h26 = list(BT_ADV_HEADERS)
     rows26 = parsed
     h26_out = h26 + (["bt_fetch_year"] if "bt_fetch_year" not in h26 else [])
 
-    out_2026 = bt_dir / "bt_advstats_2026.csv"
-    out_2010_2026 = bt_dir / "bt_advstats_2010_2026.csv"
-    base_2010_2025 = bt_dir / "bt_advstats_2010_2025.csv"
+    out_year = bt_dir / f"bt_advstats_{year}.csv"
+    out_history = bt_dir / f"bt_advstats_{history_start}_{year}.csv"
+    base_history = bt_dir / f"bt_advstats_{history_start}_{year - 1}.csv"
     trank_dir = bt_dir / "trank_by_year"
     ensure_dir(trank_dir)
-    trank_2026 = trank_dir / "trank_2026.csv"
-    trank_2010_2026 = bt_dir / "trank_2010_2026.csv"
-    trank_2010_2025 = bt_dir / "trank_2010_2025.csv"
+    trank_year = trank_dir / f"trank_{year}.csv"
+    trank_history = bt_dir / f"trank_{history_start}_{year}.csv"
+    trank_base = bt_dir / f"trank_{history_start}_{year - 1}.csv"
 
     rows26_dict: list[dict[str, str]] = []
     rows26_trank: list[dict[str, str]] = []
     for r in rows26:
         rr = r + [""] * max(0, len(h26) - len(r))
         d = {h26[i]: rr[i] for i in range(len(h26))}
-        d["bt_fetch_year"] = "2026"
+        d["bt_fetch_year"] = str(year)
         rows26_dict.append(d)
         td = dict(d)
-        td["trank_year"] = "2026"
+        td["trank_year"] = str(year)
         rows26_trank.append(td)
 
-    write_csv(out_2026, h26_out, rows26_dict)
+    write_csv(out_year, h26_out, rows26_dict)
     trank_header = list(h26)
     if "trank_year" not in trank_header:
         trank_header.append("trank_year")
-    write_csv(trank_2026, trank_header, rows26_trank)
+    write_csv(trank_year, trank_header, rows26_trank)
 
-    base_h, base_rows = read_csv(base_2010_2025)
+    base_h, base_rows = read_csv(base_history)
     if not base_h:
         # Fall back to just 2026 if no base history available.
-        write_csv(out_2010_2026, h26_out, rows26_dict)
+        write_csv(out_history, h26_out, rows26_dict)
         return
 
     header = list(base_h)
@@ -158,18 +158,18 @@ def refresh_advstats_2026(bt_dir: Path) -> None:
 
     merged = []
     for r in base_rows:
-        if r.get("bt_fetch_year", "") == "2026":
+        if r.get("bt_fetch_year", "") == str(year):
             continue
         merged.append(r)
     merged.extend(rows26_dict)
 
-    write_csv(out_2010_2026, header, merged)
+    write_csv(out_history, header, merged)
 
     # Maintain a trank combined file with explicit source year.
-    th, tr = read_csv(trank_2010_2025)
+    th, tr = read_csv(trank_base)
     if not th:
         # Backfill from bt_advstats_2010_2025.csv if needed.
-        bh, br = read_csv(base_2010_2025)
+        bh, br = read_csv(base_history)
         if bh:
             th = list(bh)
             if "trank_year" not in th:
@@ -181,7 +181,7 @@ def refresh_advstats_2026(bt_dir: Path) -> None:
                 tr.append(d)
 
     if not th:
-        write_csv(trank_2010_2026, trank_header, rows26_trank)
+        write_csv(trank_history, trank_header, rows26_trank)
         return
 
     merged_trank_header = list(th)
@@ -189,21 +189,21 @@ def refresh_advstats_2026(bt_dir: Path) -> None:
         if c not in merged_trank_header:
             merged_trank_header.append(c)
 
-    tr_no_2026 = [r for r in tr if (r.get("trank_year", "") or r.get("year", "")) != "2026"]
-    tr_no_2026.extend(rows26_trank)
-    write_csv(trank_2010_2026, merged_trank_header, tr_no_2026)
+    tr_no_year = [r for r in tr if (r.get("trank_year", "") or r.get("year", "")) != str(year)]
+    tr_no_year.extend(rows26_trank)
+    write_csv(trank_history, merged_trank_header, tr_no_year)
 
 
-def refresh_playerstat_2026(bt_dir: Path) -> None:
+def refresh_playerstat(bt_dir: Path, year: int) -> None:
     raw_dir = bt_dir / "raw_playerstat_json"
     ensure_dir(raw_dir)
 
-    url = "https://barttorvik.com/2026_pbp_playerstat_array.json"
+    url = f"https://barttorvik.com/{year}_pbp_playerstat_array.json"
     raw = fetch_text(url)
-    (raw_dir / "2026_pbp_playerstat_array.json").write_text(raw, encoding="utf-8")
+    (raw_dir / f"{year}_pbp_playerstat_array.json").write_text(raw, encoding="utf-8")
 
     arr = json.loads(raw)
-    csv_out = bt_dir / "bt_playerstat_2026.csv"
+    csv_out = bt_dir / f"bt_playerstat_{year}.csv"
     header = [
         "year", "pid", "player", "team",
         "rim_made", "rim_miss", "rim_assisted",
@@ -216,7 +216,7 @@ def refresh_playerstat_2026(bt_dir: Path) -> None:
         if not isinstance(it, list) or len(it) < 15:
             continue
         rows.append({
-            "year": "2026",
+            "year": str(year),
             "pid": str(it[0]),
             "player": str(it[1]),
             "team": str(it[2]),
@@ -236,15 +236,15 @@ def refresh_playerstat_2026(bt_dir: Path) -> None:
     write_csv(csv_out, header, rows)
 
 
-def refresh_advgames_2026(bt_dir: Path) -> None:
+def refresh_advgames(bt_dir: Path, year: int) -> None:
     raw_dir = bt_dir / "raw_advgames_json"
     out_dir = bt_dir / "advgames_labeled"
     ensure_dir(raw_dir)
     ensure_dir(out_dir)
 
     urls = [
-        "https://barttorvik.com/2026_all_advgames.json.gz",
-        "https://barttorvik.com/2026_all_advgames.json",
+        f"https://barttorvik.com/{year}_all_advgames.json.gz",
+        f"https://barttorvik.com/{year}_all_advgames.json",
     ]
 
     payload: bytes | None = None
@@ -258,14 +258,14 @@ def refresh_advgames_2026(bt_dir: Path) -> None:
         except Exception:
             continue
     if not payload:
-        raise RuntimeError("Could not fetch 2026 all_advgames JSON")
+        raise RuntimeError(f"Could not fetch {year} all_advgames JSON")
 
     if used_url.endswith('.gz'):
         txt = gzip.decompress(payload).decode("utf-8", errors="replace")
     else:
         txt = payload.decode("utf-8", errors="replace")
 
-    (raw_dir / "2026_all_advgames.json").write_text(txt, encoding="utf-8")
+    (raw_dir / f"{year}_all_advgames.json").write_text(txt, encoding="utf-8")
 
     arr = json.loads(txt)
     rows: list[dict[str, str]] = []
@@ -277,23 +277,25 @@ def refresh_advgames_2026(bt_dir: Path) -> None:
             row[h] = str(it[i]) if i < len(it) and it[i] is not None else ""
         rows.append(row)
 
-    write_csv(out_dir / "2026_all_advgames_labeled.csv", ADVGAMES_HEADERS, rows)
+    write_csv(out_dir / f"{year}_all_advgames_labeled.csv", ADVGAMES_HEADERS, rows)
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Refresh 2026 Bart datasets used by player cards.")
+    ap = argparse.ArgumentParser(description="Refresh Bart datasets used by player cards.")
     ap.add_argument("--project-root", required=True)
+    ap.add_argument("--year", type=int, default=2026, help="Bart season year, e.g. 2027 for 2026-27.")
+    ap.add_argument("--history-start", type=int, default=2010)
     args = ap.parse_args()
 
     root = Path(args.project_root)
     bt_dir = root / "player_cards_pipeline" / "data" / "bt"
     ensure_dir(bt_dir)
 
-    refresh_advstats_2026(bt_dir)
-    refresh_playerstat_2026(bt_dir)
-    refresh_advgames_2026(bt_dir)
+    refresh_advstats(bt_dir, args.year, args.history_start)
+    refresh_playerstat(bt_dir, args.year)
+    refresh_advgames(bt_dir, args.year)
 
-    print("Bart 2026 refresh complete")
+    print(f"Bart {args.year} refresh complete")
 
 
 if __name__ == "__main__":
