@@ -70,6 +70,22 @@ jobs:
             --project-root . \
             --years 2027
 
+      - name: Recalculate statistical height (2027)
+        run: |
+          python3 player_cards_pipeline/scripts/train_height_profile_model.py \
+            --project-root . \
+            --bt-csv player_cards_pipeline/data/bt/bt_advstats_2010_2027.csv \
+            --enriched-dir player_cards_pipeline/data/manual/enriched_players/by_script_season \
+            --train-min-season 2019 \
+            --train-max-season 2025 \
+            --holdout-seasons 2025 \
+            --score-season 2027 \
+            --feature-set big \
+            --out-model-json player_cards_pipeline/data/models/height_profile_model_v1.json \
+            --out-score-csv player_cards_pipeline/output/height_profile_big_only_scores_2027.csv \
+            --out-dependency-csv player_cards_pipeline/output/height_profile_feature_dependency.csv \
+            --out-report-json player_cards_pipeline/output/height_profile_report_2027.json
+
       - name: Commit and push updates
         run: |
           git config user.name "github-actions[bot]"
@@ -77,6 +93,10 @@ jobs:
           git add player_cards_pipeline/data/bt/ || true
           git add player_cards_pipeline/data/manual/enriched_players/ || true
           git add player_cards_pipeline/data/bt/self_creation_by_year/ || true
+          git add player_cards_pipeline/data/models/height_profile_model_v1.json || true
+          git add player_cards_pipeline/output/height_profile_big_only_scores_2027.csv || true
+          git add player_cards_pipeline/output/height_profile_feature_dependency.csv || true
+          git add player_cards_pipeline/output/height_profile_report_2027.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
