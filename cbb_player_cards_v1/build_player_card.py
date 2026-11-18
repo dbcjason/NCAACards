@@ -26,8 +26,6 @@ import math
 import random
 import re
 import sqlite3
-import subprocess
-import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -3722,13 +3720,32 @@ def build_shot_diet_html(target: PlayerGameStats, bt_rows: list[dict[str, str]])
 """
 
 
-def build_team_impact_html(target: PlayerGameStats, bt_rows: list[dict[str, str]]) -> str:
-    if not bt_rows:
-        return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No Bart Torvik CSV loaded.</div></div>'
-
-    row = bt_find_target_row(bt_rows, target)
+def build_team_impact_html(
+    target: PlayerGameStats,
+    bt_rows: list[dict[str, str]],
+    impact_rows: list[dict[str, str]] | None = None,
+) -> str:
+    row = bt_find_target_row(bt_rows, target) if bt_rows else None
+    # The Hoop Explorer CSV has no nested on/off fields.  Prefer the compact
+    # PBP cache, which stores one row for the player's on-court events and one
+    # row for the corresponding team events with that player off the floor.
+    if impact_rows:
+        def matches(r: dict[str, str]) -> bool:
+            return (
+                norm_text(r.get("player", "")) == norm_text(target.player)
+                and norm_text(r.get("team", "")) == norm_text(target.team)
+                and norm_season(r.get("season", "")) == norm_season(target.season)
+            )
+        on_row = next((r for r in impact_rows if matches(r) and r.get("side") == "on"), None)
+        off_row = next((r for r in impact_rows if matches(r) and r.get("side") == "off"), None)
+        if on_row and off_row:
+            merged = dict(on_row)
+            merged.update({k: v for k, v in off_row.items() if k.startswith("off.")})
+            row = merged
     if not row:
-        return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No matching Bart row found for this player/team/season.</div></div>'
+        if not bt_rows:
+            return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No team-impact source loaded.</div></div>'
+        return '<div class="panel"><h3>Team Impact</h3><div class="shot-meta">No matching team-impact row found for this player/team/season.</div></div>'
 
     def val(key: str) -> float | None:
         v = to_float(row.get(key, ""))
@@ -4600,43 +4617,6 @@ def render_card(
     shot_makes = shot_header_makes if shot_header_makes is not None else stats.fgm
     shot_att = shot_header_attempts if shot_header_attempts is not None else stats.fga
     shot_pct = (100.0 * shot_makes / shot_att) if shot_att else 0.0
-    clipboard_controls_html = """
-  <div class="card-actions" data-export-ignore="true">
-    <button type="button" class="copy-card-button" onclick="copyCardResult()">Copy Card</button>
-    <span id="copy-card-status" class="copy-card-status"></span>
-  </div>
-"""
-    clipboard_script_html = """
-<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
-<script>
-async function copyCardResult() {
-  const status = document.getElementById("copy-card-status");
-  const setStatus = (message) => {
-    if (status) status.textContent = message;
-  };
-  try {
-    const root = document.querySelector(".card");
-    if (!root) throw new Error("Card not found.");
-    if (!navigator.clipboard) throw new Error("Clipboard is unavailable.");
-    if (window.htmlToImage && window.ClipboardItem) {
-      const blob = await window.htmlToImage.toBlob(root, {
-        backgroundColor: "#09090b",
-        cacheBust: true,
-        pixelRatio: 1,
-      });
-      if (!blob) throw new Error("Could not render card image.");
-      await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
-      setStatus("Copied image");
-      return;
-    }
-    await navigator.clipboard.writeText(document.documentElement.outerHTML);
-    setStatus("Copied HTML");
-  } catch (err) {
-    setStatus(err && err.message ? err.message : "Copy failed");
-  }
-}
-</script>
-"""
 
     pg = {
         "ppg": stats.ppg,
@@ -4686,31 +4666,6 @@ body {{
   border-radius: 12px;
   background: #000000;
   padding: 16px;
-}}
-.card-actions {{
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}}
-.copy-card-button {{
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #18181b;
-  color: var(--text);
-  cursor: pointer;
-  font: 700 12px "Segoe UI", Arial, sans-serif;
-  padding: 7px 10px;
-}}
-.copy-card-button:hover {{
-  border-color: var(--accent);
-}}
-.copy-card-status {{
-  color: var(--muted);
-  font-size: 12px;
 }}
 .title {{
   font-size: 44px;
@@ -5231,7 +5186,6 @@ body {{
 </style>
 </head>
 <body>
-  {clipboard_controls_html}
   <div class="wrap">
     <div class="card">
       <div class="title-row">
@@ -5284,198 +5238,11 @@ body {{
       {advanced_html}
     </div>
   </div>
-{clipboard_script_html}
 </body>
 </html>
 """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_doc, encoding="utf-8")
-
-
-def render_compare_page(card_a_path: Path, card_b_path: Path, out_path: Path) -> None:
-    card_a = card_a_path.read_text(encoding="utf-8")
-    card_b = card_b_path.read_text(encoding="utf-8")
-    title_a = html.escape(card_a_path.stem.replace("_", " "))
-    title_b = html.escape(card_b_path.stem.replace("_", " "))
-    html_doc = f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Player Card Compare</title>
-<style>
-:root {{
-  --bg: #09090b;
-  --panel: #18181b;
-  --line: #27272a;
-  --text: #f4f4f5;
-  --muted: #a1a1aa;
-  --accent: #ef4444;
-}}
-body {{
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Segoe UI", Arial, sans-serif;
-}}
-.page {{
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 24px;
-}}
-.toolbar {{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}}
-.toolbar-title {{
-  font-weight: 800;
-  margin-right: auto;
-}}
-.button {{
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ef4444;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 800;
-  padding: 10px 14px;
-}}
-.button.secondary {{
-  background: #18181b;
-  color: var(--text);
-}}
-.status {{
-  color: var(--muted);
-  font-size: 13px;
-}}
-.compare-shell {{
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #09090b;
-  padding: 4px;
-}}
-.compare-grid {{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px;
-}}
-.card-frame-wrap {{
-  height: 1500px;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #09090b;
-}}
-.card-label {{
-  color: var(--muted);
-  font-size: 12px;
-  padding: 8px 10px;
-}}
-iframe {{
-  width: 100%;
-  height: 2300px;
-  border: 0;
-  border-radius: 8px;
-  zoom: 0.65;
-}}
-@media (max-width: 1180px) {{
-  .compare-grid {{
-    grid-template-columns: 1fr;
-  }}
-  iframe {{
-    zoom: 0.75;
-  }}
-}}
-</style>
-</head>
-<body>
-  <main class="page">
-    <div class="toolbar" data-export-ignore="true">
-      <div class="toolbar-title">Player Card Compare</div>
-      <button type="button" class="button secondary" onclick="copyCompareHtml()">Copy HTML</button>
-      <button type="button" class="button" onclick="copyCompareImage()">Copy Image</button>
-      <span id="copy-status" class="status"></span>
-    </div>
-    <section class="compare-shell">
-      <div class="compare-grid">
-        <div class="card-frame-wrap">
-          <div class="card-label" data-export-ignore="true">{title_a}</div>
-          <iframe title="Card A" srcdoc="{html.escape(card_a, quote=True)}" onload="hideFrameControls(this)" sandbox="allow-same-origin allow-scripts"></iframe>
-        </div>
-        <div class="card-frame-wrap">
-          <div class="card-label" data-export-ignore="true">{title_b}</div>
-          <iframe title="Card B" srcdoc="{html.escape(card_b, quote=True)}" onload="hideFrameControls(this)" sandbox="allow-same-origin allow-scripts"></iframe>
-        </div>
-      </div>
-    </section>
-  </main>
-<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
-<script>
-const statusEl = document.getElementById("copy-status");
-function setStatus(message) {{
-  if (statusEl) statusEl.textContent = message;
-}}
-function hideFrameControls(frame) {{
-  const doc = frame && frame.contentDocument;
-  const controls = doc && doc.querySelectorAll("[data-export-ignore='true']");
-  if (!controls) return;
-  controls.forEach((el) => {{ el.style.display = "none"; }});
-}}
-async function copyCompareHtml() {{
-  try {{
-    await navigator.clipboard.writeText(document.documentElement.outerHTML);
-    setStatus("Copied HTML");
-  }} catch (err) {{
-    setStatus(err && err.message ? err.message : "Copy failed");
-  }}
-}}
-async function copyCompareImage() {{
-  try {{
-    if (!navigator.clipboard || !window.ClipboardItem || !window.htmlToImage) {{
-      throw new Error("Image clipboard copy is unavailable.");
-    }}
-    const frames = Array.from(document.querySelectorAll("iframe"));
-    if (frames.length < 2) throw new Error("Both cards need to be loaded before copying.");
-    const canvases = [];
-    for (const frame of frames) {{
-      const doc = frame.contentDocument;
-      const card = doc && (doc.querySelector(".wrap > .card") || doc.querySelector(".card") || doc.body);
-      if (!card) throw new Error("A card preview is still loading.");
-      canvases.push(await window.htmlToImage.toCanvas(card, {{
-        backgroundColor: "#09090b",
-        cacheBust: true,
-        pixelRatio: 1,
-      }}));
-    }}
-    const gap = 24;
-    const width = canvases[0].width + canvases[1].width + gap;
-    const height = Math.max(canvases[0].height, canvases[1].height);
-    const combined = document.createElement("canvas");
-    combined.width = width;
-    combined.height = height;
-    const ctx = combined.getContext("2d");
-    if (!ctx) throw new Error("Could not prepare the comparison image.");
-    ctx.fillStyle = "#09090b";
-    ctx.fillRect(0, 0, width, height);
-    ctx.drawImage(canvases[0], 0, 0);
-    ctx.drawImage(canvases[1], canvases[0].width + gap, 0);
-    const blob = await new Promise((resolve) => combined.toBlob(resolve, "image/png"));
-    if (!blob) throw new Error("Could not render comparison image.");
-    await navigator.clipboard.write([new ClipboardItem({{ [blob.type]: blob }})]);
-    setStatus("Copied image");
-  }} catch (err) {{
-    setStatus(err && err.message ? err.message : "Copy failed");
-  }}
-}}
-</script>
-</body>
-</html>
-"""
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(html_doc, encoding="utf-8")
-
 
 def choose_player(
     players: list[PlayerGameStats],
@@ -5692,24 +5459,6 @@ def main() -> None:
     ap.add_argument("--card-cache-db", default="", help="Optional precomputed season cache sqlite path.")
     ap.add_argument("--disable-card-cache", action="store_true", help="Disable reading precomputed card-section cache.")
     ap.add_argument("--out-html", required=True, help="Output HTML path.")
-    ap.add_argument("--compare-player", default="", help="Optional second player for a side-by-side compare page.")
-    ap.add_argument("--compare-team", default="", help="Optional team filter for the compare player.")
-    ap.add_argument("--compare-season", default="", help="Optional season filter for the compare player.")
-    ap.add_argument(
-        "--compare-plays-csv",
-        default="",
-        help="Optional plays CSV for the compare player; defaults to --plays-csv.",
-    )
-    ap.add_argument(
-        "--compare-card-html",
-        default="",
-        help="Optional output path for the second generated card HTML.",
-    )
-    ap.add_argument(
-        "--compare-out-html",
-        default="",
-        help="Optional output path for the side-by-side compare page.",
-    )
     ap.add_argument("--min-games", type=int, default=5, help="Min games for percentile cohort.")
     args = ap.parse_args()
     t0 = time.perf_counter()
@@ -5727,6 +5476,26 @@ def main() -> None:
         plays_path = Path(args.plays_csv)
         if plays_path.exists():
             _, plays_rows = read_csv_rows(plays_path)
+    # Use the daily compact cache automatically.  This keeps card builds fast
+    # while still supplying every shot coordinate and lineup-derived split.
+    cache_root = Path(__file__).resolve().parent.parent / "player_cards_pipeline" / "data" / "cache" / "pbp"
+    cache_season = norm_season(args.season or "")
+    if not plays_rows and cache_season:
+        shot_cache = cache_root / f"{cache_season}_shots.csv"
+        if shot_cache.exists():
+            _, cached_rows = read_csv_rows(shot_cache)
+            plays_rows = [
+                {
+                    "shotInfo.shooter.name": r.get("player", ""),
+                    "team": r.get("team", ""),
+                    "season": r.get("season", cache_season),
+                    "shotInfo.location.x": r.get("x", ""),
+                    "shotInfo.location.y": r.get("y", ""),
+                    "shotInfo.made": r.get("made", ""),
+                    "shotInfo.range": r.get("range", ""),
+                }
+                for r in cached_rows
+            ]
     stage("Loaded plays CSV")
 
     # Optional advanced sources.
@@ -5842,6 +5611,10 @@ def main() -> None:
     bt_fgm, bt_fga = bt_fg_totals_for_target(target, bt_rows)
     per_game_pcts: dict[str, float] = {}
     cached_payload: dict[str, Any] | None = None
+    impact_rows: list[dict[str, str]] = []
+    impact_cache = cache_root / f"{cache_season}_team_impact.csv"
+    if impact_cache.exists():
+        _, impact_rows = read_csv_rows(impact_cache)
 
     if not args.disable_card_cache:
         cache_db_path = Path(args.card_cache_db) if args.card_cache_db else default_card_cache_db_path(target.season)
@@ -5882,7 +5655,7 @@ def main() -> None:
         stage("Built self_creation_html")
         playstyles_html = build_playstyles_html(target, bt_rows)
         stage("Built playstyles_html")
-        team_impact_html = build_team_impact_html(target, bt_rows)
+        team_impact_html = build_team_impact_html(target, bt_rows, impact_rows)
         stage("Built team_impact_html")
         shot_diet_html = build_shot_diet_html(target, bt_rows)
         stage("Built shot_diet_html")
@@ -5895,10 +5668,8 @@ def main() -> None:
             if pps_oe_pct is not None:
                 p_rank = max(1, min(99, int(round(pps_oe_pct))))
                 pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
-            else:
-                pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
         else:
-            pps_line = "Points per Shot Over Expectation: N/A"
+            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
         per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
         stage("Built per_game_percentiles")
     if not per_game_pcts:
@@ -5995,58 +5766,6 @@ def main() -> None:
         xs = [float(s["x"]) for s in shots]
         ys = [float(s["y"]) for s in shots]
         print(f"Shot x range: {min(xs):.1f}..{max(xs):.1f} | y range: {min(ys):.1f}..{max(ys):.1f}")
-
-    if args.compare_player:
-        out_a = Path(args.out_html)
-        out_b = (
-            Path(args.compare_card_html)
-            if args.compare_card_html
-            else out_a.with_name(f"{out_a.stem}_compare_card{out_a.suffix}")
-        )
-        compare_out = (
-            Path(args.compare_out_html)
-            if args.compare_out_html
-            else out_a.with_name(f"{out_a.stem}_compare{out_a.suffix}")
-        )
-        cmd = [
-            sys.executable,
-            str(Path(__file__).resolve()),
-            "--player",
-            args.compare_player,
-            "--out-html",
-            str(out_b),
-            "--min-games",
-            str(args.min_games),
-        ]
-        option_pairs = [
-            ("--plays-csv", args.compare_plays_csv or args.plays_csv),
-            ("--team", args.compare_team),
-            ("--season", args.compare_season),
-            ("--bio-csv", args.bio_csv),
-            ("--bt-csv", args.bt_csv),
-            ("--lebron-csv", args.lebron_csv),
-            ("--rimfluence-csv", args.rimfluence_csv),
-            ("--style-csv", args.style_csv),
-            ("--advgames-csv", args.advgames_csv),
-            ("--pbp-metrics-csv", args.pbp_metrics_csv),
-            ("--rsci-csv", args.rsci_csv),
-            ("--destination-conference", args.destination_conference),
-            ("--bt-playerstat-json", args.bt_playerstat_json),
-            ("--bt-playerstat-url-template", args.bt_playerstat_url_template),
-            ("--card-cache-db", args.card_cache_db),
-        ]
-        for flag, value in option_pairs:
-            if value:
-                cmd.extend([flag, str(value)])
-        if not args.transfer_up:
-            cmd.append("--no-transfer-up")
-        if args.disable_card_cache:
-            cmd.append("--disable-card-cache")
-
-        subprocess.run(cmd, check=True)
-        render_compare_page(out_a, out_b, compare_out)
-        print(f"Wrote compare card: {out_b}")
-        print(f"Wrote compare page: {compare_out}")
 
 
 if __name__ == "__main__":
