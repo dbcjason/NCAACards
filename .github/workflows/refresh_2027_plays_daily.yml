@@ -46,10 +46,14 @@ jobs:
             ${EXTRA_ARGS}
       - name: Build compact card caches
         run: |
-          python3 player_cards_pipeline/scripts/build_pbp_player_cache.py \
-            --plays-csv cbbd_seasons/2026-2027/tables/plays_regular.csv \
-            --season 2027 \
-            --out-dir player_cards_pipeline/data/cache/pbp
+          if [ -f cbbd_seasons/2026-2027/tables/plays_regular.csv ]; then
+            python3 player_cards_pipeline/scripts/build_pbp_player_cache.py \
+              --plays-csv cbbd_seasons/2026-2027/tables/plays_regular.csv \
+              --season 2027 \
+              --out-dir player_cards_pipeline/data/cache/pbp
+          else
+            echo "No 2027 regular-season plays file yet; leaving the existing cache unchanged."
+          fi
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
