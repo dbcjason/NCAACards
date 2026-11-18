@@ -24,7 +24,7 @@ on:
         required: true
         default: "5"
   workflow_run:
-    workflows: ["Refresh 2026 Bart + Enriched (Daily 4AM ET)", "Refresh 2027 Bart + Hoop Explorer (Daily)"]
+    workflows: ["Refresh 2026 Bart + Enriched (Daily 4AM ET)", "Refresh 2027 Bart + Hoop Explorer (Daily)", "Refresh 2027 Plays (Daily)"]
     types: [completed]
 
 concurrency:
@@ -75,9 +75,12 @@ jobs:
           import os
 
           event_name = os.environ.get("GITHUB_EVENT_NAME", "")
+          workflow_name = os.environ.get("WORKFLOW_RUN_NAME", "")
           today = date.today()
           yesterday = today - timedelta(days=1)
           season = os.environ.get("INPUT_SEASON") or "2026"
+          if event_name == "workflow_run" and "2027" in workflow_name:
+              season = "2027"
           chunk_count = os.environ.get("INPUT_CHUNK_COUNT") or "10"
           min_games = os.environ.get("INPUT_MIN_GAMES") or "5"
           start_date = (os.environ.get("INPUT_START_DATE") or "").strip()
@@ -103,6 +106,7 @@ jobs:
           INPUT_SEASON: ${{ github.event.inputs.season }}
           INPUT_START_DATE: ${{ github.event.inputs.start_date }}
           INPUT_END_DATE: ${{ github.event.inputs.end_date }}
+          WORKFLOW_RUN_NAME: ${{ github.event.workflow_run.name }}
           INPUT_CHUNK_COUNT: ${{ github.event.inputs.chunk_count }}
           INPUT_MIN_GAMES: ${{ github.event.inputs.min_games }}
 
