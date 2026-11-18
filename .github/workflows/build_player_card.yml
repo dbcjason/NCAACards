@@ -180,7 +180,6 @@ jobs:
             )
           fi
           git sparse-checkout set --no-cone "${patterns[@]}"
-          PY
 
       - name: Validate required files
         run: |
