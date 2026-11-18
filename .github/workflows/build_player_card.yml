@@ -167,6 +167,7 @@ jobs:
             "/player_cards_pipeline/data/bt/bt_playerstat_${YEAR}.csv"
             "/player_cards_pipeline/data/bt/raw_playerstat_json/${YEAR}_pbp_playerstat_array.json"
             "/player_cards_pipeline/data/cache/card_sections/${YEAR}.sqlite"
+            "/player_cards_pipeline/data/manual/enriched_players/by_script_season/players_all_Men_scriptSeason_${YEAR}_fromJsonYear_$((YEAR - 1)).json"
             "/${bt_rel}"
           )
           if [ -n "$adv_rel" ]; then
