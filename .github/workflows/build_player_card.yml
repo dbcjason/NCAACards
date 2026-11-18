@@ -26,7 +26,7 @@ on:
         default: false
         type: boolean
       include_plays_data:
-        description: "Include plays/PBP inputs (slower checkout)"
+        description: "Include raw plays/PBP inputs (optional; daily compact cache is automatic)"
         required: false
         default: false
         type: boolean
@@ -60,11 +60,12 @@ jobs:
             player_cards_pipeline/output
             player_cards_pipeline/data/bt
             player_cards_pipeline/data/cache/section_payloads
+            player_cards_pipeline/data/cache/pbp
             player_cards_pipeline/data/manual/bio
             player_cards_pipeline/data/manual/rsci
             player_cards_pipeline/data/manual/enriched_players/by_script_season
 
-      - name: Optionally include plays/PBP paths
+      - name: Optionally include raw plays/PBP paths
         if: ${{ github.event.inputs.include_plays_data == 'true' }}
         run: |
           git sparse-checkout add \
