@@ -5170,6 +5170,54 @@ body {{
   text-align: right;
   font-variant-numeric: tabular-nums;
 }}
+.page-shell {{
+  position: relative;
+}}
+.export-rail {{
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+  width: 150px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}}
+.export-rail h3 {{
+  margin: 0 0 5px 0;
+  font-size: 13px;
+}}
+.export-rail p {{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}}
+.export-button {{
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-alt);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}}
+.export-button:hover {{
+  border-color: #60a5fa;
+}}
+.export-status {{
+  min-height: 14px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}}
 @media (max-width: 920px) {{
   .title-row {{ flex-direction: column; }}
   .grade-strip {{ min-width: 0; width: 100%; grid-template-columns: repeat(2, minmax(130px, 1fr)); }}
@@ -5182,10 +5230,14 @@ body {{
   .right-wrap {{ width: 100%; margin-top: 14px; }}
   .right-wrap {{ grid-template-columns: 1fr; }}
   .right-col {{ width: 100%; }}
+  .export-rail {{ position: static; width: auto; margin: 14px 16px 0; }}
+  .export-rail-actions {{ display: flex; gap: 8px; }}
+  .export-button {{ margin-top: 0; }}
 }}
 </style>
 </head>
 <body>
+  <div class="page-shell">
   <div class="wrap">
     <div class="card">
       <div class="title-row">
@@ -5238,6 +5290,61 @@ body {{
       {advanced_html}
     </div>
   </div>
+  <aside class="export-rail" aria-label="Card export controls">
+    <h3>Export card</h3>
+    <p>High-resolution PNG export of the card only.</p>
+    <div class="export-rail-actions">
+      <button class="export-button" type="button" onclick="exportCard('download')">Download PNG</button>
+      <button class="export-button" type="button" onclick="exportCard('clipboard')">Copy PNG</button>
+    </div>
+    <div class="export-status" id="export-status"></div>
+  </aside>
+  </div>
+<script>
+function exportCard(mode) {{
+  const status = document.getElementById('export-status');
+  const card = document.querySelector('.wrap > .card');
+  if (!card) {{ status.textContent = 'Card is unavailable.'; return; }}
+  status.textContent = 'Rendering PNG...';
+  const rect = card.getBoundingClientRect();
+  const scale = 2;
+  const clone = card.cloneNode(true);
+  const css = Array.from(document.styleSheets).map((sheet) => {{
+    try {{ return Array.from(sheet.cssRules).map((rule) => rule.cssText).join('\\n'); }}
+    catch (_) {{ return ''; }}
+  }}).join('\\n');
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (rect.width * scale) + '" height="' + (rect.height * scale) + '">' +
+    '<foreignObject width="100%" height="100%" transform="scale(' + scale + ')"><div xmlns="http://www.w3.org/1999/xhtml"><style>' + css + '</style>' + clone.outerHTML + '</div></foreignObject></svg>';
+  const image = new Image();
+  image.onload = () => {{
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.ceil(rect.width * scale);
+    canvas.height = Math.ceil(rect.height * scale);
+    const context = canvas.getContext('2d');
+    context.drawImage(image, 0, 0);
+    canvas.toBlob(async (blob) => {{
+      if (!blob) {{ status.textContent = 'Could not create PNG.'; return; }}
+      if (mode === 'clipboard') {{
+        if (!navigator.clipboard || typeof ClipboardItem === 'undefined') {{
+          status.textContent = 'Clipboard PNG is not supported here; use Download PNG.';
+          return;
+        }}
+        await navigator.clipboard.write([new ClipboardItem({{ 'image/png': blob }})]);
+        status.textContent = 'PNG copied.';
+      }} else {{
+        const link = document.createElement('a');
+        link.download = document.title.replace(/[^a-z0-9]+/gi, '_') + '.png';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        status.textContent = 'PNG downloaded.';
+      }}
+    }}, 'image/png');
+  }};
+  image.onerror = () => {{ status.textContent = 'Could not render PNG.'; }};
+  image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}}
+</script>
 </body>
 </html>
 """
