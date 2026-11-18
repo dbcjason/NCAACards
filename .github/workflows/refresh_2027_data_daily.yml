@@ -71,11 +71,12 @@ jobs:
             --years 2027
 
       - name: Recalculate statistical height (2027)
+        continue-on-error: true
         run: |
           python3 player_cards_pipeline/scripts/train_height_profile_model.py \
             --project-root . \
             --bt-csv player_cards_pipeline/data/bt/bt_advstats_2010_2027.csv \
-            --enriched-dir player_cards_pipeline/data/manual/enriched_players/by_script_season \
+            --enriched-script-dir player_cards_pipeline/data/manual/enriched_players/by_script_season \
             --train-min-season 2019 \
             --train-max-season 2025 \
             --holdout-seasons 2025 \
