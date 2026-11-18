@@ -5251,6 +5251,8 @@ def choose_player(
     season: str | None,
 ) -> PlayerGameStats:
     np = norm_player_name(player)
+    # Preserve compatibility with the earlier misspelling used in a card run.
+    np = {"tryan stokes": "tyran stokes"}.get(np, np)
     nt = norm_team(team or "")
     ns = norm_season(season or "")
 
@@ -5675,7 +5677,11 @@ def main() -> None:
                 p_rank = max(1, min(99, int(round(pps_oe_pct))))
                 pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
         else:
-            pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
+            pps_line = (
+                f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
+                if pps_oe is not None
+                else "Points per Shot Over Expectation: N/A (Percentile N/A)"
+            )
         per_game_pcts = build_per_game_percentiles(players, target, args.min_games, bt_rows=bt_rows)
         stage("Built per_game_percentiles")
     if not per_game_pcts:
@@ -5688,7 +5694,11 @@ def main() -> None:
                 p_rank = max(1, min(99, int(round(pps_oe_pct))))
                 pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% ({ordinal(p_rank)} Percentile)"
             else:
-                pps_line = f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
+                pps_line = (
+                    f"Points per Shot Over Expectation: {pps_oe:+.1f}% (Percentile N/A)"
+                    if pps_oe is not None
+                    else "Points per Shot Over Expectation: N/A (Percentile N/A)"
+                )
     if args.transfer_up:
         draft_projection_html = build_transfer_projection_html(target, args.destination_conference, bt_rows)
     # Keep creator tag out of panel boxes; footer is rendered in the template.
