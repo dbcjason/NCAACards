@@ -24,7 +24,7 @@ on:
         required: true
         default: "5"
   workflow_run:
-    workflows: ["Refresh 2026 Bart + Enriched (Daily 4AM ET)"]
+    workflows: ["Refresh 2026 Bart + Enriched (Daily 4AM ET)", "Refresh 2027 Bart + Hoop Explorer (Daily)"]
     types: [completed]
 
 concurrency:
