@@ -21,14 +21,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,74462,Brandon Weston,Southern Miss,4,3,1,2,6,1,1,2,1,0,0,0
 2027,74471,Mouhamed Sow,Rhode Island,0,2,0,0,0,0,0,0,0,0,0,0
 2027,74618,Chris Howell,New Mexico,1,3,1,0,0,0,2,2,2,0,0,0
-2027,74620,Tyler Lundblade,Tennessee,1,1,1,0,2,0,6,14,6,0,0,0
+2027,74620,Tyler Lundblade,Tennessee,1,1,1,0,2,0,7,19,7,0,0,0
 2027,74623,Tanner Thomas,Hofstra,6,1,2,5,12,0,8,12,8,0,0,0
 2027,74640,Justin Neely,Colorado,7,7,5,0,4,0,1,1,1,0,0,0
 2027,74680,Ashton Smith,UTSA,1,0,0,0,0,0,0,0,0,0,0,0
 2027,74707,Ndewedo Newbury,San Francisco,5,2,1,2,1,0,2,10,2,0,0,0
 2027,74728,Sir Issac Herron,Temple,2,0,1,0,0,0,0,0,0,0,0,0
 2027,74767,Ismail Habib,Incarnate Word,2,6,0,4,3,1,4,18,3,0,0,0
-2027,74771,Trey Kaufman-Renn,Kansas,7,2,2,6,1,2,2,0,1,0,0,0
+2027,74771,Trey Kaufman-Renn,Kansas,7,2,2,8,2,2,2,1,1,0,0,0
 2027,74845,Kyle Cuffe Jr.,St. John's,1,0,1,0,0,0,1,0,1,0,0,0
 2027,74891,Will McClendon,Pepperdine,2,1,0,0,0,0,1,4,1,0,0,0
 2027,74903,Mike James,South Florida,9,8,3,1,2,0,5,13,5,1,0,1
@@ -51,7 +51,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,75474,Logan Duncomb,Notre Dame,17,3,15,2,2,2,1,1,1,5,0,5
 2027,75482,Angelo Brizzi,North Carolina,1,2,0,0,0,0,2,1,2,0,0,0
 2027,75545,Griffin Barrouk,Sacred Heart,2,2,0,1,1,0,12,29,8,0,0,0
-2027,75551,Langston Redfield,UC Irvine,1,0,1,0,1,0,1,1,1,0,0,0
+2027,75551,Langston Redfield,UC Irvine,1,1,1,0,1,0,1,2,1,0,0,0
 2027,75595,Zach Clemence,Texas A&M,5,3,1,0,3,0,5,6,5,0,0,0
 2027,75658,Garrett Johnson,South Florida,9,3,7,1,1,0,12,18,12,1,0,1
 2027,75684,Jerrell Colbert,McNeese St.,2,4,2,1,0,0,0,0,0,1,0,1
@@ -80,7 +80,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76000,Luke Northweather,Missouri,0,1,0,0,0,0,0,0,0,0,0,0
 2027,76005,Maddox Monson,Eastern Washington,1,1,1,0,0,0,1,3,1,0,0,0
 2027,76007,Shaumba Ngoyi,Eastern Washington,0,0,0,1,0,1,0,0,0,0,0,0
-2027,76011,Javon Bennett,Gonzaga,2,1,1,2,3,0,3,4,3,0,0,0
+2027,76011,Javon Bennett,Gonzaga,2,1,1,2,4,0,3,7,3,0,0,0
 2027,76013,Jasen Green,Creighton,5,5,2,0,1,0,0,1,0,0,0,0
 2027,76022,Jack Collins,Monmouth,1,6,1,0,0,0,4,11,4,0,0,0
 2027,76023,Joe Hurlburt,The Citadel,2,3,2,0,3,0,4,3,4,0,0,0
@@ -94,7 +94,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76068,Michael Wolf,Xavier,0,1,0,0,0,0,0,2,0,0,0,0
 2027,76069,Josiah Davis,Cal St. Northridge,10,15,0,0,5,0,0,0,0,0,0,0
 2027,76074,Cam Thrower,Elon,5,2,1,1,1,0,3,11,3,0,0,0
-2027,76090,Kalu Anya,Virginia,5,2,1,0,0,0,0,4,0,0,0,0
+2027,76090,Kalu Anya,Virginia,5,2,1,0,0,0,0,5,0,0,0,0
 2027,76094,Sadiku Ibine Ayo,Iona,6,6,5,2,4,0,6,14,4,2,0,2
 2027,76098,Maleek Arington,Seattle,1,3,0,1,2,0,2,5,2,0,0,0
 2027,76100,Will Batchelder,Stonehill,1,1,1,0,1,0,0,8,0,0,0,0
@@ -113,7 +113,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76179,Geoff Sprouse,Mercyhurst,1,0,0,1,1,0,7,21,6,0,0,0
 2027,76181,JaVaughn Hannah,San Jose St.,3,1,1,4,1,1,3,9,3,0,0,0
 2027,76182,Seth Hubbard,Hampton,2,3,1,5,8,0,5,6,3,0,0,0
-2027,76185,Jasteven Walker,Alabama St.,2,1,1,0,1,0,0,1,0,0,0,0
+2027,76185,Jasteven Walker,Alabama St.,4,1,3,0,1,0,1,1,1,1,0,1
 2027,76193,Amani Lyles,Cincinnati,11,3,7,0,0,0,0,6,0,2,0,2
 2027,76199,Chris Morgan,Purdue Fort Wayne,0,1,0,0,0,0,2,4,2,0,0,0
 2027,76200,Kaleb Banks,Tulsa,4,2,3,0,0,0,0,4,0,0,0,0
@@ -135,7 +135,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76271,Josiah Harris,Louisiana,0,0,0,0,1,0,0,4,0,0,0,0
 2027,76282,Keelan Steele,Mercer,1,1,0,0,0,0,0,0,0,0,0,0
 2027,76287,Miles Webb,USC Upstate,8,4,4,1,2,0,0,1,0,1,0,0
-2027,76289,Trey Miller,Alabama St.,2,1,0,1,1,0,0,1,0,0,0,0
+2027,76289,Trey Miller,Alabama St.,3,3,0,4,4,1,1,1,1,0,0,0
 2027,76292,Magnus Entenmann,Stetson,11,3,5,4,2,3,2,7,2,1,0,0
 2027,76298,Seth Trimble,Louisville,9,7,4,4,2,0,2,11,2,2,1,2
 2027,76306,Damari Wheeler-Thomas,Boise St.,3,1,0,2,4,0,9,7,8,0,0,0
@@ -162,21 +162,21 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76415,Mason Nicholson,Georgia St.,7,4,6,1,3,1,0,0,0,2,0,2
 2027,76431,Ross Candelino,Fresno St.,3,4,0,2,2,0,7,14,7,0,0,0
 2027,76432,LeJuan Watts,Washington,2,0,2,2,2,1,2,5,2,0,0,0
-2027,76454,Adante’ Holiman,Old Dominion,2,4,0,1,3,0,10,17,9,0,0,0
-2027,76455,Isaiah Barganier,Alabama St.,3,5,2,0,0,0,0,3,0,0,0,0
+2027,76454,Adante’ Holiman,Old Dominion,3,5,0,1,5,0,10,19,9,0,0,0
+2027,76455,Isaiah Barganier,Alabama St.,4,5,2,0,0,0,1,5,1,0,0,0
 2027,76458,Wilguens Junior Exacte,Mount St. Mary's,12,7,8,4,3,1,4,9,4,1,0,0
 2027,76460,Ryan Zan,New Hampshire,8,6,5,2,5,0,6,12,6,1,0,1
 2027,76461,Chris Dockery,Nebraska Omaha,2,2,1,0,1,0,0,3,0,0,0,0
 2027,76475,Cade Bennett,Northern Arizona,0,2,0,0,0,0,4,6,4,0,0,0
 2027,76478,BJ Omot,Cal St. Northridge,9,5,4,1,4,0,3,13,3,1,0,1
-2027,76480,Jared Turner,Old Dominion,1,0,0,0,0,0,13,6,13,0,0,0
+2027,76480,Jared Turner,Old Dominion,1,0,0,0,0,0,16,9,16,0,0,0
 2027,76482,Rashad King,Northeastern,11,10,1,10,3,2,8,15,8,0,0,0
 2027,76483,Chase Cormier,The Citadel,0,0,0,2,1,0,4,9,3,0,0,0
 2027,76496,Andrew Ball,Richmond,12,2,9,1,2,0,2,5,2,5,1,5
 2027,76498,TJ Johnson,VMI,4,4,1,0,3,0,11,17,9,0,0,0
 2027,76504,Dionjahe Thomas,Northwestern St.,6,4,3,0,2,0,0,1,0,1,0,1
 2027,76508,Davion Cunningham,Morehead St.,0,0,0,0,1,0,0,3,0,0,0,0
-2027,76519,Xaivian Lee,Gonzaga,3,2,1,1,3,0,5,5,2,0,0,0
+2027,76519,Xaivian Lee,Gonzaga,4,3,2,2,3,0,5,7,2,0,0,0
 2027,76523,Caden Pierce,Purdue,6,4,3,0,0,0,3,4,3,1,1,0
 2027,76530,Marcus Jackson,Mercyhurst,4,2,2,0,1,0,0,2,0,0,0,0
 2027,76538,Leo Beath,UC San Diego,9,2,3,2,1,0,8,9,8,1,0,0
@@ -199,12 +199,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76583,Rodney Rice,USC,7,7,2,6,9,2,9,14,7,0,0,0
 2027,76603,Jevon Hill,San Diego,0,0,0,0,0,0,18,13,16,0,0,0
 2027,76606,Kalen Garry,South Dakota St.,6,5,1,3,4,0,5,4,4,0,0,0
-2027,76610,Paul McMillan IV,Alabama St.,3,7,1,0,4,0,7,4,3,0,0,0
+2027,76610,Paul McMillan IV,Alabama St.,9,11,2,1,5,0,8,6,4,0,0,0
 2027,76611,A'lahn Sumler,Pittsburgh,8,3,3,3,11,1,7,11,6,0,0,0
 2027,76615,LJ Wells,Louisville,1,1,0,0,0,0,0,1,0,1,0,0
 2027,76624,Cam Haffner,Oral Roberts,0,0,0,0,0,0,2,9,2,0,0,0
 2027,76633,Devon Arlington,Stonehill,2,2,1,1,6,1,1,7,0,0,0,0
-2027,76636,Nick Townsend,Stanford,19,1,3,5,5,1,3,4,3,0,0,0
+2027,76636,Nick Townsend,Stanford,20,2,4,5,6,1,3,4,3,0,0,0
 2027,76640,Nate Pickens,BYU,2,0,1,0,0,0,5,8,5,0,0,0
 2027,76641,Christian Fermin,Tennessee,1,1,1,0,0,0,0,0,0,0,0,0
 2027,76650,Deshawn Jean-Charles,LIU,1,0,0,1,1,0,0,5,0,0,0,0
@@ -232,13 +232,13 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76739,Reed Bailey,St. John's,4,4,1,0,2,0,0,0,0,0,0,0
 2027,76741,Cooper Noard,Samford,7,4,1,0,1,0,4,9,3,0,0,0
 2027,76746,Elijah Hulsewe,UCF,7,2,3,1,0,1,0,0,0,1,0,0
-2027,76747,Jeremy Foumena,UNLV,9,4,6,0,1,0,0,0,0,5,0,5
+2027,76747,Jeremy Foumena,UNLV,10,4,7,0,3,0,0,0,0,6,0,6
 2027,76750,Jaylen Thompson,Pacific,3,2,1,1,1,0,1,4,1,1,0,0
 2027,76755,Carter Bjerke,St. Thomas,6,2,3,1,1,0,9,20,8,0,0,0
 2027,76758,Benny Gealer,Illinois Chicago,0,3,0,6,3,1,5,15,5,0,0,0
 2027,76759,Ryan Agarwal,Loyola Chicago,2,3,1,1,0,0,4,17,4,0,0,0
 2027,76774,Halil Barre,Akron,2,1,1,0,1,0,0,1,0,0,0,0
-2027,76778,Terrance Ford Jr.,UNLV,0,1,0,0,0,0,0,0,0,0,0,0
+2027,76778,Terrance Ford Jr.,UNLV,0,1,0,0,0,0,0,3,0,0,0,0
 2027,76780,Dallin Hall,Utah St.,8,5,4,0,0,0,15,9,9,1,0,1
 2027,76784,Tanner Toolson,TCU,7,8,7,1,1,1,4,11,4,3,1,3
 2027,76785,Tanner Hayhurst,Western Michigan,1,3,1,0,2,0,4,8,4,0,0,0
@@ -264,7 +264,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,76885,Jayden Dawson,Loyola Chicago,3,1,2,0,1,0,6,13,6,0,0,0
 2027,76888,Jake Ensminger,Santa Clara,7,5,6,0,0,0,5,8,5,0,0,0
 2027,76889,Kosy Akametu,Iona,11,10,2,1,4,0,6,11,6,1,0,0
-2027,76893,Braden Huff,Gonzaga,14,6,9,7,11,3,0,2,0,0,0,0
+2027,76893,Braden Huff,Gonzaga,17,6,11,10,13,6,1,2,1,0,0,0
 2027,76894,Jaylen Peterson,Presbyterian,15,11,6,1,5,0,0,1,0,6,0,3
 2027,76897,Amaree Abram,Drexel,4,6,3,3,4,0,4,11,4,0,0,0
 2027,76901,Jordan Crawford,Missouri,0,0,0,0,0,0,2,1,2,0,0,0
@@ -312,10 +312,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77144,Yuto Yamanouchi-Williams,Southern Indiana,5,7,3,3,6,3,0,1,0,1,0,1
 2027,77147,Jaret Valencia,Wichita St.,1,0,0,0,0,0,0,3,0,0,0,0
 2027,77158,Devin Ceaser,UMBC,9,9,4,6,17,0,6,19,4,0,0,0
-2027,77164,Chauncey Wiggins,Gonzaga,0,0,0,0,1,0,1,1,1,0,0,0
+2027,77164,Chauncey Wiggins,Gonzaga,0,0,0,0,1,0,2,5,2,0,0,0
 2027,77177,Deuce Drake,Temple,9,5,1,1,3,0,1,2,1,0,0,0
 2027,77180,Chendall Weaver,Houston,4,3,1,0,2,0,2,3,2,2,0,0
-2027,77181,Tre White,Kansas,13,2,8,1,2,1,9,8,8,6,0,5
+2027,77181,Tre White,Kansas,17,3,12,2,3,1,10,8,9,7,0,6
 2027,77182,Brayden O'Connor,George Mason,6,6,1,2,4,0,4,8,4,1,0,0
 2027,77183,Vincent Iwuchukwu,Georgetown,23,5,16,5,4,4,0,1,0,9,0,9
 2027,77184,Oziyah Sellers,SMU,6,4,5,3,6,1,12,11,12,1,0,1
@@ -337,7 +337,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77241,Jackson Paveletzke,Ohio,7,6,2,1,1,0,4,0,3,0,0,0
 2027,77243,Robert Jennings,Maryland,3,1,1,0,0,0,1,3,1,0,0,0
 2027,77244,Pop Isaacs,Oklahoma,3,3,1,0,0,0,12,18,10,0,0,0
-2027,77251,Christian Reeves,Kansas,8,2,4,2,1,0,0,0,0,4,0,3
+2027,77251,Christian Reeves,Kansas,10,2,6,2,1,0,0,0,0,6,0,5
 2027,77254,Jaden Schutt,Kansas St.,0,0,0,1,1,0,10,13,9,0,0,0
 2027,77255,Noah Shelby,UT Arlington,0,0,0,1,4,0,10,15,8,0,0,0
 2027,77259,Mason Falslev,Utah St.,22,8,10,8,8,3,4,9,4,1,1,1
@@ -373,7 +373,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77349,Danilo Jovanovich,Milwaukee,9,4,6,5,14,0,0,2,0,0,0,0
 2027,77350,Favour Aire,Coppin St.,1,1,0,1,2,1,0,1,0,0,0,0
 2027,77356,Vernon Collins Jr.,UNC Greensboro,1,0,0,0,1,0,0,1,0,0,0,0
-2027,77378,Jed Miller,Montana St.,1,1,0,2,1,0,6,11,3,0,0,0
+2027,77378,Jed Miller,Montana St.,1,1,0,2,1,0,7,16,3,0,0,0
 2027,77390,Precious Idiaru,IU Indy,3,4,1,0,1,0,4,14,4,1,0,1
 2027,77393,Aidan Mahaney,UC Santa Barbara,3,2,2,1,0,0,6,6,5,0,0,0
 2027,77402,Kevin Gad,Saint Mary's,2,1,2,0,0,0,4,4,4,0,0,0
@@ -416,7 +416,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77714,JT Rock,Kansas St.,1,0,1,1,1,0,0,1,0,0,0,0
 2027,77719,Dani Pounds,Louisiana,5,6,4,0,5,0,1,4,1,4,2,3
 2027,77720,Grant Stubblefield,Nebraska Omaha,8,11,1,4,3,0,3,8,3,0,0,0
-2027,77722,Josh Jones,North Dakota,3,2,1,0,1,0,0,1,0,1,0,1
+2027,77722,Josh Jones,North Dakota,3,3,1,0,2,0,0,1,0,1,0,1
 2027,77726,Tito Deng,Charleston Southern,1,3,1,1,0,1,0,0,0,0,0,0
 2027,77729,Isaiah Manning,Western Carolina,9,4,3,3,4,0,2,19,1,0,1,0
 2027,77730,Jace Posey,UT Rio Grande Valley,17,9,10,3,6,2,0,3,0,3,0,2
@@ -462,7 +462,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77823,Chuck Bailey III,Delaware,6,7,1,6,6,1,9,10,8,0,1,0
 2027,77824,Braylon Jackson,South Carolina St.,0,3,0,0,4,0,2,6,2,0,0,0
 2027,77826,Joshua Hughes,USC,3,0,3,0,0,0,1,2,1,1,0,1
-2027,77831,Khoi Thurmon,Old Dominion,6,6,0,1,5,0,2,2,2,0,0,0
+2027,77831,Khoi Thurmon,Old Dominion,6,7,0,2,8,1,2,3,2,0,0,0
 2027,77833,Corey Hadnot II,Houston,4,1,1,5,4,1,1,9,1,0,0,0
 2027,77834,Myles Colvin,Cincinnati,4,3,1,0,0,0,9,12,8,0,1,0
 2027,77847,Jacob Meyer,Georgia St.,11,16,0,11,8,2,8,14,5,0,1,0
@@ -479,7 +479,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77889,Jason Rivera-Torres,High Point,9,10,2,5,4,0,3,7,1,1,0,0
 2027,77890,"JaQualon ""JQ"" Roberts",Davidson,3,1,2,0,0,0,0,0,0,2,1,1
 2027,77891,DaJohn Craig,Coastal Carolina,0,0,0,1,1,0,4,13,4,0,0,0
-2027,77892,Jeremy Fears Jr.,Michigan St.,8,3,2,4,3,0,5,8,5,0,0,0
+2027,77892,Jeremy Fears Jr.,Michigan St.,8,6,2,4,3,0,5,8,5,0,0,0
 2027,77902,Takai Simpkins,Lipscomb,18,18,5,3,9,1,8,25,8,2,0,1
 2027,77904,Youssouf Singare,Wagner,9,6,5,2,2,0,0,1,0,2,0,2
 2027,77905,Jayden Ross,Connecticut,7,2,3,1,2,1,5,7,5,3,1,1
@@ -488,7 +488,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77914,Matai Baptiste,Boston University,2,4,1,0,0,0,1,6,1,0,0,0
 2027,77916,Bilal Abdur-Rahman,Alabama A&M,2,4,1,0,6,0,3,6,3,0,0,0
 2027,77929,Malek Gomma,Utah,8,1,6,0,2,0,0,0,0,5,0,5
-2027,77930,Will Heimbrodt,Seattle,18,6,6,4,3,1,3,5,2,3,0,2
+2027,77930,Will Heimbrodt,Seattle,22,9,6,4,5,1,3,6,2,3,0,2
 2027,77931,David Tubek,USC Upstate,9,6,4,5,8,0,5,13,3,0,0,0
 2027,77932,Isaiah Coleman,UTSA,4,4,2,6,4,1,4,4,3,1,0,1
 2027,77933,Bukky Oboye,Auburn,6,1,6,0,1,0,0,0,0,5,0,5
@@ -500,7 +500,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,77941,Luke Wilson,Syracuse,12,2,6,0,3,0,0,0,0,5,0,5
 2027,77942,Jordan Marsh,Temple,8,8,1,2,1,0,4,19,2,0,0,0
 2027,77944,Ma'Shy Hill,Jacksonville St.,1,1,0,2,0,2,0,0,0,0,0,0
-2027,77945,Darrion Baker,SIU Edwardsville,3,0,1,1,2,0,3,5,3,0,0,0
+2027,77945,Darrion Baker,SIU Edwardsville,3,1,1,2,3,1,6,8,6,0,0,0
 2027,77950,Koree Cotton,DePaul,9,5,5,2,6,0,10,15,10,1,0,1
 2027,77951,Michael Belle,VCU,2,4,1,1,0,1,2,2,2,1,1,1
 2027,77952,AJ Clark,VMI,4,1,2,0,1,0,0,1,0,2,0,0
@@ -531,7 +531,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78022,Jordan Clayton,Massachusetts,2,6,0,5,3,1,9,16,8,0,0,0
 2027,78023,Dez White,Temple,0,0,0,0,1,0,6,10,6,0,0,0
 2027,78024,Blake Barkley,Grand Canyon,7,2,5,0,0,0,4,3,3,2,1,2
-2027,78025,Kaleb Glenn,Michigan St.,7,4,4,0,2,0,1,5,1,1,0,1
+2027,78025,Kaleb Glenn,Michigan St.,7,6,4,0,3,0,1,7,1,1,0,1
 2027,78026,Dennis Evans,Oregon St.,3,1,3,0,0,0,0,0,0,3,0,3
 2027,78027,Curtis Williams Jr.,High Point,2,3,1,2,2,0,4,18,4,0,0,0
 2027,78028,Ty-Laur Johnson,Tennessee St.,9,9,1,4,2,0,2,8,2,0,0,0
@@ -568,7 +568,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78101,Chris Fields Jr.,Oakland,36,19,14,3,13,2,1,1,1,3,1,2
 2027,78103,Cameron Barnes,Cal St. Bakersfield,0,1,0,0,0,0,0,0,0,0,0,0
 2027,78105,Rashaud Marshall,Austin Peay,2,4,1,1,3,0,0,0,0,1,0,1
-2027,78108,Jordan Pickett,SIU Edwardsville,3,5,0,4,6,1,3,12,2,0,0,0
+2027,78108,Jordan Pickett,SIU Edwardsville,6,6,0,5,8,1,5,14,3,0,0,0
 2027,78109,Tai Hamilton,Winthrop,0,2,0,0,0,0,0,0,0,0,0,0
 2027,78112,Eli Wilborn,Merrimack,5,4,2,0,1,0,0,0,0,0,0,0
 2027,78114,Miles Heide,Virginia Tech,9,0,6,1,0,0,0,0,0,2,0,2
@@ -626,7 +626,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78222,Arden Conyers,Charlotte,0,0,0,0,0,0,5,5,5,0,0,0
 2027,78226,Lazar Djokovic,VCU,8,6,6,1,4,1,1,6,1,5,0,5
 2027,78227,Jonas Sirtautas,Georgia St.,0,1,0,0,0,0,0,0,0,0,0,0
-2027,78228,Christian Bliss,Stanford,2,1,0,2,7,0,6,5,6,0,0,0
+2027,78228,Christian Bliss,Stanford,2,3,0,2,10,0,8,11,8,0,0,0
 2027,78230,Kris Parker,Kennesaw St.,5,6,1,0,0,0,1,6,1,0,0,0
 2027,78232,Jarin Stevenson,North Carolina,8,2,5,2,2,1,1,11,1,5,0,3
 2027,78233,Mo Dioubate,LSU,12,6,8,2,6,1,3,4,3,0,0,0
@@ -646,7 +646,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78261,Isaiah Griffin,Maryland Eastern Shore,4,6,0,7,7,1,8,11,6,0,0,0
 2027,78262,Braelon Green,Eastern Michigan,0,2,0,3,5,0,0,1,0,0,0,0
 2027,78264,Sebastian Hartmann,UMKC,11,5,5,1,1,1,3,6,3,0,0,0
-2027,78265,Mason Williams,Seattle,6,4,1,3,7,0,7,10,5,0,0,0
+2027,78265,Mason Williams,Seattle,8,5,1,4,7,0,12,17,8,0,0,0
 2027,78267,Chip Brunt,Jackson St.,4,4,1,1,4,0,2,0,1,1,0,0
 2027,78271,Vice Zanki,La Salle,2,1,2,1,1,0,2,10,2,0,0,0
 2027,78272,Emmett Marquardt,Eastern Washington,5,3,3,8,3,5,5,12,4,1,0,1
@@ -654,7 +654,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78277,Cade Phillips,Texas A&M,10,5,7,0,0,0,0,0,0,5,1,4
 2027,78280,J.P. Estrella,Michigan,22,7,14,2,1,1,2,4,2,7,0,6
 2027,78281,Rueben Chinyelu,Florida,16,4,11,2,4,2,0,0,0,3,0,3
-2027,78282,Christian King,Montana St.,8,3,2,3,5,0,10,16,10,1,0,0
+2027,78282,Christian King,Montana St.,8,4,2,4,6,0,12,19,11,1,0,0
 2027,78283,Max Frazier,Hampton,6,6,5,3,7,1,0,0,0,3,0,3
 2027,78285,Mike Evbagharu,North Alabama,10,3,2,0,0,0,3,1,3,1,0,0
 2027,78291,Tunde Vahlberg Fasasi,New Mexico,4,1,4,0,0,0,12,16,12,2,0,2
@@ -719,7 +719,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78467,Ryan Beasley,Washington,2,1,0,0,0,0,6,9,4,0,0,0
 2027,78468,Grant Gondrezick II,Jacksonville St.,0,0,0,0,4,0,1,0,1,0,0,0
 2027,78469,Aidan Burke,UC San Diego,0,1,0,0,2,0,1,6,1,0,0,0
-2027,78470,Sebastian Mack,UNLV,12,4,0,5,8,1,5,11,3,0,0,0
+2027,78470,Sebastian Mack,UNLV,12,5,0,9,12,2,6,15,4,0,0,0
 2027,78471,Kendall Campbell,East Tennessee St.,7,5,2,1,1,1,0,0,0,1,0,1
 2027,78488,Stef van Bussel,South Dakota,14,3,5,1,2,1,0,0,0,1,0,1
 2027,78490,Isaac Ondekane,Nebraska Omaha,6,6,3,0,0,0,0,0,0,0,0,0
@@ -740,7 +740,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78563,Tylen Riley,Cincinnati,5,7,2,3,5,0,7,8,5,1,0,0
 2027,78570,Jermaine Coleman,Youngstown St.,2,2,0,0,0,0,4,11,4,0,0,0
 2027,78571,Tyler Perkins,Villanova,6,6,5,6,6,0,11,23,5,0,0,0
-2027,78578,Junseok Yeo,Seattle,4,6,1,1,2,1,4,10,4,1,0,0
+2027,78578,Junseok Yeo,Seattle,5,7,1,1,3,1,5,14,5,1,0,0
 2027,78585,Cade Kelderman,South Dakota,2,2,1,1,1,0,7,14,7,0,0,0
 2027,78586,Kayden Fish,Belmont,4,4,1,0,1,0,0,1,0,0,0,0
 2027,78587,Lucius Gibson-Savadel,Maryland Eastern Shore,8,14,5,1,3,1,0,0,0,1,0,1
@@ -778,7 +778,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78651,Josiah Lake II,Oregon St.,9,7,1,2,3,0,8,9,8,1,1,0
 2027,78654,David Fuchs,Clemson,10,3,8,2,2,1,2,3,1,4,0,4
 2027,78655,Connor Dubsky,UNC Asheville,2,0,1,0,1,0,12,16,11,0,0,0
-2027,78656,Nils Cooper,UC Irvine,4,1,3,1,0,1,0,2,0,1,0,1
+2027,78656,Nils Cooper,UC Irvine,7,1,4,1,1,1,0,3,0,2,0,2
 2027,78659,Misha Bednostin,Lafayette,2,2,0,0,0,0,0,0,0,1,0,0
 2027,78663,Juslin Bodo Bodo,Baylor,2,1,1,0,0,0,0,0,0,1,0,1
 2027,78667,Yanis Ndjonga,Southeastern Louisiana,10,10,3,0,1,0,3,4,3,0,1,0
@@ -836,7 +836,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78790,Eric Parnell,Georgia St.,2,0,2,0,0,0,7,2,7,1,0,1
 2027,78797,Izzy Miles,Northwestern St.,1,1,0,1,1,0,1,3,1,0,0,0
 2027,78798,Emmanuel Innocenti,Arizona St.,1,0,1,0,0,0,1,3,1,0,0,0
-2027,78799,Bubu Benjamin,Old Dominion,7,5,2,1,5,0,8,13,6,1,0,0
+2027,78799,Bubu Benjamin,Old Dominion,8,6,2,1,5,0,10,15,8,1,0,0
 2027,78812,Chris Mubiru,Houston Christian,2,0,1,0,0,0,1,2,1,0,0,0
 2027,78815,Baye Ndongo,Pittsburgh,26,11,17,7,6,5,2,4,2,8,1,6
 2027,78816,Darryl Simmons II,Villanova,2,3,0,2,2,1,5,10,3,0,0,0
@@ -871,7 +871,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,78893,Evan Ipsaro,Miami OH,3,7,1,1,2,0,3,7,0,0,0,0
 2027,78897,Paul Djobet,Texas St.,4,2,1,2,3,0,9,9,8,1,0,1
 2027,78898,Eian Elmer,Wisconsin,6,7,2,3,3,0,7,9,3,0,0,0
-2027,78899,Keanu Dawes,Kansas,2,3,2,0,0,0,2,3,2,1,0,1
+2027,78899,Keanu Dawes,Kansas,5,3,3,0,0,0,2,5,2,2,0,2
 2027,78900,DJ Dudley,New Mexico St.,3,5,1,5,5,0,4,12,3,1,0,1
 2027,78902,Trenton Walters,Niagara,1,3,1,0,0,0,1,5,0,0,0,0
 2027,78903,Khaden Bennett,Wyoming,13,10,3,1,1,0,1,11,1,0,0,0
@@ -929,7 +929,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79020,Antallah Sandlin-El,UAB,1,1,0,2,3,1,3,6,3,0,0,0
 2027,79021,Titas Sargiunas,Lipscomb,7,6,0,3,1,2,12,28,12,0,0,0
 2027,79022,Luca Ace-Nasteski,Harvard,2,0,2,0,0,0,0,0,0,0,0,0
-2027,79023,Miles Rubin,Tennessee,10,0,10,0,2,0,0,0,0,6,0,6
+2027,79023,Miles Rubin,Tennessee,15,2,14,1,2,1,0,0,0,9,1,9
 2027,79024,Jadin Collins-Roberts,Marist,7,10,1,8,13,2,2,6,0,0,1,0
 2027,79025,Jaden Winston,Pacific,6,4,1,5,6,3,7,12,6,0,0,0
 2027,79027,Troy Cicero Jr.,Loyola MD,0,0,0,0,3,0,4,6,4,0,0,0
@@ -965,7 +965,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79076,Jayden Hastings,Cincinnati,0,1,0,0,0,0,0,0,0,0,0,0
 2027,79077,Trey Autry,Wisconsin,0,2,0,0,0,0,1,4,1,0,0,0
 2027,79080,Josh Hubbard,Mississippi St.,5,4,0,4,12,1,14,15,10,0,0,0
-2027,79081,Harrison Alexander,SIU Edwardsville,2,0,0,0,1,0,1,3,1,0,0,0
+2027,79081,Harrison Alexander,SIU Edwardsville,3,0,1,0,2,0,2,5,2,1,0,1
 2027,79083,Adrian Myers,James Madison,6,4,3,5,8,0,6,8,5,0,0,0
 2027,79084,Elijah Price,Nevada,11,15,8,3,4,3,1,4,1,2,0,2
 2027,79085,Khali Horton,Morgan St.,0,0,0,1,0,1,1,3,1,0,0,0
@@ -984,7 +984,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79125,Aaron Clark,Little Rock,6,9,1,1,7,0,5,12,3,0,0,0
 2027,79127,Wesley Yates III,Washington,1,2,0,0,0,0,4,10,3,0,0,0
 2027,79129,Jamari McDowell,Wake Forest,4,3,2,4,5,1,4,14,4,0,0,0
-2027,79130,Elijah Gertrude,Virginia,5,3,3,2,2,1,6,8,4,2,0,1
+2027,79130,Elijah Gertrude,Virginia,7,4,3,2,2,1,9,8,7,2,0,1
 2027,79131,Jayson Petty,Central Michigan,3,4,0,2,3,0,4,6,3,0,0,0
 2027,79132,Anthony Robinson,Pepperdine,4,4,3,0,0,0,0,0,0,2,1,1
 2027,79144,Ryan Sabol,Providence,0,0,0,0,0,0,1,9,1,0,0,0
@@ -993,15 +993,16 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79150,Churchill Abass,UCF,3,0,1,0,0,0,0,0,0,0,0,0
 2027,79151,Dramane Camara,Norfolk St.,2,2,0,1,1,1,9,8,6,0,0,0
 2027,79154,Ben Oosterbaan,San Francisco,9,4,3,0,2,0,8,14,8,1,0,0
-2027,79155,Aidan Cammann,Stanford,9,4,3,1,2,1,1,2,1,1,0,1
+2027,79155,Aidan Cammann,Stanford,9,4,3,1,2,1,3,2,3,1,0,1
 2027,79156,Andrej Stojakovic,Illinois,35,14,10,7,4,0,6,10,6,3,0,3
 2027,79160,Marcus Adams Jr.,Hawaii,1,3,0,1,0,0,3,10,1,0,0,0
 2027,79165,Derin Saran,Richmond,6,7,3,2,2,0,7,9,5,1,0,1
+2027,79166,Ben Egbo,UC Irvine,0,1,0,0,0,0,0,0,0,0,0,0
 2027,79168,Berke Buyuktuncel,Vanderbilt,11,7,9,0,2,0,4,3,4,4,0,4
 2027,79169,Dusty Stromer,San Diego,4,5,2,2,4,1,5,9,5,0,0,0
 2027,79172,Gehrig Normand,SMU,0,0,0,0,0,0,0,1,0,0,0,0
 2027,79173,Xavier Booker,UCLA,0,0,0,2,1,1,1,1,1,0,0,0
-2027,79174,Coen Carr,Michigan St.,8,6,7,2,2,0,3,2,3,3,0,3
+2027,79174,Coen Carr,Michigan St.,8,8,7,2,5,0,4,3,4,3,0,3
 2027,79177,Brandon Williams,UCLA,6,3,3,5,4,3,0,4,0,2,0,1
 2027,79179,Rashaan Mbemba,Colorado St.,5,3,2,2,2,1,3,1,3,1,0,0
 2027,79180,Kyan Evans,Minnesota,12,13,3,2,1,0,10,16,8,1,1,1
@@ -1025,7 +1026,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79229,Xavier Thomas,Saint Peter's,5,7,1,6,13,1,10,21,10,0,1,0
 2027,79230,Sonny Wilson,South Florida,12,8,3,14,21,1,4,8,4,0,0,0
 2027,79231,Pasha Goodarzi,San Jose St.,1,0,0,0,1,0,2,3,2,0,0,0
-2027,79232,Sam Lewis,Virginia,18,6,5,3,6,1,9,15,8,4,0,0
+2027,79232,Sam Lewis,Virginia,19,8,6,4,6,1,11,19,10,4,0,0
 2027,79234,Grgur Brcic,Long Beach St.,0,1,0,0,0,0,0,0,0,0,0,0
 2027,79235,John Broom,Vermont,4,4,1,0,1,0,1,7,0,0,0,0
 2027,79236,Marcus Millender,Georgia,9,6,0,4,7,0,9,12,5,0,0,0
@@ -1035,7 +1036,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79248,Jordan Burks,Oklahoma St.,11,6,7,0,2,0,8,7,6,6,0,6
 2027,79249,D.J. Wagner,Maryland,13,7,2,1,1,0,4,11,2,2,0,1
 2027,79253,Aaron Bradshaw,Tennessee St.,5,6,3,1,7,1,4,8,4,3,1,2
-2027,79256,Dai Dai Ames,Tennessee,5,2,1,2,4,1,3,5,3,0,0,0
+2027,79256,Dai Dai Ames,Tennessee,5,2,1,5,4,2,3,7,3,0,0,0
 2027,79257,RJ Jones,Washington St.,0,1,0,0,0,0,4,4,4,0,0,0
 2027,79258,Macaleab Rich,Arkansas Pine Bluff,12,10,5,6,12,0,0,6,0,2,0,2
 2027,79259,RJ Johnson,Mississippi St.,9,10,0,4,4,0,5,14,4,3,0,0
@@ -1053,9 +1054,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79284,Yaniel Rivera,Abilene Christian,3,5,1,4,4,0,1,16,1,0,0,0
 2027,79285,Etienne Strothers,Hampton,4,6,0,1,3,0,0,6,0,0,1,0
 2027,79288,Assane Diop,UMKC,14,4,7,1,6,0,3,3,2,3,0,3
-2027,79289,Zamoku Weluche-Ume,Old Dominion,5,4,1,0,1,0,0,4,0,2,0,1
-2027,79296,Jurian Dixon,Virginia,1,2,0,5,1,2,2,4,2,1,0,0
-2027,79301,Connor Sevilla,UC Davis,5,2,2,3,3,1,3,10,3,0,0,0
+2027,79289,Zamoku Weluche-Ume,Old Dominion,9,6,2,0,2,0,0,4,0,3,0,2
+2027,79296,Jurian Dixon,Virginia,1,2,0,5,1,2,2,5,2,1,0,0
+2027,79301,Connor Sevilla,UC Davis,7,4,3,4,5,2,3,16,3,0,0,0
 2027,79302,Randall Pettus II,Elon,5,2,2,2,7,1,5,10,3,0,0,0
 2027,79303,Tyler Tejada,Cincinnati,5,7,3,2,3,0,7,11,6,1,0,1
 2027,79304,Mekhi Lowery,Illinois Chicago,5,5,1,2,4,0,0,0,0,2,0,1
@@ -1068,8 +1069,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,79315,Nils Machowski,Connecticut,0,2,0,0,0,0,1,7,1,0,0,0
 2027,79335,Xinyi Li,LIU,4,2,1,0,2,0,2,4,2,0,0,0
 2027,79337,Arman Madi,Sacramento St.,1,1,1,0,0,0,0,1,0,0,0,0
-2027,79339,"Dennis Parker, Jr.",Kansas,5,1,2,0,0,0,0,2,0,2,0,1
-2027,79340,Zach Kraft,North Dakota,3,1,3,0,1,0,7,19,6,0,0,0
+2027,79339,"Dennis Parker, Jr.",Kansas,7,1,3,1,0,0,0,4,0,2,0,1
+2027,79340,Zach Kraft,North Dakota,5,1,5,0,1,0,9,25,8,0,0,0
 2027,79344,Davide Poser,New Hampshire,0,0,0,0,0,0,0,1,0,0,0,0
 2027,79349,Ethan Anish,Duquesne,0,0,0,0,0,0,0,1,0,0,0,0
 2027,79353,Caleb Foster,Duke,5,3,1,2,2,0,11,18,10,1,0,1
@@ -1122,8 +1123,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,126545,Amier Ali,California,0,0,0,0,1,0,1,6,1,0,0,0
 2027,126547,Jaylen Robinson,Sacred Heart,23,17,17,3,0,0,1,1,1,9,1,9
 2027,126551,Jordyn Kee,Radford,3,4,1,0,0,0,4,4,4,0,0,0
-2027,126553,Jesse McCulloch,Michigan St.,4,0,2,0,1,0,3,2,3,0,0,0
-2027,126556,Kur Teng,Michigan St.,0,0,0,1,2,1,6,10,6,0,0,0
+2027,126553,Jesse McCulloch,Michigan St.,4,0,2,0,3,0,3,4,3,0,0,0
+2027,126556,Kur Teng,Michigan St.,0,2,0,1,2,1,6,13,6,0,0,0
 2027,126558,Colin Walton,Michigan St.,0,0,0,0,0,0,0,1,0,0,0,0
 2027,126559,Daniil Glazkov,Vermont,2,0,2,0,0,0,0,5,0,0,0,0
 2027,126564,Yoda Oke,Sam Houston St.,5,3,1,0,6,0,8,3,5,1,0,1
@@ -1143,8 +1144,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,126596,Jalen Crawford,Florida St.,0,0,0,0,0,0,0,1,0,0,0,0
 2027,126597,Alier Maluk,McNeese St.,3,1,3,0,2,0,2,2,2,1,0,1
 2027,126598,Jamie Vinson,Texas A&M,4,6,2,0,0,0,0,0,0,1,1,1
-2027,126601,Tyler Boston,Seattle,6,3,1,6,7,0,3,9,3,0,0,0
-2027,126605,Isaiah Chappell,UC Davis,2,0,2,0,1,0,7,7,7,0,0,0
+2027,126601,Tyler Boston,Seattle,6,4,1,8,8,1,3,10,3,0,0,0
+2027,126605,Isaiah Chappell,UC Davis,3,0,3,0,1,0,10,11,10,0,0,0
 2027,126611,Jon Mani,UNC Greensboro,3,2,0,4,3,1,4,6,4,1,0,0
 2027,126619,Quel'Ron House,Texas St.,2,4,1,5,5,0,0,2,0,0,0,0
 2027,126620,Collin Chandler,BYU,8,3,1,1,1,0,10,14,9,3,0,1
@@ -1181,8 +1182,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,126692,Sir Mohammed,Penn,7,4,1,3,8,0,3,10,3,0,0,0
 2027,126693,Cole Certa,Clemson,5,4,1,3,4,0,10,19,10,0,0,0
 2027,126694,Brady Stevens,Notre Dame,0,0,0,0,0,0,0,1,0,0,0,0
-2027,126696,Jovan Jester Jr.,UC Irvine,4,1,0,2,0,0,2,3,1,0,0,0
-2027,126697,Torian Lee,UC Irvine,0,0,0,0,0,0,1,0,1,0,0,0
+2027,126696,Jovan Jester Jr.,UC Irvine,7,3,0,2,6,0,4,7,3,1,0,0
+2027,126697,Torian Lee,UC Irvine,0,1,0,0,0,0,1,1,1,0,0,0
 2027,126699,Karmani Gregory,Indiana St.,10,9,1,6,9,0,5,10,3,0,0,0
 2027,126704,Treyson Anderson,Butler,10,4,6,0,1,0,6,22,6,3,1,3
 2027,126705,Malachi Palmer,Minnesota,2,2,2,1,0,1,0,4,0,0,0,0
@@ -1279,7 +1280,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,126942,Caden Diggs,Troy,7,5,2,0,3,0,2,6,2,0,1,0
 2027,126943,Ibrahim Olajuwon,Southern,3,1,0,2,0,2,0,0,0,0,0,0
 2027,126944,Ashton Williamson,Purdue Fort Wayne,3,7,0,0,1,0,2,5,1,0,0,0
-2027,126946,Scottie Hubbard,Old Dominion,1,3,1,0,1,0,2,4,2,0,0,0
+2027,126946,Scottie Hubbard,Old Dominion,1,4,1,0,1,0,3,6,3,0,0,0
 2027,126949,Dimitrije Vukicevic,UC San Diego,3,1,1,0,3,0,0,0,0,0,0,0
 2027,126951,Nic Codie,SMU,1,1,1,2,3,1,1,1,1,0,0,0
 2027,126955,Chance Puryear,Indiana St.,3,4,1,1,2,0,4,7,4,0,0,0
@@ -1313,7 +1314,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127011,Grant Neal,Bellarmine,5,10,2,0,1,0,4,8,4,0,0,0
 2027,127014,Somto Cyril,Miami FL,15,8,7,1,1,0,0,0,0,13,1,7
 2027,127016,Karl Poom,North Dakota St.,6,5,3,1,5,1,4,5,4,1,0,1
-2027,127022,Gianni Cobb,SIU Edwardsville,9,5,0,4,7,0,0,8,0,0,0,0
+2027,127022,Gianni Cobb,SIU Edwardsville,10,7,0,4,9,0,1,8,1,0,0,0
 2027,127025,Lionel Bell,Southern,2,1,1,1,2,1,0,0,0,0,0,0
 2027,127029,Josh Ibukunoluwa,Bradley,6,1,2,0,5,0,1,5,1,1,0,1
 2027,127034,Aaron Hunkin-Claytor,USC,1,0,1,0,0,0,0,0,0,0,0,0
@@ -1381,8 +1382,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127177,Julen Iturbe,American,3,1,0,2,1,0,6,15,6,0,0,0
 2027,127178,Wyatt Nausadis,American,0,3,0,0,2,0,5,15,2,0,0,0
 2027,127182,Quin Gorman,Stony Brook,1,1,0,1,0,0,0,1,0,0,0,0
-2027,127184,Veniamin Abosi,UC Davis,7,4,5,0,3,0,2,3,1,0,1,0
-2027,127185,Terrence Hill Jr.,Tennessee,9,3,0,2,1,0,6,12,4,0,0,0
+2027,127184,Veniamin Abosi,UC Davis,9,9,7,0,3,0,2,4,1,0,1,0
+2027,127185,Terrence Hill Jr.,Tennessee,9,4,0,3,3,0,8,15,6,0,0,0
 2027,127186,Jermaine Washington,New Mexico St.,2,0,1,2,2,0,8,11,6,0,0,0
 2027,127187,Cameron Patterson,Texas Southern,2,0,0,1,4,0,0,1,0,0,0,0
 2027,127188,Ben Roseborough,Towson,12,8,3,5,5,0,7,16,7,0,0,0
@@ -1416,7 +1417,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127248,Kuol Atak,Virginia Tech,0,1,0,0,0,0,4,5,4,0,1,0
 2027,127251,Mekhi Turner,Tennessee Tech,6,2,3,0,1,0,0,0,0,1,0,1
 2027,127254,Adrian Wooley,Louisville,11,3,3,1,0,0,2,11,1,2,0,1
-2027,127255,Braedan Lue,Tennessee,4,1,3,1,0,1,0,1,0,3,0,3
+2027,127255,Braedan Lue,Tennessee,4,1,3,2,0,1,0,1,0,3,0,3
 2027,127256,Jamil Miller,Eastern Washington,17,10,3,0,5,0,1,4,1,3,0,0
 2027,127258,Jon Mekonnen,South Dakota St.,9,8,2,3,4,0,3,9,3,2,0,0
 2027,127259,Stas Sivka,William & Mary,8,2,4,0,1,0,6,12,6,0,0,0
@@ -1426,15 +1427,16 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127271,Bryce Heard,Wichita St.,1,2,0,0,4,0,5,7,5,0,0,0
 2027,127272,Trey Parker,Seton Hall,2,5,0,3,2,0,3,6,3,0,1,0
 2027,127274,"Paul McNeil, Jr.",N.C. State,2,2,2,1,4,0,13,22,12,0,0,0
-2027,127276,Jalen Dollar,Cal Baptist,0,0,0,0,0,0,0,1,0,0,0,0
+2027,127276,Jalen Dollar,Cal Baptist,0,0,0,0,0,0,1,2,1,0,0,0
 2027,127277,Dillon Tingler,Drexel,3,1,3,2,4,0,3,12,3,0,0,0
 2027,127278,Godslove Nwabude,Kent St.,2,1,0,0,0,0,0,0,0,1,0,0
 2027,127282,Anthony Batson Jr.,Stanford,1,2,1,0,0,0,0,3,0,0,0,0
+2027,127284,Tallis Toure,Stanford,0,0,0,0,0,0,0,1,0,0,0,0
 2027,127285,Brody Kozlowski,BYU,0,0,0,0,0,0,0,3,0,0,0,0
 2027,127288,Kavien Jones,Tennessee St.,4,4,3,2,2,2,1,1,1,0,0,0
 2027,127289,Maddux Bodenhamer,Tennessee St.,0,1,0,0,1,0,0,1,0,0,0,0
-2027,127293,Evan Stinson,Stanford,4,2,2,0,0,0,0,2,0,0,0,0
-2027,127295,Donavin Young,Stanford,1,1,1,0,0,0,0,1,0,1,0,1
+2027,127293,Evan Stinson,Stanford,6,2,2,0,0,0,0,2,0,0,0,0
+2027,127295,Donavin Young,Stanford,1,2,1,0,0,0,0,1,0,1,0,1
 2027,127298,CJ Happy,Princeton,4,1,3,0,0,0,2,7,2,0,0,0
 2027,127300,Malik Abdullahi,Princeton,8,3,5,2,1,2,0,4,0,3,0,3
 2027,127304,Tyler Weaver,Utah Valley,2,0,0,1,2,0,5,2,5,1,0,0
@@ -1446,7 +1448,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127314,Ty Robinson,Central Arkansas,4,5,2,3,6,2,9,10,9,0,0,0
 2027,127321,Justin Redmond,West Georgia,2,3,0,3,6,0,6,11,3,0,0,0
 2027,127323,Mason Hagedorn,Loyola MD,0,0,0,0,0,0,1,1,1,0,0,0
-2027,127324,Juke Harris,Tennessee,1,2,1,1,5,1,3,11,3,0,0,0
+2027,127324,Juke Harris,Tennessee,1,3,1,1,7,1,5,14,5,0,0,0
 2027,127328,JoJo Wallace,Sacred Heart,5,11,1,1,6,0,4,10,3,0,0,0
 2027,127334,Jeremiah Wilkinson,Arkansas,6,2,1,2,8,2,13,17,13,1,0,0
 2027,127337,Ivan Njegovan,Ohio St.,4,1,2,1,0,1,0,0,0,1,0,1
@@ -1474,7 +1476,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127381,Julius Halaifonua,Oklahoma St.,5,5,4,3,3,3,4,2,4,1,0,1
 2027,127384,Mason Moses,Georgetown,0,0,0,0,0,0,0,1,0,0,0,0
 2027,127391,Jagger Bascombe,New Haven,0,0,0,0,0,0,0,1,0,0,0,0
-2027,127393,Jaden Steppe,Montana St.,9,4,4,3,4,0,1,9,1,0,0,0
+2027,127393,Jaden Steppe,Montana St.,10,4,5,4,6,1,1,10,1,0,0,0
 2027,127394,Cham Okey,New Orleans,0,1,0,0,1,0,0,2,0,0,0,0
 2027,127395,Jayden Cooper,East Tennessee St.,1,2,1,5,6,0,3,13,2,0,0,0
 2027,127396,Evan Haywood,Pepperdine,4,5,1,2,0,0,6,10,4,0,0,0
@@ -1503,7 +1505,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127450,Alec Squires,South Dakota St.,3,0,3,1,0,0,0,0,0,0,0,0
 2027,127451,Jamari Phillips,Washington St.,1,1,0,2,3,1,3,12,3,1,0,0
 2027,127454,Jackson Rogers,Alabama St.,0,0,0,0,1,0,0,0,0,0,0,0
-2027,127455,Ray Adams,Seattle,3,0,1,0,0,0,1,5,1,2,0,1
+2027,127455,Ray Adams,Seattle,3,0,1,0,0,0,1,6,1,2,0,1
 2027,127456,Yuto Kawashima,Seattle,0,1,0,0,0,0,0,0,0,0,0,0
 2027,127458,Dellquan Warren,McNeese St.,1,2,0,0,1,0,0,4,0,0,0,0
 2027,127463,Mekai Johnson,Saint Joseph's,0,2,0,0,1,0,2,5,2,0,0,0
@@ -1542,7 +1544,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127535,Deandre Jones,Cleveland St.,11,6,7,6,5,3,0,2,0,3,0,3
 2027,127541,Warren Marshall IV,Oakland,4,7,4,2,4,1,1,9,1,0,2,0
 2027,127544,Sammie Yeanay,California,8,11,2,1,1,1,4,11,4,3,0,0
-2027,127545,Austin Maurer,Stanford,18,5,12,1,1,0,0,1,0,6,0,4
+2027,127545,Austin Maurer,Stanford,20,6,13,1,4,0,3,9,3,6,0,4
 2027,127546,Styles Phipps,Nevada,15,3,5,9,5,3,3,6,3,0,0,0
 2027,127548,Ewan Steele,Stonehill,3,5,2,0,5,0,3,6,3,0,0,0
 2027,127552,Lewis Walker,UCF,5,5,3,5,6,1,2,5,1,0,0,0
@@ -1619,7 +1621,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127747,Folabomi Fayemi,Lafayette,1,0,1,0,0,0,0,1,0,0,0,0
 2027,127749,Alex Chaikin,UC San Diego,1,2,1,1,0,1,5,8,3,1,0,1
 2027,127750,Malik Rasul,Lafayette,0,1,0,0,0,0,0,0,0,0,0,0
-2027,127751,Ben Nacey,Old Dominion,1,1,0,0,2,0,0,0,0,0,0,0
+2027,127751,Ben Nacey,Old Dominion,2,1,0,0,2,0,0,0,0,0,0,0
 2027,127754,Jaden Johnson,La Salle,2,2,0,3,10,0,0,6,0,0,0,0
 2027,127758,Nyle Ralph-Beyer,VCU,0,0,0,0,0,0,1,0,1,0,0,0
 2027,127764,TJ Burch,Utah,3,7,1,1,0,0,4,11,4,0,0,0
@@ -1635,7 +1637,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127791,Dovydas Butka,Boise St.,17,8,8,2,3,2,0,1,0,2,0,1
 2027,127794,Shadrak Lasu,Eastern Kentucky,0,2,0,0,0,0,1,1,1,0,0,0
 2027,127799,Riccardo Greppi,Sam Houston St.,6,3,3,1,2,0,0,0,0,3,1,2
-2027,127801,Jeremiah Davis,Montana St.,6,2,2,6,2,1,7,8,4,0,0,0
+2027,127801,Jeremiah Davis,Montana St.,6,3,2,7,7,1,7,10,4,0,0,0
 2027,127803,Trap Johnson,VMI,2,1,0,0,8,0,6,10,5,0,0,0
 2027,127804,Tyler Behrend,Grand Canyon,13,5,10,0,0,0,0,2,0,1,0,1
 2027,127809,Taj DeGourville,Nebraska,1,5,1,2,2,0,2,3,2,0,0,0
@@ -1656,7 +1658,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,127854,Aidan Skradis,Nebraska Omaha,1,0,1,0,1,0,0,0,0,0,0,0
 2027,127863,Jacen Holloway,Army,6,12,2,0,3,0,3,9,1,0,0,0
 2027,127864,Joshua Eli,Western Michigan,1,0,1,0,0,0,0,4,0,1,0,1
-2027,127866,Olivier Rioux,UC Irvine,3,2,3,0,0,0,0,0,0,3,1,3
+2027,127866,Olivier Rioux,UC Irvine,4,4,4,0,0,0,0,0,0,4,1,4
 2027,127867,Isaiah Brown,Florida,6,3,2,0,1,0,4,4,4,4,0,2
 2027,127870,Babatunde Durodola,Ball St.,1,1,0,0,0,0,0,0,0,0,0,0
 2027,127873,Damarion Dennis,Texas Tech,9,2,4,2,2,2,8,13,7,2,0,2
@@ -1738,7 +1740,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128076,Gabe Pickens,New Mexico St.,1,1,0,0,0,0,2,0,1,0,0,0
 2027,128077,Jae'Coby Osborne,New Mexico St.,3,1,1,4,3,1,2,2,2,2,0,1
 2027,128080,Joul Karram,Binghamton,1,2,1,1,1,0,0,0,0,0,0,0
-2027,128081,MJ Thomas,UNLV,2,3,1,1,0,0,0,0,0,0,0,0
+2027,128081,MJ Thomas,UNLV,6,5,2,1,0,0,0,0,0,1,0,1
 2027,128086,Caleb Middleton,Coastal Carolina,3,5,2,1,0,0,0,0,0,0,1,0
 2027,128087,Khalil Badru,Vermont,1,4,1,2,1,0,0,3,0,1,0,1
 2027,128090,Flash Burton,UMBC,7,14,1,6,11,0,2,10,2,0,0,0
@@ -1757,8 +1759,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128121,Nolan Minessale,Marquette,4,4,2,0,0,0,2,9,1,1,0,1
 2027,128126,Chansey Willis Jr.,Kent St.,6,4,2,4,5,0,4,13,2,0,0,0
 2027,128130,Quan Lax,North Alabama,8,5,3,0,1,0,6,7,2,0,0,0
-2027,128136,Darnez Slater,Montana St.,2,3,0,4,5,0,3,8,2,0,0,0
-2027,128137,Will Thengvall,Kansas,1,0,0,0,0,0,0,0,0,0,0,0
+2027,128136,Darnez Slater,Montana St.,2,4,0,7,7,0,4,9,3,0,0,0
+2027,128137,Will Thengvall,Kansas,1,0,0,0,0,0,0,1,0,0,0,0
 2027,128138,Bryson Cokley,Elon,6,5,3,3,6,1,4,10,4,0,0,0
 2027,128139,Justin Begg,Sam Houston St.,10,19,2,2,4,0,7,11,5,0,0,0
 2027,128140,Makhi Myles,Stetson,3,2,2,1,2,0,1,6,1,2,0,1
@@ -1775,12 +1777,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128170,Latif Diouf,Kent St.,9,8,2,0,3,0,2,1,2,0,0,0
 2027,128171,Christian Alston,Tennessee St.,5,3,2,1,7,1,1,9,1,1,0,1
 2027,128173,Houston Holland,Chattanooga,0,0,0,0,0,0,0,1,0,0,0,0
-2027,128174,Dontrez Williams,UNLV,10,3,4,2,1,0,0,1,0,3,0,2
+2027,128174,Dontrez Williams,UNLV,16,4,5,3,1,1,0,1,0,4,0,3
 2027,128175,Mohammad Habhab,Eastern Michigan,7,6,2,2,4,1,2,1,2,1,0,1
 2027,128177,Isaiah Abraham,Kansas St.,8,6,7,5,2,0,5,7,5,4,0,4
 2027,128181,Ahmad Nowell,VCU,3,5,0,0,1,0,5,8,5,0,0,0
 2027,128182,Quentin Heady,Bethune Cookman,8,7,1,2,6,0,0,2,0,0,0,0
-2027,128183,Damarion Bonds,Alabama St.,4,4,0,0,1,0,2,10,2,0,0,0
+2027,128183,Damarion Bonds,Alabama St.,4,4,0,1,2,1,6,19,6,0,0,0
 2027,128184,Kevin McCarthy,Army,7,2,3,1,3,0,9,15,6,0,0,0
 2027,128188,Jaxson Bell,Furman,1,1,0,0,0,0,0,2,0,0,0,0
 2027,128189,Dylan Murans,Army,0,0,0,0,0,0,0,1,0,0,0,0
@@ -1795,7 +1797,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128206,Malek Archie,Lindenwood,9,5,3,3,5,1,0,1,0,1,0,1
 2027,128211,Tyler McKinley,Charlotte,5,2,5,1,3,1,0,0,0,1,0,1
 2027,128212,Jamichael Stillwell,Texas Tech,5,5,1,3,5,0,0,0,0,0,0,0
-2027,128213,Halvine Dzellat,Seattle,12,8,7,1,3,0,0,2,0,0,0,0
+2027,128213,Halvine Dzellat,Seattle,16,10,8,1,4,0,0,2,0,1,0,0
 2027,128214,Bradey Henige,Fresno St.,23,6,15,1,1,1,0,0,0,1,0,1
 2027,128217,David Punch,Texas,12,7,10,2,3,0,0,1,0,8,0,8
 2027,128218,Malick Diallo,Loyola Chicago,5,0,4,2,2,1,0,0,0,1,0,1
@@ -1812,7 +1814,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128247,Yvens Paul,Eastern Kentucky,3,1,2,0,0,0,0,0,0,0,0,0
 2027,128252,Phat Phat Brooks,Central Michigan,8,6,3,8,8,1,5,6,2,0,0,0
 2027,128254,Roberts Blums,Penn St.,1,0,1,1,0,0,0,5,0,0,0,0
-2027,128255,Anton Bonke,Michigan St.,8,2,3,1,1,1,0,1,0,4,0,2
+2027,128255,Anton Bonke,Michigan St.,9,2,3,1,2,1,0,1,0,4,0,2
 2027,128257,Chris Riddle,Toledo,3,3,1,1,0,1,1,9,1,0,0,0
 2027,128260,Caleb Williams,Georgetown,2,0,2,1,2,0,3,16,3,2,0,2
 2027,128263,Bradyn Hubbard,Little Rock,11,2,5,4,9,3,4,3,4,0,0,0
@@ -1825,7 +1827,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128276,Mateen Rafiq,Cornell,3,1,2,0,1,0,7,13,7,0,0,0
 2027,128277,Ryder Cate,Mercer,0,0,0,0,0,0,0,2,0,0,0,0
 2027,128278,Gioacchino Panzini,Cornell,0,0,0,0,0,0,0,5,0,0,0,0
-2027,128279,Martin Carrere,Virginia,4,2,2,0,0,0,2,7,2,1,0,1
+2027,128279,Martin Carrere,Virginia,5,2,3,0,0,0,3,9,3,1,0,1
 2027,128280,Anthony Nimani,Cornell,6,4,2,3,3,0,1,7,1,1,0,0
 2027,128283,Aleksander Pachucki,Bucknell,5,2,4,3,5,2,21,30,20,0,0,0
 2027,128284,Ryan Pettis,Wagner,0,2,0,0,6,0,2,6,1,0,0,0
@@ -1879,7 +1881,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,128421,Braylan Ritvo,Quinnipiac,0,0,0,0,0,0,1,0,1,0,0,0
 2027,128422,Spence Wewe,Hofstra,3,2,3,2,1,1,0,0,0,1,0,1
 2027,128423,Kjay Bradley,Cal St. Bakersfield,12,4,3,5,9,1,2,5,1,0,0,0
-2027,128428,Justas Stonkus,Cal Baptist,8,9,2,0,5,0,6,8,6,1,1,0
+2027,128428,Justas Stonkus,Cal Baptist,8,13,2,3,7,0,8,16,8,1,1,0
 2027,128429,Abdou Khadre Kébé,Mount St. Mary's,10,6,7,1,12,0,6,11,5,5,1,4
 2027,128433,Filip Radaković,Lamar,0,2,0,0,0,0,1,0,1,0,0,0
 2027,128434,Tony Duckett,UC Riverside,7,5,2,5,5,2,3,8,0,1,0,0
@@ -1922,12 +1924,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,133698,Ty Owens,Tennessee Tech,3,4,0,1,2,0,0,2,0,0,0,0
 2027,133700,Jon Carroll,Drake,16,8,8,5,4,0,0,2,0,1,0,1
 2027,133703,Rocco Awad,NJIT,4,6,1,0,2,0,4,11,4,0,0,0
-2027,133706,Issac Williamson,UNLV,2,1,1,0,0,0,1,2,1,0,0,0
+2027,133706,Issac Williamson,UNLV,2,2,1,0,0,0,2,6,2,0,0,0
 2027,133707,Mason Abittan,Weber St.,3,2,0,1,5,0,5,8,4,0,0,0
-2027,133708,Tyrin Jones,UNLV,8,10,3,4,5,0,2,1,2,2,1,2
+2027,133708,Tyrin Jones,UNLV,9,11,4,5,7,0,2,1,2,3,1,3
 2027,133710,Eli Greenberg,Stonehill,1,3,1,1,3,0,3,7,3,0,0,0
 2027,133711,Gustav Winther,Evansville,5,2,3,0,1,0,2,1,1,1,0,1
-2027,133712,Samuel Hincapie,North Dakota,14,7,3,1,3,0,7,14,4,2,0,1
+2027,133712,Samuel Hincapie,North Dakota,16,8,3,1,3,0,12,15,8,2,0,1
 2027,133714,Dylan Ducommun,Buffalo,4,2,1,0,1,0,11,18,9,1,0,0
 2027,133715,Isaiah Stewart,Tennessee St.,0,0,0,0,0,0,0,4,0,0,0,0
 2027,133716,Akai Fleming,Cincinnati,5,7,4,0,1,0,1,1,1,3,0,3
@@ -1956,7 +1958,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,133754,Martin Kalu,Charleston,1,0,0,2,0,1,0,3,0,0,0,0
 2027,133756,Ege Demir,Duquesne,8,1,5,1,1,0,0,0,0,5,0,4
 2027,133758,Cam Wallace,Temple,1,0,1,0,0,0,0,0,0,0,0,0
-2027,133759,Howie Keene,Montana St.,3,1,3,0,2,0,9,11,8,0,0,0
+2027,133759,Howie Keene,Montana St.,3,2,3,0,2,0,12,11,11,0,0,0
 2027,133763,Ethan Croley,Jacksonville St.,16,7,7,2,3,2,0,1,0,1,0,1
 2027,133764,Vaughn Weems,Nevada,16,14,9,3,3,1,5,13,5,5,0,3
 2027,133765,Peyton White,Nevada,8,1,4,1,3,1,2,8,2,1,0,1
@@ -1987,9 +1989,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,133820,Rontavious Blackshear,Niagara,2,0,1,0,2,0,5,10,5,0,0,0
 2027,133821,Jordan Tillery,VCU,0,0,0,0,0,0,0,0,0,0,0,0
 2027,133823,Tolu Samuels,Northern Illinois,0,1,0,0,0,0,0,0,0,0,0,0
-2027,133824,Cavin Holden,Montana St.,5,1,0,3,3,0,5,13,4,0,0,0
+2027,133824,Cavin Holden,Montana St.,6,1,0,5,5,0,10,17,7,0,0,0
 2027,133826,Christian Beam,Temple,2,2,2,0,0,0,0,0,0,1,0,1
-2027,133827,Omer Suljanovic,UC Davis,1,3,1,0,1,0,2,1,2,0,0,0
+2027,133827,Omer Suljanovic,UC Davis,3,4,3,0,1,0,2,2,2,1,0,1
 2027,133828,Kobi Williams,Tulsa,4,0,1,1,0,1,2,14,2,0,0,0
 2027,133830,Travelle Bryson,Western Carolina,3,6,2,1,3,0,2,6,2,2,0,2
 2027,133832,Jaymen Townsend,Kent St.,0,0,0,2,0,0,0,0,0,0,0,0
@@ -2150,7 +2152,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134106,Mason Bendinger,Western Michigan,7,1,2,5,4,1,1,6,1,0,0,0
 2027,134107,Beckett Currie,Lafayette,4,1,0,3,8,0,6,14,3,0,0,0
 2027,134109,Jojo McIver,Colorado St.,1,0,0,0,4,0,0,5,0,0,0,0
-2027,134111,Davis Fogle,Gonzaga,9,5,3,5,9,0,5,11,5,1,2,1
+2027,134111,Davis Fogle,Gonzaga,11,7,3,8,12,0,6,14,6,1,2,1
 2027,134112,Vince Dawson III,Morehead St.,1,1,1,2,4,2,2,9,2,0,0,0
 2027,134114,Anton Strelnikov,Dartmouth,19,11,2,1,1,1,2,2,2,1,0,0
 2027,134115,Dominykas Pleta,Iowa St.,18,6,14,2,2,1,0,0,0,9,0,8
@@ -2163,7 +2165,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134125,Luke Zuffelato,UC Santa Barbara,0,0,0,0,1,0,0,1,0,0,0,0
 2027,134127,Grayson Bennett,Arkansas St.,0,1,0,0,0,0,0,0,0,0,1,0
 2027,134128,Royal Blue Smith,Arkansas St.,2,10,1,0,1,0,3,12,2,0,0,0
-2027,134130,Christian Harmon,Virginia,0,0,0,0,0,0,0,6,0,0,0,0
+2027,134130,Christian Harmon,Virginia,0,0,0,0,1,0,0,6,0,0,0,0
 2027,134134,Tyler Wagner,North Dakota,0,1,0,0,1,0,0,4,0,0,1,0
 2027,134135,Ja'Corey Robinson,Radford,4,8,1,1,4,1,2,6,2,0,0,0
 2027,134137,Davion Hill,San Diego,14,15,4,1,3,0,0,5,0,0,0,0
@@ -2292,8 +2294,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134369,Isaiah Skinn,Colgate,3,1,1,0,1,0,0,5,0,0,0,0
 2027,134370,Ryan-Preston Mendy,George Mason,1,0,1,0,0,0,0,0,0,1,0,1
 2027,134372,Salim London,UAB,6,9,3,4,3,0,6,11,6,0,0,0
-2027,134374,Cameron Ward,Michigan St.,7,5,6,1,0,0,0,0,0,3,1,3
-2027,134375,Jordan Scott,Michigan St.,8,0,7,0,8,0,7,13,6,2,0,2
+2027,134374,Cameron Ward,Michigan St.,10,8,8,2,0,0,0,0,0,4,1,4
+2027,134375,Jordan Scott,Michigan St.,8,0,7,0,9,0,9,14,8,2,0,2
 2027,134376,Rob Diaz III,North Dakota St.,18,8,0,6,6,1,5,16,5,1,0,0
 2027,134378,Caleb Steger,Texas St.,1,0,1,0,0,0,3,5,3,0,0,0
 2027,134379,Marko Radunovic,Fairfield,1,0,0,0,0,0,0,0,0,0,0,0
@@ -2311,7 +2313,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134404,Hudson Greer,Creighton,2,4,1,0,0,0,4,7,4,0,0,0
 2027,134405,Kerem Konan,Duquesne,12,1,10,1,5,1,2,3,2,5,0,5
 2027,134406,Aleksa Dimitrijevic,Tulsa,2,2,1,0,0,0,1,0,1,1,0,1
-2027,134412,Noah Benny,Alabama St.,0,0,0,0,0,0,2,3,2,0,0,0
+2027,134412,Noah Benny,Alabama St.,0,0,0,0,0,0,2,4,2,0,0,0
 2027,134413,Jacobe Coleman,Sam Houston St.,6,7,2,3,5,0,11,16,8,0,0,0
 2027,134416,Jacob Furphy,Boston College,0,4,0,1,1,1,2,5,2,0,0,0
 2027,134418,Amare Anderson,Presbyterian,1,1,0,0,0,0,1,0,1,0,0,0
@@ -2332,8 +2334,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134446,Caleb Sanders,Tennessee Tech,10,5,3,2,4,0,5,4,5,1,0,1
 2027,134448,Sin'Cere Jones,Virginia Tech,3,2,1,0,0,0,0,1,0,1,0,1
 2027,134451,Nate Garcia,Arizona St.,2,0,1,1,0,1,0,0,0,0,0,0
-2027,134453,Odartey Blankson,Cal Baptist,0,0,0,0,0,0,0,2,0,0,0,0
-2027,134454,Jordan Muller,Cal Baptist,7,6,0,4,3,0,3,10,3,0,0,0
+2027,134453,Odartey Blankson,Cal Baptist,0,0,0,0,0,0,0,3,0,0,0,0
+2027,134454,Jordan Muller,Cal Baptist,7,8,0,5,3,0,3,14,3,0,0,0
 2027,134455,Rene D'Amelio,Cal Baptist,4,5,4,0,0,0,4,2,4,3,1,3
 2027,134457,Jonathan Barton,Towson,5,6,0,4,3,0,2,7,1,0,0,0
 2027,134458,Alon Michaeli,Saint Louis,11,11,5,0,0,0,1,2,1,1,0,1
@@ -2353,7 +2355,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134478,Ilias Kamardine,Mississippi,2,3,1,1,6,1,3,8,3,0,0,0
 2027,134483,Milhan Charles,Florida Atlantic,2,3,1,0,0,0,1,1,1,0,0,0
 2027,134486,Erik Oliver-Bush,New Hampshire,4,0,3,2,6,0,4,5,4,1,0,1
-2027,134488,Chance Mallory,Virginia,10,4,4,2,5,1,12,14,7,0,0,0
+2027,134488,Chance Mallory,Virginia,14,6,4,2,6,1,13,18,8,0,0,0
 2027,134489,Isaac Carr,Wake Forest,10,4,1,5,2,3,6,12,6,0,0,0
 2027,134491,Owen Odom,Virginia,0,0,0,0,0,0,0,2,0,0,0,0
 2027,134492,Lino Mark,Rutgers,12,9,0,1,1,0,1,9,1,0,0,0
@@ -2396,14 +2398,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134559,James Dyson-Merwe,Evansville,2,0,2,0,0,0,0,0,0,1,0,1
 2027,134562,Mihailo Petrovic,Seton Hall,6,4,1,0,1,0,2,3,1,0,0,0
 2027,134564,Andrija Grbovic,Oklahoma St.,6,3,4,0,1,0,8,5,8,3,0,3
-2027,134565,Massamba Diop,Gonzaga,5,6,3,3,1,2,2,0,2,3,2,3
+2027,134565,Massamba Diop,Gonzaga,6,7,3,3,2,2,2,0,2,3,2,3
 2027,134566,Phoenix Gill,Northwestern,4,3,1,2,3,0,7,6,7,0,1,0
 2027,134567,Tre Singleton,Iowa St.,19,6,8,6,5,0,2,2,2,2,0,2
 2027,134568,Jake West,Northwestern,10,5,2,13,12,3,10,20,7,0,0,0
 2027,134570,Adam Olsen,Auburn,0,1,0,0,2,0,7,12,7,0,0,0
 2027,134571,Peyton Law,South Alabama,7,6,6,1,2,0,0,6,0,0,0,0
 2027,134572,Trey Thompson,Iowa,1,0,1,0,0,0,3,3,3,1,0,1
-2027,134573,Thijs De Ridder,Virginia,27,12,12,0,4,0,10,7,9,6,2,3
+2027,134573,Thijs De Ridder,Virginia,28,12,12,0,5,0,14,10,13,6,2,3
 2027,134574,Dillan Shaw,Arizona St.,9,5,2,1,7,0,5,12,5,2,0,1
 2027,134579,Silas Barksdale,Virginia,0,1,0,0,0,0,0,0,0,0,0,0
 2027,134581,Owen Verna,Saint Joseph's,0,3,0,0,2,0,4,8,4,0,0,0
@@ -2479,13 +2481,13 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134696,Asier Miguel Torrero,Manhattan,0,1,0,1,0,1,1,5,1,0,0,0
 2027,134699,Kayden Edwards,Creighton,0,1,0,0,0,0,0,3,0,0,0,0
 2027,134700,Harrison Pickett,Arkansas Pine Bluff,2,3,2,0,2,0,2,8,1,0,0,0
-2027,134702,Kylan Howze,Old Dominion,7,2,6,2,0,2,0,0,0,6,0,6
+2027,134702,Kylan Howze,Old Dominion,7,2,6,2,1,2,0,0,0,6,0,6
 2027,134704,Ethan Simmon,Stony Brook,1,1,0,0,0,0,2,4,2,0,0,0
 2027,134707,Hamoudy Mashhour,Oakland,1,1,0,0,0,0,4,10,4,0,0,0
 2027,134708,Maikcol Perez,Baylor,1,0,0,0,1,0,0,0,0,0,0,0
-2027,134709,Troy Henderson,Tennessee,2,1,0,0,1,0,3,4,3,0,0,0
-2027,134710,Clarence Massamba,UC Davis,3,3,1,0,1,0,0,4,0,0,0,0
-2027,134711,DeWayne Brown II,Tennessee,6,5,2,2,1,2,0,0,0,1,0,0
+2027,134709,Troy Henderson,Tennessee,2,1,0,0,1,0,4,5,4,0,0,0
+2027,134710,Clarence Massamba,UC Davis,4,4,2,0,1,0,0,6,0,1,0,1
+2027,134711,DeWayne Brown II,Tennessee,11,5,7,3,1,3,0,0,0,1,0,0
 2027,134714,Noah Rogers,Mount St. Mary's,0,0,0,0,1,0,0,0,0,0,0,0
 2027,134716,Neo Avdalas,North Carolina,8,5,1,3,6,0,2,8,1,2,0,0
 2027,134717,Antonio Dorn,Wake Forest,1,3,1,0,1,0,0,0,0,0,0,0
@@ -2539,12 +2541,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134797,Matheo Coffi,NJIT,9,6,5,1,4,1,6,13,6,3,0,3
 2027,134798,Ayuba Bryant Jr.,North Florida,8,15,4,2,1,2,0,0,0,1,0,1
 2027,134799,Collins Onyejiaka,Alabama,0,1,0,0,0,0,0,0,0,0,0,0
-2027,134800,Jalen Stokes,UC Davis,10,9,7,1,3,0,1,4,1,1,0,0
+2027,134800,Jalen Stokes,UC Davis,12,10,9,2,3,1,1,4,1,1,0,0
 2027,134803,Jonathan Noudjihidi,Saint Peter's,2,1,2,1,1,1,0,0,0,1,1,1
-2027,134804,Chase Rawlins,UC Davis,3,0,0,0,0,0,0,2,0,0,0,0
+2027,134804,Chase Rawlins,UC Davis,4,2,1,0,0,0,0,2,0,0,0,0
 2027,134805,Evan Boisdur,Abilene Christian,11,9,2,1,6,0,6,6,3,0,0,0
 2027,134806,Abdullah Amzil,Loyola MD,3,2,2,0,0,0,0,11,0,0,0,0
-2027,134807,Ylan Esso Essis,UC Davis,7,1,4,1,2,0,0,5,0,1,0,1
+2027,134807,Ylan Esso Essis,UC Davis,8,2,5,2,2,0,2,5,2,1,0,1
 2027,134810,Mooda Gittens,Sacred Heart,1,0,1,0,1,0,0,2,0,0,0,0
 2027,134811,Abdou Yadd,Sacred Heart,2,0,2,0,0,0,4,4,1,0,0,0
 2027,134813,Julian Johnson,Howard,2,1,1,1,1,1,0,0,0,0,0,0
@@ -2587,7 +2589,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134878,Mason Ellison,Delaware,0,1,0,0,0,0,1,0,0,0,0,0
 2027,134879,Jayden Taylor,Delaware,0,0,0,0,0,0,0,0,0,0,0,0
 2027,134882,Uriah Tenette,New Mexico,8,3,3,5,6,0,8,15,5,1,0,0
-2027,134883,Leroy Blyden Jr.,Kansas,3,2,1,6,2,0,2,8,2,0,0,0
+2027,134883,Leroy Blyden Jr.,Kansas,6,2,1,8,2,1,5,8,4,0,0,0
 2027,134884,Brendan Martin,Air Force,3,1,1,1,0,0,1,10,1,0,0,0
 2027,134885,Ramel Bethea,The Citadel,2,2,2,0,0,0,0,0,0,2,0,2
 2027,134886,Kam Sanders,Air Force,13,9,2,9,9,0,5,13,5,0,0,0
@@ -2625,7 +2627,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134950,Trey McKenney,Michigan,7,2,0,4,12,0,11,20,11,0,0,0
 2027,134952,Anthony Smith lll,Winthrop,7,5,0,1,0,0,1,7,0,0,0,0
 2027,134955,Dante Allen,Miami FL,13,4,1,0,2,0,1,13,1,1,0,0
-2027,134959,London Praytor,Montana St.,5,3,5,1,2,1,2,4,2,1,0,1
+2027,134959,London Praytor,Montana St.,5,3,5,1,2,1,2,6,2,1,0,1
 2027,134960,Joseph Scott,Alabama St.,2,7,1,0,1,0,0,0,0,0,0,0
 2027,134964,Matt Able,North Carolina,7,1,1,1,2,0,7,16,6,2,0,0
 2027,134966,Wes Enis,Creighton,4,4,1,4,6,0,14,32,12,0,0,0
@@ -2642,12 +2644,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,134988,Denis Badalau,Towson,0,2,0,0,0,0,2,2,2,0,0,0
 2027,134989,Armari Carraway,Chicago St.,2,3,0,3,4,1,10,16,9,0,0,0
 2027,134992,O'Marion Harvey,Monmouth,2,1,0,0,0,0,1,3,1,0,0,0
-2027,134995,Paul Mbiya,Kansas,1,0,0,0,2,0,0,0,0,1,0,0
+2027,134995,Paul Mbiya,Kansas,2,0,0,0,3,0,0,0,0,2,0,0
 2027,134999,CJ Geathers,Arkansas St.,0,2,0,0,0,0,0,0,0,0,0,0
 2027,135000,Macari Moore,Pittsburgh,0,1,0,0,1,0,0,0,0,0,0,0
 2027,135004,Tahlan Pettway,UNC Wilmington,3,1,1,0,3,0,4,8,3,0,0,0
 2027,135006,Semetri (TT) Carr,California,6,7,0,0,0,0,1,6,1,0,0,0
-2027,135010,Isiah Harwell,Gonzaga,8,3,2,1,3,0,6,6,6,2,0,1
+2027,135010,Isiah Harwell,Gonzaga,9,4,2,1,3,0,6,6,6,2,0,1
 2027,135011,Bryce Jackson,Houston,0,0,0,2,1,0,0,0,0,0,0,0
 2027,135012,Jaylen Cross,Coastal Carolina,6,3,3,2,3,0,3,7,3,1,0,1
 2027,135013,Kam Wylie,Rider,5,2,1,0,2,0,2,1,2,0,0,0
@@ -2689,9 +2691,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135093,KJ Martin Jr.,San Jose St.,5,4,4,2,3,0,5,5,4,0,0,0
 2027,135095,Raúl Villar,Elon,7,7,0,0,2,0,0,3,0,0,0,0
 2027,135096,Frank Oguche,Charlotte,2,2,1,2,2,0,7,13,7,1,0,1
-2027,135098,Luke Isaak,UC Irvine,0,0,0,0,0,0,0,3,0,0,0,0
-2027,135099,Tama Isaac,UC Irvine,3,0,1,0,1,0,1,3,1,0,0,0
-2027,135102,Nes Emeneke,UC Irvine,2,5,1,0,0,0,0,0,0,1,0,1
+2027,135098,Luke Isaak,UC Irvine,0,0,0,0,0,0,2,3,2,0,0,0
+2027,135099,Tama Isaac,UC Irvine,4,2,1,1,8,0,3,4,3,0,0,0
+2027,135100,Mason Hodges,UC Irvine,1,0,0,0,1,0,0,0,0,0,0,0
+2027,135102,Nes Emeneke,UC Irvine,3,5,1,0,1,0,0,0,0,1,0,1
 2027,135103,Alijah Arenas,USC,15,8,9,11,7,6,6,8,5,3,1,2
 2027,135106,Karim Rtail,Campbell,6,2,5,0,0,0,2,2,2,1,0,1
 2027,135110,Jasir Rencher,Washington,0,0,0,0,1,0,0,1,0,0,0,0
@@ -2727,7 +2730,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135155,Francis Folefac,Syracuse,0,0,0,1,0,1,0,0,0,0,0,0
 2027,135156,Tylis Jordan,Georgia Tech,18,9,12,4,5,3,1,8,1,8,1,7
 2027,135157,Uzziah Buntyn,Northern Illinois,3,0,1,1,1,0,4,2,4,0,0,0
-2027,135159,Cam Miles,UNLV,1,4,0,1,4,0,10,11,7,1,0,0
+2027,135159,Cam Miles,UNLV,1,7,0,3,5,0,11,17,7,1,0,0
 2027,135163,Eddie Cooke III,Robert Morris,1,2,0,0,1,0,2,2,2,0,0,0
 2027,135164,Marcus Whitlock,Middle Tennessee,4,5,0,0,4,0,12,12,12,0,1,0
 2027,135165,Josiah Shackelford,Bowling Green,9,5,2,1,7,0,9,12,5,0,0,0
@@ -2813,7 +2816,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135300,Jalen Kampen,Central Michigan,1,2,0,2,4,0,8,7,7,0,1,0
 2027,135304,Alem Fejzic,Southern Indiana,1,0,0,0,0,0,1,7,1,0,0,0
 2027,135305,Timotej Malovec,Kansas St.,4,0,3,0,0,0,1,4,1,1,0,1
-2027,135309,Ethan Duncan,Cal Baptist,0,0,0,2,3,2,5,13,5,0,0,0
+2027,135309,Ethan Duncan,Cal Baptist,1,0,0,3,5,2,7,16,7,0,0,0
 2027,135312,Ernest Shelton,Boston College,3,5,0,0,1,0,8,19,7,0,0,0
 2027,135314,Evan Chatman,Baylor,7,0,4,0,0,0,1,7,1,4,0,3
 2027,135315,Ari Gooch,Southern Indiana,3,3,1,0,1,0,1,3,1,0,1,0
@@ -2825,7 +2828,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135324,Vangelis Zougris,Saint Mary's,29,6,21,0,1,0,0,1,0,5,1,3
 2027,135325,Jamarion Davis-Fleming,Alabama,5,1,4,0,0,0,0,1,0,3,1,3
 2027,135327,Will Hanke,Louisville,1,0,0,0,0,0,0,0,0,0,0,0
-2027,135329,Zacch Wiggins,Old Dominion,19,7,7,3,4,1,3,13,2,2,0,2
+2027,135329,Zacch Wiggins,Old Dominion,20,12,7,4,7,2,4,14,3,2,0,2
 2027,135333,Kason Westphal,Xavier,2,2,0,1,0,1,0,0,0,1,0,0
 2027,135334,Elijah Duval,UAB,11,8,2,2,5,0,5,5,3,0,0,0
 2027,135335,Cale Barclay,Southern Utah,3,3,3,1,0,1,0,4,0,0,0,0
@@ -2894,7 +2897,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135447,Rex Stirling,Jacksonville,2,4,1,0,0,0,0,2,0,0,0,0
 2027,135448,Alessandro Perotti,USC Upstate,10,4,6,1,0,0,0,0,0,1,0,0
 2027,135449,Kyler D'Augustino,Ohio,0,1,0,1,2,0,1,4,1,0,0,0
-2027,135450,Dehrio McCaskill,SIU Edwardsville,5,9,2,3,5,1,1,2,1,1,0,0
+2027,135450,Dehrio McCaskill,SIU Edwardsville,8,11,2,3,7,1,1,3,1,1,0,0
 2027,135451,Nasir Meyer,Wyoming,17,13,6,7,9,0,3,10,3,1,0,1
 2027,135452,Simm-Marten Saadi,Central Arkansas,4,0,1,1,1,0,2,11,2,0,0,0
 2027,135453,Iwo Baganc,SIU Edwardsville,0,0,0,0,0,0,0,1,0,0,0,0
@@ -2975,13 +2978,13 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,135579,Mike James,Alabama St.,2,1,2,3,5,0,3,5,3,0,0,0
 2027,135581,Jaeden Roberts,Western Carolina,6,6,3,3,2,3,8,13,6,0,0,0
 2027,135582,Ashton Walker,Monmouth,4,9,1,9,9,0,4,6,4,0,0,0
-2027,135586,Johann Grünloh,Virginia,19,11,17,4,0,3,1,10,1,8,3,7
+2027,135586,Johann Grünloh,Virginia,22,13,18,4,0,3,1,13,1,8,3,7
 2027,135589,Trent MacLean,Saint Mary's,0,0,0,0,0,0,3,1,3,0,0,0
 2027,135593,Mike Williams,Jackson St.,10,10,3,9,7,1,14,17,8,0,0,0
 2027,135598,Kobe Butler,Jackson St.,1,3,1,0,1,0,0,1,0,0,0,0
 2027,135599,Micah Tucker,Grand Canyon,0,1,0,0,0,0,2,3,2,0,0,0
 2027,135600,Austin Williford,Saint Joseph's,8,11,1,1,8,1,3,15,3,0,1,0
-2027,135601,Jalen Haralson,Tennessee,9,4,7,2,6,1,0,0,0,5,0,5
+2027,135601,Jalen Haralson,Tennessee,9,5,7,2,10,1,0,0,0,5,0,5
 2027,135602,Brady Koehler,Notre Dame,10,6,4,3,6,0,13,9,12,4,1,4
 2027,135603,Antione West,Purdue,4,1,1,12,4,1,10,21,7,0,0,0
 2027,135606,Ted Neal,Appalachian St.,3,3,1,4,2,2,0,0,0,0,0,0
@@ -3070,7 +3073,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,143765,Anthony Ruffolo,Charleston Southern,8,11,1,0,3,0,8,12,6,0,0,0
 2027,143768,Jefferson McLamb,Charleston Southern,5,2,4,0,1,0,7,12,7,2,1,2
 2027,143769,DJ Hubbard,Charleston Southern,6,5,1,0,1,0,2,11,2,0,0,0
-2027,143771,Josiah Johnson,UC Irvine,1,1,0,3,2,0,1,1,1,0,0,0
+2027,143771,Josiah Johnson,UC Irvine,2,3,0,7,8,0,1,2,1,0,0,0
 2027,143772,Parker Spees,UC Irvine,3,3,1,0,0,0,0,0,0,0,0,0
 2027,143774,Egor Ryzhov,Miami FL,5,4,3,2,3,2,0,0,0,2,1,2
 2027,143775,Caleb Gaskins,Miami FL,9,8,3,2,3,0,8,12,8,2,0,2
@@ -3082,12 +3085,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,143782,Danny Cheng,Stonehill,0,1,0,1,0,0,0,3,0,0,0,0
 2027,143783,Kemar Grant,Stonehill,4,1,2,0,0,0,0,1,0,0,0,0
 2027,143785,Benicio Leons,Stonehill,0,0,0,0,0,0,0,0,0,0,0,0
-2027,143786,Terry Coner Jr.,Cal Baptist,12,9,1,5,5,0,2,7,2,0,0,0
+2027,143786,Terry Coner Jr.,Cal Baptist,13,10,1,7,5,0,2,10,2,0,0,0
 2027,143787,Daniel Hansen,Cal Baptist,0,0,0,0,0,0,1,2,1,0,0,0
 2027,143788,Brody Postorino,Cal Baptist,0,0,0,0,0,0,1,1,1,0,0,0
-2027,143789,Steven Reynolds III,Cal Baptist,1,3,1,3,4,2,1,12,0,0,0,0
-2027,143790,Anton Safin,Cal Baptist,2,1,1,0,0,0,3,3,3,0,0,0
-2027,143791,Jonas Zilinskas,Cal Baptist,2,5,2,1,0,1,2,6,2,0,0,0
+2027,143789,Steven Reynolds III,Cal Baptist,1,3,1,4,6,2,1,13,0,0,0,0
+2027,143790,Anton Safin,Cal Baptist,2,1,1,0,0,0,4,3,4,0,0,0
+2027,143791,Jonas Zilinskas,Cal Baptist,2,6,2,1,0,1,4,9,4,0,0,0
 2027,143793,Nick Byrd,William & Mary,0,0,0,0,0,0,0,3,0,0,0,0
 2027,143794,Brian Carter Jr.,William & Mary,18,8,4,0,3,0,1,3,0,3,0,1
 2027,143795,Will Feagles,William & Mary,1,3,1,0,1,0,7,10,7,0,0,0
@@ -3277,9 +3280,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144057,Jordan Sigmon,Western Michigan,0,3,0,2,0,0,0,2,0,0,0,0
 2027,144059,Drew Anderson,Stanford,0,0,0,0,1,0,0,0,0,0,0,0
 2027,144060,Elias Obenyah,Stanford,1,1,0,1,1,0,0,3,0,0,0,0
-2027,144061,Aziz Olajuwon,Stanford,6,5,4,0,3,0,6,15,6,2,0,1
-2027,144062,Julius Price,Stanford,14,10,4,1,3,0,4,12,3,0,0,0
-2027,144063,Isaiah Rogers,Stanford,2,3,1,1,1,0,4,15,4,0,0,0
+2027,144061,Aziz Olajuwon,Stanford,6,5,4,0,3,0,9,21,9,2,0,1
+2027,144062,Julius Price,Stanford,14,10,4,3,3,0,6,14,4,0,0,0
+2027,144063,Isaiah Rogers,Stanford,2,5,1,1,2,0,4,15,4,0,0,0
 2027,144065,DeVontes Cobbs,Alabama A&M,0,1,0,0,0,0,0,3,0,0,0,0
 2027,144066,Diovion Famakinde,Alabama A&M,2,1,0,2,3,1,0,3,0,0,0,0
 2027,144067,Kevin Paul Jr.,Alabama A&M,6,1,2,0,1,0,0,0,0,1,0,1
@@ -3364,14 +3367,14 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144195,Jaden Matingou,Hawaii,5,5,0,3,3,0,2,2,2,1,0,0
 2027,144198,Ousmane Ndiaye,Kentucky,5,2,4,0,4,0,6,11,5,3,0,3
 2027,144199,Mason Williams,Kentucky,3,3,2,7,7,1,5,8,2,0,0,0
-2027,144200,Carter Evanson,North Dakota,4,3,3,1,4,0,5,7,4,0,0,0
-2027,144201,Jayden Moore,North Dakota,6,11,0,3,5,0,0,6,0,0,0,0
-2027,144203,Jayden Thomas,North Dakota,4,4,3,0,0,0,0,1,0,1,0,1
-2027,144204,Luke Winkel,North Dakota,6,7,0,2,8,0,7,9,1,0,0,0
-2027,144205,Andrija Radojevic,North Dakota,9,4,5,1,3,1,2,4,1,0,0,0
-2027,144206,Zack Parks,North Dakota,9,3,2,0,3,0,2,7,2,0,0,0
+2027,144200,Carter Evanson,North Dakota,4,5,3,1,5,0,5,8,4,0,0,0
+2027,144201,Jayden Moore,North Dakota,8,13,0,3,7,0,0,6,0,0,0,0
+2027,144203,Jayden Thomas,North Dakota,6,4,4,0,0,0,1,1,1,2,0,2
+2027,144204,Luke Winkel,North Dakota,7,8,0,3,10,0,9,11,2,0,0,0
+2027,144205,Andrija Radojevic,North Dakota,9,5,5,1,3,1,2,4,1,0,0,0
+2027,144206,Zack Parks,North Dakota,10,5,2,1,3,0,5,8,5,0,0,0
 2027,144207,Sage Hanson,North Dakota,0,0,0,0,0,0,1,1,1,0,0,0
-2027,144208,Daemon Ely,North Dakota,0,1,0,0,1,0,0,0,0,0,0,0
+2027,144208,Daemon Ely,North Dakota,0,2,0,0,2,0,0,0,0,0,0,0
 2027,144209,Chiek Diallo,St. Bonaventure,1,1,1,1,1,0,0,0,0,1,0,1
 2027,144210,Joe Sterling,Texas,0,1,0,2,0,0,11,6,9,0,0,0
 2027,144211,Coleman Elkins,Texas,2,0,2,0,0,0,0,1,0,2,0,2
@@ -3530,7 +3533,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144418,Cauã Pacheco,Troy,6,9,0,1,1,0,7,13,5,0,0,0
 2027,144419,Romain Valakou,Troy,1,0,1,0,0,0,1,1,1,0,0,0
 2027,144420,Tucker Wadsworth,Troy,0,0,0,0,0,0,1,1,1,0,0,0
-2027,144421,David Wilson,SIU Edwardsville,11,2,7,0,3,0,0,2,0,5,0,4
+2027,144421,David Wilson,SIU Edwardsville,15,4,11,0,3,0,0,2,0,8,0,7
 2027,144425,Tyler Nelson,UNC Wilmington,2,0,1,2,2,0,2,5,2,0,0,0
 2027,144426,Jeremiah Kwarteng,Morgan St.,2,7,1,4,10,0,0,10,0,0,0,0
 2027,144428,Darian Grant,Morgan St.,0,1,0,0,0,0,0,1,0,0,0,0
@@ -3539,8 +3542,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144431,Jermel Thomas,Saint Louis,1,0,0,0,0,0,0,0,0,0,0,0
 2027,144432,Jamison White,Saint Louis,3,2,0,0,0,0,0,0,0,1,0,0
 2027,144433,Kain McCaskill,SIU Edwardsville,2,1,0,0,1,0,1,5,1,1,0,0
-2027,144434,Brennan Miller,SIU Edwardsville,4,1,2,3,1,1,0,2,0,0,0,0
-2027,144435,Jayden Riley,SIU Edwardsville,1,3,0,0,3,0,1,2,0,0,0,0
+2027,144434,Brennan Miller,SIU Edwardsville,8,6,5,3,4,1,0,2,0,0,0,0
+2027,144435,Jayden Riley,SIU Edwardsville,1,3,0,0,4,0,1,2,0,0,0,0
 2027,144436,Isaac Ellis,Louisville,1,0,0,0,0,0,2,6,2,0,0,0
 2027,144437,Obinna Ekezie Jr.,Louisville,6,0,4,1,1,0,4,6,4,3,0,2
 2027,144438,Boyuan Zhang,Louisville,1,0,0,0,0,0,1,3,1,0,0,0
@@ -3562,7 +3565,7 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144463,Quincy Watson,Virginia,0,0,0,0,0,0,0,1,0,0,0,0
 2027,144465,Quinn Costello,Michigan,2,0,0,0,1,0,13,19,13,0,0,0
 2027,144467,Marcus Moller,Michigan,0,1,0,0,0,0,0,1,0,0,1,0
-2027,144468,Nolan Adekunle,Virginia,4,3,2,0,0,0,8,8,8,0,0,0
+2027,144468,Nolan Adekunle,Virginia,5,4,2,0,1,0,10,11,10,0,0,0
 2027,144470,Favour Ibe,Virginia,2,0,1,1,0,1,0,0,0,1,0,1
 2027,144471,Jaidyn Coon,Iowa,9,4,8,0,0,0,1,1,1,6,1,6
 2027,144472,Ethan Harris,Iowa,0,0,0,0,0,0,1,2,1,0,0,0
@@ -3670,10 +3673,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144614,Omar Mowafak,Utah Valley,0,1,0,0,0,0,0,0,0,0,0,0
 2027,144615,Deng Deng,Utah Valley,2,1,2,0,0,0,0,0,0,1,0,1
 2027,144616,Sebastian Muchitsch,Utah Valley,0,1,0,0,0,0,0,0,0,0,0,0
-2027,144619,Jaden Bailes,Seattle,1,3,0,1,0,0,5,5,5,0,0,0
-2027,144620,Amare Larane,Seattle,0,3,0,0,0,0,0,4,0,0,0,0
-2027,144621,Kaden Hansen,Seattle,0,0,0,0,0,0,0,1,0,0,0,0
-2027,144623,Ladji Coulibaly,Seattle,2,4,2,0,0,0,0,0,0,1,1,1
+2027,144619,Jaden Bailes,Seattle,1,5,0,1,0,0,6,8,6,0,0,0
+2027,144620,Amare Larane,Seattle,0,4,0,0,1,0,2,4,2,0,0,0
+2027,144621,Kaden Hansen,Seattle,0,2,0,0,0,0,1,2,1,0,0,0
+2027,144623,Ladji Coulibaly,Seattle,5,8,3,0,0,0,0,0,0,3,2,2
 2027,144624,Cooper Lewis,Saint Mary's,0,0,0,0,1,0,2,2,2,0,0,0
 2027,144625,Javon Bardwell,Providence,3,2,3,0,1,0,2,3,2,1,0,1
 2027,144626,Clyde Walters,Providence,5,2,4,0,0,0,2,5,2,0,0,0
@@ -3772,8 +3775,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144757,Hendrix Loughridge,Lipscomb,1,1,1,0,0,0,0,0,0,1,0,1
 2027,144759,Hugo Tidare,Lipscomb,3,1,3,1,0,1,8,8,8,0,0,0
 2027,144761,Zion Wells,Lipscomb,0,1,0,0,1,0,0,0,0,0,0,0
-2027,144762,Izan Almansa,Gonzaga,8,4,6,0,2,0,0,2,0,4,0,4
-2027,144763,Nathan De Sousa,Gonzaga,1,0,1,0,0,0,0,0,0,0,0,0
+2027,144762,Izan Almansa,Gonzaga,11,4,8,0,2,0,1,5,1,5,0,5
+2027,144763,Nathan De Sousa,Gonzaga,5,0,2,0,0,0,0,1,0,0,0,0
 2027,144764,Juwan Ekanga,Gonzaga,0,0,0,0,0,0,1,1,1,0,0,0
 2027,144765,Luca Foster,Gonzaga,0,0,0,1,0,0,1,0,1,0,0,0
 2027,144766,Sam Funches,Gonzaga,0,0,0,0,0,0,0,0,0,0,0,0
@@ -3842,9 +3845,9 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144855,Joseph Hunter,Southern,8,4,4,0,4,0,0,0,0,1,0,0
 2027,144856,RChaun King,Southern,12,8,4,1,2,1,0,0,0,3,0,0
 2027,144857,Julius Avent,Michigan St.,1,0,1,0,1,0,1,1,1,0,0,0
-2027,144858,Jasiah Jervis,Michigan St.,2,2,1,3,2,2,12,10,11,0,0,0
-2027,144859,Carlos Medlock Jr.,Michigan St.,3,2,1,1,5,0,6,5,4,1,0,1
-2027,144860,Ethan Taylor,Michigan St.,3,2,2,1,1,1,0,0,0,0,0,0
+2027,144858,Jasiah Jervis,Michigan St.,2,4,1,3,4,2,12,16,11,0,0,0
+2027,144859,Carlos Medlock Jr.,Michigan St.,3,2,1,1,6,0,7,5,4,1,0,1
+2027,144860,Ethan Taylor,Michigan St.,3,3,2,1,1,1,0,0,0,0,0,0
 2027,144861,Matthew Watkins,Michigan St.,1,0,0,0,1,0,0,1,0,0,0,0
 2027,144863,Jikany Deang,Boise St.,1,0,1,0,0,0,0,1,0,0,0,0
 2027,144865,Krisnan-Cole Ioane,Incarnate Word,2,0,1,0,0,0,0,0,0,0,0,0
@@ -3874,9 +3877,10 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,144899,Ryan Moesch,Syracuse,3,5,1,3,6,1,4,14,1,0,0,0
 2027,144900,Mark Morano,Syracuse,1,3,0,2,1,0,8,10,7,0,1,0
 2027,144901,Abdramane Siby,Syracuse,3,0,3,0,0,0,0,0,0,2,0,2
-2027,144904,Jotham Nweke,Old Dominion,6,0,3,0,1,0,1,2,1,3,0,2
+2027,144903,Lucio Martini,Old Dominion,1,1,1,0,0,0,0,0,0,0,0,0
+2027,144904,Jotham Nweke,Old Dominion,7,0,3,0,2,0,1,3,1,3,0,2
 2027,144905,CJ Harper,Old Dominion,0,2,0,1,0,0,1,0,1,0,0,0
-2027,144906,CJ Lyons,Old Dominion,0,0,0,0,0,0,0,1,0,0,0,0
+2027,144906,CJ Lyons,Old Dominion,0,0,0,1,0,0,0,1,0,0,0,0
 2027,144911,Carter Fisk,Villanova,3,3,0,0,0,0,0,3,0,0,1,0
 2027,144912,Adam Oumiddoch,Villanova,8,4,2,2,2,0,7,8,7,0,0,0
 2027,144913,Luigi Suigo,Villanova,17,4,12,4,5,4,1,4,1,10,0,9
@@ -3943,8 +3947,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,145005,Mihailo Stijovic,Florida A&M,2,1,0,0,1,0,2,6,2,0,0,0
 2027,145006,Ashton Williams,Florida A&M,1,1,1,0,1,0,3,9,2,0,0,0
 2027,145007,Jordan Bender,LSU,1,0,1,0,0,0,0,0,0,0,0,0
-2027,145010,Kota Suttle Jr.,UNLV,1,0,1,0,0,0,2,1,2,0,0,0
-2027,145011,Jackson Kiss,UNLV,6,3,1,0,0,0,0,1,0,0,1,0
+2027,145010,Kota Suttle Jr.,UNLV,1,1,1,0,1,0,4,1,4,0,0,0
+2027,145011,Jackson Kiss,UNLV,7,4,1,0,1,0,0,2,0,0,1,0
 2027,145012,Yusef Gray Jr,Iowa St.,0,0,0,0,1,0,0,1,0,0,0,0
 2027,145014,Dorian Rinaldo-Komlan,Iowa St.,0,1,0,0,0,0,0,0,0,0,0,0
 2027,145015,Jonas Boulefaa,Murray St.,4,1,4,0,2,0,7,4,6,1,0,1
@@ -4125,12 +4129,12 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,145261,Charles Barnes,UNC Greensboro,1,2,1,0,0,0,1,3,1,0,0,0
 2027,145264,Brock Mishak,UNC Greensboro,0,0,0,0,1,0,1,4,1,0,0,0
 2027,145265,Dionte Neal,UNC Greensboro,7,3,0,2,4,0,1,3,0,0,0,0
-2027,145266,Davion Adkins,Kansas,2,0,1,0,0,0,0,2,0,1,0,0
-2027,145267,Luke Barnett,Kansas,0,0,0,0,0,0,3,3,3,0,0,0
-2027,145268,Taylen Kinney,Kansas,1,1,0,0,7,0,2,6,2,0,0,0
-2027,145270,Trent Perry,Kansas,3,1,2,0,0,0,0,0,0,2,0,1
-2027,145271,Atticus Richmond,Kansas,0,0,0,0,0,0,0,2,0,0,0,0
-2027,145272,Tyran Stokes,Kansas,9,8,4,1,1,1,5,7,5,3,2,3
+2027,145266,Davion Adkins,Kansas,3,0,2,0,0,0,0,4,0,2,0,1
+2027,145267,Luke Barnett,Kansas,0,0,0,0,0,0,3,6,3,0,0,0
+2027,145268,Taylen Kinney,Kansas,2,1,1,3,8,2,2,6,2,0,0,0
+2027,145270,Trent Perry,Kansas,5,2,4,0,0,0,0,1,0,2,0,1
+2027,145271,Atticus Richmond,Kansas,0,0,0,0,0,0,0,3,0,0,0,0
+2027,145272,Tyran Stokes,Kansas,11,9,5,1,2,1,6,7,6,3,2,3
 2027,145274,Cheikh Biteye,Nicholls St.,1,0,1,0,0,0,0,1,0,1,0,1
 2027,145275,Jah-Mel Bruce,Nicholls St.,1,1,0,0,0,0,1,4,1,0,0,0
 2027,145276,Mor Mboup,Nicholls St.,1,1,0,1,0,0,0,0,0,0,0,0
@@ -4205,8 +4209,8 @@ year,pid,player,team,rim_made,rim_miss,rim_assisted,mid_made,mid_miss,mid_assist
 2027,145375,Nolen Anderson,Minnesota,1,0,1,0,0,0,2,3,2,0,0,0
 2027,145378,Cedric Tomes,Minnesota,2,1,2,0,0,0,0,1,0,0,0,0
 2027,145381,Marquintez Dixon,Alabama St.,3,1,2,0,0,0,0,0,0,1,0,1
-2027,145382,Tre Powell,Alabama St.,0,1,0,0,0,0,4,4,4,0,0,0
-2027,145383,Terrence Hampton Jr.,Alabama St.,5,0,3,1,0,0,0,0,0,0,0,0
+2027,145382,Tre Powell,Alabama St.,2,1,2,0,0,0,4,6,4,0,0,0
+2027,145383,Terrence Hampton Jr.,Alabama St.,6,2,4,1,0,0,0,0,0,0,0,0
 2027,145384,Brice Dessert,LSU,15,7,9,0,1,0,0,0,0,6,1,4
 2027,145386,Yoav Vitlem,San Francisco,6,8,1,3,9,0,3,6,0,0,0,0
 2027,145388,Jaroslavs Pihtovs,San Francisco,0,2,0,0,0,0,0,0,0,0,0,0
