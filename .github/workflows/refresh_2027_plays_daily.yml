@@ -22,7 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            .github/workflows
+            cbbd_seasons/2026-2027/tables
+            cbbd_seasons/2026-2027/manifest
+            player_cards_pipeline/scripts/refresh_2026_plays_daily_append.py
+            player_cards_pipeline/scripts/build_pbp_player_cache.py
+            player_cards_pipeline/data/cache/pbp
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
