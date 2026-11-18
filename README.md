@@ -6,6 +6,8 @@ Standalone project for college basketball player cards.
 - Card builder: `cbb_player_cards_v1/build_player_card.py`
 - Daily/automation workflows:
   - `.github/workflows/cbbd_2026_plays_every_other_day.yml`
+  - `.github/workflows/refresh_2027_data_daily.yml`
+  - `.github/workflows/refresh_2027_plays_daily.yml`
   - `.github/workflows/build_player_card.yml`
   - `.github/workflows/bt_bootstrap_once.yml`
 - Config: `player_cards_pipeline/config/settings.json`
@@ -26,4 +28,8 @@ Standalone project for college basketball player cards.
 ## Notes
 - Historical ncaahoopR schema differs by year. In this build, metric files for 2010-2022 are mostly header-only; raw yearly `plays_<year>.csv.gz` files are present.
 - `build_player_card.yml` supports `.csv.gz` for `plays_csv_by_year` and auto-unzips during the run.
+- The 2027 daily workflow expects the direct Hoop Explorer export archive in the
+  GitHub Actions secret `HOOP_EXPLORER_EXPORT_URL_2027`. The `/Exports` page is
+  documentation and cannot be used as the archive URL itself.
+- The 2027 plays workflow appends CBBD data into `cbbd_seasons/2026-2027/`.
 - Large raw/manual datasets are ignored by default in `.gitignore` to avoid GitHub size issues.
