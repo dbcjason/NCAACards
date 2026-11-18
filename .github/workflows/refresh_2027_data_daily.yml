@@ -36,7 +36,9 @@ jobs:
 
       - name: Refresh Hoop Explorer enriched players for script season 2027
         env:
-          HOOP_EXPLORER_EXPORT_URL: ${{ secrets.HOOP_EXPLORER_EXPORT_URL_2027 }}
+          # The JSON ZIP contains shotInfo plus on/off/on_off/net_pts fields.
+          # The aggregate CSV intentionally omits those richer player-board fields.
+          HOOP_EXPLORER_EXPORT_URL: https://exports.hoop-explorer-extra.com/json/players_Men_2026.zip
         run: |
           python3 player_cards_pipeline/scripts/refresh_enriched_daily.py \
             --project-root . \
