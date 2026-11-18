@@ -418,6 +418,8 @@ def main() -> None:
     ap.add_argument("--train-max-season", type=int, default=2025)
     ap.add_argument("--holdout-seasons", default="2025")
     ap.add_argument("--score-season", type=int, default=2026)
+    ap.add_argument("--score-min-mp", type=float, default=None, help="Optional separate minimum minutes-per-game filter for scored season.")
+    ap.add_argument("--score-min-g", type=float, default=None, help="Optional separate minimum games filter for scored season.")
     ap.add_argument("--min-mp", type=float, default=8.0)
     ap.add_argument("--min-g", type=float, default=8.0)
     ap.add_argument("--min-height-inches", type=float, default=68.0)
@@ -499,7 +501,20 @@ def main() -> None:
     else:
         test_m = Metrics(mae_inches=0.0, rmse_inches=0.0, r2=0.0)
 
-    score_samples = [s for s in all_samples if s.season == int(args.score_season)]
+    if args.score_min_mp is None and args.score_min_g is None:
+        score_samples = [s for s in all_samples if s.season == int(args.score_season)]
+    else:
+        score_samples = build_samples(
+            bt_rows,
+            enriched_map,
+            bt_feature_specs,
+            enriched_feature_keys,
+            args.min_mp if args.score_min_mp is None else args.score_min_mp,
+            args.min_g if args.score_min_g is None else args.score_min_g,
+            {int(args.score_season)},
+            args.min_height_inches,
+            args.max_height_inches,
+        )
     score_rows: list[dict[str, Any]] = []
     for s in score_samples:
         x = [s.features.get(f, 0.0) for f in feature_names]
