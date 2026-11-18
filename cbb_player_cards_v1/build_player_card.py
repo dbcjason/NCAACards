@@ -5306,43 +5306,36 @@ function exportCard(mode) {{
   const card = document.querySelector('.wrap > .card');
   if (!card) {{ status.textContent = 'Card is unavailable.'; return; }}
   status.textContent = 'Rendering PNG...';
-  const rect = card.getBoundingClientRect();
-  const scale = 2;
-  const clone = card.cloneNode(true);
-  const css = Array.from(document.styleSheets).map((sheet) => {{
-    try {{ return Array.from(sheet.cssRules).map((rule) => rule.cssText).join('\\n'); }}
-    catch (_) {{ return ''; }}
-  }}).join('\\n');
-  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (rect.width * scale) + '" height="' + (rect.height * scale) + '">' +
-    '<foreignObject width="100%" height="100%" transform="scale(' + scale + ')"><div xmlns="http://www.w3.org/1999/xhtml"><style>' + css + '</style>' + clone.outerHTML + '</div></foreignObject></svg>';
-  const image = new Image();
-  image.onload = () => {{
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.ceil(rect.width * scale);
-    canvas.height = Math.ceil(rect.height * scale);
-    const context = canvas.getContext('2d');
-    context.drawImage(image, 0, 0);
-    canvas.toBlob(async (blob) => {{
-      if (!blob) {{ status.textContent = 'Could not create PNG.'; return; }}
-      if (mode === 'clipboard') {{
-        if (!navigator.clipboard || typeof ClipboardItem === 'undefined') {{
-          status.textContent = 'Clipboard PNG is not supported here; use Download PNG.';
-          return;
-        }}
-        await navigator.clipboard.write([new ClipboardItem({{ 'image/png': blob }})]);
-        status.textContent = 'PNG copied.';
-      }} else {{
-        const link = document.createElement('a');
-        link.download = document.title.replace(/[^a-z0-9]+/gi, '_') + '.png';
-        link.href = URL.createObjectURL(blob);
-        link.click();
-        URL.revokeObjectURL(link.href);
-        status.textContent = 'PNG downloaded.';
+  const save = (canvas) => canvas.toBlob(async (blob) => {{
+    if (!blob) {{ status.textContent = 'Could not create PNG.'; return; }}
+    if (mode === 'clipboard') {{
+      if (!navigator.clipboard || typeof ClipboardItem === 'undefined') {{
+        status.textContent = 'Clipboard PNG is not supported here; use Download PNG.'; return;
       }}
-    }}, 'image/png');
+      await navigator.clipboard.write([new ClipboardItem({{ 'image/png': blob }})]);
+      status.textContent = 'PNG copied.';
+      return;
+    }}
+    const link = document.createElement('a');
+    link.download = document.title.replace(/[^a-z0-9]+/gi, '_') + '.png';
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    URL.revokeObjectURL(link.href);
+    status.textContent = 'PNG downloaded.';
+  }}, 'image/png');
+  const fallback = () => {{
+    if (window.html2canvas) {{
+      window.html2canvas(card, {{scale: 2, backgroundColor: '#0a0a0a', useCORS: true, logging: false}})
+        .then(save).catch(() => {{ status.textContent = 'Could not render PNG.'; }});
+      return;
+    }}
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    script.onload = fallback;
+    script.onerror = () => {{ status.textContent = 'Could not load the PNG renderer.'; }};
+    document.head.appendChild(script);
   }};
-  image.onerror = () => {{ status.textContent = 'Could not render PNG.'; }};
-  image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  fallback();
 }}
 </script>
 </body>
