@@ -105,5 +105,18 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh 2027 Bart and Hoop Explorer datasets"
-          git pull --rebase origin main
-          git push origin main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "Rebase failed; leaving the refresh artifacts in the workflow workspace."
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push raced with another main update; retrying (${attempt}/3)."
+            sleep $((attempt * 5))
+          done
+          echo "Unable to push after three attempts."
+          exit 1
