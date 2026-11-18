@@ -1,0 +1,64 @@
+name: Refresh 2027 Bart + Hoop Explorer (Daily)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 8 * * *'
+    - cron: '5 9 * * *'
+
+concurrency:
+  group: refresh-2027-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh Bart 2027 datasets
+        run: |
+          python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
+            --project-root . \
+            --year 2027 \
+            --history-start 2010
+
+      - name: Refresh Hoop Explorer enriched players for script season 2027
+        env:
+          HOOP_EXPLORER_EXPORT_URL: ${{ secrets.HOOP_EXPLORER_EXPORT_URL_2027 }}
+        run: |
+          python3 player_cards_pipeline/scripts/refresh_enriched_daily.py \
+            --project-root . \
+            --season 2027
+
+      - name: Rebuild self-creation cache (2027)
+        run: |
+          python3 player_cards_pipeline/scripts/build_self_creation_cache.py \
+            --project-root . \
+            --years 2027
+
+      - name: Commit and push updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add player_cards_pipeline/data/bt/ || true
+          git add player_cards_pipeline/data/manual/enriched_players/ || true
+          git add player_cards_pipeline/data/bt/self_creation_by_year/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Refresh 2027 Bart and Hoop Explorer datasets"
+          git pull --rebase origin main
+          git push origin main
