@@ -81,6 +81,8 @@ jobs:
             --train-max-season 2025 \
             --holdout-seasons 2025 \
             --score-season 2027 \
+            --score-min-mp 0 \
+            --score-min-g 0 \
             --feature-set big \
             --out-model-json player_cards_pipeline/data/models/height_profile_model_v1.json \
             --out-score-csv player_cards_pipeline/output/height_profile_big_only_scores_2027.csv \
@@ -95,9 +97,9 @@ jobs:
           git add player_cards_pipeline/data/manual/enriched_players/ || true
           git add player_cards_pipeline/data/bt/self_creation_by_year/ || true
           git add player_cards_pipeline/data/models/height_profile_model_v1.json || true
-          git add player_cards_pipeline/output/height_profile_big_only_scores_2027.csv || true
-          git add player_cards_pipeline/output/height_profile_feature_dependency.csv || true
-          git add player_cards_pipeline/output/height_profile_report_2027.json || true
+          git add -f player_cards_pipeline/output/height_profile_big_only_scores_2027.csv || true
+          git add -f player_cards_pipeline/output/height_profile_feature_dependency.csv || true
+          git add -f player_cards_pipeline/output/height_profile_report_2027.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
