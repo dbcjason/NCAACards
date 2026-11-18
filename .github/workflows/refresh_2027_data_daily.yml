@@ -47,6 +47,7 @@ jobs:
           python-version: '3.11'
 
       - name: Refresh Bart 2027 datasets
+        continue-on-error: true
         run: |
           python3 player_cards_pipeline/scripts/refresh_bart_2026_daily.py \
             --project-root . \
