@@ -3,15 +3,34 @@ name: Refresh 2027 Bart + Hoop Explorer (Daily)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 8 * * *'
-    - cron: '5 9 * * *'
+    # GitHub cron is UTC. These two triggers cover EST/EDT; the gate below
+    # allows only the trigger that is 8:05 AM in America/New_York.
+    - cron: '5 12 * * *'
+    - cron: '5 13 * * *'
 
 concurrency:
   group: refresh-2027-data-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
+  schedule-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.local-time.outputs.run }}
+    steps:
+      - name: Allow only 8 AM Eastern run
+        id: local-time
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ] || [ "$(TZ=America/New_York date +%H)" = "08" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
   refresh-data:
+    needs: schedule-gate
+    if: needs.schedule-gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
