@@ -28,8 +28,9 @@ Standalone project for college basketball player cards.
 ## Notes
 - Historical ncaahoopR schema differs by year. In this build, metric files for 2010-2022 are mostly header-only; raw yearly `plays_<year>.csv.gz` files are present.
 - `build_player_card.yml` supports `.csv.gz` for `plays_csv_by_year` and auto-unzips during the run.
-- The 2027 daily workflow expects the direct Hoop Explorer export archive in the
-  GitHub Actions secret `HOOP_EXPLORER_EXPORT_URL_2027`. The `/Exports` page is
-  documentation and cannot be used as the archive URL itself.
+- The 2027 daily workflow expects a direct Hoop Explorer ZIP or CSV export URL
+  in the GitHub Actions secret `HOOP_EXPLORER_EXPORT_URL_2027`. The stable
+  `players_all_Men_2026_All.csv` export is supported; the `/Exports` page is
+  documentation and cannot be used as the download URL itself.
 - The 2027 plays workflow appends CBBD data into `cbbd_seasons/2026-2027/`.
 - Large raw/manual datasets are ignored by default in `.gitignore` to avoid GitHub size issues.
