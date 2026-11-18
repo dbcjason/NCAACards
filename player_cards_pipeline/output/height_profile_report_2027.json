@@ -1,0 +1,107 @@
+{
+  "train_rows": 24275,
+  "test_rows": 0,
+  "score_rows": 4703,
+  "train_metrics": {
+    "mae_inches": 1.8228,
+    "rmse_inches": 2.3078,
+    "r2": 0.5103
+  },
+  "test_metrics": {
+    "mae_inches": 0.0,
+    "rmse_inches": 0.0,
+    "r2": 0.0
+  },
+  "top_height_dependence": [
+    {
+      "feature": "orb_per",
+      "pearson_with_height": 0.6729007034279894,
+      "abs_pearson": 0.6729007034279894,
+      "std_weight": 0.17167468852106604,
+      "abs_std_weight": 0.17167468852106604
+    },
+    {
+      "feature": "blk_per",
+      "pearson_with_height": 0.6249030287300722,
+      "abs_pearson": 0.6249030287300722,
+      "std_weight": 0.1594292178126488,
+      "abs_std_weight": 0.1594292178126488
+    },
+    {
+      "feature": "drb_per",
+      "pearson_with_height": 0.5844056298304905,
+      "abs_pearson": 0.5844056298304905,
+      "std_weight": 0.14909726496049705,
+      "abs_std_weight": 0.14909726496049705
+    },
+    {
+      "feature": "dunk_fg_pct",
+      "pearson_with_height": 0.4619396648217961,
+      "abs_pearson": 0.4619396648217961,
+      "std_weight": 0.11785297246651226,
+      "abs_std_weight": 0.11785297246651226
+    },
+    {
+      "feature": "dunks_pg",
+      "pearson_with_height": 0.4410537983370244,
+      "abs_pearson": 0.4410537983370244,
+      "std_weight": 0.11252443795171382,
+      "abs_std_weight": 0.11252443795171382
+    },
+    {
+      "feature": "dbpm",
+      "pearson_with_height": 0.3923728184727089,
+      "abs_pearson": 0.3923728184727089,
+      "std_weight": 0.1001046381022912,
+      "abs_std_weight": 0.1001046381022912
+    },
+    {
+      "feature": "rim_fg_pct",
+      "pearson_with_height": 0.3549817711982423,
+      "abs_pearson": 0.3549817711982423,
+      "std_weight": 0.09056519734733359,
+      "abs_std_weight": 0.09056519734733359
+    },
+    {
+      "feature": "ftr",
+      "pearson_with_height": 0.2544572293658682,
+      "abs_pearson": 0.2544572293658682,
+      "std_weight": 0.06491873967552557,
+      "abs_std_weight": 0.06491873967552557
+    },
+    {
+      "feature": "rim_att_pg",
+      "pearson_with_height": 0.13261211748266458,
+      "abs_pearson": 0.13261211748266458,
+      "std_weight": 0.033832843162411676,
+      "abs_std_weight": 0.033832843162411676
+    },
+    {
+      "feature": "adrtg",
+      "pearson_with_height": -0.2361122081037713,
+      "abs_pearson": 0.2361122081037713,
+      "std_weight": 0.0,
+      "abs_std_weight": 0.0
+    }
+  ],
+  "notes": [
+    "Positive height_delta_inches means a player statistically profiles as taller than listed height.",
+    "Negative height_delta_inches means a player statistically profiles as shorter than listed height."
+  ],
+  "positive_corr_weights": {
+    "orb_per": 0.17167468852106604,
+    "drb_per": 0.14909726496049705,
+    "blk_per": 0.1594292178126488,
+    "dbpm": 0.1001046381022912,
+    "adrtg": 0.0,
+    "rim_fg_pct": 0.09056519734733359,
+    "rim_att_pg": 0.033832843162411676,
+    "dunk_fg_pct": 0.11785297246651226,
+    "dunks_pg": 0.11252443795171382,
+    "ftr": 0.06491873967552557
+  },
+  "linear_map": {
+    "a": 3.3736620446969527,
+    "b": 77.24449021627188
+  }
+}
