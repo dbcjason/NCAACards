@@ -5645,6 +5645,12 @@ def main() -> None:
         if not draft_projection_html:
             draft_projection_html = build_draft_projection_html(target, bt_rows, bio_lookup, rsci_map)
             stage("Computed missing draft projection (cache fallback)")
+        # Refresh this section from the daily PBP cache when available.  A
+        # previously generated section cache may predate the PBP cache and
+        # otherwise preserve an all-dash on/off panel.
+        if impact_rows:
+            team_impact_html = build_team_impact_html(target, bt_rows, impact_rows)
+            stage("Refreshed team_impact_html from PBP cache")
     else:
         bt_percentiles_html = build_bt_percentile_html(target, bt_rows, adv_rows, pbp_rows)
         stage("Built bt_percentiles_html")
