@@ -3,9 +3,9 @@ name: Refresh 2027 Bart + Hoop Explorer (Daily)
 on:
   workflow_dispatch:
   schedule:
-    # GitHub cron is UTC. These two triggers cover EST/EDT; the gate below
-    # allows only the trigger that is 8:05 AM in America/New_York.
-    - cron: '5 12 * * *'
+    # 13:05 UTC is 8:05 AM Eastern during standard time. GitHub Actions can
+    # delay scheduled starts, so this workflow intentionally has no exact-hour
+    # runtime gate: a delayed run should still refresh the daily data.
     - cron: '5 13 * * *'
 
 concurrency:
@@ -13,24 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  schedule-gate:
-    runs-on: ubuntu-latest
-    outputs:
-      run: ${{ steps.local-time.outputs.run }}
-    steps:
-      - name: Allow only 8 AM Eastern run
-        id: local-time
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" != "schedule" ] || [ "$(TZ=America/New_York date +%H)" = "08" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
-
   refresh-data:
-    needs: schedule-gate
-    if: needs.schedule-gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -56,8 +39,6 @@ jobs:
 
       - name: Refresh Hoop Explorer enriched players for script season 2027
         env:
-          # The JSON ZIP contains shotInfo plus on/off/on_off/net_pts fields.
-          # The aggregate CSV intentionally omits those richer player-board fields.
           HOOP_EXPLORER_EXPORT_URL: https://exports.hoop-explorer-extra.com/json/players_Men_2026.zip
         run: |
           python3 player_cards_pipeline/scripts/refresh_enriched_daily.py \
@@ -107,11 +88,7 @@ jobs:
           git commit -m "Refresh 2027 Bart and Hoop Explorer datasets"
           for attempt in 1 2 3; do
             git fetch origin main
-            if ! git rebase origin/main; then
-              git rebase --abort
-              echo "Rebase failed; leaving the refresh artifacts in the workflow workspace."
-              exit 1
-            fi
+            git rebase origin/main || { git rebase --abort; exit 1; }
             if git push origin HEAD:main; then
               exit 0
             fi
