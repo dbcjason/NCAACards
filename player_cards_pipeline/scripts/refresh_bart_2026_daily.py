@@ -10,6 +10,7 @@ import subprocess
 import time
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 ADVGAMES_HEADERS = [
@@ -30,6 +31,18 @@ BT_ADV_HEADERS = [
     "dunksmade/(dunksmade+dunksmiss)", "pick", "drtg", "adrtg", "dporpag", "stops", "bpm", "obpm", "dbpm",
     "gbpm", "mp", "ogbpm", "dgbpm", "oreb", "dreb", "treb", "ast", "stl", "blk", "pts", "role", "3p/100?", "dob",
 ]
+
+
+def google_translate_proxy_url(url: str) -> str:
+    """Return a text-proxy URL for Bart when a runner IP is blocked."""
+    parsed = urlsplit(url)
+    if parsed.netloc.lower() != "barttorvik.com":
+        return url
+    query = parsed.query
+    if query:
+        query += "&"
+    query += "_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en"
+    return f"https://barttorvik-com.translate.goog{parsed.path}?{query}"
 
 
 def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
@@ -90,6 +103,25 @@ def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
                     raise
             except (URLError, TimeoutError, RuntimeError) as e:
                 last_err = e
+
+            # Bart blocks some GitHub-hosted runner IPs even with browser-like
+            # headers. Google Translate can proxy the same raw CSV/JSON URL.
+            proxy_url = google_translate_proxy_url(url)
+            if proxy_url != url:
+                try:
+                    proxy = subprocess.run(
+                        [
+                            "curl", "--fail", "--location", "--silent", "--show-error",
+                            "--connect-timeout", "30", "--max-time", str(timeout),
+                            *curl_headers, proxy_url,
+                        ],
+                        capture_output=True,
+                        check=True,
+                    )
+                    if proxy.stdout:
+                        return proxy.stdout
+                except (FileNotFoundError, subprocess.CalledProcessError) as proxy_err:
+                    last_err = proxy_err
         except HTTPError as e:
             last_err = e
             # Retry on transient blocks/server errors; fail fast on other 4xx.
