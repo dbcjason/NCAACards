@@ -6,6 +6,7 @@ import csv
 import gzip
 import io
 import json
+import re
 import subprocess
 import time
 from pathlib import Path
@@ -45,7 +46,17 @@ def google_translate_proxy_url(url: str) -> str:
     return f"https://barttorvik-com.translate.goog{parsed.path}?{query}"
 
 
+def normalize_url(url: str) -> str:
+    """Strip Markdown link syntax accidentally introduced by copied configs/logs."""
+    value = str(url).strip()
+    match = re.fullmatch(r"\[([^\]]+)\]\((https?://[^)]+)\)", value)
+    if match:
+        return match.group(2).strip()
+    return value
+
+
 def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
+    url = normalize_url(url)
     # Bart occasionally returns transient 403/5xx from anti-bot/proxy layers.
     # Retry with browser-like headers and exponential backoff.
     header_sets = [
