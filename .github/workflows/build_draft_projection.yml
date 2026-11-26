@@ -2,13 +2,13 @@ name: Build Draft Projection Cache
 
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 14 * * *"
   workflow_dispatch:
     inputs:
       season:
         description: "Script season (e.g. 2026)"
         required: true
-        default: "2026"
+        default: "2027"
       start_date:
         description: "Optional YYYY-MM-DD start date."
         required: false
@@ -35,7 +35,7 @@ jobs:
     uses: ./.github/workflows/build_section_cache_pipeline.yml
     with:
       section: draft_projection_html
-      season: ${{ github.event.inputs.season || '2026' }}
+      season: ${{ github.event.inputs.season || '2027' }}
       start_date: ${{ github.event.inputs.start_date || '' }}
       end_date: ${{ github.event.inputs.end_date || '' }}
       chunk_count: ${{ github.event.inputs.chunk_count || '10' }}
