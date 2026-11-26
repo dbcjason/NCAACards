@@ -6,6 +6,7 @@ import csv
 import gzip
 import io
 import json
+import subprocess
 import time
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -56,12 +57,39 @@ def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
     for attempt in range(1, max(1, retries) + 1):
         headers = header_sets[(attempt - 1) % len(header_sets)]
         try:
-            req = Request(url, headers=headers)
-            with urlopen(req, timeout=timeout) as resp:
-                data = resp.read()
-                if data:
-                    return data
-                raise RuntimeError(f"Empty response body for {url}")
+            # Bart's CDN accepts curl from GitHub-hosted runners but can reject
+            # urllib's request fingerprint with a 403. Use the same endpoint
+            # and headers through curl first, then retain urllib as fallback.
+            curl_headers = []
+            for key, value in headers.items():
+                curl_headers.extend(["-H", f"{key}: {value}"])
+            result = subprocess.run(
+                [
+                    "curl", "--fail", "--location", "--silent", "--show-error",
+                    "--connect-timeout", "30", "--max-time", str(timeout),
+                    *curl_headers, url,
+                ],
+                capture_output=True,
+                check=True,
+            )
+            if result.stdout:
+                return result.stdout
+            raise RuntimeError(f"Empty response body for {url}")
+        except (FileNotFoundError, subprocess.CalledProcessError) as curl_err:
+            last_err = curl_err
+            try:
+                req = Request(url, headers=headers)
+                with urlopen(req, timeout=timeout) as resp:
+                    data = resp.read()
+                    if data:
+                        return data
+                    raise RuntimeError(f"Empty response body for {url}")
+            except HTTPError as e:
+                last_err = e
+                if e.code not in (403, 429, 500, 502, 503, 504):
+                    raise
+            except (URLError, TimeoutError, RuntimeError) as e:
+                last_err = e
         except HTTPError as e:
             last_err = e
             # Retry on transient blocks/server errors; fail fast on other 4xx.
