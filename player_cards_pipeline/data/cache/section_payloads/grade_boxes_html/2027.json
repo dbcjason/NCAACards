@@ -1,9 +1,9 @@
 {
   "season": "2027",
   "section": "grade_boxes_html",
-  "chunk_count": 4,
+  "chunk_count": 10,
   "row_count": 4709,
-  "generated_at": "2026-11-26T22:02:30Z",
+  "generated_at": "2026-11-27T22:54:22Z",
   "rows": {
     "rahmir moore|delawarest|2027": "<div class=\"grade-chip\"><div class=\"grade-k\">Impact</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Scoring</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Playmaking</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Defense</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Rebounding</div><div class=\"grade-v\">F</div></div>",
     "jay rodgers|pennst|2027": "<div class=\"grade-chip\"><div class=\"grade-k\">Impact</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Scoring</div><div class=\"grade-v\">D-</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Playmaking</div><div class=\"grade-v\">D</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Defense</div><div class=\"grade-v\">F</div></div><div class=\"grade-chip\"><div class=\"grade-k\">Rebounding</div><div class=\"grade-v\">F</div></div>",

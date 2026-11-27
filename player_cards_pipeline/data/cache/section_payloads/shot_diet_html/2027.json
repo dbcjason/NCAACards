@@ -1,9 +1,9 @@
 {
   "season": "2027",
   "section": "shot_diet_html",
-  "chunk_count": 4,
+  "chunk_count": 10,
   "row_count": 4709,
-  "generated_at": "2026-11-26T22:07:11Z",
+  "generated_at": "2026-11-27T23:08:57Z",
   "rows": {
     "rahmir moore|delawarest|2027": "\n      <div class=\"panel\">\n        <h3>Shot Diet</h3>\n        <div class=\"shotdiet-bar\">\n          <div class=\"shotdiet-seg shotdiet-rim\" style=\"width:25.00%\"></div>\n          <div class=\"shotdiet-seg shotdiet-mid\" style=\"width:75.00%\"></div>\n          <div class=\"shotdiet-seg shotdiet-three\" style=\"width:0.00%;background:#60a5fa !important;\"></div>\n        </div>\n        <div class=\"shotdiet-legend\">\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-rim\"></span> Rim (25.0%)</div>\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-mid\"></span> Non-Rim 2 (75.0%)</div>\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-three\"></span> 3PA (0.0%)</div>\n        </div>\n      </div>\n",
     "jay rodgers|pennst|2027": "\n      <div class=\"panel\">\n        <h3>Shot Diet</h3>\n        <div class=\"shotdiet-bar\">\n          <div class=\"shotdiet-seg shotdiet-rim\" style=\"width:57.14%\"></div>\n          <div class=\"shotdiet-seg shotdiet-mid\" style=\"width:14.29%\"></div>\n          <div class=\"shotdiet-seg shotdiet-three\" style=\"width:28.57%;background:#60a5fa !important;\"></div>\n        </div>\n        <div class=\"shotdiet-legend\">\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-rim\"></span> Rim (57.1%)</div>\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-mid\"></span> Non-Rim 2 (14.3%)</div>\n          <div class=\"shotdiet-key\"><span class=\"shotdiet-dot shotdiet-three\"></span> 3PA (28.6%)</div>\n        </div>\n      </div>\n",
