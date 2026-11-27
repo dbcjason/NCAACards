@@ -1,9 +1,9 @@
 {
   "season": "2027",
   "section": "player_comparisons_html",
-  "chunk_count": 4,
+  "chunk_count": 10,
   "row_count": 4709,
-  "generated_at": "2026-11-26T22:04:43Z",
+  "generated_at": "2026-11-27T23:15:11Z",
   "rows": {
     "rahmir moore|delawarest|2027": "\n      <div class=\"panel\">\n        <h3>Player Comparisons</h3>\n        <div class=\"comp-table\">\n          <div class=\"comp-row\"><span class=\"comp-name\">Leshawn Stowers</span><span class=\"comp-year\">2027</span><span class=\"comp-score\">89.6</span></div><div class=\"comp-row\"><span class=\"comp-name\">Christian Clark</span><span class=\"comp-year\">2019</span><span class=\"comp-score\">89.0</span></div><div class=\"comp-row\"><span class=\"comp-name\">Jamere Hill</span><span class=\"comp-year\">2022</span><span class=\"comp-score\">88.5</span></div><div class=\"comp-row\"><span class=\"comp-name\">Jaron Mckie</span><span class=\"comp-year\">2027</span><span class=\"comp-score\">88.4</span></div><div class=\"comp-row\"><span class=\"comp-name\">DJ Sandi</span><span class=\"comp-year\">2027</span><span class=\"comp-score\">88.1</span></div>\n        </div>\n      </div>\n",
     "jay rodgers|pennst|2027": "\n      <div class=\"panel\">\n        <h3>Player Comparisons</h3>\n        <div class=\"comp-table\">\n          <div class=\"comp-row\"><span class=\"comp-name\">Von Julien</span><span class=\"comp-year\">2019</span><span class=\"comp-score\">86.4</span></div><div class=\"comp-row\"><span class=\"comp-name\">Matthew Sells</span><span class=\"comp-year\">2025</span><span class=\"comp-score\">86.3</span></div><div class=\"comp-row\"><span class=\"comp-name\">Kerr Kriisa</span><span class=\"comp-year\">2024</span><span class=\"comp-score\">85.9</span></div><div class=\"comp-row\"><span class=\"comp-name\">Drue Drinnon</span><span class=\"comp-year\">2025</span><span class=\"comp-score\">85.5</span></div><div class=\"comp-row\"><span class=\"comp-name\">Brocke Stepteau</span><span class=\"comp-year\">2019</span><span class=\"comp-score\">85.5</span></div>\n        </div>\n      </div>\n",
