@@ -46,6 +46,17 @@ def google_translate_proxy_url(url: str) -> str:
     return f"https://barttorvik-com.translate.goog{parsed.path}?{query}"
 
 
+def fetch_candidates(url: str) -> list[str]:
+    """Return ordinary endpoint variants, with the public proxy last."""
+    url = normalize_url(url)
+    candidates = [url]
+    parsed = urlsplit(url)
+    if parsed.netloc.lower() == "barttorvik.com":
+        candidates.append(url.replace("https://barttorvik.com/", "https://www.barttorvik.com/", 1))
+        candidates.append(google_translate_proxy_url(url))
+    return list(dict.fromkeys(candidates))
+
+
 def normalize_url(url: str) -> str:
     """Strip Markdown link syntax accidentally introduced by copied configs/logs."""
     value = str(url).strip()
@@ -53,6 +64,35 @@ def normalize_url(url: str) -> str:
     if match:
         return match.group(2).strip()
     return value
+
+
+def normalize_header_value(value: str) -> str:
+    """Remove Markdown link wrappers from copied header/config values too."""
+    return normalize_url(value)
+
+
+def fetch_with_curl(url: str, headers: dict[str, str], timeout: int) -> bytes:
+    """Fetch one URL with curl and reject empty/HTML error bodies."""
+    url = normalize_url(url)
+    curl_headers = []
+    for key, value in headers.items():
+        curl_headers.extend(["-H", f"{key}: {normalize_header_value(value)}"])
+    result = subprocess.run(
+        [
+            "curl", "--fail", "--location", "--silent", "--show-error",
+            "--compressed", "--connect-timeout", "30", "--max-time", str(timeout),
+            *curl_headers, url,
+        ],
+        capture_output=True,
+        check=True,
+    )
+    body = result.stdout
+    if not body:
+        raise RuntimeError(f"Empty response body for {url}")
+    sample = body[:512].lstrip().lower()
+    if sample.startswith((b"<!doctype html", b"<html", b"<head")):
+        raise RuntimeError(f"HTML response returned where data was expected for {url}")
+    return body
 
 
 def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
@@ -80,66 +120,33 @@ def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
     last_err: Exception | None = None
     for attempt in range(1, max(1, retries) + 1):
         headers = header_sets[(attempt - 1) % len(header_sets)]
-        try:
-            # Bart's CDN accepts curl from GitHub-hosted runners but can reject
-            # urllib's request fingerprint with a 403. Use the same endpoint
-            # and headers through curl first, then retain urllib as fallback.
-            curl_headers = []
-            for key, value in headers.items():
-                curl_headers.extend(["-H", f"{key}: {value}"])
-            result = subprocess.run(
-                [
-                    "curl", "--fail", "--location", "--silent", "--show-error",
-                    "--connect-timeout", "30", "--max-time", str(timeout),
-                    *curl_headers, url,
-                ],
-                capture_output=True,
-                check=True,
-            )
-            if result.stdout:
-                return result.stdout
-            raise RuntimeError(f"Empty response body for {url}")
-        except (FileNotFoundError, subprocess.CalledProcessError) as curl_err:
-            last_err = curl_err
+        for candidate in fetch_candidates(url):
             try:
-                req = Request(url, headers=headers)
-                with urlopen(req, timeout=timeout) as resp:
-                    data = resp.read()
-                    if data:
-                        return data
-                    raise RuntimeError(f"Empty response body for {url}")
+                # Bart's CDN can reject urllib's request fingerprint. Try curl
+                # first, then urllib, before moving to the next endpoint.
+                return fetch_with_curl(candidate, headers, timeout)
+            except (FileNotFoundError, subprocess.CalledProcessError, RuntimeError) as err:
+                last_err = err
+                try:
+                    req = Request(candidate, headers=headers)
+                    with urlopen(req, timeout=timeout) as resp:
+                        data = resp.read()
+                        if data:
+                            sample = data[:512].lstrip().lower()
+                            if sample.startswith((b"<!doctype html", b"<html", b"<head")):
+                                raise RuntimeError(f"HTML response returned for {candidate}")
+                            return data
+                        raise RuntimeError(f"Empty response body for {candidate}")
+                except HTTPError as e:
+                    last_err = e
+                    if e.code not in (403, 429, 500, 502, 503, 504):
+                        raise
+                except (URLError, TimeoutError, RuntimeError) as e:
+                    last_err = e
             except HTTPError as e:
                 last_err = e
                 if e.code not in (403, 429, 500, 502, 503, 504):
                     raise
-            except (URLError, TimeoutError, RuntimeError) as e:
-                last_err = e
-
-            # Bart blocks some GitHub-hosted runner IPs even with browser-like
-            # headers. Google Translate can proxy the same raw CSV/JSON URL.
-            proxy_url = google_translate_proxy_url(url)
-            if proxy_url != url:
-                try:
-                    proxy = subprocess.run(
-                        [
-                            "curl", "--fail", "--location", "--silent", "--show-error",
-                            "--connect-timeout", "30", "--max-time", str(timeout),
-                            *curl_headers, proxy_url,
-                        ],
-                        capture_output=True,
-                        check=True,
-                    )
-                    if proxy.stdout:
-                        return proxy.stdout
-                except (FileNotFoundError, subprocess.CalledProcessError) as proxy_err:
-                    last_err = proxy_err
-        except HTTPError as e:
-            last_err = e
-            # Retry on transient blocks/server errors; fail fast on other 4xx.
-            if e.code not in (403, 429, 500, 502, 503, 504):
-                raise
-        except (URLError, TimeoutError, RuntimeError) as e:
-            last_err = e
 
         if attempt < retries:
             sleep_s = min(45.0, 1.6 ** attempt)
@@ -331,7 +338,8 @@ def refresh_advgames(bt_dir: Path, year: int) -> None:
     if not payload:
         raise RuntimeError(f"Could not fetch {year} all_advgames JSON")
 
-    if used_url.endswith('.gz'):
+    # Bart can serve plain JSON from the .gz URL; inspect the actual bytes.
+    if payload[:2] == b"\x1f\x8b":
         txt = gzip.decompress(payload).decode("utf-8", errors="replace")
     else:
         txt = payload.decode("utf-8", errors="replace")
@@ -362,11 +370,28 @@ def main() -> None:
     bt_dir = root / "player_cards_pipeline" / "data" / "bt"
     ensure_dir(bt_dir)
 
-    refresh_advstats(bt_dir, args.year, args.history_start)
-    refresh_playerstat(bt_dir, args.year)
-    refresh_advgames(bt_dir, args.year)
+    failures: list[tuple[str, Exception]] = []
+    for label, fn in (
+        ("advstats", lambda: refresh_advstats(bt_dir, args.year, args.history_start)),
+        ("playerstat", lambda: refresh_playerstat(bt_dir, args.year)),
+        ("advgames", lambda: refresh_advgames(bt_dir, args.year)),
+    ):
+        try:
+            fn()
+        except Exception as exc:
+            # A temporary Bart block must not prevent Hoop Explorer and other
+            # independent daily jobs from running; existing files remain intact.
+            failures.append((label, exc))
+            print(f"[bart-refresh] WARNING {label} skipped: {exc}", flush=True)
 
-    print(f"Bart {args.year} refresh complete")
+    if failures:
+        print(
+            "[bart-refresh] completed with warnings; existing Bart cache was preserved "
+            "for failed datasets",
+            flush=True,
+        )
+    else:
+        print(f"Bart {args.year} refresh complete")
 
 
 if __name__ == "__main__":
