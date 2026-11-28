@@ -97,6 +97,12 @@ def fetch_with_curl(url: str, headers: dict[str, str], timeout: int) -> bytes:
 
 def fetch_bytes(url: str, retries: int = 6, timeout: int = 120) -> bytes:
     url = normalize_url(url)
+    # Bart's CDN advertises a short cache lifetime but can still serve an
+    # older edge response to GitHub runners. Give each daily refresh a unique
+    # query token so the downloaded season reflects the current endpoint.
+    cache_token = str(int(time.time()))
+    separator = "&" if "?" in url else "?"
+    url = f"{url}{separator}_bt_refresh={cache_token}"
     # Bart occasionally returns transient 403/5xx from anti-bot/proxy layers.
     # Retry with browser-like headers and exponential backoff.
     header_sets = [
