@@ -101,7 +101,9 @@ jobs:
           git commit -m "Refresh 2027 Bart and Hoop Explorer datasets"
           for attempt in 1 2 3; do
             git fetch origin main
-            git rebase origin/main || { git rebase --abort; exit 1; }
+            # Sparse checkout can leave generated files marked dirty after the
+            # fetch. Autostash lets the rebase retain those files safely.
+            git rebase --autostash origin/main || { git rebase --abort; exit 1; }
             if git push origin HEAD:main; then
               exit 0
             fi
