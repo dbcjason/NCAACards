@@ -22,7 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # The refresh only needs the current tree. Fetching all history made
+          # this large repository stall before the Bart step could start.
+          fetch-depth: 1
 
       - name: Setup Python
         uses: actions/setup-python@v5
