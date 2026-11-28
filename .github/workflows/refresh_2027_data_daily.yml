@@ -25,6 +25,18 @@ jobs:
           # The refresh only needs the current tree. Fetching all history made
           # this large repository stall before the Bart step could start.
           fetch-depth: 1
+          sparse-checkout: |
+            .github
+            player_cards_pipeline/config
+            player_cards_pipeline/scripts
+            player_cards_pipeline/data/bt
+            player_cards_pipeline/data/manual/enriched_players/by_json_year
+            player_cards_pipeline/data/manual/enriched_players/by_script_season
+            player_cards_pipeline/data/manual/pbp_metrics/2027
+            player_cards_pipeline/data/manual/plays_by_year/2027
+            player_cards_pipeline/data/models
+            player_cards_pipeline/output
+          sparse-checkout-cone-mode: false
 
       - name: Setup Python
         uses: actions/setup-python@v5
