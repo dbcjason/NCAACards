@@ -212,6 +212,58 @@ def refresh_advstats(bt_dir: Path, year: int, history_start: int = 2010) -> None
     trank_history = bt_dir / f"trank_{history_start}_{year}.csv"
     trank_base = bt_dir / f"trank_{history_start}_{year - 1}.csv"
 
+    # A Bart CDN edge can occasionally return an older in-season snapshot.
+    # Never replace a newer cached season with one containing fewer games.
+    if out_year.exists():
+        old_h, old_rows = read_csv(out_year)
+
+        def season_progress(rows: list[dict[str, str]]) -> tuple[float, float, int]:
+            gps = []
+            for row in rows:
+                try:
+                    gps.append(float(row.get("GP", "")))
+                except (TypeError, ValueError):
+                    continue
+            return (sum(gps), max(gps, default=0.0), len(rows))
+
+        incoming_rows = [
+            {BT_ADV_HEADERS[i]: value for i, value in enumerate(row[:len(BT_ADV_HEADERS)])}
+            for row in parsed
+        ]
+        if old_rows and season_progress(incoming_rows) < season_progress(old_rows):
+            print(
+                f"[bart-refresh] keeping newer cached {year} advstats "
+                f"({season_progress(old_rows)} > {season_progress(incoming_rows)})",
+                flush=True,
+            )
+            parsed = [[row.get(h, "") for h in BT_ADV_HEADERS] for row in old_rows]
+
+    # A Bart CDN edge can occasionally return an older in-season snapshot.
+    # Never replace a newer cached season with one containing fewer games.
+    if out_year.exists():
+        old_h, old_rows = read_csv(out_year)
+
+        def season_progress(rows: list[dict[str, str]]) -> tuple[float, float, int]:
+            gps = []
+            for row in rows:
+                try:
+                    gps.append(float(row.get("GP", "")))
+                except (TypeError, ValueError):
+                    continue
+            return (sum(gps), max(gps, default=0.0), len(rows))
+
+        incoming_rows = [
+            {BT_ADV_HEADERS[i]: value for i, value in enumerate(row[:len(BT_ADV_HEADERS)])}
+            for row in parsed
+        ]
+        if old_rows and season_progress(incoming_rows) < season_progress(old_rows):
+            print(
+                f"[bart-refresh] keeping newer cached {year} advstats "
+                f"({season_progress(old_rows)} > {season_progress(incoming_rows)})",
+                flush=True,
+            )
+            parsed = [[row.get(h, "") for h in BT_ADV_HEADERS] for row in old_rows]
+
     rows26_dict: list[dict[str, str]] = []
     rows26_trank: list[dict[str, str]] = []
     for r in rows26:
