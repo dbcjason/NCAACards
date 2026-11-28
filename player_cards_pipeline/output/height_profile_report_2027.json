@@ -1,7 +1,7 @@
 {
   "train_rows": 24275,
   "test_rows": 0,
-  "score_rows": 4703,
+  "score_rows": 4921,
   "train_metrics": {
     "mae_inches": 1.8228,
     "rmse_inches": 2.3078,
